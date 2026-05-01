@@ -29,6 +29,64 @@ const CATEGORY_VARIANT: Record<
   village: "gold",
 };
 
+const REGION_LABEL: Record<HiddenGem["region"], string> = {
+  north: "Northern Thailand",
+  northeast: "Northeastern Thailand",
+  central: "Central Thailand",
+  east: "Eastern Thailand",
+  south: "Southern Thailand",
+  west: "Western Thailand",
+};
+
+function buildFunFacts(gem: HiddenGem): string[] {
+  const facts: string[] = [];
+  const [firstTag, secondTag] = gem.vibe_tags;
+
+  facts.push(
+    `${gem.name_en} sits in ${REGION_LABEL[gem.region]} and leans ${CATEGORY_LABEL[gem.category].toLowerCase()} with ${[firstTag, secondTag]
+      .filter(Boolean)
+      .join(" and ")} energy.`
+  );
+  facts.push(`Best window: ${gem.best_time}.`);
+
+  if (gem.crowd_level <= 2) {
+    facts.push(
+      `It is one of the quieter picks in the set, with a crowd level of ${gem.crowd_level}/5.`
+    );
+  } else if (gem.crowd_level >= 4) {
+    facts.push(
+      `It is more lively than most hidden gems here, with a crowd level of ${gem.crowd_level}/5.`
+    );
+  } else {
+    facts.push(
+      `It balances access and atmosphere with a moderate crowd level of ${gem.crowd_level}/5.`
+    );
+  }
+
+  const travelStyleBits = [
+    gem.vegan_friendly ? "vegan-friendly" : null,
+    gem.family_friendly ? "good for families" : null,
+    gem.accessibility ? gem.accessibility : null,
+  ].filter(Boolean);
+  if (travelStyleBits.length > 0) {
+    facts.push(`Travel style: ${travelStyleBits.join(" · ")}.`);
+  }
+
+  if (gem.auth_score >= 4) {
+    facts.push(
+      `Authenticity signal: ${gem.auth_score}/5 in the local curation data.`
+    );
+  }
+
+  if (gem.near_traps.length > 0) {
+    facts.push(
+      `This destination helps you sidestep ${gem.near_traps.length} common tourist-trap alternative${gem.near_traps.length === 1 ? "" : "s"}.`
+    );
+  }
+
+  return facts.slice(0, 4);
+}
+
 export function GemCard({
   gem,
   index,
@@ -50,6 +108,7 @@ export function GemCard({
   const mapsReviews = crowdSignal?.matched_place?.user_rating_count;
   const mapsUri = crowdSignal?.matched_place?.google_maps_uri;
   const mapsPressure = crowdSignal?.pressure;
+  const funFacts = buildFunFacts(gem);
   const pressureTone =
     mapsPressure === "high"
       ? "border-[var(--burgundy-soft)] bg-[#fdf2f2] text-[var(--burgundy)]"
@@ -124,6 +183,24 @@ export function GemCard({
         <p className="text-sm leading-relaxed text-[var(--muted-foreground)]">
           {gem.en_description}
         </p>
+
+        {funFacts.length > 0 && (
+          <div className="rounded-2xl border border-[var(--border-saffron)] bg-[var(--saffron-tint)]/55 p-3.5">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--saffron)]">
+              Fun facts
+            </p>
+            <ul className="mt-2 flex flex-col gap-2">
+              {funFacts.map((fact) => (
+                <li
+                  key={fact}
+                  className="text-sm leading-relaxed text-[var(--foreground)]"
+                >
+                  {fact}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-[var(--muted-foreground)]">
           <span className="inline-flex items-center gap-1">
