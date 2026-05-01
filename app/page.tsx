@@ -2,18 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
-import {
-  CalendarDays,
-  Compass,
-  Globe,
-  Users,
-  Heart,
-  Map as MapIcon,
-  CloudSun,
-  ShieldCheck,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
+import { CalendarDays, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -38,16 +27,6 @@ const EXAMPLES = [
     prompt:
       "10 days exploring temples and culture, but not the Bangkok rush.",
   },
-];
-
-const AGENT_CREW = [
-  { Icon: Compass, name: "Local Listener", role: "Reads our curated dataset" },
-  { Icon: Globe, name: "Web Pulse", role: "Live Tavily + Exa Thai blogs" },
-  { Icon: Users, name: "Crowd Analyst", role: "Filters out the tourist traps" },
-  { Icon: Heart, name: "Cultural Curator", role: "Scores fit against your vibe" },
-  { Icon: MapIcon, name: "Route Planner", role: "Slow-travel, 1–2 bases" },
-  { Icon: CloudSun, name: "Weather Watcher", role: "Open-Meteo per-day forecast" },
-  { Icon: ShieldCheck, name: "Verifier", role: "Holidays, seasons, etiquette" },
 ];
 
 function defaultStartDate(): string {
@@ -193,85 +172,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Agent crew bento */}
-        <section className="flex flex-col gap-5">
-          <div className="flex items-baseline justify-between">
-            <h2 className="font-display text-2xl font-semibold tracking-tight">
-              The crew
-            </h2>
-            <p className="font-mono text-xs uppercase tracking-widest text-[var(--muted)]">
-              7 specialists · ~15s end-to-end
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
-            {AGENT_CREW.map(({ Icon, name, role }, i) => (
-              <div
-                key={name}
-                className="group flex flex-col gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3.5 transition-all hover:-translate-y-0.5 hover:border-[var(--border-saffron)] hover:shadow-[var(--shadow-md)]"
-                style={{
-                  animation: `float-in 0.4s ${i * 60}ms backwards ease-out`,
-                }}
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--saffron-tint)] text-[var(--saffron)] group-hover:bg-[var(--saffron-soft)]">
-                  <Icon className="h-4 w-4" />
-                </div>
-                <p className="font-display text-sm font-semibold leading-tight">
-                  {name}
-                </p>
-                <p className="text-[11px] leading-snug text-[var(--muted-foreground)]">
-                  {role}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Stats bento */}
-        <section className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <Stat label="Curated gems" value="33" tone="saffron" />
-          <Stat label="TAT verified" value="14" tone="jade" />
-          <Stat label="Tourist traps" value="11" tone="burgundy" />
-          <Stat label="Live data sources" value="4" tone="gold" />
-        </section>
-
-        {/* Footer */}
-        <footer className="border-t border-[var(--border)] pt-6 text-center text-xs text-[var(--muted)]">
-          <p>
-            Powered by Gemini 3.1 · Tavily · Exa · Open-Meteo · TAT Data API ·
-            Curated from Pantip, readme.me, chillpainai
-          </p>
-        </footer>
       </div>
     </main>
-  );
-}
-
-function Stat({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: string;
-  tone: "saffron" | "jade" | "burgundy" | "gold";
-}) {
-  const toneClass = {
-    saffron: "from-[var(--saffron-tint)] to-transparent text-[var(--saffron)]",
-    jade: "from-[var(--jade-tint)] to-transparent text-[var(--jade)]",
-    burgundy: "from-[#fdf2f2] to-transparent text-[var(--burgundy)]",
-    gold: "from-[#fdf6e3] to-transparent text-[var(--gold)]",
-  }[tone];
-
-  return (
-    <div
-      className={`relative flex flex-col gap-1 overflow-hidden rounded-2xl border border-[var(--border)] bg-gradient-to-br ${toneClass} bg-[var(--surface)] p-4`}
-    >
-      <span className="font-display text-3xl font-semibold tracking-tight">
-        {value}
-      </span>
-      <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted-foreground)]">
-        {label}
-      </span>
-    </div>
   );
 }
