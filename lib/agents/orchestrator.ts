@@ -683,7 +683,11 @@ export async function orchestrate(
         stay_at: d.stay_at,
         morning: d.morning,
         afternoon: d.afternoon,
-        evening: d.evening,
+        // Weather Watcher only needs the activity, not the restaurant
+        // structure — synthesize a short string from evening_dinner.
+        evening: d.evening_dinner
+          ? `dinner at ${d.evening_dinner.name}`
+          : undefined,
         forecast,
       };
     });

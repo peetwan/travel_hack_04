@@ -78,9 +78,32 @@ export const plannerOutputSchema = z.object({
           .string()
           .describe("gem_id of the base the user sleeps near that night."),
         is_transfer_day: z.boolean().default(false),
-        morning: z.string().optional(),
-        afternoon: z.string().optional(),
-        evening: z.string().optional(),
+        morning: z
+          .string()
+          .describe(
+            "One short sentence — concrete morning plan. Required for every day, even transfer days (e.g. 'breakfast at the homestay before checkout')."
+          ),
+        afternoon: z
+          .string()
+          .describe(
+            "One short sentence — concrete afternoon plan. Required for every day; on transfer days this is usually the actual transfer."
+          ),
+        evening_dinner: z
+          .object({
+            name: z
+              .string()
+              .describe(
+                "Real, well-known local restaurant in the base town. Use a real name from your training data — never invent. Prefer iconic local-favourite spots over hotel restaurants or international chains."
+              ),
+            why: z
+              .string()
+              .describe(
+                "One short sentence on the signature dish, local heritage, or what makes it the right pick — concrete, not generic."
+              ),
+          })
+          .describe(
+            "Restaurant pick for dinner — required for every day. The evening slot exists for this; if you can't think of a real specific restaurant, pick one from the gem's province that you can confidently name."
+          ),
         gems: z.array(z.string()),
       })
     )

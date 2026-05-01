@@ -23,6 +23,7 @@ import {
   Trophy,
   CalendarHeart,
   Megaphone,
+  Utensils,
 } from "lucide-react";
 import { AgentCrewPanel, type AgentRow } from "@/components/AgentCrewPanel";
 import { GemCard } from "@/components/GemCard";
@@ -790,6 +791,8 @@ function WeatherChip({
   );
 }
 
+// Morning + afternoon are plain string blocks. Evening is special-cased as
+// a structured restaurant pick (name + why) — see DinnerBlock below.
 const TIME_BLOCKS = [
   {
     key: "morning",
@@ -802,12 +805,6 @@ const TIME_BLOCKS = [
     label: "Afternoon",
     Icon: CloudSun,
     accent: "text-[var(--jade)]",
-  },
-  {
-    key: "evening",
-    label: "Evening",
-    Icon: Moon,
-    accent: "text-[var(--burgundy)]",
   },
 ] as const;
 
@@ -903,8 +900,36 @@ function DayRow({
             />
           );
         })}
+        {d.evening_dinner && (
+          <DinnerBlock dinner={d.evening_dinner} />
+        )}
       </dl>
     </li>
+  );
+}
+
+function DinnerBlock({
+  dinner,
+}: {
+  dinner: NonNullable<
+    NonNullable<FinalItinerary["days"]>[number]["evening_dinner"]
+  >;
+}) {
+  return (
+    <>
+      <dt className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-[var(--burgundy)] sm:pt-1">
+        <Utensils className="h-3 w-3" />
+        Dinner
+      </dt>
+      <dd className="flex flex-col gap-1">
+        <span className="font-display text-[17px] font-semibold leading-snug text-[var(--foreground)]">
+          {dinner.name}
+        </span>
+        <span className="text-[14px] leading-relaxed text-[var(--muted-foreground)]">
+          {dinner.why}
+        </span>
+      </dd>
+    </>
   );
 }
 

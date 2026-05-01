@@ -302,7 +302,9 @@ export interface ItineraryDay {
   is_transfer_day: boolean;
   morning?: string;
   afternoon?: string;
-  evening?: string;
+  /** Concrete restaurant pick for the evening — name + one short reason
+   * (signature dish, local heritage, what makes it the local favourite). */
+  evening_dinner?: { name: string; why: string };
   gems: string[];
   weather?: DayWeather;
   date?: string;
