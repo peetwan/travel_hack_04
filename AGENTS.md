@@ -26,6 +26,10 @@ User prompt + start date
     ↓
  Local Listener            (candidate set from curated data)
     ├─→ Web Pulse          (candidate-focused Thai web search)
+    │     ├─ validations[]      → for candidates already in dataset
+    │     └─ discovered_gems[]  → fresh places NOT in dataset
+    │           ↓
+    │       Google Places geocoding (drop unresolvable)
     └─→ Maps Crowd Radar   (Google Places proxy signals)
                           ↓
                    Crowd Analyst       (filters + flags traps + crowd pressure)
@@ -41,12 +45,13 @@ User prompt + start date
          Gemini)                   holidays, etiquette)
               └───────────┬────────────┘
                           ↓
-                  Final itinerary
+                  Final itinerary + Live finds panel
                   (streamed via SSE)
 ```
 
 - Listener runs first so Web Pulse and Maps Crowd Radar can validate the exact candidate set instead of searching broadly
 - Web Pulse + Maps Crowd Radar run from the Listener's candidates — live Thai-web visibility + Google Places popularity/open-status proxies
+- Web Pulse also proposes up to 5 `discovered_gems[]` — places named in fresh Thai-source hits that are NOT in the curated dataset. The orchestrator geocodes each via Google Places and drops anything unresolvable. Discoveries DO NOT enter Curator/Planner — they appear as a sidebar "Live finds" panel, labeled clearly as leads, not vetted picks
 - Crowd Analyst combines curated `crowd_level`, Maps review volume, trip calendar pressure, and Web Pulse tourism-pressure terms before filtering
 - Weather Watcher + Verifier run in parallel after the Planner
 - All steps emit Server-Sent Events; the UI shows each agent live
@@ -62,11 +67,11 @@ User prompt + start date
 | `lib/agents/schemas.ts` | Zod output schemas for `generateObject` |
 | `lib/ai.ts` | Gemini provider config + per-agent model picks |
 | `lib/web-search.ts` | Tavily + Exa + Firecrawl HTTP wrappers + freshness/provider diagnostics |
-| `lib/google-maps.ts` | Google Places (New) text-search wrapper for request-time Maps crowd signals |
+| `lib/google-maps.ts` | Google Places (New) text-search wrapper — `fetchMapsCrowdSignals` for crowd radar + `geocodeDiscoveredPlace` for resolving Web Pulse's live finds |
 | `lib/crowd-radar.ts` | Deterministic crowd-pressure scoring: Maps + trip calendar + Web Pulse terms |
 | `lib/weather.ts` | Open-Meteo client (free, no API key) |
 | `lib/thai-holidays.ts` | Hardcoded 2026/2027 holidays + range helper |
-| `lib/types.ts` | Shared types: `HiddenGem`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
+| `lib/types.ts` | Shared types: `HiddenGem`, `DiscoveredGem`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
 | `data/hidden_gems.json` | 52 curated gems (28 with `tat` enrichment block) |
 | `data/tourist_traps.json` | 11 known traps + their better alternatives |
 | `app/api/orchestrate/route.ts` | SSE endpoint, validates input, calls the orchestrator |
@@ -84,6 +89,7 @@ User prompt + start date
 - Each prompt explicitly instructs a `narration` field — one sentence, English, what the user sees streamed live
 - Prompts include **rules of thumb** ("always keep at least 5 gems", "1-2 bases max for short trips", "prefer concentration over coverage")
 - Web Pulse and Curator must be precise about freshness: only call evidence "recent" if a source has `published_at`; undated hits are "live-search visibility" or "indexed visibility"
+- Web Pulse outputs two separate arrays: `validations[]` (must use a `gem_id` from the candidate set) and `discovered_gems[]` (places NOT in the dataset, max 5). Don't merge them in the prompt — the geocoding step depends on this separation
 - Crowd Analyst must never claim Google Maps gives a live crowd count. Maps signals are popularity/open-status proxies only: review volume, business status, open now, match distance
 - Verifier and Weather Watcher receive structured context (trip dates, holidays, forecasts) in the user `prompt`, not the system prompt — the system prompt stays static for prompt-cache friendliness
 
@@ -115,7 +121,8 @@ Light theme inspired by Thai luxury hospitality.
 ### Data shape
 - `HiddenGem` has optional `tat?: TatEnrichment` — `place_id`, `slug`, `thumbnail_url`, `sha_certified`, `province_th`, `detail_url`, `distance_km`
 - TAT enrichment is **lat/lng-validated** — within 50km of the gem's recorded coordinates, otherwise dropped (the keyword search occasionally returns same-named places in different provinces; e.g. "เกาะหมาก" exists in both Trat and Phatthalung)
-- `WebEvidence` carries `searched_at`, `freshness_note`, per-provider status, source counts, and per-hit `evidence_level` (`search-snippet` vs `page-scrape`)
+- `WebEvidence` carries `searched_at`, `freshness_note`, per-provider status, source counts, per-hit `evidence_level` (`search-snippet` vs `page-scrape`), and an optional `discovered_gems[]` populated only when Web Pulse proposed places outside the curated dataset and they geocoded cleanly
+- `DiscoveredGem` carries `lat`/`lng` from Google Places, the `source_url` from the original Thai-source hit, plus optional `google_maps_uri`, `google_review_count`, and `google_rating`. No `crowd_level`/`auth_score` — discoveries are not vetted and never enter Curator/Planner
 - `MapsCrowdReport` carries one `MapsCrowdSignal` per Listener candidate. `pressure_score` is deterministic and combines calibrated Maps review volume, weekend/holiday pressure, and Web Pulse tourism-pressure terms
 - `MapsCrowdSignal.pressure` is a proxy (`low` / `medium` / `high` / `unknown`), not a live crowd reading. Keep this wording in UI and prompts
 
@@ -146,6 +153,12 @@ Light theme inspired by Thai luxury hospitality.
 
 ### A new tourist trap
 Append to `data/tourist_traps.json` with `id`, `name_en`, `name_th`, `province`, `why_avoid`, `better_alternatives`. The Crowd Analyst will pick it up automatically when a gem references it via `near_traps`.
+
+### Tuning live finds (Web Pulse discoveries)
+- Cap is set in the schema: `webPulseOutputSchema.discovered_gems.max(5)` in `lib/agents/schemas.ts`. Raise/lower there.
+- The discovery prompt rule lives in `WEB_PULSE_PROMPT` (`lib/agents/prompts.ts`) — it forbids famous tourist names so the anti-overtourism mandate still holds for live finds.
+- Geocoding timeout is 6s in the orchestrator. Anything that fails to resolve via Google Places is dropped silently (the user only sees gems with confirmed coordinates and a Maps link).
+- Without `GOOGLE_MAPS_API_KEY`, geocoding is skipped and `discovered_gems[]` will always be empty — the validations path still works.
 
 ## Local development
 

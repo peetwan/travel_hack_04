@@ -1,6 +1,6 @@
 # Hidden Siam
 
-> Five specialized AI agents collaborate to find authentic, less-crowded Thai destinations the famous travel bots never recommend.
+> Seven specialized AI agents collaborate to find authentic, less-crowded Thai destinations the famous travel bots never recommend.
 
 Built for the **Thailand Tourism Mini Hackathon** (AI Hackathon SS6, May 2026).
 
@@ -8,21 +8,21 @@ Built for the **Thailand Tourism Mini Hackathon** (AI Hackathon SS6, May 2026).
 
 Maya Bay was closed for four years because of overtourism. Phi Phi is a parking lot of long-tail boats. Damnoen Saduak is staged for cruise tours. And every general-purpose AI travel assistant — ChatGPT, Gemini, you-name-it — keeps recommending exactly those places.
 
-**Hidden Siam** runs five specialized AI agents over a hand-curated dataset of authentic Thai destinations sourced from local blogs, Pantip, and the Designated Areas for Sustainable Tourism. The agents argue, filter, and route — the user sees their work happen live.
+**Hidden Siam** runs seven specialized AI agents over a hand-curated dataset of 52 authentic Thai destinations sourced from local blogs, Pantip, and the Designated Areas for Sustainable Tourism. The agents argue, filter, and route — and Web Pulse can even surface live finds outside the dataset when fresh Thai-source hits name a place that fits. The user sees their work happen live.
 
 ## The agents
 
 | Agent | Model / Source | Role |
 | --- | --- | --- |
 | 🔍 Local Listener | Gemini 3.1 Flash Lite | Surfaces 8–12 candidates from the curated dataset |
-| 🌐 Web Pulse | Tavily + Exa + Gemini 3.1 Flash Lite | Live-searches Thai travel sources (Pantip, readme.me, chillpainai…) to validate candidates against today's web |
+| 🌐 Web Pulse | Tavily + Exa + Firecrawl + Gemini 3.1 Flash Lite | Live-searches Thai travel sources (Pantip, readme.me, chillpainai…) to validate candidates AND propose up to 5 fresh "live finds" outside the curated dataset (geocoded via Google Places) |
 | 📊 Crowd Analyst | Gemini 3.1 Flash Lite | Filters by crowd-tolerance, flags tourist traps the user might be heading toward |
 | 🎨 Cultural Curator | Gemini 3.1 Flash Lite | Scores each candidate against the user's vibe **plus** Web Pulse's verdicts |
 | 🗺️ Route Planner | Gemini 3.1 Flash Lite | Picks a final 2–4 gems, builds a slow-travel plan with 1–2 bases (no rushing between hotels every night) |
 | 🌦️ Weather Watcher | Open-Meteo + Gemini 3.1 Flash Lite | Pulls a 14-day forecast for each base, aligns it to your trip days, and suggests swaps when a day looks rainy |
 | ✅ Verifier | Gemini 3.1 Flash Lite | Sanity-checks seasonal closures, etiquette, and adds 2–4 local tips |
 
-Listener and Web Pulse run in parallel — the curated dataset is our local moat, the live web is fresh ground-truth. They reconcile through the Curator. After the Planner picks bases, Weather Watcher and Verifier run in parallel before the result is finalised. The Orchestrator routes work between them all and streams progress over Server-Sent Events so the UI shows every step happening live.
+Listener runs first to set the candidate pool; Web Pulse and Maps Crowd Radar then run against that exact pool — the curated dataset is our local moat, the live web is fresh ground-truth. They reconcile through the Curator. After the Planner picks bases, Weather Watcher and Verifier run in parallel before the result is finalised. The Orchestrator routes work between them all and streams progress over Server-Sent Events so the UI shows every step happening live.
 
 ## Stack
 
@@ -48,7 +48,7 @@ Open http://localhost:3000.
 
 **Recommended for full experience:** Tavily (https://tavily.com), Exa (https://exa.ai), Firecrawl (https://firecrawl.dev) — all have generous free tiers. Without these, the app still works but the Web Pulse agent emits an empty result and the Curator scores from the curated dataset alone.
 
-The full crew uses ~6 calls per prompt and finishes in ~15 seconds.
+The full crew uses ~7 LLM calls per prompt plus a parallel Maps + geocoding pass and finishes in ~25 seconds end-to-end.
 
 ## Demo prompts
 
@@ -109,9 +109,9 @@ Every entry has real lat/lng, a Thai source URL, and a `near_traps` list pointin
 
 ## Why this design
 
-- **Five agents, not one** — judges in an AI hackathon care about agentic patterns. A single Gemini call would have been simpler but invisible.
-- **Curated data, not RAG over the open web** — this is the moat. ChatGPT can't recommend Phu Tok because Wikipedia barely covers it; we can.
-- **SSE streaming, not "wait 15s and show result"** — the visible work *is* the demo.
+- **Seven agents, not one** — judges in an AI hackathon care about agentic patterns. A single Gemini call would have been simpler but invisible.
+- **Curated dataset as the trust anchor + live discovery as the freshness layer** — 52 hand-vetted gems give us defensible quality (TAT-verified images, hand-tuned `crowd_level` and `auth_score`); Web Pulse's `discovered_gems[]` keeps the system useful when a user asks about a place we haven't curated yet, while never letting unvetted picks into the planned route.
+- **SSE streaming, not "wait 25s and show result"** — the visible work *is* the demo.
 - **Tourist-trap awareness, not just gem retrieval** — the verifier explicitly contrasts every recommendation against what a generic AI would have said. Judges see the diff.
 
 ## License
