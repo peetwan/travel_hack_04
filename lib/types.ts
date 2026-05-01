@@ -295,13 +295,23 @@ export interface AgentEvent {
   timestamp: number;
 }
 
+/** A morning or afternoon activity block. `place` is the most distinctive
+ * named location for that block; `gem_id` is set when `place` is one of the
+ * day's selected gems so the UI can link the place name to the gem's
+ * Google Maps URI. */
+export interface DayActivity {
+  place: string;
+  activity: string;
+  gem_id?: string;
+}
+
 export interface ItineraryDay {
   day: number;
   title: string;
   stay_at: string;
   is_transfer_day: boolean;
-  morning?: string;
-  afternoon?: string;
+  morning?: DayActivity;
+  afternoon?: DayActivity;
   /** Concrete restaurant pick for the evening — name + one short reason
    * (signature dish, local heritage, what makes it the local favourite). */
   evening_dinner?: { name: string; why: string };

@@ -79,15 +79,47 @@ export const plannerOutputSchema = z.object({
           .describe("gem_id of the base the user sleeps near that night."),
         is_transfer_day: z.boolean().default(false),
         morning: z
-          .string()
+          .object({
+            place: z
+              .string()
+              .describe(
+                "Most distinctive named location for the morning — a curated gem name, a market, a viewpoint, a temple, a homestay area. Concrete, never generic ('the area', 'your hotel')."
+              ),
+            activity: z
+              .string()
+              .describe(
+                "One short sentence on what to do at this place. Required for every day."
+              ),
+            gem_id: z
+              .string()
+              .optional()
+              .describe(
+                "Set ONLY when `place` is exactly one of the day's selected gem_ids — lets the UI link the place name to the gem's Google Maps URI."
+              ),
+          })
           .describe(
-            "One short sentence — concrete morning plan. Required for every day, even transfer days (e.g. 'breakfast at the homestay before checkout')."
+            "Required for every day, even transfer days (e.g. place = the homestay name + activity = 'breakfast and pack')."
           ),
         afternoon: z
-          .string()
-          .describe(
-            "One short sentence — concrete afternoon plan. Required for every day; on transfer days this is usually the actual transfer."
-          ),
+          .object({
+            place: z
+              .string()
+              .describe(
+                "Most distinctive named location for the afternoon — a curated gem, a market, a craft village, a viewpoint. Concrete, never generic. On transfer days, this is usually the route/destination of the transfer."
+              ),
+            activity: z
+              .string()
+              .describe(
+                "One short sentence on what to do at this place. Required for every day."
+              ),
+            gem_id: z
+              .string()
+              .optional()
+              .describe(
+                "Set ONLY when `place` is exactly one of the day's selected gem_ids."
+              ),
+          })
+          .describe("Required for every day."),
         evening_dinner: z
           .object({
             name: z

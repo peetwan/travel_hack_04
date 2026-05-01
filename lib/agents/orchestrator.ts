@@ -677,14 +677,19 @@ export async function orchestrate(
       const fc = forecastByGemId.get(d.stay_at) ?? [];
       const idx = tripStartOffset + (d.day - 1);
       const forecast = fc[idx] ?? fc[fc.length - 1];
+      // Weather Watcher only needs the activity text, not the structured
+      // {place, activity, gem_id} or {name, why} forms — synthesize short
+      // strings from each block.
       return {
         day: d.day,
         title: d.title,
         stay_at: d.stay_at,
-        morning: d.morning,
-        afternoon: d.afternoon,
-        // Weather Watcher only needs the activity, not the restaurant
-        // structure — synthesize a short string from evening_dinner.
+        morning: d.morning
+          ? `${d.morning.place} — ${d.morning.activity}`
+          : undefined,
+        afternoon: d.afternoon
+          ? `${d.afternoon.place} — ${d.afternoon.activity}`
+          : undefined,
         evening: d.evening_dinner
           ? `dinner at ${d.evening_dinner.name}`
           : undefined,

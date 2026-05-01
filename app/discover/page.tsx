@@ -14,7 +14,6 @@ import {
   ArrowRight,
   Sun,
   CloudSun,
-  Moon,
   MapPin,
   CloudRain,
   CloudFog,
@@ -791,22 +790,9 @@ function WeatherChip({
   );
 }
 
-// Morning + afternoon are plain string blocks. Evening is special-cased as
-// a structured restaurant pick (name + why) — see DinnerBlock below.
-const TIME_BLOCKS = [
-  {
-    key: "morning",
-    label: "Morning",
-    Icon: Sun,
-    accent: "text-[var(--saffron)]",
-  },
-  {
-    key: "afternoon",
-    label: "Afternoon",
-    Icon: CloudSun,
-    accent: "text-[var(--jade)]",
-  },
-] as const;
+// Morning + afternoon are structured DayActivity blocks (place + activity +
+// optional gem_id). Evening is a structured restaurant pick (name + why).
+// Renderers: ActivityBlock for morning/afternoon, DinnerBlock for dinner.
 
 const WEEKDAYS_FULL = [
   "Sunday",
@@ -846,9 +832,11 @@ function formatDayDate(iso: string): string {
 function DayRow({
   day: d,
   isBestOutdoor,
+  mapsUriByGemId,
 }: {
   day: NonNullable<FinalItinerary["days"]>[number];
   isBestOutdoor: boolean;
+  mapsUriByGemId: Map<string, string>;
 }) {
   const dayName = d.date ? formatDayDate(d.date) : null;
   return (
@@ -887,24 +875,82 @@ function DayRow({
       )}
 
       <dl className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-[100px_1fr] sm:gap-y-4">
-        {TIME_BLOCKS.map(({ key, label, Icon, accent }) => {
-          const text = d[key as keyof typeof d] as string | undefined;
-          if (!text) return null;
-          return (
-            <DayTimeBlock
-              key={key}
-              label={label}
-              Icon={Icon}
-              accent={accent}
-              text={text}
-            />
-          );
-        })}
+        {d.morning && (
+          <ActivityBlock
+            label="Morning"
+            Icon={Sun}
+            accent="text-[var(--saffron)]"
+            activity={d.morning}
+            mapsUri={
+              d.morning.gem_id ? mapsUriByGemId.get(d.morning.gem_id) : undefined
+            }
+          />
+        )}
+        {d.afternoon && (
+          <ActivityBlock
+            label="Afternoon"
+            Icon={CloudSun}
+            accent="text-[var(--jade)]"
+            activity={d.afternoon}
+            mapsUri={
+              d.afternoon.gem_id
+                ? mapsUriByGemId.get(d.afternoon.gem_id)
+                : undefined
+            }
+          />
+        )}
         {d.evening_dinner && (
           <DinnerBlock dinner={d.evening_dinner} />
         )}
       </dl>
     </li>
+  );
+}
+
+function ActivityBlock({
+  label,
+  Icon,
+  accent,
+  activity,
+  mapsUri,
+}: {
+  label: string;
+  Icon: React.ElementType;
+  accent: string;
+  activity: NonNullable<
+    NonNullable<FinalItinerary["days"]>[number]["morning"]
+  >;
+  mapsUri?: string;
+}) {
+  return (
+    <>
+      <dt
+        className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest ${accent} sm:pt-1`}
+      >
+        <Icon className="h-3 w-3" />
+        {label}
+      </dt>
+      <dd className="flex flex-col gap-1">
+        {mapsUri ? (
+          <a
+            href={mapsUri}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-baseline gap-1.5 self-start font-display text-[17px] font-semibold leading-snug text-[var(--foreground)] transition-colors hover:text-[var(--saffron)]"
+          >
+            {activity.place}
+            <MapPin className="h-3 w-3 translate-y-0.5 text-[var(--muted)] transition-colors group-hover:text-[var(--saffron)]" />
+          </a>
+        ) : (
+          <span className="font-display text-[17px] font-semibold leading-snug text-[var(--foreground)]">
+            {activity.place}
+          </span>
+        )}
+        <span className="text-[14px] leading-relaxed text-[var(--muted-foreground)]">
+          {activity.activity}
+        </span>
+      </dd>
+    </>
   );
 }
 
@@ -933,35 +979,17 @@ function DinnerBlock({
   );
 }
 
-function DayTimeBlock({
-  label,
-  Icon,
-  accent,
-  text,
-}: {
-  label: string;
-  Icon: React.ElementType;
-  accent: string;
-  text: string;
-}) {
-  return (
-    <>
-      <dt
-        className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest ${accent} sm:pt-1`}
-      >
-        <Icon className="h-3 w-3" />
-        {label}
-      </dt>
-      <dd className="text-[15px] leading-relaxed text-[var(--foreground)]">
-        {text}
-      </dd>
-    </>
-  );
-}
-
 function DayTimeline({ final }: { final: FinalItinerary }) {
   if (!final.days || final.days.length === 0) return null;
   const gemsById = new Map(final.selected_gems.map((g) => [g.id, g]));
+  // Crowd radar carries each selected gem's matched Google Maps URI — used to
+  // turn a morning/afternoon `place` into a clickable Maps link when the
+  // planner referenced a gem_id.
+  const mapsUriByGemId = new Map<string, string>();
+  for (const signal of final.crowd_radar?.signals ?? []) {
+    const uri = signal.matched_place?.google_maps_uri;
+    if (uri) mapsUriByGemId.set(signal.gem_id, uri);
+  }
   const bestOutdoor = final.weather?.best_day_for_outdoor ?? null;
 
   // Group consecutive days that share the same `stay_at` so the user sees
@@ -1077,6 +1105,7 @@ function DayTimeline({ final }: { final: FinalItinerary }) {
                       key={d.day}
                       day={d}
                       isBestOutdoor={bestOutdoor === d.day}
+                      mapsUriByGemId={mapsUriByGemId}
                     />
                   ))}
                 </ul>
