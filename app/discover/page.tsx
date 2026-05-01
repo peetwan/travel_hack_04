@@ -874,12 +874,12 @@ function DayRow({
         </p>
       )}
 
-      <dl className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-[100px_1fr] sm:gap-y-4">
+      <div className="flex flex-col divide-y divide-[var(--border)]">
         {d.morning && (
           <ActivityBlock
             label="Morning"
             Icon={Sun}
-            accent="text-[var(--saffron)]"
+            tone="saffron"
             activity={d.morning}
             mapsUri={
               d.morning.gem_id ? mapsUriByGemId.get(d.morning.gem_id) : undefined
@@ -890,7 +890,7 @@ function DayRow({
           <ActivityBlock
             label="Afternoon"
             Icon={CloudSun}
-            accent="text-[var(--jade)]"
+            tone="jade"
             activity={d.afternoon}
             mapsUri={
               d.afternoon.gem_id
@@ -902,35 +902,79 @@ function DayRow({
         {d.evening_dinner && (
           <DinnerBlock dinner={d.evening_dinner} />
         )}
-      </dl>
+      </div>
     </li>
+  );
+}
+
+// Tone tokens for the time-block icon medallion + label colour. Inlined as a
+// map (not Tailwind class strings concatenated) so JIT picks every variant.
+const TONE_STYLES = {
+  saffron: {
+    iconBg: "bg-[var(--saffron-tint)]",
+    iconBorder: "border-[var(--border-saffron)]",
+    iconText: "text-[var(--saffron)]",
+    label: "text-[var(--saffron)]",
+  },
+  jade: {
+    iconBg: "bg-[var(--jade-tint)]",
+    iconBorder: "border-[var(--jade-soft)]",
+    iconText: "text-[var(--jade)]",
+    label: "text-[var(--jade)]",
+  },
+  burgundy: {
+    iconBg: "bg-[#fdf2f2]",
+    iconBorder: "border-[var(--burgundy-soft)]",
+    iconText: "text-[var(--burgundy)]",
+    label: "text-[var(--burgundy)]",
+  },
+} as const;
+
+function TimeBlockMedallion({
+  Icon,
+  label,
+  tone,
+}: {
+  Icon: React.ElementType;
+  label: string;
+  tone: keyof typeof TONE_STYLES;
+}) {
+  const t = TONE_STYLES[tone];
+  return (
+    <div className="flex w-20 shrink-0 flex-col items-center gap-1.5 pt-0.5 sm:w-24">
+      <div
+        className={`flex h-10 w-10 items-center justify-center rounded-full border ${t.iconBorder} ${t.iconBg}`}
+      >
+        <Icon className={`h-4 w-4 ${t.iconText}`} />
+      </div>
+      <span
+        className={`font-mono text-[10px] font-semibold uppercase tracking-widest ${t.label}`}
+      >
+        {label}
+      </span>
+    </div>
   );
 }
 
 function ActivityBlock({
   label,
   Icon,
-  accent,
+  tone,
   activity,
   mapsUri,
 }: {
   label: string;
   Icon: React.ElementType;
-  accent: string;
+  tone: keyof typeof TONE_STYLES;
   activity: NonNullable<
     NonNullable<FinalItinerary["days"]>[number]["morning"]
   >;
   mapsUri?: string;
 }) {
   return (
-    <>
-      <dt
-        className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest ${accent} sm:pt-1`}
-      >
-        <Icon className="h-3 w-3" />
-        {label}
-      </dt>
-      <dd className="flex flex-col gap-1">
+    <div className="flex gap-5 py-5 first:pt-1">
+      <TimeBlockMedallion Icon={Icon} label={label} tone={tone} />
+      <div className="flex flex-1 flex-col gap-1 pt-1">
         {mapsUri ? (
           <a
             href={mapsUri}
@@ -949,8 +993,8 @@ function ActivityBlock({
         <span className="text-[14px] leading-relaxed text-[var(--muted-foreground)]">
           {activity.activity}
         </span>
-      </dd>
-    </>
+      </div>
+    </div>
   );
 }
 
@@ -962,20 +1006,17 @@ function DinnerBlock({
   >;
 }) {
   return (
-    <>
-      <dt className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-[var(--burgundy)] sm:pt-1">
-        <Utensils className="h-3 w-3" />
-        Dinner
-      </dt>
-      <dd className="flex flex-col gap-1">
+    <div className="flex gap-5 py-5 first:pt-1">
+      <TimeBlockMedallion Icon={Utensils} label="Dinner" tone="burgundy" />
+      <div className="flex flex-1 flex-col gap-1 pt-1">
         <span className="font-display text-[17px] font-semibold leading-snug text-[var(--foreground)]">
           {dinner.name}
         </span>
         <span className="text-[14px] leading-relaxed text-[var(--muted-foreground)]">
           {dinner.why}
         </span>
-      </dd>
-    </>
+      </div>
+    </div>
   );
 }
 
