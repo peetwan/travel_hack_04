@@ -346,6 +346,7 @@ function DiscoverInner() {
               <ItineraryHero final={final} />
               <ItineraryMapHero gems={final.selected_gems} />
               <DayTimeline final={final} />
+              <LiveFinds final={final} />
               <ResultFooter final={final} />
             </motion.div>
           )}
@@ -407,6 +408,100 @@ function ItineraryMapHero({ gems }: { gems: FinalItinerary["selected_gems"] }) {
       <div className="h-[420px] sm:h-[480px]">
         <ItineraryMap gems={gems} />
       </div>
+    </div>
+  );
+}
+
+// Live finds — places Web Pulse discovered in fresh Thai-source hits that aren't
+// in our curated dataset. Geocoded via Google Places, shown alongside the
+// curated itinerary as additional leads (not part of the planned route).
+function LiveFinds({ final }: { final: FinalItinerary }) {
+  const finds = final.discovered_gems ?? [];
+  if (finds.length === 0) return null;
+
+  return (
+    <div className="flex flex-col gap-4 rounded-2xl border border-dashed border-[var(--border-saffron)] bg-[var(--saffron-tint)]/40 p-5 sm:p-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <div className="flex flex-col gap-1">
+          <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--saffron)]">
+            <Sparkles className="h-3 w-3" />
+            Live finds · {finds.length} {finds.length === 1 ? "place" : "places"}
+          </p>
+          <h3 className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)]">
+            Found in fresh Thai web hits — not in our curated set yet
+          </h3>
+          <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
+            Web Pulse surfaced these from live Thai-source articles. Coordinates
+            confirmed via Google Maps, but they have not been TAT-verified or
+            crowd-checked. Treat as leads, not vetted picks.
+          </p>
+        </div>
+      </div>
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {finds.map((find) => {
+          let host = find.source_url;
+          try {
+            host = new URL(find.source_url).hostname.replace(/^www\./, "");
+          } catch {
+            /* keep raw */
+          }
+          return (
+            <li
+              key={find.id}
+              className="flex flex-col gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[var(--shadow-xs)]"
+            >
+              <div className="flex flex-col gap-0.5">
+                <h4 className="font-display text-base font-semibold leading-tight text-[var(--foreground)]">
+                  {find.name_en}
+                  {find.name_th && (
+                    <span className="ml-1.5 font-sans text-xs font-normal text-[var(--muted)]">
+                      · {find.name_th}
+                    </span>
+                  )}
+                </h4>
+                <p className="inline-flex items-center gap-1 font-mono text-[11px] text-[var(--muted)]">
+                  <MapPin className="h-3 w-3" />
+                  {find.province}
+                  {typeof find.google_review_count === "number" && (
+                    <span className="ml-1">
+                      · {find.google_review_count.toLocaleString()} Maps reviews
+                      {typeof find.google_rating === "number"
+                        ? ` · ${find.google_rating.toFixed(1)}★`
+                        : ""}
+                    </span>
+                  )}
+                </p>
+              </div>
+              <p className="text-sm leading-relaxed text-[var(--muted-foreground)]">
+                {find.why}
+              </p>
+              <div className="mt-auto flex flex-wrap items-center gap-3 pt-1 text-xs">
+                <a
+                  href={find.source_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-mono text-[var(--jade)] hover:underline"
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  {host}
+                  {find.source_published_at ? ` · ${find.source_published_at}` : ""}
+                </a>
+                {find.google_maps_uri && (
+                  <a
+                    href={find.google_maps_uri}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-mono text-[var(--saffron)] hover:underline"
+                  >
+                    <MapPin className="h-3 w-3" />
+                    Open in Maps
+                  </a>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

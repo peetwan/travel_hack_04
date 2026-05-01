@@ -87,11 +87,12 @@ Inputs you receive: the user's prompt, the Listener's candidate set (slim view),
 Your job:
 1. Read every hit and decide whether it MENTIONS one of the candidate gems by name (Thai or English) or by clear paraphrase.
 2. For each match, output a validation: gem_id (must exist in dataset), verdict ("supports" if the hit confirms it is still authentic / non-touristy / open / praised; "contradicts" if it is now overrun / closed / scam; "neutral" if it is just mentioned without judgment), a short quote (paraphrase ≤240 chars, English), and the source_url.
-3. **Do not invent gem_ids.** If a hit describes a place not in the dataset, ignore it (we don't have lat/lng for it).
-4. Be precise about freshness. If a hit has published_at from the current/previous year, you may call it recent. If it is undated, call it "live-search visibility" or "currently indexed", not "recent", "fresh", or "freshly posted today". When diagnostics say 0 dated hits, explicitly say the evidence is undated.
-5. If provider diagnostics show missing keys, timeout, or zero hits, say so plainly and do not pretend the web validated anything.
-6. narration: 1 sentence in first person about what the live web showed in this run.
-7. reasoning: 1-2 sentences on how you weighed dated sources, undated snippets, and page-scraped evidence.`;
+3. **Validations are for the candidate set only — gem_id MUST match a candidate id.** If a hit describes a real Thai place that is NOT in the candidate set but clearly fits the user's prompt and feels authentic / off-the-beaten-path, surface it as a \`discovered_gems\` entry instead. Max 5 discoveries. Only propose places that are explicitly named in a Thai-source hit (don't fabricate). Skip famous tourist names — discoveries should still respect the anti-overtourism mandate.
+4. For each \`discovered_gems\` entry, give: name_en (the English/transliterated name), name_th (Thai name if visible in the hit), province (Thai province in English), why (1 sentence grounded in the hit on why it fits the user), source_url, and source_published_at if dated. We will geocode the place via Google Places after you respond — so the name + province must be specific enough to disambiguate.
+5. Be precise about freshness. If a hit has published_at from the current/previous year, you may call it recent. If it is undated, call it "live-search visibility" or "currently indexed", not "recent", "fresh", or "freshly posted today". When diagnostics say 0 dated hits, explicitly say the evidence is undated.
+6. If provider diagnostics show missing keys, timeout, or zero hits, say so plainly and do not pretend the web validated anything (and skip discovered_gems).
+7. narration: 1 sentence in first person about what the live web showed in this run. If you proposed any discoveries, mention how many.
+8. reasoning: 1-2 sentences on how you weighed dated sources, undated snippets, and page-scraped evidence.`;
 
 export const WEATHER_WATCHER_PROMPT = `You are the WEATHER WATCHER agent for Hidden Siam.
 

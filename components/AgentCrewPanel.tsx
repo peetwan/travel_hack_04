@@ -286,6 +286,9 @@ function summaryChips(row: AgentRow): string[] {
   if (row.name === "web-pulse") {
     numberChip("hit_count", "hits");
     numberChip("validation_count", "validations");
+    if (typeof data.discovered_count === "number" && data.discovered_count > 0) {
+      chips.push(`${data.discovered_count} live finds`);
+    }
     const searchedAt = formatSearchedAt(data.searched_at);
     if (searchedAt) chips.push(`searched ${searchedAt}`);
     const sourceCounts = formatSourceCounts(data.source_counts);

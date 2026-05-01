@@ -4,6 +4,7 @@ import type {
   AgentEvent,
   AgentName,
   DayWeather,
+  DiscoveredGem,
   FinalItinerary,
   HiddenGem,
   ItineraryDay,
@@ -11,7 +12,7 @@ import type {
   TouristTrap,
   WebEvidence,
 } from "../types";
-import { fetchMapsCrowdSignals } from "../google-maps";
+import { fetchMapsCrowdSignals, geocodeDiscoveredPlace } from "../google-maps";
 import {
   enrichCrowdReport,
   inferTripDaysFromPrompt,
@@ -202,6 +203,58 @@ export async function orchestrate(
         };
       }),
   };
+
+  // Geocode any new places Web Pulse proposed via Google Places.
+  // Drop ones that fail to resolve so the map and UI never show a placeless pin.
+  const proposedDiscoveries = webPulseResult.output.discovered_gems ?? [];
+  const discoveredGems: DiscoveredGem[] = [];
+  if (proposedDiscoveries.length > 0) {
+    const ac = new AbortController();
+    const timer = setTimeout(() => ac.abort(), 6000);
+    try {
+      const settled = await Promise.allSettled(
+        proposedDiscoveries.map((d) =>
+          geocodeDiscoveredPlace({
+            name_en: d.name_en,
+            name_th: d.name_th,
+            province: d.province,
+            signal: ac.signal,
+          })
+        )
+      );
+      settled.forEach((res, i) => {
+        if (res.status !== "fulfilled" || !res.value) return;
+        const proposed = proposedDiscoveries[i];
+        const source = hitByUrl.get(proposed.source_url);
+        const slug = `discovered-${proposed.name_en
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .slice(0, 60) || `gem-${i}`}`;
+        const id = GEMS_BY_ID.has(slug) ? `${slug}-d${i}` : slug;
+        discoveredGems.push({
+          id,
+          name_en: proposed.name_en,
+          name_th: proposed.name_th,
+          province: proposed.province,
+          why: proposed.why,
+          source_url: proposed.source_url,
+          source_published_at: proposed.source_published_at ?? source?.published_at,
+          lat: res.value.lat,
+          lng: res.value.lng,
+          google_maps_uri: res.value.google_maps_uri,
+          google_review_count: res.value.user_rating_count,
+          google_rating: res.value.rating,
+        });
+      });
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  if (discoveredGems.length > 0) {
+    webEvidence.discovered_gems = discoveredGems;
+  }
+
   emit({
     type: "agent_complete",
     agent: "web-pulse",
@@ -214,6 +267,8 @@ export async function orchestrate(
       contradicts: webEvidence.validations.filter(
         (v) => v.verdict === "contradicts"
       ).length,
+      discovered_count: discoveredGems.length,
+      proposed_discovery_count: proposedDiscoveries.length,
       searched_at: webEvidence.searched_at,
       freshness_note: webEvidence.freshness_note,
       source_counts: webEvidence.source_counts,
@@ -639,6 +694,7 @@ export async function orchestrate(
       };
     }),
     crowd_radar: crowdRadar,
+    discovered_gems: discoveredGems.length > 0 ? discoveredGems : undefined,
   };
 
   emit({

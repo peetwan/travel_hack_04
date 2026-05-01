@@ -121,6 +121,23 @@ export interface WebEvidence {
     source_published_at?: string;
     evidence_level?: "search-snippet" | "page-scrape";
   }>;
+  discovered_gems?: DiscoveredGem[];
+}
+
+export interface DiscoveredGem {
+  id: string;
+  name_en: string;
+  name_th?: string;
+  province: string;
+  why: string;
+  source_url: string;
+  source_published_at?: string;
+  lat?: number;
+  lng?: number;
+  google_maps_uri?: string;
+  google_review_count?: number;
+  google_rating?: number;
+  match_distance_km?: number;
 }
 
 export type CrowdPressure = "low" | "medium" | "high" | "unknown";
@@ -240,6 +257,7 @@ export interface FinalItinerary {
   trip_dates?: { start: string; end: string };
   holidays?: ThaiHolidayHit[];
   crowd_radar?: MapsCrowdReport;
+  discovered_gems?: DiscoveredGem[];
 }
 
 export interface UserQuery {

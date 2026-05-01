@@ -140,6 +140,28 @@ export const webPulseOutputSchema = z.object({
       })
     )
     .max(10),
+  discovered_gems: z
+    .array(
+      z.object({
+        name_en: z
+          .string()
+          .describe("English name of the place — must be a real, locatable destination."),
+        name_th: z.string().optional(),
+        province: z
+          .string()
+          .describe("Thai province the place is in (English spelling, e.g. 'Mae Hong Son')."),
+        why: z
+          .string()
+          .describe("One sentence on why this fits the user's prompt, grounded in the hit."),
+        source_url: z.string(),
+        source_published_at: z.string().optional(),
+      })
+    )
+    .max(5)
+    .optional()
+    .describe(
+      "NEW places found in the live web hits that are NOT in the candidate set. Only propose places clearly named in a Thai-source hit. Max 5."
+    ),
   reasoning: z.string(),
 });
 export type WebPulseOutput = z.infer<typeof webPulseOutputSchema>;

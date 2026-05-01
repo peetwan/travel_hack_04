@@ -318,6 +318,86 @@ async function fetchSignalForGem(
   };
 }
 
+export interface GeocodedDiscovery {
+  name: string;
+  lat: number;
+  lng: number;
+  google_maps_uri?: string;
+  user_rating_count?: number;
+  rating?: number;
+  business_status?: string;
+}
+
+const GEOCODE_FIELD_MASK = [
+  "places.id",
+  "places.displayName",
+  "places.location",
+  "places.businessStatus",
+  "places.rating",
+  "places.userRatingCount",
+  "places.googleMapsUri",
+].join(",");
+
+export async function geocodeDiscoveredPlace(args: {
+  name_en: string;
+  name_th?: string;
+  province: string;
+  signal?: AbortSignal;
+}): Promise<GeocodedDiscovery | null> {
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY?.trim();
+  if (!apiKey) return null;
+
+  const namePart = [args.name_en, args.name_th].filter(Boolean).join(" / ");
+  const textQuery = `${namePart} ${args.province} Thailand`;
+
+  let res: Response;
+  try {
+    res = await fetch(PLACES_TEXT_SEARCH_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask": GEOCODE_FIELD_MASK,
+      },
+      body: JSON.stringify({
+        textQuery,
+        pageSize: 3,
+        languageCode: "en",
+        regionCode: "TH",
+      }),
+      signal: args.signal,
+    });
+  } catch {
+    return null;
+  }
+  if (!res.ok) return null;
+  const data = (await res.json().catch(() => null)) as
+    | GoogleTextSearchResponse
+    | null;
+  const place = data?.places?.find(
+    (p) =>
+      typeof p.location?.latitude === "number" &&
+      typeof p.location?.longitude === "number"
+  );
+  if (!place || !place.location) return null;
+  if (
+    place.businessStatus &&
+    place.businessStatus !== "OPERATIONAL" &&
+    place.businessStatus !== ""
+  ) {
+    return null;
+  }
+  return {
+    name: place.displayName?.text ?? args.name_en,
+    lat: place.location.latitude!,
+    lng: place.location.longitude!,
+    google_maps_uri: place.googleMapsUri,
+    user_rating_count: place.userRatingCount,
+    rating: place.rating,
+    business_status: place.businessStatus,
+  };
+}
+
 export async function fetchMapsCrowdSignals(args: {
   gems: HiddenGem[];
   timeoutMs?: number;
