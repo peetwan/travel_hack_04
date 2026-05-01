@@ -21,7 +21,7 @@ Multi-agent AI travel planner for Thailand, built against overtourism. Eight spe
 ## Architecture
 
 ```
-User prompt + start date
+User prompt + start date + lifestyle (optional)
     ↓
 [Orchestrator]
     ↓
@@ -62,6 +62,7 @@ User prompt + start date
 - Weather Watcher + Verifier run in parallel after the Planner
 - All steps emit Server-Sent Events; the UI shows each agent live
 - End-to-end target: ~20-30 seconds with live web + Maps enabled, `gemini-3.1-flash-lite-preview`, and `thinkingLevel: "minimal"`
+- **Travel Lifestyle** flows through the entire chain: user selects a lifestyle from the landing page dropdown → URL param → discover page → POST body → API route → orchestrator → runners → user prompts. `DEFAULT` = no lifestyle context (original behavior)
 
 ## Where things live
 
@@ -69,7 +70,7 @@ User prompt + start date
 | --- | --- |
 | `lib/agents/orchestrator.ts` | Composes the run, emits SSE events, decorates days with weather + holiday |
 | `lib/agents/runners.ts` | One function per agent (`runListener`, `runWebPulse`, `runWellnessPulse`, `runCrowdAnalyst`, `runCurator`, `runPlanner`, `runWeatherWatcher`, `runVerifier`) |
-| `lib/agents/prompts.ts` | System prompts — **the language quality of the demo lives here** |
+| `lib/agents/prompts.ts` | System prompts + `lifestyleContext()` helper for travel lifestyle injection — **the language quality of the demo lives here** |
 | `lib/agents/schemas.ts` | Zod output schemas for `generateObject` |
 | `lib/ai.ts` | Gemini provider config + per-agent model picks |
 | `lib/web-search.ts` | Tavily + Exa + Firecrawl HTTP wrappers + freshness/provider diagnostics + `luxuryWellnessSearch` for editorial domains |
@@ -104,6 +105,14 @@ User prompt + start date
 - Crowd Analyst must never claim Google Maps gives a live crowd count. Maps signals are popularity/open-status proxies only: review volume, business status, open now, match distance
 - Verifier and Weather Watcher receive structured context (trip dates, holidays, forecasts) in the user `prompt`, not the system prompt — the system prompt stays static for prompt-cache friendliness
 
+### Travel Lifestyle (`lifestyleContext()`)
+- 11 lifestyles: `DEFAULT` · `ADVENTURE` · `METROPOLIS` · `WALKING_STREET` · `NIGHT_LIFE` · `WELLNESS` · `FOODIE` · `CULTURE` · `NATURE` · `BEACH` · `PHOTOGRAPHY`
+- `DEFAULT` = no lifestyle context injected (original behavior)
+- Lifestyle context is injected into **user prompts only** (not system prompts) to preserve prompt-cache friendliness
+- Each lifestyle maps to specific guidance for 5 agent roles: listener, webPulse, crowdAnalyst, curator, planner
+- Weather Watcher and Verifier do not receive lifestyle context (they work with factual data)
+- The `lifestyleContext()` helper lives in `lib/agents/prompts.ts`
+
 ### Models (`lib/ai.ts`)
 - **Default** for every agent: `gemini-3.1-flash-lite-preview` with `thinkingConfig.thinkingLevel = "minimal"`
 - This was tuned the hard way: Pro 3.1 + structured output timed out at 60s+, Flash 3 was also slow on planner schemas, Flash Lite 3.1 + minimal thinking lands every prompt in <5s per agent
@@ -136,6 +145,7 @@ Light theme inspired by Thai luxury hospitality.
 - `DiscoveredGem` carries `lat`/`lng` from Google Places, the `source_url` from the original Thai-source hit, plus optional `google_maps_uri`, `google_review_count`, and `google_rating`. No `crowd_level`/`auth_score` — discoveries are not vetted and never enter Curator/Planner
 - `MapsCrowdReport` carries one `MapsCrowdSignal` per Listener candidate. `pressure_score` is deterministic and combines calibrated Maps review volume, weekend/holiday pressure, and Web Pulse tourism-pressure terms
 - `MapsCrowdSignal.pressure` is a proxy (`low` / `medium` / `high` / `unknown`), not a live crowd reading. Keep this wording in UI and prompts
+- `TravelLifestyle` is a union type in `lib/types.ts` — 11 string literals. The API route validates against this union and defaults to `"DEFAULT"`
 
 ## Don't break (the "burned by this" list)
 
@@ -186,6 +196,12 @@ The Wellness Pulse pattern is the template for any future "parallel sidebar" age
 - The discovery prompt rule lives in `WEB_PULSE_PROMPT` (`lib/agents/prompts.ts`) — it forbids famous tourist names so the anti-overtourism mandate still holds for live finds.
 - Geocoding timeout is 6s in the orchestrator. Anything that fails to resolve via Google Places is dropped silently (the user only sees gems with confirmed coordinates and a Maps link).
 - Without `GOOGLE_MAPS_API_KEY`, geocoding is skipped and `discovered_gems[]` will always be empty — the validations path still works.
+
+### A new travel lifestyle
+1. Add the value to the `TravelLifestyle` union in `lib/types.ts`
+2. Add the option to `LIFESTYLE_OPTIONS` in `app/page.tsx` (value + display label)
+3. Add the value to `VALID_LIFESTYLES` in `app/api/orchestrate/route.ts`
+4. Add per-agent guidance entries in `lifestyleContext()` in `lib/agents/prompts.ts` — only the 5 key agents (listener, webPulse, crowdAnalyst, curator, planner) need entries; others fall through to `""`
 
 ## Local development
 

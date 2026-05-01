@@ -119,7 +119,7 @@ function normalizeStayNights<T extends { gem_id: string; nights: number }>(
 export async function orchestrate(
   userPrompt: string,
   emit: Emit,
-  options: { startDate?: string } = {}
+  options: { startDate?: string; lifestyle?: string } = {}
 ) {
   // Resolve trip start. If user picked a date, use it; otherwise default to a
   // week from today so the planner has weather data and the result feels real.
@@ -146,7 +146,7 @@ export async function orchestrate(
     timestamp: now(),
   });
 
-  const listener = await runListener({ userPrompt, dataset: GEMS });
+  const listener = await runListener({ userPrompt, dataset: GEMS, lifestyle: options.lifestyle });
 
   const listenerCandidates = listener.candidate_ids
     .map((id) => GEMS_BY_ID.get(id))
@@ -213,6 +213,7 @@ export async function orchestrate(
       lng: g.lng,
     })),
     proximityRadiusKm: 80,
+    lifestyle: options.lifestyle,
   }).catch((err) => {
     console.warn("[wellness-pulse] failed:", err);
     return null;
@@ -221,6 +222,7 @@ export async function orchestrate(
   const webPulseResult = await runWebPulse({
     userPrompt,
     dataset: listenerCandidates.length > 0 ? listenerCandidates : GEMS,
+    lifestyle: options.lifestyle,
   });
 
   const hitByUrl = new Map(webPulseResult.rawHits.map((h) => [h.url, h]));
@@ -469,6 +471,7 @@ export async function orchestrate(
     candidates: listenerCandidates,
     traps: TRAPS,
     mapsCrowdSignals: crowdRadar.signals,
+    lifestyle: options.lifestyle,
   });
   const crowdFiltered = crowd.filtered_ids
     .map((id) => GEMS_BY_ID.get(id))
@@ -536,6 +539,7 @@ export async function orchestrate(
     userPrompt,
     candidates: crowdFiltered.length > 0 ? crowdFiltered : listenerCandidates,
     webValidations: webEvidence.validations,
+    lifestyle: options.lifestyle,
   });
   const sortedScored = [...curator.scored].sort((a, b) => b.score - a.score);
   emit({
@@ -568,6 +572,7 @@ export async function orchestrate(
     userPrompt,
     scored: sortedScored.map((s) => ({ id: s.id, score: s.score })),
     gemsById: GEMS_BY_ID,
+    lifestyle: options.lifestyle,
   });
   planner.stays = normalizeStayNights(planner.stays, planner.days);
   const selectedGems = planner.selected_ids
@@ -704,6 +709,7 @@ export async function orchestrate(
     const watcher = await runWeatherWatcher({
       userPrompt,
       daysWithForecast: validDays,
+      lifestyle: options.lifestyle,
     });
 
     return {
@@ -737,6 +743,7 @@ export async function orchestrate(
       crowd_impact: h.crowd_impact,
       notes: h.notes,
     })),
+    lifestyle: options.lifestyle,
   });
 
   const [weatherResult, verifier] = await Promise.all([

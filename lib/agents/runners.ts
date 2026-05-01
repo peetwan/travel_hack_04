@@ -22,6 +22,7 @@ import {
   WEATHER_WATCHER_PROMPT,
   WEB_PULSE_PROMPT,
   WELLNESS_PULSE_PROMPT,
+  lifestyleContext,
 } from "./prompts";
 import {
   crowdAnalystOutputSchema,
@@ -108,6 +109,7 @@ function scrubUndatedEvidenceLanguage(text: string): string {
 export async function runListener(args: {
   userPrompt: string;
   dataset: HiddenGem[];
+  lifestyle?: string;
 }): Promise<ListenerOutput> {
   const slim = args.dataset.map(slimGem);
   const { object } = await generateObject({
@@ -123,7 +125,7 @@ ${args.userPrompt}
 Curated dataset (${slim.length} entries):
 ${JSON.stringify(slim)}
 
-Return 8-12 candidate ids relevant to the prompt.`,
+Return 8-12 candidate ids relevant to the prompt.${lifestyleContext(args.lifestyle ?? "DEFAULT", "listener")}`,
   });
   return object;
 }
@@ -133,6 +135,7 @@ export async function runCrowdAnalyst(args: {
   candidates: HiddenGem[];
   traps: TouristTrap[];
   mapsCrowdSignals?: MapsCrowdSignal[];
+  lifestyle?: string;
 }): Promise<CrowdAnalystOutput> {
   const candidateView = args.candidates.map((g) => ({
     id: g.id,
@@ -183,7 +186,7 @@ Known tourist traps:
 ${JSON.stringify(trapsView)}
 
 Google Maps crowd radar signals (latest request-time proxy data; not a live crowd count):
-${JSON.stringify(mapsSignals)}`,
+${JSON.stringify(mapsSignals)}${lifestyleContext(args.lifestyle ?? "DEFAULT", "crowdAnalyst")}`,
   });
   return object;
 }
@@ -199,6 +202,7 @@ export async function runCurator(args: {
     source_published_at?: string;
     evidence_level?: "search-snippet" | "page-scrape";
   }>;
+  lifestyle?: string;
 }): Promise<CuratorOutput> {
   const view = args.candidates.map((g) => ({
     id: g.id,
@@ -229,7 +233,7 @@ Candidates after crowd filtering:
 ${JSON.stringify(view)}
 
 Live web evidence from the Web Pulse agent (use to nudge scores up/down):
-${JSON.stringify(validations)}`,
+${JSON.stringify(validations)}${lifestyleContext(args.lifestyle ?? "DEFAULT", "curator")}`,
   });
   const hasOnlyUndatedEvidence =
     validations.length > 0 && validations.every((v) => !v.source_published_at);
@@ -250,6 +254,7 @@ export async function runPlanner(args: {
   userPrompt: string;
   scored: { id: string; score: number }[];
   gemsById: Map<string, HiddenGem>;
+  lifestyle?: string;
 }): Promise<PlannerOutput> {
   const enriched = args.scored
     .map(({ id, score }) => {
@@ -278,7 +283,7 @@ ${args.userPrompt}
 """
 
 Scored candidates (sorted by curator score desc):
-${JSON.stringify(enriched)}`,
+${JSON.stringify(enriched)}${lifestyleContext(args.lifestyle ?? "DEFAULT", "planner")}`,
   });
   return object;
 }
@@ -286,6 +291,7 @@ ${JSON.stringify(enriched)}`,
 export async function runWebPulse(args: {
   userPrompt: string;
   dataset: HiddenGem[];
+  lifestyle?: string;
 }): Promise<{
   output: WebPulseOutput;
   rawHits: WebHit[];
@@ -397,7 +403,7 @@ ${JSON.stringify(
     scraped_at: h.scraped_at,
     evidence_level: h.evidence_level,
   }))
-)}`,
+)}${lifestyleContext(args.lifestyle ?? "DEFAULT", "webPulse")}`,
     });
 
     const datedHitCount = rawHits.filter((h) => h.published_at).length;
@@ -440,6 +446,7 @@ export async function runWeatherWatcher(args: {
     evening?: string;
     forecast: DailyWeather;
   }>;
+  lifestyle?: string;
 }): Promise<WeatherWatcherOutput> {
   // Compact view — model doesn't need every field, just the salient parts.
   const view = args.daysWithForecast.map((d) => ({
@@ -471,7 +478,7 @@ ${args.userPrompt}
 """
 
 Days with aligned forecasts:
-${JSON.stringify(view)}`,
+${JSON.stringify(view)}${lifestyleContext(args.lifestyle ?? "DEFAULT", "weatherWatcher")}`,
   });
   return object;
 }
@@ -519,6 +526,7 @@ export async function runWellnessPulse(args: {
   tripProvinces: string[];
   candidateGems: Array<{ province: string; lat: number; lng: number }>;
   proximityRadiusKm?: number;
+  lifestyle?: string;
 }): Promise<{
   output: WellnessPulseOutput;
   liveBoost: {
@@ -608,7 +616,7 @@ ${JSON.stringify(args.tripProvinces)}
 Curated Thai wellness venues (${slim.length} entries — pick 0-5 by id):
 ${JSON.stringify(slim)}
 
-Pick the 0-5 venues whose Thai character + signature treatments + awards best match the user's prompt and trip provinces. Empty array is a valid answer if no venue fits.`,
+Pick the 0-5 venues whose Thai character + signature treatments + awards best match the user's prompt and trip provinces. Empty array is a valid answer if no venue fits.${lifestyleContext(args.lifestyle ?? "DEFAULT", "wellnessPulse")}`,
   });
 
   let output: WellnessPulseOutput;
@@ -646,6 +654,7 @@ export async function runVerifier(args: {
     crowd_impact: "high" | "medium" | "low";
     notes?: string;
   }>;
+  lifestyle?: string;
 }): Promise<VerifierOutput> {
   const view = args.selected.map((g) => ({
     id: g.id,
@@ -678,7 +687,7 @@ ${dateLine}
 ${holidayLine}
 
 Final selected gems:
-${JSON.stringify(view)}`,
+${JSON.stringify(view)}${lifestyleContext(args.lifestyle ?? "DEFAULT", "verifier")}`,
   });
   return object;
 }

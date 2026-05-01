@@ -152,3 +152,87 @@ Output JSON:
 }
 
 Keep it warm, specific, English. No emoji.`;
+
+export function lifestyleContext(lifestyle: string, agentName: string): string {
+  if (lifestyle === "DEFAULT") return "";
+  
+  const guides: Record<string, Record<string, string>> = {
+    ADVENTURE: {
+      listener: "Prioritise gems with adventure, trekking, diving, rock-climbing, rafting, or off-road vibes. Favour mountains, jungles, caves, and remote islands.",
+      webPulse: "Search for adventure travel in Thailand — trekking, diving spots, rock climbing, white-water rafting, zip-lines, off-road trails.",
+      crowdAnalyst: "Adventure travellers tolerate moderate crowds at trailheads but penalise touristy adventure parks. Prefer authentic outdoor experiences.",
+      curator: "Boost gems with adventure, outdoor, or adrenaline vibe_tags. Penalise purely cultural or shopping-oriented gems unless they have a strong adventure angle.",
+      planner: "Plan active days: early starts for treks, midday rest, afternoon water activities. Prefer bases near mountains, national parks, or dive islands.",
+    },
+    METROPOLIS: {
+      listener: "Prioritise gems in Bangkok, Chiang Mai city, and other urban centres. Focus on city life, rooftop bars, art galleries, shopping, and urban exploration.",
+      webPulse: "Search for urban Thailand — Bangkok hidden spots, Chiang Mai city gems, rooftop bars, art districts, local markets, street food scenes.",
+      crowdAnalyst: "City travellers expect some crowds but penalise tourist-trap markets and scam-heavy areas. Prefer local-favourite urban spots.",
+      curator: "Boost gems with urban, food, art, or shopping vibe_tags in city provinces. Penalise remote nature spots unless they're day-trip accessible from cities.",
+      planner: "Plan city-hopping itineraries. Use public transit where possible. Mix mornings at temples with afternoons at markets and evenings at food streets.",
+    },
+    WALKING_STREET: {
+      listener: "Prioritise gems near walking streets, night markets, and pedestrian-friendly areas. Focus on Chiang Mai walking streets, Bangkok night markets, local bazaars.",
+      webPulse: "Search for Thailand walking streets, night markets, weekend markets, street food areas — Kad Far, Walking Street Pai, JJ Market, Rod Fai.",
+      crowdAnalyst: "Walking street travellers accept evening crowds at markets but penalise overly commercialised or tourist-trap markets.",
+      curator: "Boost gems with market, food, walking, or local-life vibe_tags. Favour gems near known walking streets and night markets.",
+      planner: "Plan around walking street schedules (e.g., Sunday Walking Street Chiang Mai, Saturday Night Market). Keep days flexible, evenings at markets.",
+    },
+    NIGHT_LIFE: {
+      listener: "Prioritise gems with nightlife, bars, live music, and evening entertainment. Focus on Bangkok, Phuket, Pattaya, Koh Samui, and Chiang Mai nightlife areas.",
+      webPulse: "Search for Thailand nightlife — hidden bars, live music venues, beach clubs, rooftop bars, night bazaars, after-dark experiences.",
+      crowdAnalyst: "Nightlife travellers expect busy evening venues but penalise overly touristy party strips. Prefer authentic Thai nightlife and hidden bars.",
+      curator: "Boost gems with nightlife, bar, music, or evening vibe_tags. Penalise family-oriented or early-closing venues unless they have evening appeal.",
+      planner: "Plan late starts (10-11am), afternoon cultural visits, evenings at nightlife areas. Include at least one hidden bar or live music venue per night.",
+    },
+    WELLNESS: {
+      listener: "Prioritise gems near wellness retreats, spas, meditation centres, yoga studios, and hot springs. Focus on Chiang Mai, Koh Samui, Koh Phangan, Pai, and Hua Hin.",
+      webPulse: "Search for Thailand wellness — spa retreats, meditation centres, yoga teacher training, herbal treatments, Thai massage schools, onsen.",
+      crowdAnalyst: "Wellness travellers prefer quiet, low-crowd venues. Penalise any gem near party areas or loud nightlife zones.",
+      curator: "Boost gems with wellness, spa, meditation, nature, or relaxation vibe_tags. Penalise party or adventure-heavy gems.",
+      planner: "Plan slow-paced days: morning yoga or meditation, afternoon spa or nature walks, evening quiet dinners. 1-2 bases maximum for deep relaxation.",
+    },
+    FOODIE: {
+      listener: "Prioritise gems with food, street food, local cuisine, cooking classes, and market experiences. Focus on Bangkok, Chiang Mai, Isan, and Southern Thai food scenes.",
+      webPulse: "Search for Thailand food — hidden eateries, street food stalls, local markets, cooking classes, regional specialties, Michelin Bib Gourmand.",
+      crowdAnalyst: "Foodie travellers accept busy local eateries (that's a good sign) but penalise tourist-trap restaurants with English-only menus.",
+      curator: "Boost gems with food, market, or local-life vibe_tags. Favour gems near famous food streets and local markets.",
+      planner: "Plan around meal times: morning markets, lunch at local legends, afternoon street food crawls, evening food streets. Include at least one cooking class.",
+    },
+    CULTURE: {
+      listener: "Prioritise gems with cultural, historical, temple, museum, and traditional art vibes. Focus on Ayutthaya, Sukhothai, Chiang Mai temples, and Isan heritage.",
+      webPulse: "Search for Thailand cultural sites — hidden temples, historical parks, traditional crafts, local festivals, community-based tourism.",
+      crowdAnalyst: "Culture travellers tolerate moderate crowds at major temples but penalise commercialised cultural shows. Prefer authentic community experiences.",
+      curator: "Boost gems with culture, temple, history, or art vibe_tags. Penalise purely entertainment or party-oriented gems.",
+      planner: "Plan temple mornings (cooler), afternoon museums or craft workshops, evening cultural performances. Respect temple etiquette and holy days.",
+    },
+    NATURE: {
+      listener: "Prioritise gems with nature, national parks, waterfalls, wildlife, and eco-tourism. Focus on Khao Yai, Doi Inthanon, Erawan, Khao Sok, and marine parks.",
+      webPulse: "Search for Thailand nature — national parks, waterfalls, wildlife sanctuaries, eco-tourism, bird watching, marine conservation.",
+      crowdAnalyst: "Nature travellers prefer low-crowd, pristine environments. Penalise any gem near heavy development or party areas.",
+      curator: "Boost gems with nature, eco, wildlife, or waterfall vibe_tags. Penalise urban or entertainment-heavy gems.",
+      planner: "Plan early morning nature walks, midday rest, afternoon hikes. 1-2 bases near national parks. Include at least one sunrise/sunset viewpoint.",
+    },
+    BEACH: {
+      listener: "Prioritise gems with beach, island, snorkelling, diving, and coastal vibes. Focus on Andaman coast, Gulf islands, and emerging beaches away from tourist crowds.",
+      webPulse: "Search for Thailand beaches — hidden beaches, quiet islands, snorkelling spots, beachfront bungalows, emerging coastal destinations.",
+      crowdAnalyst: "Beach travellers prefer quieter beaches but accept moderate crowds at famous viewpoints. Heavily penalise overcrowded party beaches.",
+      curator: "Boost gems with beach, island, snorkelling, or coastal vibe_tags. Penalise inland or urban gems unless they're transit stops.",
+      planner: "Plan beach-hopping itineraries. Morning snorkelling or island hopping, afternoon beach relaxation, evening seafood. Include at least one hidden beach.",
+    },
+    PHOTOGRAPHY: {
+      listener: "Prioritise gems with photogenic landscapes, golden-hour viewpoints, unique architecture, and cultural photo opportunities. Focus on scenic and visually stunning locations.",
+      webPulse: "Search for Thailand photography spots — Instagram locations, golden hour viewpoints, hidden temples, scenic drives, unique landscapes.",
+      crowdAnalyst: "Photography travellers prefer fewer crowds for clean shots but accept crowds at iconic viewpoints during golden hour. Penalise locations with poor lighting or visual clutter.",
+      curator: "Boost gems with viewpoint, scenic, temple, or nature vibe_tags. Favour gems with unique visual character and golden-hour potential.",
+      planner: "Plan around light: sunrise shoots, midday rest or indoor sites, golden hour at viewpoints, blue hour at temples. Allow flexibility for weather.",
+    },
+  };
+
+  const agentGuides = guides[lifestyle];
+  if (!agentGuides) return "";
+  const guide = agentGuides[agentName];
+  if (!guide) return "";
+
+  return `\n\n[LIFESTYLE PREFERENCE — ${lifestyle}]\nThe traveller chose a "${lifestyle}" travel style. Adjust your recommendations accordingly:\n${guide}\n[END LIFESTYLE PREFERENCE]`;
+}

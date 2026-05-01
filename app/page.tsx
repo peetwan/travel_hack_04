@@ -29,6 +29,20 @@ const EXAMPLES = [
   },
 ];
 
+const LIFESTYLE_OPTIONS = [
+  { value: "DEFAULT", label: "No preference" },
+  { value: "ADVENTURE", label: "Adventure & Outdoors" },
+  { value: "METROPOLIS", label: "City & Urban" },
+  { value: "WALKING_STREET", label: "Markets & Walking Streets" },
+  { value: "NIGHT_LIFE", label: "Nightlife & Entertainment" },
+  { value: "WELLNESS", label: "Wellness & Spa" },
+  { value: "FOODIE", label: "Food & Street Food" },
+  { value: "CULTURE", label: "Culture & Heritage" },
+  { value: "NATURE", label: "Nature & Wildlife" },
+  { value: "BEACH", label: "Beach & Islands" },
+  { value: "PHOTOGRAPHY", label: "Photography & Scenic" },
+] as const;
+
 function defaultStartDate(): string {
   const d = new Date();
   const day = d.getDay();
@@ -45,6 +59,7 @@ export default function Home() {
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [startDate, setStartDate] = useState<string>(() => defaultStartDate());
+  const [lifestyle, setLifestyle] = useState<string>("DEFAULT");
   const [submitting, setSubmitting] = useState(false);
   const todayMin = useMemo(() => todayISO(), []);
 
@@ -54,6 +69,7 @@ export default function Home() {
     setSubmitting(true);
     const params = new URLSearchParams({ q: prompt.trim() });
     if (startDate) params.set("start", startDate);
+    if (lifestyle && lifestyle !== "DEFAULT") params.set("lifestyle", lifestyle);
     router.push(`/discover?${params.toString()}`);
   }
 
@@ -120,7 +136,7 @@ export default function Home() {
             />
             <div className="flex flex-col gap-3 border-t border-[var(--border)] px-1 pb-1 pt-3 sm:flex-row sm:items-end sm:justify-between">
               <label className="flex flex-col gap-1.5">
-                <span className="px-1 font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
+                <span className="px-1 font-mono text-[10px] uppercase tracking-widest text-[var(--muted)] underline decoration-[var(--border)] underline-offset-4">
                   Trip starts
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3.5 py-2 text-sm transition-colors focus-within:border-[var(--saffron)] focus-within:ring-2 focus-within:ring-[var(--saffron)]/20">
@@ -133,6 +149,25 @@ export default function Home() {
                     disabled={submitting}
                     className="bg-transparent text-sm text-[var(--foreground)] outline-none"
                   />
+                </span>
+              </label>
+              <label className="flex flex-col gap-1.5">
+                <span className="px-1 font-mono text-[10px] uppercase tracking-widest text-[var(--muted)] underline decoration-[var(--border)] underline-offset-4">
+                  Travel style
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3.5 py-2 text-sm transition-colors focus-within:border-[var(--saffron)] focus-within:ring-2 focus-within:ring-[var(--saffron)]/20">
+                  <select
+                    value={lifestyle}
+                    onChange={(e) => setLifestyle(e.target.value)}
+                    disabled={submitting}
+                    className="bg-transparent text-sm text-[var(--foreground)] outline-none cursor-pointer"
+                  >
+                    {LIFESTYLE_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
                 </span>
               </label>
               <Button

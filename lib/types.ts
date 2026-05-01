@@ -61,6 +61,19 @@ export type AgentName =
   | "weather-watcher"
   | "verifier";
 
+export type TravelLifestyle =
+  | "DEFAULT"
+  | "ADVENTURE"
+  | "METROPOLIS"
+  | "WALKING_STREET"
+  | "NIGHT_LIFE"
+  | "WELLNESS"
+  | "FOODIE"
+  | "CULTURE"
+  | "NATURE"
+  | "BEACH"
+  | "PHOTOGRAPHY";
+
 export type WellnessType =
   | "spa"
   | "wellness-resort"

@@ -93,6 +93,7 @@ function DiscoverInner() {
   const params = useSearchParams();
   const prompt = params.get("q") ?? "";
   const startDate = params.get("start") ?? "";
+  const lifestyle = params.get("lifestyle") ?? "DEFAULT";
   const [agents, setAgents] = useState<Record<AgentName, AgentState>>(
     initialAgents()
   );
@@ -117,6 +118,7 @@ function DiscoverInner() {
           body: JSON.stringify({
             prompt,
             startDate: startDate || undefined,
+            lifestyle: lifestyle || undefined,
           }),
           signal: controller.signal,
         });
@@ -221,7 +223,7 @@ function DiscoverInner() {
       cancelled = true;
       controller.abort();
     };
-  }, [prompt, startDate]);
+  }, [prompt, startDate, lifestyle]);
 
   const subAgents = useMemo(
     () => AGENT_ORDER.filter((n) => n !== "orchestrator"),
@@ -306,14 +308,21 @@ function DiscoverInner() {
             <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
               Your prompt
             </p>
-            {startDate && (
-              <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
-                <span className="text-[var(--muted)]">trip starts</span>
-                <span className="rounded-md bg-[var(--saffron-tint)] px-2 py-0.5 text-[var(--saffron)]">
-                  {startDate}
+            <div className="flex flex-wrap items-center gap-2">
+              {startDate && (
+                <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
+                  <span className="text-[var(--muted)]">trip starts</span>
+                  <span className="rounded-md bg-[var(--saffron-tint)] px-2 py-0.5 text-[var(--saffron)]">
+                    {startDate}
+                  </span>
+                </p>
+              )}
+              {lifestyle && lifestyle !== "DEFAULT" && (
+                <span className="inline-flex items-center gap-1 rounded-full border border-[var(--jade-soft)] bg-[var(--jade-tint)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-[var(--jade)]">
+                  {lifestyle.replace(/_/g, " ").toLowerCase()}
                 </span>
-              </p>
-            )}
+              )}
+            </div>
           </div>
           <p className="font-display text-xl leading-snug text-[var(--foreground)]">
             “{prompt}”
