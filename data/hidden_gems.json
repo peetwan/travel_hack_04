@@ -1,0 +1,1057 @@
+[
+  {
+    "id": "khao-sok-cheow-lan",
+    "name_th": "เขาสก – ทะเลสาบเชี่ยวหลาน",
+    "name_en": "Khao Sok & Cheow Lan Lake",
+    "province": "Surat Thani",
+    "region": "south",
+    "lat": 8.9162,
+    "lng": 98.6406,
+    "category": "nature",
+    "vibe_tags": [
+      "jungle",
+      "peaceful",
+      "raft-house",
+      "wildlife"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Dec-Apr (dry season)",
+    "thai_description": "ป่าฝนเก่าแก่ที่สุดในโลกแห่งหนึ่ง ทะเลสาบเชี่ยวหลานมีหินปูนคล้ายกุ้ยหลิน นอนแพไม้ ฟังเสียงชะนี",
+    "en_description": "One of the world's oldest rainforests with limestone karsts rising from emerald lake. Stay in floating raft-houses, hear gibbons at dawn, swim in jungle-fringed waters.",
+    "source_urls": [
+      "https://chillpainai.com/scoop/khaosok"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "patong"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true
+  },
+  {
+    "id": "koh-mak",
+    "name_th": "เกาะหมาก",
+    "name_en": "Koh Mak",
+    "province": "Trat",
+    "region": "east",
+    "lat": 11.8167,
+    "lng": 102.4833,
+    "category": "beach",
+    "vibe_tags": [
+      "quiet",
+      "cycling",
+      "no-jet-skis",
+      "low-carbon"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Apr",
+    "thai_description": "เกาะเล็กในตราด เน้นท่องเที่ยวคาร์บอนต่ำ ปั่นจักรยานรอบเกาะได้ ไม่มี jet-ski",
+    "en_description": "Small island east of Koh Chang committed to low-carbon tourism. Cycle around, no jet-skis allowed, transparent water and palm-lined beaches without crowds.",
+    "source_urls": [
+      "https://www.kohmak.com/"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "phangan-full-moon"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true
+  },
+  {
+    "id": "sangkhlaburi",
+    "name_th": "สังขละบุรี",
+    "name_en": "Sangkhlaburi",
+    "province": "Kanchanaburi",
+    "region": "west",
+    "lat": 15.1556,
+    "lng": 98.4506,
+    "category": "culture",
+    "vibe_tags": [
+      "mon-culture",
+      "wooden-bridge",
+      "misty-mornings",
+      "border"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "สะพานไม้ที่ยาวที่สุดในไทย ชุมชนชาวมอญดั้งเดิม ทะเลสาบเขื่อนวชิราลงกรณ์",
+    "en_description": "Thailand's longest wooden bridge connects Thai and Mon villages. Walk it at sunrise as monks collect alms — a tableau Bangkok tourists never see.",
+    "source_urls": [
+      "https://readme.me/sangkhlaburi"
+    ],
+    "near_traps": [
+      "damnoen-saduak",
+      "khaosan"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true
+  },
+  {
+    "id": "nan-old-town",
+    "name_th": "เมืองเก่าน่าน",
+    "name_en": "Nan Old Town",
+    "province": "Nan",
+    "region": "north",
+    "lat": 18.7756,
+    "lng": 100.7732,
+    "category": "culture",
+    "vibe_tags": [
+      "temples",
+      "lanna",
+      "slow-travel",
+      "mountains"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "เมืองโบราณริมแม่น้ำน่าน วัดภูมินทร์ พระยานาคในวัดเก่า บรรยากาศไม่เร่งรีบ",
+    "en_description": "Riverside Lanna town with Wat Phumin's iconic mural of the whispering man. Quiet streets, mountain views, and locals still outnumber tourists.",
+    "source_urls": [
+      "https://chillpainai.com/scoop/nan-old-town"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city",
+      "khaosan"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true
+  },
+  {
+    "id": "pai-loop-mhs",
+    "name_th": "ปาย – แม่ฮ่องสอน",
+    "name_en": "Pai (Mae Hong Son Loop)",
+    "province": "Mae Hong Son",
+    "region": "north",
+    "lat": 19.3589,
+    "lng": 98.4413,
+    "category": "village",
+    "vibe_tags": [
+      "hippie",
+      "scooter",
+      "waterfalls",
+      "hot-springs"
+    ],
+    "crowd_level": 4,
+    "auth_score": 3,
+    "best_time": "Nov-Feb",
+    "thai_description": "เมืองภูเขาที่นักเที่ยวฝรั่งชอบ มีทั้ง backpacker culture และวัฒนธรรมไทใหญ่",
+    "en_description": "Hippie hill town on the Mae Hong Son loop. Hot springs, waterfalls, Shan culture — popular but the loop's quieter stops (Soppong, Mae La Na) stay authentic.",
+    "source_urls": [
+      "https://www.travelfish.org/location/thailand/northern_thailand/mae_hong_son_province/pai"
+    ],
+    "near_traps": [
+      "khaosan",
+      "patong"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true
+  },
+  {
+    "id": "ban-rak-thai",
+    "name_th": "บ้านรักไทย",
+    "name_en": "Ban Rak Thai (Mae Aw)",
+    "province": "Mae Hong Son",
+    "region": "north",
+    "lat": 19.6539,
+    "lng": 97.9821,
+    "category": "village",
+    "vibe_tags": [
+      "yunnan-chinese",
+      "tea",
+      "lake",
+      "border"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb (foggy mornings)",
+    "thai_description": "หมู่บ้านยูนนานริมชายแดน ลูกหลานทหารก๊กมินตั๋ง ลำธารชาและบ้านดิน",
+    "en_description": "Yunnanese-Chinese village near the Myanmar border, descendants of Kuomintang soldiers. Tea plantations, mud-walled houses, and a lake reflecting morning fog.",
+    "source_urls": [
+      "https://readme.me/ban-rak-thai"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true
+  },
+  {
+    "id": "mae-kampong",
+    "name_th": "แม่กำปอง",
+    "name_en": "Mae Kampong",
+    "province": "Chiang Mai",
+    "region": "north",
+    "lat": 18.8633,
+    "lng": 99.3576,
+    "category": "village",
+    "vibe_tags": [
+      "coffee",
+      "homestay",
+      "waterfall",
+      "rainforest"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Year-round",
+    "thai_description": "หมู่บ้านในหุบเขาห่างเชียงใหม่ 50 กม. ปลูกชา/กาแฟ มีโฮมสเตย์",
+    "en_description": "Cloud-level mountain village 50km from Chiang Mai. Tea & coffee farms, homestays in wooden houses, a small waterfall in the village center.",
+    "source_urls": [
+      "https://chillpainai.com/maekampong"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "18843",
+      "slug": "หมู่บ้านแม่กำปอง",
+      "name_th": "หมู่บ้านแม่กำปอง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/040533ab-20ae-4b39-89cf-ec9890b2b30d.jpeg",
+      "sha_certified": true,
+      "province_th": "เชียงใหม่",
+      "detail_url": "https://thai.tourismthailand.org/attraction/หมู่บ้านแม่กำปอง",
+      "distance_km": 0.7
+    }
+  },
+  {
+    "id": "phu-chi-fa",
+    "name_th": "ภูชี้ฟ้า",
+    "name_en": "Phu Chi Fa",
+    "province": "Chiang Rai",
+    "region": "north",
+    "lat": 19.8089,
+    "lng": 100.6936,
+    "category": "nature",
+    "vibe_tags": [
+      "sea-of-fog",
+      "sunrise",
+      "hike",
+      "border"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb (sunrise)",
+    "thai_description": "ภูเขาริมชายแดนลาว มีทะเลหมอกเช้าตรู่ เดินขึ้นไม่ไกล",
+    "en_description": "Cliff peak overlooking Laos. Pre-dawn hike to watch a sea of fog roll over the valley as the sun rises behind. Cooler than Doi Inthanon and far less crowded.",
+    "source_urls": [
+      "https://chillpainai.com/phu-chi-fa"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "family_friendly": true,
+    "tat": {
+      "place_id": "12816",
+      "slug": "อุทยานแห่งชาติภูชี้ฟ้า",
+      "name_th": "อุทยานแห่งชาติภูชี้ฟ้า",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/a98d727d-365c-4c9a-beb4-c09025679dc4.jpeg",
+      "sha_certified": false,
+      "province_th": "เชียงราย",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติภูชี้ฟ้า",
+      "distance_km": 26.3
+    }
+  },
+  {
+    "id": "chiang-khan",
+    "name_th": "เชียงคาน",
+    "name_en": "Chiang Khan",
+    "province": "Loei",
+    "region": "northeast",
+    "lat": 17.9056,
+    "lng": 101.665,
+    "category": "village",
+    "vibe_tags": [
+      "mekong",
+      "wooden-houses",
+      "alms",
+      "old-town"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "เมืองริมแม่น้ำโขงที่ยังคงบ้านไม้เก่า ตักบาตรข้าวเหนียวเช้าตรู่",
+    "en_description": "Mekong-side town with century-old wooden shop-houses. Wake at 6am to offer sticky rice to monks, then breakfast on the riverbank facing Laos.",
+    "source_urls": [
+      "https://readme.me/chiang-khan"
+    ],
+    "near_traps": [
+      "khaosan"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true
+  },
+  {
+    "id": "phu-kradueng",
+    "name_th": "ภูกระดึง",
+    "name_en": "Phu Kradueng",
+    "province": "Loei",
+    "region": "northeast",
+    "lat": 16.8853,
+    "lng": 101.8408,
+    "category": "adventure",
+    "vibe_tags": [
+      "hike",
+      "plateau",
+      "camping",
+      "wild-flowers"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Oct-May (closed Jun-Sep)",
+    "thai_description": "อุทยานยอดเขาราบ ต้องเดินขึ้น 5 กม. ทุ่งหญ้าและน้ำตกบนยอด",
+    "en_description": "Flat-top mountain plateau accessible only by a 5km hike (porters carry your bags up). Sleep in tents on the plateau, watch sunrise over a sea of clouds.",
+    "source_urls": [
+      "https://chillpainai.com/phu-kradueng"
+    ],
+    "near_traps": [
+      "khaosan"
+    ],
+    "tat": {
+      "place_id": "12846",
+      "slug": "อุทยานแห่งชาติภูกระดึง",
+      "name_th": "อุทยานแห่งชาติภูกระดึง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/256c8b9c-d825-428c-adf8-d119f87dbbe1.jpg",
+      "sha_certified": true,
+      "province_th": "เลย",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติภูกระดึง",
+      "distance_km": 1.6
+    }
+  },
+  {
+    "id": "sam-phan-bok",
+    "name_th": "สามพันโบก",
+    "name_en": "Sam Phan Bok",
+    "province": "Ubon Ratchathani",
+    "region": "northeast",
+    "lat": 15.7833,
+    "lng": 105.45,
+    "category": "nature",
+    "vibe_tags": [
+      "grand-canyon-thailand",
+      "rocks",
+      "mekong",
+      "dry-season-only"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Jan-May (water levels low)",
+    "thai_description": "แอ่งหินกลางแม่น้ำโขง 3,000 หลุม มองเห็นเฉพาะช่วงน้ำลด",
+    "en_description": "3,000 pothole-rocks carved by the Mekong, exposed only when water drops Jan-May. Locals call it 'the Grand Canyon of Thailand' but you'll often have it to yourself.",
+    "source_urls": [
+      "https://readme.me/sam-phan-bok"
+    ],
+    "near_traps": [
+      "pattaya"
+    ],
+    "tat": {
+      "place_id": "24719",
+      "slug": "แก่งสามพันโบก",
+      "name_th": "สามพันโบก",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/9fdb70bd-ee83-4bcc-8f94-e9f607102778.jpeg",
+      "sha_certified": false,
+      "province_th": "อุบลราชธานี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/แก่งสามพันโบก",
+      "distance_km": 6.0
+    }
+  },
+  {
+    "id": "phu-tok",
+    "name_th": "ภูทอก",
+    "name_en": "Phu Tok",
+    "province": "Bueng Kan",
+    "region": "northeast",
+    "lat": 18.0928,
+    "lng": 103.9756,
+    "category": "temple",
+    "vibe_tags": [
+      "meditation",
+      "wooden-stairs",
+      "vertigo",
+      "spiritual"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "เขาหินทรายแดง บันไดไม้ 7 ชั้น สำนักวิปัสสนา หลวงปู่จวน",
+    "en_description": "Red sandstone monastery climbed via vertigo-inducing wooden walkways spiraling around the cliff. Built for meditation, hardly any tourists make the trip up.",
+    "source_urls": [
+      "https://chillpainai.com/phu-tok"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok"
+    ],
+    "vegan_friendly": true
+  },
+  {
+    "id": "phanom-rung",
+    "name_th": "ปราสาทพนมรุ้ง",
+    "name_en": "Phanom Rung Historical Park",
+    "province": "Buriram",
+    "region": "northeast",
+    "lat": 14.5331,
+    "lng": 102.9419,
+    "category": "culture",
+    "vibe_tags": [
+      "khmer",
+      "ruins",
+      "sun-alignment",
+      "lintels"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Apr & Sep (sun aligns through doors)",
+    "thai_description": "ปราสาทขอมบนยอดภูเขาไฟดับ คล้ายอังกอร์วัด แสงทะลุประตู 4 จุดต่อปี",
+    "en_description": "Khmer sandstone temple atop an extinct volcano. Like a quieter Angkor Wat — and four times a year the sun aligns through all 15 doorways at sunrise/sunset.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/phanom-rung-historical-park"
+    ],
+    "near_traps": [
+      "damnoen-saduak"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "phimai",
+    "name_th": "ปราสาทหินพิมาย",
+    "name_en": "Phimai Historical Park",
+    "province": "Nakhon Ratchasima",
+    "region": "northeast",
+    "lat": 15.2206,
+    "lng": 102.4944,
+    "category": "culture",
+    "vibe_tags": [
+      "khmer",
+      "ruins",
+      "model-for-angkor"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "ปราสาทขอมในเมือง เชื่อว่าเป็นต้นแบบนครวัด",
+    "en_description": "Khmer ruins in town, believed to have inspired Angkor Wat. Walk through fully-restored sandstone galleries with almost no tour buses.",
+    "source_urls": [
+      "https://readme.me/phimai"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "koh-yao-noi",
+    "name_th": "เกาะยาวน้อย",
+    "name_en": "Koh Yao Noi",
+    "province": "Phang Nga",
+    "region": "south",
+    "lat": 8.1208,
+    "lng": 98.5897,
+    "category": "beach",
+    "vibe_tags": [
+      "muslim-fishing-village",
+      "rice-paddies",
+      "no-nightlife",
+      "sunrise"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Apr",
+    "thai_description": "เกาะกลางอ่าวพังงา ชาวมุสลิมประมง ไม่มีไนท์ไลฟ์ ปั่นจักรยานชมนาข้าว",
+    "en_description": "Island in Phang Nga Bay between Phuket and Krabi. Muslim fishing village, rice paddies, zero nightlife. The view of karsts at sunrise rivals Maya Bay.",
+    "source_urls": [
+      "https://chillpainai.com/koh-yao-noi"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "patong",
+      "maya-bay"
+    ],
+    "vegan_friendly": false,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "20512",
+      "slug": "เกาะยาวน้อย",
+      "name_th": "เกาะยาวน้อย",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/ff667fbf-c9bf-4bbd-a05d-3851ab6740db.jpeg",
+      "sha_certified": false,
+      "province_th": "พังงา",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เกาะยาวน้อย",
+      "distance_km": 2.8
+    }
+  },
+  {
+    "id": "koh-phayam",
+    "name_th": "เกาะพยาม",
+    "name_en": "Koh Phayam",
+    "province": "Ranong",
+    "region": "south",
+    "lat": 9.7556,
+    "lng": 98.3936,
+    "category": "beach",
+    "vibe_tags": [
+      "motorbike-only",
+      "cashew-farms",
+      "hornbills",
+      "off-grid"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Apr (closed monsoon)",
+    "thai_description": "เกาะนอกฝั่งระนอง ไม่มีรถยนต์ มีนกเงือก ไร่มะม่วงหิมพานต์",
+    "en_description": "Andaman island near Myanmar border, no cars allowed — only motorbikes and walking. Cashew plantations, hornbills overhead, beach huts run by long-stay expats.",
+    "source_urls": [
+      "https://chillpainai.com/koh-phayam"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "phangan-full-moon"
+    ],
+    "family_friendly": true,
+    "tat": {
+      "place_id": "20861",
+      "slug": "เกาะพยาม",
+      "name_th": "เกาะพยาม",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/5797b110-60b8-46d4-8a11-13c71e7712ca.jpeg",
+      "sha_certified": false,
+      "province_th": "ระนอง",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เกาะพยาม",
+      "distance_km": 2.9
+    }
+  },
+  {
+    "id": "trang-islands",
+    "name_th": "ทะเลตรัง",
+    "name_en": "Trang Islands (Koh Mook, Koh Kradan)",
+    "province": "Trang",
+    "region": "south",
+    "lat": 7.3697,
+    "lng": 99.2914,
+    "category": "beach",
+    "vibe_tags": [
+      "emerald-cave",
+      "snorkel",
+      "underwater-wedding",
+      "quiet"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Dec-Apr",
+    "thai_description": "เกาะมุก (ถ้ำมรกต) เกาะกระดาน หาดทรายขาว น้ำใส คนน้อยกว่ากระบี่",
+    "en_description": "Koh Mook's Emerald Cave: swim through a sea-tunnel into a hidden beach. Koh Kradan: white sand & coral. Far less Instagrammed than Krabi.",
+    "source_urls": [
+      "https://readme.me/trang-islands"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "maya-bay",
+      "patong"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "koh-lipe",
+    "name_th": "เกาะหลีเป๊ะ",
+    "name_en": "Koh Lipe",
+    "province": "Satun",
+    "region": "south",
+    "lat": 6.4847,
+    "lng": 99.3036,
+    "category": "beach",
+    "vibe_tags": [
+      "maldives-of-thailand",
+      "snorkel",
+      "small",
+      "easy-walking"
+    ],
+    "crowd_level": 4,
+    "auth_score": 3,
+    "best_time": "Nov-Apr",
+    "thai_description": "เกาะเล็กในอุทยานตะรุเตา น้ำใส แนวปะการังใกล้หาด",
+    "en_description": "Tiny island in Tarutao National Park. Walk it end-to-end in 30 minutes; snorkel from the beach. More popular than it used to be — go in November.",
+    "source_urls": [
+      "https://readme.me/koh-lipe"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "patong"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "21092",
+      "slug": "เกาะหลีเป๊ะ",
+      "name_th": "เกาะหลีเป๊ะ",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/b6a6dcb8-8f74-4701-8fb9-e4cffa6c819f.jpg",
+      "sha_certified": false,
+      "province_th": "สตูล",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เกาะหลีเป๊ะ",
+      "distance_km": 0.7
+    }
+  },
+  {
+    "id": "khao-sok-village",
+    "name_th": "บ้านพะอัน",
+    "name_en": "Khlong Phanom Village",
+    "province": "Surat Thani",
+    "region": "south",
+    "lat": 8.9503,
+    "lng": 98.5572,
+    "category": "village",
+    "vibe_tags": [
+      "rural",
+      "rubber-tappers",
+      "longtail-boats"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Year-round",
+    "thai_description": "หมู่บ้านชายขอบอุทยานเขาสก ชาวบ้านกรีดยาง พายเรือคยัค",
+    "en_description": "Tiny village at Khao Sok's edge. Stay in a homestay, watch the rubber-tappers at dawn, paddle a kayak through limestone tunnels.",
+    "source_urls": [
+      "https://www.khaosok.com/local-life"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "patong"
+    ]
+  },
+  {
+    "id": "phra-nakhon-khiri",
+    "name_th": "พระนครคีรี",
+    "name_en": "Phra Nakhon Khiri (Khao Wang)",
+    "province": "Phetchaburi",
+    "region": "central",
+    "lat": 13.1127,
+    "lng": 99.9367,
+    "category": "culture",
+    "vibe_tags": [
+      "hilltop-palace",
+      "monkey",
+      "rama-iv",
+      "old-temple"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "พระราชวังบนเขาของ ร.4 มีลิงป่า วิวเมืองเพชรบุรี",
+    "en_description": "King Rama IV's hilltop palace overlooking Phetchaburi. White stupas, mixed Thai-European architecture, plenty of macaques. Skip Bangkok crowds.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/phra-nakhon-khiri"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok",
+      "khaosan"
+    ],
+    "tat": {
+      "place_id": "13514",
+      "slug": "อุทยานประวัติศาสตร์-และพิพิธภัณฑสถานแห่งชาติ-พระนครคีรี",
+      "name_th": "อุทยานประวัติศาสตร์ และพิพิธภัณฑสถานแห่งชาติ พระนครคีรี",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/17cd47d3-f55b-4a22-b157-2ce38a539e21.jpeg",
+      "sha_certified": false,
+      "province_th": "เพชรบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานประวัติศาสตร์-และพิพิธภัณฑสถานแห่งชาติ-พระนครคีรี",
+      "distance_km": 0.4
+    }
+  },
+  {
+    "id": "amphawa-canal",
+    "name_th": "อัมพวา",
+    "name_en": "Amphawa Floating Market",
+    "province": "Samut Songkhram",
+    "region": "central",
+    "lat": 13.4258,
+    "lng": 99.9558,
+    "category": "food",
+    "vibe_tags": [
+      "evening-market",
+      "fireflies",
+      "boat",
+      "weekend-only"
+    ],
+    "crowd_level": 4,
+    "auth_score": 3,
+    "best_time": "Fri-Sun evening",
+    "thai_description": "ตลาดน้ำเย็น เน้นคนไทย ขนมโบราณ ดูหิ่งห้อยตอนกลางคืน",
+    "en_description": "Evening floating market mostly visited by Thais (not Damnoen Saduak's tour-bus crowd). Weekend evenings only — eat from boats, then take a longtail to see fireflies.",
+    "source_urls": [
+      "https://chillpainai.com/amphawa"
+    ],
+    "near_traps": [
+      "damnoen-saduak",
+      "khaosan"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "suan-phueng",
+    "name_th": "สวนผึ้ง",
+    "name_en": "Suan Phueng",
+    "province": "Ratchaburi",
+    "region": "west",
+    "lat": 13.5481,
+    "lng": 99.3683,
+    "category": "nature",
+    "vibe_tags": [
+      "alpacas",
+      "weekend",
+      "mountains",
+      "sheep-farm"
+    ],
+    "crowd_level": 3,
+    "auth_score": 3,
+    "best_time": "Nov-Feb (weekends)",
+    "thai_description": "เมืองภูเขาห่างกรุงเทพ 2.5 ชม. ฟาร์มแกะ คาเฟ่ภูเขา",
+    "en_description": "Mountain weekend escape 2.5h from Bangkok. Sheep & alpaca farms, riverside cafes, fewer tourists than Khao Yai.",
+    "source_urls": [
+      "https://chillpainai.com/suan-phueng"
+    ],
+    "near_traps": [
+      "khao-yai-tour-bus"
+    ],
+    "family_friendly": true,
+    "tat": {
+      "place_id": "5052",
+      "slug": "เวเนโต้สวนผึ้ง",
+      "name_th": "เวเนโต้สวนผึ้ง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/1456293e-d748-4a58-98ba-2508b8c7aef1.jpg",
+      "sha_certified": true,
+      "province_th": "ราชบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เวเนโต้สวนผึ้ง",
+      "distance_km": 8.3
+    }
+  },
+  {
+    "id": "khao-yai-pak-chong",
+    "name_th": "เขาใหญ่ – ปากช่อง",
+    "name_en": "Khao Yai (Pak Chong side)",
+    "province": "Nakhon Ratchasima",
+    "region": "northeast",
+    "lat": 14.4419,
+    "lng": 101.3722,
+    "category": "nature",
+    "vibe_tags": [
+      "unesco",
+      "wildlife",
+      "wineries",
+      "waterfalls"
+    ],
+    "crowd_level": 4,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "อุทยานเก่าแก่ที่สุดของไทย UNESCO ทุ่งหญ้า ช้างป่า น้ำตก",
+    "en_description": "Thailand's oldest national park (UNESCO). Wild elephants, gibbons, hornbills. Most tourists visit one waterfall — go deeper for the real experience.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/khao-yai-national-park"
+    ],
+    "near_traps": [
+      "damnoen-saduak"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "doi-inthanon-kew-mae-pan",
+    "name_th": "ดอยอินทนนท์ – กิ่วแม่ปาน",
+    "name_en": "Doi Inthanon (Kew Mae Pan trail)",
+    "province": "Chiang Mai",
+    "region": "north",
+    "lat": 18.5876,
+    "lng": 98.4865,
+    "category": "nature",
+    "vibe_tags": [
+      "highest-peak",
+      "cloud-forest",
+      "guided-only",
+      "rhododendron"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Dec-Feb",
+    "thai_description": "เส้นทางเดินกิ่วแม่ปาน 3 กม. ต้องไกด์ท้องถิ่น ป่าเมฆ ดอกกุหลาบพันปี",
+    "en_description": "3km guided cloud-forest loop near Thailand's highest peak. Mossy oaks, rhododendrons, sunbirds. Skip the tourist viewpoint — the trail is where the magic is.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/doi-inthanon"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "family_friendly": false,
+    "tat": {
+      "place_id": "27571",
+      "slug": "อุทยานแห่งชาติดอยอินทนนท์",
+      "name_th": "อุทยานแห่งชาติดอยอินทนนท์",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/7f88f1e5-c3fd-4db7-ae21-a00599a334b1.jpg",
+      "sha_certified": true,
+      "province_th": "เชียงใหม่",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติดอยอินทนนท์",
+      "distance_km": 6.7
+    }
+  },
+  {
+    "id": "phu-soi-dao",
+    "name_th": "ภูสอยดาว",
+    "name_en": "Phu Soi Dao",
+    "province": "Uttaradit",
+    "region": "north",
+    "lat": 17.7531,
+    "lng": 100.9794,
+    "category": "adventure",
+    "vibe_tags": [
+      "pine-meadow",
+      "hike",
+      "camping",
+      "border-laos"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Aug-Oct (wildflowers)",
+    "thai_description": "ทุ่งดอกหงอนนาคและสนสามใบ ต้องเดินขึ้น 6 กม.",
+    "en_description": "Plateau of pine forests and pink wildflower meadows on the Lao border. Pitch a tent on the grass after a 6km hike. Almost no foreign visitors.",
+    "source_urls": [
+      "https://chillpainai.com/phu-soi-dao"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "12651",
+      "slug": "อุทยานแห่งชาติภูสอยดาว",
+      "name_th": "อุทยานแห่งชาติภูสอยดาว",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/96d4e121-1f28-45b9-bc76-60cd60e61ecf.jpg",
+      "sha_certified": true,
+      "province_th": "อุตรดิตถ์",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติภูสอยดาว",
+      "distance_km": 6.1
+    }
+  },
+  {
+    "id": "wat-pa-phu-kon",
+    "name_th": "วัดป่าภูก้อน",
+    "name_en": "Wat Pa Phu Kon",
+    "province": "Udon Thani",
+    "region": "northeast",
+    "lat": 17.7028,
+    "lng": 102.0064,
+    "category": "temple",
+    "vibe_tags": [
+      "white-marble-buddha",
+      "forest-monastery",
+      "meditation"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Year-round",
+    "thai_description": "วัดป่ามีพระพุทธรูปหินอ่อนขาวยาว 20 เมตร ในป่าใหญ่",
+    "en_description": "Forest monastery housing a 20m white Italian-marble reclining Buddha. Quiet, no tour buses, monks happy to chat.",
+    "source_urls": [
+      "https://chillpainai.com/wat-pa-phu-kon"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok"
+    ],
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "33461",
+      "slug": "วัดป่าภูก้อน",
+      "name_th": "วัดป่าภูก้อน",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/a341462f-11de-47dc-b626-fbc3f81a43c0.jpeg",
+      "sha_certified": false,
+      "province_th": "อุดรธานี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดป่าภูก้อน",
+      "distance_km": 27.1
+    }
+  },
+  {
+    "id": "wat-chaloem-phra-kiat",
+    "name_th": "วัดเฉลิมพระเกียรติพระจอมเกล้าราชานุสรณ์",
+    "name_en": "Wat Chaloem Phra Kiat (hilltop chedis)",
+    "province": "Lampang",
+    "region": "north",
+    "lat": 18.3244,
+    "lng": 99.6833,
+    "category": "temple",
+    "vibe_tags": [
+      "scramble-up",
+      "hilltop-stupas",
+      "vertigo",
+      "viral-but-quiet"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Nov-Feb (cool morning)",
+    "thai_description": "เจดีย์เล็กบนยอดเขาหินปูน ต้องเดินและปีนผ่านราวเหล็ก",
+    "en_description": "Cluster of small white stupas perched on limestone pinnacles. The final scramble involves iron handrails on a knife-edge ridge — Thailand's most photogenic temple no foreign tourist visits.",
+    "source_urls": [
+      "https://readme.me/wat-chaloem-lampang"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok"
+    ]
+  },
+  {
+    "id": "koh-kood",
+    "name_th": "เกาะกูด",
+    "name_en": "Koh Kood",
+    "province": "Trat",
+    "region": "east",
+    "lat": 11.65,
+    "lng": 102.5667,
+    "category": "beach",
+    "vibe_tags": [
+      "jungle-meets-sea",
+      "no-7-eleven",
+      "waterfalls",
+      "remote"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Apr",
+    "thai_description": "เกาะใหญ่ใกล้กัมพูชา ป่าหนา หาดยาว ไม่มี 7-Eleven",
+    "en_description": "Thailand's last 'undeveloped' big island. No 7-Eleven, dense jungle backing white-sand beaches, waterfalls inland. Two-hour speedboat from Trat.",
+    "source_urls": [
+      "https://chillpainai.com/koh-kood"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "patong"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "ayutthaya-hidden",
+    "name_th": "อยุธยา (วัดที่คนไม่ไป)",
+    "name_en": "Ayutthaya off-temple trail",
+    "province": "Phra Nakhon Si Ayutthaya",
+    "region": "central",
+    "lat": 14.3692,
+    "lng": 100.5877,
+    "category": "culture",
+    "vibe_tags": [
+      "unesco",
+      "bicycle",
+      "ruins",
+      "sunset-river"
+    ],
+    "crowd_level": 4,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "อยุธยานอกเส้นทาง วัดไชยวัฒนาราม วัดใหญ่ชัยมงคล ปั่นจักรยาน",
+    "en_description": "Skip the main 3 temples. Cycle to Wat Chaiwatthanaram at sunset, Wat Phu Khao Thong at dawn — equally stunning, fraction of the crowd.",
+    "source_urls": [
+      "https://readme.me/ayutthaya-hidden"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok",
+      "khaosan"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "lopburi-prang-sam-yot",
+    "name_th": "พระปรางค์สามยอด ลพบุรี",
+    "name_en": "Phra Prang Sam Yot (Lopburi monkey temple)",
+    "province": "Lopburi",
+    "region": "central",
+    "lat": 14.8016,
+    "lng": 100.6172,
+    "category": "culture",
+    "vibe_tags": [
+      "khmer",
+      "monkeys",
+      "small-town",
+      "sunflower-fields"
+    ],
+    "crowd_level": 2,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "ปรางค์ขอม 3 ยอด ใจกลางเมืองมีลิงเป็นพันตัว",
+    "en_description": "Khmer triple-prang in the middle of town overrun by hundreds of macaques. Quirky, photogenic, unhurried small-city Thailand.",
+    "source_urls": [
+      "https://readme.me/lopburi"
+    ],
+    "near_traps": [
+      "khaosan"
+    ],
+    "family_friendly": true,
+    "tat": {
+      "place_id": "13398",
+      "slug": "พระปรางค์สามยอด",
+      "name_th": "พระปรางค์สามยอด",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/de5b3cb9-bdb5-4f90-9558-b785f0cab2cb.jpg",
+      "sha_certified": false,
+      "province_th": "ลพบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/พระปรางค์สามยอด",
+      "distance_km": 0.4
+    }
+  },
+  {
+    "id": "loy-krathong-sukhothai",
+    "name_th": "ลอยกระทง สุโขทัย",
+    "name_en": "Loy Krathong at Sukhothai",
+    "province": "Sukhothai",
+    "region": "central",
+    "lat": 17.0167,
+    "lng": 99.7036,
+    "category": "culture",
+    "vibe_tags": [
+      "festival",
+      "lanterns",
+      "ruins",
+      "annual"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Full moon Nov (festival)",
+    "thai_description": "ลอยกระทงดั้งเดิมในอุทยานสุโขทัย โคมลอยน้อย คนไทยเป็นหลัก",
+    "en_description": "The original Loy Krathong site — lanterns reflected in pools around 13th-century ruins. Far more atmospheric than Bangkok or Chiang Mai's tourist version.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/sukhothai"
+    ],
+    "near_traps": [
+      "khaosan",
+      "chiang-mai-old-city"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true
+  },
+  {
+    "id": "bangkok-bang-kachao",
+    "name_th": "บางกะเจ้า",
+    "name_en": "Bang Kachao (Bangkok's green lung)",
+    "province": "Samut Prakan",
+    "region": "central",
+    "lat": 13.6886,
+    "lng": 100.5475,
+    "category": "nature",
+    "vibe_tags": [
+      "bicycle",
+      "weekend-market",
+      "mangrove",
+      "30-min-from-bangkok"
+    ],
+    "crowd_level": 2,
+    "auth_score": 4,
+    "best_time": "Cool season weekends",
+    "thai_description": "เกาะกลางเจ้าพระยา ปั่นจักรยานในป่าโกงกาง ตลาดบางน้ำผึ้ง",
+    "en_description": "River-island '30 minutes from Bangkok' but feels rural. Cycle elevated paths through mangroves, eat at Bang Nam Pheung weekend market. Skip the tuk-tuk circuit.",
+    "source_urls": [
+      "https://chillpainai.com/bang-kachao"
+    ],
+    "near_traps": [
+      "khaosan",
+      "damnoen-saduak"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "21821",
+      "slug": "คุ้งบางกะเจ้า",
+      "name_th": "คุ้งบางกะเจ้า",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/f804814f-329d-4914-94e1-c8737747e700.jpeg",
+      "sha_certified": false,
+      "province_th": "สมุทรปราการ",
+      "detail_url": "https://thai.tourismthailand.org/attraction/คุ้งบางกะเจ้า",
+      "distance_km": 2.2
+    }
+  }
+]

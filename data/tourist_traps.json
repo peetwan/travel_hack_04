@@ -1,0 +1,90 @@
+[
+  {
+    "id": "maya-bay",
+    "name_en": "Maya Bay (Phi Phi Leh)",
+    "name_th": "อ่าวมาหยา",
+    "province": "Krabi",
+    "why_avoid": "Closed 2018-2022 due to ecosystem collapse from overtourism (5,000+ visitors/day). Reopened with strict caps. Even a 'good' day means cattle-line boats and timed visits.",
+    "better_alternatives": ["koh-yao-noi", "trang-islands", "koh-kood"]
+  },
+  {
+    "id": "phi-phi",
+    "name_en": "Phi Phi Don (party scene)",
+    "name_th": "เกาะพีพี",
+    "province": "Krabi",
+    "why_avoid": "Tonsai village is a wall-to-wall bar/hostel grid. Beautiful from above; on the ground, mostly fire-shows for backpackers and chartered tour boats.",
+    "better_alternatives": ["koh-yao-noi", "koh-mak", "koh-phayam", "koh-kood"]
+  },
+  {
+    "id": "patong",
+    "name_en": "Patong Beach (Phuket)",
+    "name_th": "ป่าตอง",
+    "province": "Phuket",
+    "why_avoid": "Bangla Road, jet-ski scams, sex-tourism vibe. The beach is mediocre after decades of overdevelopment.",
+    "better_alternatives": ["koh-mak", "koh-kood", "trang-islands", "koh-phayam"]
+  },
+  {
+    "id": "khaosan",
+    "name_en": "Khao San Road",
+    "name_th": "ถนนข้าวสาร",
+    "province": "Bangkok",
+    "why_avoid": "Backpacker-trap caricature of Thailand. Scorpion skewers, fake IDs, $10 buckets. Authentic Bangkok is a 5-minute walk in any direction.",
+    "better_alternatives": ["bangkok-bang-kachao", "amphawa-canal"]
+  },
+  {
+    "id": "damnoen-saduak",
+    "name_en": "Damnoen Saduak Floating Market",
+    "name_th": "ตลาดน้ำดำเนินสะดวก",
+    "province": "Ratchaburi",
+    "why_avoid": "100% staged for tour buses since the 1970s. Vendors have learned to charge tourist prices for souvenirs nobody local would buy.",
+    "better_alternatives": ["amphawa-canal", "bangkok-bang-kachao"]
+  },
+  {
+    "id": "tiger-temple",
+    "name_en": "Tiger Temple / Tiger Kingdom (any)",
+    "name_th": "วัดเสือ",
+    "province": "Kanchanaburi / Phuket / Chiang Mai",
+    "why_avoid": "Animal welfare violations documented repeatedly. The original Tiger Temple was raided in 2016 with dead cubs found. Avoid all 'pet a tiger' venues.",
+    "better_alternatives": ["khao-sok-cheow-lan", "khao-yai-pak-chong"]
+  },
+  {
+    "id": "phangan-full-moon",
+    "name_en": "Koh Phangan Full Moon Party",
+    "name_th": "ฟูลมูนปาร์ตี้",
+    "province": "Surat Thani",
+    "why_avoid": "Iconic for backpackers but environmentally devastating — beaches trashed monthly, multiple deaths/year. The rest of Phangan is gorgeous; skip the party.",
+    "better_alternatives": ["koh-mak", "koh-phayam", "koh-kood"]
+  },
+  {
+    "id": "wat-pho-bangkok",
+    "name_en": "Wat Pho / Grand Palace tour-bus rush",
+    "name_th": "วัดโพธิ์/พระบรมมหาราชวัง (ช่วงพีค)",
+    "province": "Bangkok",
+    "why_avoid": "Worth seeing once, but go before 8am or you're shoulder-to-shoulder with cruise tours. Skip the gem-scam tuk-tuks waiting outside.",
+    "better_alternatives": ["nan-old-town", "ayutthaya-hidden", "phra-nakhon-khiri"]
+  },
+  {
+    "id": "chiang-mai-old-city",
+    "name_en": "Chiang Mai Old City temple-circuit",
+    "name_th": "เมืองเก่าเชียงใหม่ (วันเดียวจบ)",
+    "province": "Chiang Mai",
+    "why_avoid": "The 12 temples in 1 day grand-tour misses what makes Chiang Mai special. Locals roll their eyes at Sunday Walking Street.",
+    "better_alternatives": ["mae-kampong", "nan-old-town", "ban-rak-thai", "doi-inthanon-kew-mae-pan"]
+  },
+  {
+    "id": "pattaya",
+    "name_en": "Pattaya (central)",
+    "name_th": "พัทยากลาง",
+    "province": "Chonburi",
+    "why_avoid": "Walking Street area is sex-tourism central. Beach water quality is poor.",
+    "better_alternatives": ["koh-mak", "koh-kood", "sam-phan-bok"]
+  },
+  {
+    "id": "khao-yai-tour-bus",
+    "name_en": "Khao Yai 1-day tour-bus circuit",
+    "name_th": "เขาใหญ่ทัวร์เช้า-เย็น",
+    "province": "Nakhon Ratchasima",
+    "why_avoid": "Day-trip tours hit only Haew Suwat waterfall + a viewpoint, miss what makes the park UNESCO. Stay 2+ nights or visit Suan Phueng instead.",
+    "better_alternatives": ["khao-yai-pak-chong", "suan-phueng"]
+  }
+]

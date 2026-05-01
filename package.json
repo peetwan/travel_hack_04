@@ -8,9 +8,21 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.66",
+    "@ai-sdk/react": "^3.0.174",
+    "@types/leaflet": "^1.9.21",
+    "ai": "^6.0.172",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.14.0",
     "next": "16.2.4",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-leaflet": "^5.0.0",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.4.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
