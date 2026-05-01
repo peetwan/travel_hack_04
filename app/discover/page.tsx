@@ -350,8 +350,9 @@ function DiscoverInner() {
               <ItineraryHero final={final} />
               <ItineraryMapHero gems={final.selected_gems} />
               <DayTimeline final={final} />
-              <ResultTabs final={final} />
-              <ResultFooterTips final={final} />
+              <WellnessFinds final={final} />
+              <LiveFinds final={final} />
+              <ResultFooter final={final} />
             </motion.div>
           )}
         </AnimatePresence>
