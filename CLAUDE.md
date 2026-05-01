@@ -6,3 +6,4 @@
 - **Plan mode is overkill** for small tweaks. Use it for cross-file refactors (e.g. "redesign all gem cards") or new agents, not for prompt-tuning or single-file UI fixes.
 - **Hardcoded keys are a hard no** — even temporarily, even in scripts, even in commit messages. The `.env*` gitignore is the only line of defence.
 - **The prompt language is the product.** When tuning agents, treat `lib/agents/prompts.ts` as the most important file. A schema change is mechanical; a prompt change moves user-visible quality.
+- **Read `docs/design-flow.md` before changing the Home → Destinations → Discover journey.** Destination Scout is a pre-flow, not part of the live agent crew panel.

@@ -1,6 +1,6 @@
 # Wellness data sources & maintenance
 
-The "Thai Wellness Picks" sidebar on `/discover` is fed by `data/wellness_local.json`. Keeping it accurate and complete is a layered, cross-validated process — no single source is enough.
+The "Thai Wellness Picks" sidebar on `/discover` is fed by `data/wellness_local.json`. Keeping it accurate and complete is a layered, cross-validated process — no single source is enough. For the full product journey around this sidebar, see [design-flow.md](design-flow.md).
 
 ## Layered cross-validation
 

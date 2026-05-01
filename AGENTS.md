@@ -6,7 +6,7 @@ Before any Next.js work, find and read the relevant doc in `node_modules/next/di
 
 # Hidden Siam
 
-Multi-agent AI travel planner for Thailand, built against overtourism. Eight specialised AI agents collaborate over a curated dataset of authentic destinations and live Thai-web search to surface routes that the famous travel bots never recommend.
+Multi-agent AI travel planner for Thailand, built against overtourism. A Destination Scout pre-flow helps travellers choose a trip cluster from style-only intent, then eight specialised AI agents collaborate over curated destinations and live Thai-web search to surface routes that the famous travel bots never recommend.
 
 > Built for the Thailand Tourism Mini Hackathon (AI Hackathon SS6, May 2026).
 > Production-deployed on Railway.
@@ -21,8 +21,16 @@ Multi-agent AI travel planner for Thailand, built against overtourism. Eight spe
 ## Architecture
 
 ```
-User prompt + start date
+Style prompt + start date
     ↓
+Destination Scout pre-flow
+    ├─ POST /api/destination-suggestions
+    ├─ Gemini 3.1 Flash Lite over slim hidden-gem dataset
+    ├─ validates anchor_gem_ids against data/hidden_gems.json
+    └─ tops up with deterministic fallback if <3 valid clusters
+    ↓
+/destinations picker
+    ↓ selected composed_prompt + start date
 [Orchestrator]
     ↓
  Local Listener            (candidate set from curated data)
@@ -54,6 +62,8 @@ User prompt + start date
                   (streamed via SSE)
 ```
 
+- Destination Scout is a preflight UX step, not a ninth live agent. It does not appear in `AGENT_ORDER` or the `/discover` crew panel.
+- `/destinations` is customer-facing: show title, region/provinces, why it fits, avoidance note, and CTA. Keep `style_tags` and `anchor_gem_ids` internal unless debugging.
 - Listener runs first so Web Pulse, Maps Crowd Radar, and Wellness Pulse can validate the exact candidate set instead of searching broadly
 - Web Pulse + Maps Crowd Radar + Wellness Pulse run in parallel after the Listener — live Thai-web visibility + Google Places popularity/open-status proxies + curated Thai wellness picks
 - Web Pulse also proposes up to 5 `discovered_gems[]` — places named in fresh Thai-source hits that are NOT in the curated dataset. The orchestrator geocodes each via Google Places and drops anything unresolvable. Discoveries DO NOT enter Curator/Planner — they appear as a sidebar "Live finds" panel, labeled clearly as leads, not vetted picks
@@ -68,8 +78,8 @@ User prompt + start date
 | Path | Purpose |
 | --- | --- |
 | `lib/agents/orchestrator.ts` | Composes the run, emits SSE events, decorates days with weather + holiday |
-| `lib/agents/runners.ts` | One function per agent (`runListener`, `runWebPulse`, `runWellnessPulse`, `runCrowdAnalyst`, `runCurator`, `runPlanner`, `runWeatherWatcher`, `runVerifier`) |
-| `lib/agents/prompts.ts` | System prompts — **the language quality of the demo lives here** |
+| `lib/agents/runners.ts` | Destination Scout + one function per agent (`runDestinationScout`, `runListener`, `runWebPulse`, `runWellnessPulse`, `runCrowdAnalyst`, `runCurator`, `runPlanner`, `runWeatherWatcher`, `runVerifier`) |
+| `lib/agents/prompts.ts` | Destination Scout + system prompts — **the language quality of the demo lives here** |
 | `lib/agents/schemas.ts` | Zod output schemas for `generateObject` |
 | `lib/ai.ts` | Gemini provider config + per-agent model picks |
 | `lib/web-search.ts` | Tavily + Exa + Firecrawl HTTP wrappers + freshness/provider diagnostics + `luxuryWellnessSearch` for editorial domains |
@@ -77,12 +87,14 @@ User prompt + start date
 | `lib/crowd-radar.ts` | Deterministic crowd-pressure scoring: Maps + trip calendar + Web Pulse terms |
 | `lib/weather.ts` | Open-Meteo client (free, no API key) |
 | `lib/thai-holidays.ts` | Hardcoded 2026/2027 holidays + range helper |
-| `lib/types.ts` | Shared types: `HiddenGem`, `DiscoveredGem`, `WellnessVenue`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
-| `data/hidden_gems.json` | 52 curated gems (28 with `tat` enrichment block) |
-| `data/tourist_traps.json` | 11 known traps + their better alternatives |
-| `data/wellness_local.json` | 21 curated Thai wellness venues — spa / wellness-resort / massage school / onsen / yoga / meditation. See `docs/wellness-data-sources.md` for source & maintenance |
+| `lib/types.ts` | Shared types: `HiddenGem`, `DestinationSuggestion`, `DiscoveredGem`, `WellnessVenue`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
+| `data/hidden_gems.json` | 91 curated gems across all 77 provinces |
+| `data/tourist_traps.json` | 30 known traps + their better alternatives |
+| `data/wellness_local.json` | 89 curated Thai wellness venues across all 77 provinces. See `docs/wellness-data-sources.md` for source & maintenance |
+| `app/api/destination-suggestions/route.ts` | JSON endpoint for Destination Scout pre-flow |
 | `app/api/orchestrate/route.ts` | SSE endpoint, validates input, calls the orchestrator |
-| `app/page.tsx` | Landing — prompt + date picker + composer |
+| `app/page.tsx` | Landing — style prompt + date picker |
+| `app/destinations/page.tsx` | Customer-facing Destination Scout picker before `/discover` |
 | `app/discover/page.tsx` | Live agent stream + final itinerary view (includes "Thai Wellness Picks" sidebar) |
 | `components/AgentCrewPanel.tsx` | Single collapsible panel for the 8-agent stream, including realtime diagnostic chips |
 | `components/GemCard.tsx` | Gem card with TAT image, verified badge, Maps crowd proxy, reviews, and Maps link |
@@ -90,6 +102,7 @@ User prompt + start date
 | `components/ItineraryMap.tsx` | react-leaflet map with light CARTO tiles + saffron pin |
 | `scripts/enrich-tat.sh` + `merge-tat.sh` | Offline TAT data enrichment (curl-based; see "Don't break" #1) |
 | `scripts/fetch-sha-wellness.sh` | Discover candidate Thai wellness venues from TAT API filtered for SHA Plus / Extra Plus (curl-based) |
+| `docs/design-flow.md` | Detailed UX + system design flow |
 | `docs/wellness-data-sources.md` | Layered cross-validation rules + maintenance cadence for `data/wellness_local.json` |
 
 ## Conventions
@@ -98,6 +111,7 @@ User prompt + start date
 - Agents speak in **first person** ("I have selected...", "I am parking you in...")
 - Each prompt explicitly instructs a `narration` field — one sentence, English, what the user sees streamed live
 - Prompts include **rules of thumb** ("always keep at least 5 gems", "1-2 bases max for short trips", "prefer concentration over coverage")
+- Destination Scout is the exception to the live narration pattern: it returns `DestinationSuggestion[]` for `/destinations`, not a crew-panel event. It must suggest trip clusters, not province-only labels or one exact place.
 - Web Pulse and Curator must be precise about freshness: only call evidence "recent" if a source has `published_at`; undated hits are "live-search visibility" or "indexed visibility"
 - Web Pulse outputs two separate arrays: `validations[]` (must use a `gem_id` from the candidate set) and `discovered_gems[]` (places NOT in the dataset, max 5). Don't merge them in the prompt — the geocoding step depends on this separation
 - Wellness Pulse picks 0-5 ids from `data/wellness_local.json`, biased toward Thai-owned / Thai-heritage brands and SHA Plus / Extra Plus. The prompt forbids mass-market chains (Let's Relax, Health Land, So Thai Spa). Empty array is a valid response when the trip has no wellness intent — better than forcing irrelevant venues
@@ -105,7 +119,7 @@ User prompt + start date
 - Verifier and Weather Watcher receive structured context (trip dates, holidays, forecasts) in the user `prompt`, not the system prompt — the system prompt stays static for prompt-cache friendliness
 
 ### Models (`lib/ai.ts`)
-- **Default** for every agent: `gemini-3.1-flash-lite-preview` with `thinkingConfig.thinkingLevel = "minimal"`
+- **Default** for Destination Scout and every live agent: `gemini-3.1-flash-lite-preview` with `thinkingConfig.thinkingLevel = "minimal"`
 - This was tuned the hard way: Pro 3.1 + structured output timed out at 60s+, Flash 3 was also slow on planner schemas, Flash Lite 3.1 + minimal thinking lands every prompt in <5s per agent
 - The `PRO_MODEL` and `FLASH_25_MODEL` exports are **kept for fallback** but not the default — don't switch back without re-testing the planner schema specifically (its optional `days[]` with nested fields is the latency hot-spot)
 
@@ -131,6 +145,7 @@ Light theme inspired by Thai luxury hospitality.
 
 ### Data shape
 - `HiddenGem` has optional `tat?: TatEnrichment` — `place_id`, `slug`, `thumbnail_url`, `sha_certified`, `province_th`, `detail_url`, `distance_km`
+- `DestinationSuggestion` carries customer-facing fields (`title`, `subtitle`, `provinces`, `region`, `why`, `avoidance_note`, `composed_prompt`) plus internal fields (`anchor_gem_ids`, `style_tags`). Do not expose the internal fields in the polished picker UI.
 - TAT enrichment is **lat/lng-validated** — within 50km of the gem's recorded coordinates, otherwise dropped (the keyword search occasionally returns same-named places in different provinces; e.g. "เกาะหมาก" exists in both Trat and Phatthalung)
 - `WebEvidence` carries `searched_at`, `freshness_note`, per-provider status, source counts, per-hit `evidence_level` (`search-snippet` vs `page-scrape`), and an optional `discovered_gems[]` populated only when Web Pulse proposed places outside the curated dataset and they geocoded cleanly
 - `DiscoveredGem` carries `lat`/`lng` from Google Places, the `source_url` from the original Thai-source hit, plus optional `google_maps_uri`, `google_review_count`, and `google_rating`. No `crowd_level`/`auth_score` — discoveries are not vetted and never enter Curator/Planner
@@ -141,10 +156,11 @@ Light theme inspired by Thai luxury hospitality.
 
 1. **TAT keyword search is flaky from Node's fetch.** It hits a Cloudflare BKK edge that returns empty data, while `curl` resolves to a healthy SIN edge. The enrichment scripts (`scripts/*-tat.sh`) deliberately use bash + curl + python for this reason. Don't "modernize" them to Node fetch — you'll get zero matches.
 2. **No `startedRef` guard in the Discover page's `useEffect`.** React Strict Mode double-mount aborts the first fetch; a "fetch only once" ref blocks the second mount and the agents stay idle forever. The cancel-via-`AbortController`-in-cleanup pattern is correct as written; don't re-add the ref.
-3. **Open-Meteo forecast horizon = 16 days.** When `tripStart > today + 16 days`, the orchestrator skips the Weather Watcher step and emits a "beyond forecast horizon" message. Don't fall back to repeating the last available forecast — that fabricates data and was caught in testing.
-4. **Gemini 2.5 doesn't accept `thinkingLevel`.** It returns 400 "Thinking level is not supported for this model." Only Gemini 3.x. The `providerOptions` config in `runners.ts` only sets `thinkingLevel` for runners that route to a 3.x model.
-5. **Google Places is a proxy, not "busy now".** The Places fields we use do not expose official live crowd counts. Review volume/open status can move candidates from keep → caution/drop, but copy must say "Maps popularity proxy" or "review volume suggests".
-6. **No keys in tracked files.** `.env*` is gitignored. The deploy reads from Railway env vars; the enrichment scripts read from `.env.local`. Don't paste keys into source, comments, commit messages, or docs. Rotate after demo.
+3. **Destination Scout cards are customer-facing.** Keep them clean: no `style_tags`, no `anchor_gem_ids`, no debug reasoning. The selected card's `composed_prompt` carries technical detail forward to `/discover`.
+4. **Open-Meteo forecast horizon = 16 days.** When `tripStart > today + 16 days`, the orchestrator skips the Weather Watcher step and emits a "beyond forecast horizon" message. Don't fall back to repeating the last available forecast — that fabricates data and was caught in testing.
+5. **Gemini 2.5 doesn't accept `thinkingLevel`.** It returns 400 "Thinking level is not supported for this model." Only Gemini 3.x. The `providerOptions` config in `runners.ts` only sets `thinkingLevel` for runners that route to a 3.x model.
+6. **Google Places is a proxy, not "busy now".** The Places fields we use do not expose official live crowd counts. Review volume/open status can move candidates from keep → caution/drop, but copy must say "Maps popularity proxy" or "review volume suggests".
+7. **No keys in tracked files.** `.env*` is gitignored. The deploy reads from Railway env vars; the enrichment scripts read from `.env.local`. Don't paste keys into source, comments, commit messages, or docs. Rotate after demo.
 
 ## Adding things
 
@@ -161,6 +177,14 @@ Light theme inspired by Thai luxury hospitality.
 5. Wire into `lib/agents/orchestrator.ts` — decide whether it's sequential or part of a `Promise.all`
 6. Add a `META` entry in `components/AgentCrewPanel.tsx` (icon + Thai accent color)
 7. Add to `AGENT_ORDER` in `app/discover/page.tsx`
+
+### Tuning Destination Scout
+- Schema: `destinationSuggestionOutputSchema` in `lib/agents/schemas.ts`.
+- Prompt: `DESTINATION_SCOUT_PROMPT` in `lib/agents/prompts.ts`.
+- Runner: `runDestinationScout`, `normalizeDestinationSuggestions`, and `buildFallbackDestinationSuggestions` in `lib/agents/runners.ts`.
+- API: `app/api/destination-suggestions/route.ts`.
+- UI: `app/page.tsx` collects style intent; `app/destinations/page.tsx` renders clean cards and sends the selected `composed_prompt` into `/discover`.
+- Fallback exists intentionally. If the model returns invalid ids, duplicates, or fewer than three valid clusters, deterministic scoring tops up with low-crowd, high-authenticity clusters from `data/hidden_gems.json`.
 
 ### A new tourist trap
 Append to `data/tourist_traps.json` with `id`, `name_en`, `name_th`, `province`, `why_avoid`, `better_alternatives`. The Crowd Analyst will pick it up automatically when a gem references it via `near_traps`.
