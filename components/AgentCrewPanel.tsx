@@ -353,6 +353,10 @@ function summaryChips(row: AgentRow): string[] {
     } else {
       numberChip("bases_checked", "bases checked");
       numberChip("rainy_days", "rainy days");
+<<<<<<< HEAD
+=======
+      numberChip("hazy_days", "hazy days");
+>>>>>>> 8f57626 (Test)
       const window = data.forecast_window;
       if (window && typeof window === "object") {
         const { start, end } = window as { start?: unknown; end?: unknown };

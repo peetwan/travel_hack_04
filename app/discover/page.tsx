@@ -758,9 +758,22 @@ function WeatherChip({
 }) {
   const meta = WEATHER_META[weather.condition];
   const Icon = meta.Icon;
+<<<<<<< HEAD
   return (
     <div
       className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs ${meta.tone}`}
+=======
+  const airQuality = weather.air_quality;
+  const airQualityTone =
+    airQuality?.level === "good"
+      ? "text-[var(--jade)]"
+      : airQuality?.level === "moderate"
+        ? "text-[var(--gold)]"
+        : "text-[var(--burgundy)]";
+  return (
+    <div
+      className={`inline-flex flex-wrap items-center gap-2 rounded-full border px-3 py-1 text-xs ${meta.tone}`}
+>>>>>>> 8f57626 (Test)
     >
       <Icon className="h-3.5 w-3.5" />
       <span className="font-medium">{meta.label}</span>
@@ -774,6 +787,21 @@ function WeatherChip({
           <span className="font-mono">{weather.precip_probability}% rain</span>
         </>
       )}
+<<<<<<< HEAD
+=======
+      {airQuality && (
+        <>
+          <span className="opacity-50">·</span>
+          <span
+            className={`inline-flex items-center gap-1 font-mono ${airQualityTone}`}
+            title={`PM2.5 daily max ${airQuality.pm2_5_max} µg/m³ · PM10 daily max ${airQuality.pm10_max} µg/m³${airQuality.us_aqi_max ? ` · US AQI ${airQuality.us_aqi_max}` : ""}`}
+          >
+            <CloudFog className="h-3 w-3" />
+            PM2.5 {airQuality.pm2_5_max}
+          </span>
+        </>
+      )}
+>>>>>>> 8f57626 (Test)
       {isBestOutdoor && (
         <>
           <span className="opacity-50">·</span>

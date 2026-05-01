@@ -157,9 +157,33 @@ export interface DayWeather {
   precip_probability: number;
   precip_mm: number;
   uv_index_max: number;
+<<<<<<< HEAD
   advice?: string;
 }
 
+=======
+  air_quality?: DayAirQuality;
+  advice?: string;
+}
+
+export interface DayAirQuality {
+  date: string; // YYYY-MM-DD
+  pm2_5_avg: number;
+  pm2_5_max: number;
+  pm10_avg: number;
+  pm10_max: number;
+  us_aqi_max?: number;
+  level:
+    | "good"
+    | "moderate"
+    | "unhealthy-sensitive"
+    | "unhealthy"
+    | "very-unhealthy"
+    | "hazardous";
+  source: "open-meteo-air-quality";
+}
+
+>>>>>>> 8f57626 (Test)
 export type WebEvidenceProvider = "tavily" | "exa" | "firecrawl";
 
 export type WebEvidenceProviderStatus =

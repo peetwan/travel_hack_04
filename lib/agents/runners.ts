@@ -457,6 +457,19 @@ export async function runWeatherWatcher(args: {
       temp_min_c: d.forecast.temp_min_c,
       precip_probability: d.forecast.precip_probability,
       uv_index_max: d.forecast.uv_index_max,
+<<<<<<< HEAD
+=======
+      air_quality: d.forecast.air_quality
+        ? {
+            pm2_5_avg: d.forecast.air_quality.pm2_5_avg,
+            pm2_5_max: d.forecast.air_quality.pm2_5_max,
+            pm10_avg: d.forecast.air_quality.pm10_avg,
+            pm10_max: d.forecast.air_quality.pm10_max,
+            us_aqi_max: d.forecast.air_quality.us_aqi_max,
+            level: d.forecast.air_quality.level,
+          }
+        : undefined,
+>>>>>>> 8f57626 (Test)
     },
   }));
 

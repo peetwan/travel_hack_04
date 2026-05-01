@@ -2,6 +2,11 @@
 // We use it to fetch a 14-day daily forecast per base coordinate, then the
 // Weather Watcher agent maps those days onto the planner's itinerary days.
 
+<<<<<<< HEAD
+=======
+import type { DayAirQuality } from "./types";
+
+>>>>>>> 8f57626 (Test)
 export interface DailyWeather {
   date: string; // YYYY-MM-DD
   condition: WeatherCondition;
@@ -11,6 +16,10 @@ export interface DailyWeather {
   precip_mm: number;
   precip_probability: number; // 0-100
   uv_index_max: number;
+<<<<<<< HEAD
+=======
+  air_quality?: DayAirQuality;
+>>>>>>> 8f57626 (Test)
 }
 
 export type WeatherCondition =

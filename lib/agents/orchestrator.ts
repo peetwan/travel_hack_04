@@ -26,6 +26,10 @@ import {
   inferTripDaysFromPrompt,
 } from "../crowd-radar";
 import { fetchForecastsForBases, type DailyWeather } from "../weather";
+<<<<<<< HEAD
+=======
+import { fetchAirQualityForBases } from "../air-quality";
+>>>>>>> 8f57626 (Test)
 import {
   holidaysInRange,
   tripEndDate,
@@ -661,22 +665,47 @@ export async function orchestrate(
     // We need 16 days max from Open-Meteo. Compute how many we need based on
     // trip start vs today, and clamp.
     const requested = Math.min(tripStartOffset + planner.days.length + 1, 16);
+<<<<<<< HEAD
     const forecasts = await fetchForecastsForBases(
       uniqueBases.map((g) => ({ lat: g.lat, lng: g.lng })),
       requested,
       5000
     );
+=======
+    const baseCoordinates = uniqueBases.map((g) => ({ lat: g.lat, lng: g.lng }));
+    const [forecasts, airQuality] = await Promise.all([
+      fetchForecastsForBases(baseCoordinates, requested, 5000),
+      fetchAirQualityForBases(baseCoordinates, requested, 5000),
+    ]);
+>>>>>>> 8f57626 (Test)
 
     // Map gem_id → forecast array
     const forecastByGemId = new Map<string, DailyWeather[]>();
     uniqueBases.forEach((g, i) => forecastByGemId.set(g.id, forecasts[i] ?? []));
+<<<<<<< HEAD
+=======
+    const airQualityByGemId = new Map(
+      uniqueBases.map((g, i) => [g.id, airQuality[i] ?? []] as const)
+    );
+>>>>>>> 8f57626 (Test)
 
     // Align trip days to forecast days using the actual trip start date.
     // Open-Meteo returns days starting today, so the offset is days-from-today.
     const daysWithForecast = planner.days.map((d) => {
       const fc = forecastByGemId.get(d.stay_at) ?? [];
+<<<<<<< HEAD
       const idx = tripStartOffset + (d.day - 1);
       const forecast = fc[idx] ?? fc[fc.length - 1];
+=======
+      const aq = airQualityByGemId.get(d.stay_at) ?? [];
+      const idx = tripStartOffset + (d.day - 1);
+      const forecast = fc[idx] ?? fc[fc.length - 1];
+      const dailyAirQuality = aq[idx];
+      const forecastWithAirQuality =
+        forecast && dailyAirQuality
+          ? { ...forecast, air_quality: dailyAirQuality }
+          : forecast;
+>>>>>>> 8f57626 (Test)
       // Weather Watcher only needs the activity text, not the structured
       // {place, activity, gem_id} or {name, why} forms — synthesize short
       // strings from each block.
@@ -693,7 +722,11 @@ export async function orchestrate(
         evening: d.evening_dinner
           ? `dinner at ${d.evening_dinner.name}`
           : undefined,
+<<<<<<< HEAD
         forecast,
+=======
+        forecast: forecastWithAirQuality,
+>>>>>>> 8f57626 (Test)
       };
     });
 
@@ -772,6 +805,17 @@ export async function orchestrate(
               d.forecast.condition === "thunderstorm" ||
               d.forecast.precip_probability >= 60)
         ).length,
+<<<<<<< HEAD
+=======
+        hazy_days: weatherResult.daysWithForecast.filter(
+          (d) =>
+            d.forecast?.air_quality &&
+            (d.forecast.air_quality.level === "unhealthy-sensitive" ||
+              d.forecast.air_quality.level === "unhealthy" ||
+              d.forecast.air_quality.level === "very-unhealthy" ||
+              d.forecast.air_quality.level === "hazardous")
+        ).length,
+>>>>>>> 8f57626 (Test)
         sunny_days: weatherResult.daysWithForecast.filter(
           (d) =>
             d.forecast &&
@@ -798,6 +842,10 @@ export async function orchestrate(
           precip_probability: d.forecast.precip_probability,
           precip_mm: d.forecast.precip_mm,
           uv_index_max: d.forecast.uv_index_max,
+<<<<<<< HEAD
+=======
+          air_quality: d.forecast.air_quality,
+>>>>>>> 8f57626 (Test)
           advice: adviceByDay.get(d.day),
         });
       }
