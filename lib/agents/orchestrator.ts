@@ -18,6 +18,7 @@ import type {
 import {
   fetchMapsCrowdSignals,
   geocodeDiscoveredPlace,
+  resolveGooglePhotoUri,
   validateWellnessVenue,
 } from "../google-maps";
 import {
@@ -572,6 +573,38 @@ export async function orchestrate(
   const selectedGems = planner.selected_ids
     .map((id) => GEMS_BY_ID.get(id))
     .filter((g): g is HiddenGem => !!g);
+
+  // Resolve Google Places photo URIs for the selected gems only — needed
+  // because ~40% of curated gems have no TAT thumbnail (TAT places DB doesn't
+  // index them or the asset 404s). The crowd-radar signal already carries the
+  // photo `name` resource path; we just need to swap it for a public CDN URL.
+  // Done only for selected gems (2-4) to keep latency low; skipped silently
+  // when GOOGLE_MAPS_API_KEY is missing or the resolve call times out.
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY?.trim();
+  if (apiKey) {
+    const photoAc = new AbortController();
+    const photoTimer = setTimeout(() => photoAc.abort(), 5000);
+    try {
+      await Promise.allSettled(
+        selectedGems.map(async (gem) => {
+          const signal = crowdRadar.signals.find((s) => s.gem_id === gem.id);
+          const photoName = signal?.matched_place?.photo_name;
+          if (!signal?.matched_place || !photoName) return;
+          const uri = await resolveGooglePhotoUri({
+            photoName,
+            apiKey,
+            maxHeightPx: 480,
+            maxWidthPx: 720,
+            signal: photoAc.signal,
+          });
+          if (uri) signal.matched_place.google_photo_url = uri;
+        })
+      );
+    } finally {
+      clearTimeout(photoTimer);
+    }
+  }
+
   emit({
     type: "agent_complete",
     agent: "planner",

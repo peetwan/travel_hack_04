@@ -21,6 +21,7 @@ const FIELD_MASK = [
   "places.primaryType",
   "places.types",
   "places.googleMapsUri",
+  "places.photos",
 ].join(",");
 
 interface GooglePlace {
@@ -315,6 +316,7 @@ async function fetchSignalForGem(
       google_maps_uri: place.googleMapsUri,
       match_distance_km:
         typeof distanceKm === "number" ? Number(distanceKm.toFixed(1)) : undefined,
+      photo_name: place.photos?.find((p) => p.name)?.name,
     },
   };
 }
@@ -344,7 +346,7 @@ const GEOCODE_FIELD_MASK = [
 // into a publicly-fetchable image URL on lh3.googleusercontent.com without
 // exposing the API key to the browser. We use `skipHttpRedirect=true` to make
 // the Photos API return a JSON envelope with the photoUri instead of redirecting.
-async function resolveGooglePhotoUri(args: {
+export async function resolveGooglePhotoUri(args: {
   photoName: string;
   apiKey: string;
   maxHeightPx?: number;

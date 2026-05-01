@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MapPin, Star, BadgeCheck, ExternalLink, Users } from "lucide-react";
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import type { HiddenGem, MapsCrowdSignal } from "@/lib/types";
 
@@ -38,7 +39,14 @@ export function GemCard({
   crowdSignal?: MapsCrowdSignal;
 }) {
   const hasTat = !!gem.tat;
-  const heroImage = gem.tat?.thumbnail_url ?? null;
+  // Hero falls back: TAT thumbnail (preferred for the verified-source halo) →
+  // Google Places photo (resolved server-side, no API key in URL) → no image.
+  // The TAT URL sometimes 404s on stale assets, so we also handle <img onError>.
+  const tatThumb = gem.tat?.thumbnail_url ?? null;
+  const googlePhoto = crowdSignal?.matched_place?.google_photo_url ?? null;
+  const [tatBroken, setTatBroken] = useState(false);
+  const heroImage =
+    tatThumb && !tatBroken ? tatThumb : googlePhoto ?? null;
   const mapsReviews = crowdSignal?.matched_place?.user_rating_count;
   const mapsUri = crowdSignal?.matched_place?.google_maps_uri;
   const mapsPressure = crowdSignal?.pressure;
@@ -65,19 +73,28 @@ export function GemCard({
             src={heroImage}
             alt={gem.name_en}
             loading="lazy"
+            onError={() => {
+              if (heroImage === tatThumb) setTatBroken(true);
+            }}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
           <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
-            {hasTat && (
+            {hasTat && heroImage === tatThumb && (
               <span className="inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/40 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white backdrop-blur-md">
                 <BadgeCheck className="h-3 w-3" />
                 TAT verified
               </span>
             )}
-            {gem.tat?.sha_certified && (
+            {gem.tat?.sha_certified && heroImage === tatThumb && (
               <span className="inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/40 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white backdrop-blur-md">
                 SHA
+              </span>
+            )}
+            {heroImage === googlePhoto && heroImage !== tatThumb && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/40 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white backdrop-blur-md">
+                <MapPin className="h-3 w-3" />
+                Google Maps
               </span>
             )}
           </div>

@@ -257,6 +257,13 @@ export interface MapsCrowdSignal {
     types?: string[];
     google_maps_uri?: string;
     match_distance_km?: number;
+    /** Google Places `places/.../photos/...` resource path. Resolve to a public
+     * lh3.googleusercontent.com URL via the Photos API before sending to the UI
+     * (otherwise the API key would have to be exposed). */
+    photo_name?: string;
+    /** Resolved public photo URL (no API key) — set lazily for selected gems
+     * only, since each lookup costs one extra Google Places API call. */
+    google_photo_url?: string;
   };
   message?: string;
 }
