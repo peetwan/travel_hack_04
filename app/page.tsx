@@ -54,7 +54,7 @@ export default function Home() {
     setSubmitting(true);
     const params = new URLSearchParams({ q: prompt.trim() });
     if (startDate) params.set("start", startDate);
-    router.push(`/discover?${params.toString()}`);
+    router.push(`/ways?${params.toString()}`);
   }
 
   return (

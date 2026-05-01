@@ -93,6 +93,8 @@ function DiscoverInner() {
   const params = useSearchParams();
   const prompt = params.get("q") ?? "";
   const startDate = params.get("start") ?? "";
+  const refinement = params.get("refinement") ?? "";
+  const fullPrompt = refinement ? `${prompt} — ${refinement}` : prompt;
   const [agents, setAgents] = useState<Record<AgentName, AgentState>>(
     initialAgents()
   );
@@ -115,7 +117,7 @@ function DiscoverInner() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            prompt,
+            prompt: fullPrompt,
             startDate: startDate || undefined,
           }),
           signal: controller.signal,
