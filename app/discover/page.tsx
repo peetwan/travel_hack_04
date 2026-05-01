@@ -832,11 +832,13 @@ function formatDayDate(iso: string): string {
 function DayRow({
   day: d,
   isBestOutdoor,
-  mapsUriByGemId,
+  baseProvince,
 }: {
   day: NonNullable<FinalItinerary["days"]>[number];
   isBestOutdoor: boolean;
-  mapsUriByGemId: Map<string, string>;
+  /** The base gem's province — appended to Maps search URLs so links
+   * land on the correct city even when place names are common. */
+  baseProvince?: string;
 }) {
   const dayName = d.date ? formatDayDate(d.date) : null;
   return (
@@ -881,9 +883,7 @@ function DayRow({
             Icon={Sun}
             tone="saffron"
             activity={d.morning}
-            mapsUri={
-              d.morning.gem_id ? mapsUriByGemId.get(d.morning.gem_id) : undefined
-            }
+            baseProvince={baseProvince}
           />
         )}
         {d.afternoon && (
@@ -892,19 +892,25 @@ function DayRow({
             Icon={CloudSun}
             tone="jade"
             activity={d.afternoon}
-            mapsUri={
-              d.afternoon.gem_id
-                ? mapsUriByGemId.get(d.afternoon.gem_id)
-                : undefined
-            }
+            baseProvince={baseProvince}
           />
         )}
         {d.evening_dinner && (
-          <DinnerBlock dinner={d.evening_dinner} />
+          <DinnerBlock dinner={d.evening_dinner} baseProvince={baseProvince} />
         )}
       </div>
     </li>
   );
+}
+
+// Build a Google Maps search URL that uses the EXACT visible place text
+// (plus base province + Thailand) so the link lands on what the user just
+// read. This replaces the older approach of looking up a gem's resolved
+// place URI — that occasionally pointed at a different gem when the planner
+// set gem_id loosely.
+function mapsSearchUrl(query: string): string {
+  const params = new URLSearchParams({ api: "1", query });
+  return `https://www.google.com/maps/search/?${params.toString()}`;
 }
 
 // Tone tokens for the time-block icon medallion + label colour. Inlined as a
@@ -961,7 +967,7 @@ function ActivityBlock({
   Icon,
   tone,
   activity,
-  mapsUri,
+  baseProvince,
 }: {
   label: string;
   Icon: React.ElementType;
@@ -969,27 +975,25 @@ function ActivityBlock({
   activity: NonNullable<
     NonNullable<FinalItinerary["days"]>[number]["morning"]
   >;
-  mapsUri?: string;
+  baseProvince?: string;
 }) {
+  const query = [activity.place, baseProvince, "Thailand"]
+    .filter(Boolean)
+    .join(" ");
+  const href = mapsSearchUrl(query);
   return (
     <div className="flex gap-5 py-5 first:pt-1">
       <TimeBlockMedallion Icon={Icon} label={label} tone={tone} />
       <div className="flex flex-1 flex-col gap-1 pt-1">
-        {mapsUri ? (
-          <a
-            href={mapsUri}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-baseline gap-1.5 self-start font-display text-[17px] font-semibold leading-snug text-[var(--foreground)] transition-colors hover:text-[var(--saffron)]"
-          >
-            {activity.place}
-            <MapPin className="h-3 w-3 translate-y-0.5 text-[var(--muted)] transition-colors group-hover:text-[var(--saffron)]" />
-          </a>
-        ) : (
-          <span className="font-display text-[17px] font-semibold leading-snug text-[var(--foreground)]">
-            {activity.place}
-          </span>
-        )}
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-baseline gap-1.5 self-start font-display text-[17px] font-semibold leading-snug text-[var(--foreground)] transition-colors hover:text-[var(--saffron)]"
+        >
+          {activity.place}
+          <MapPin className="h-3 w-3 translate-y-0.5 text-[var(--muted)] transition-colors group-hover:text-[var(--saffron)]" />
+        </a>
         <span className="text-[14px] leading-relaxed text-[var(--muted-foreground)]">
           {activity.activity}
         </span>
@@ -1000,18 +1004,30 @@ function ActivityBlock({
 
 function DinnerBlock({
   dinner,
+  baseProvince,
 }: {
   dinner: NonNullable<
     NonNullable<FinalItinerary["days"]>[number]["evening_dinner"]
   >;
+  baseProvince?: string;
 }) {
+  const query = [dinner.name, baseProvince, "Thailand"]
+    .filter(Boolean)
+    .join(" ");
+  const href = mapsSearchUrl(query);
   return (
     <div className="flex gap-5 py-5 first:pt-1">
       <TimeBlockMedallion Icon={Utensils} label="Dinner" tone="burgundy" />
       <div className="flex flex-1 flex-col gap-1 pt-1">
-        <span className="font-display text-[17px] font-semibold leading-snug text-[var(--foreground)]">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-baseline gap-1.5 self-start font-display text-[17px] font-semibold leading-snug text-[var(--foreground)] transition-colors hover:text-[var(--burgundy)]"
+        >
           {dinner.name}
-        </span>
+          <MapPin className="h-3 w-3 translate-y-0.5 text-[var(--muted)] transition-colors group-hover:text-[var(--burgundy)]" />
+        </a>
         <span className="text-[14px] leading-relaxed text-[var(--muted-foreground)]">
           {dinner.why}
         </span>
@@ -1023,14 +1039,6 @@ function DinnerBlock({
 function DayTimeline({ final }: { final: FinalItinerary }) {
   if (!final.days || final.days.length === 0) return null;
   const gemsById = new Map(final.selected_gems.map((g) => [g.id, g]));
-  // Crowd radar carries each selected gem's matched Google Maps URI — used to
-  // turn a morning/afternoon `place` into a clickable Maps link when the
-  // planner referenced a gem_id.
-  const mapsUriByGemId = new Map<string, string>();
-  for (const signal of final.crowd_radar?.signals ?? []) {
-    const uri = signal.matched_place?.google_maps_uri;
-    if (uri) mapsUriByGemId.set(signal.gem_id, uri);
-  }
   const bestOutdoor = final.weather?.best_day_for_outdoor ?? null;
 
   // Group consecutive days that share the same `stay_at` so the user sees
@@ -1146,7 +1154,7 @@ function DayTimeline({ final }: { final: FinalItinerary }) {
                       key={d.day}
                       day={d}
                       isBestOutdoor={bestOutdoor === d.day}
-                      mapsUriByGemId={mapsUriByGemId}
+                      baseProvince={gemsById.get(d.stay_at)?.province}
                     />
                   ))}
                 </ul>
