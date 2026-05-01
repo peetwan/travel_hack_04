@@ -1053,5 +1053,729 @@
       "detail_url": "https://thai.tourismthailand.org/attraction/คุ้งบางกะเจ้า",
       "distance_km": 2.2
     }
+  },
+  {
+    "id": "talat-noi-bangkok",
+    "name_th": "ตลาดน้อย",
+    "name_en": "Talat Noi",
+    "province": "Bangkok",
+    "region": "central",
+    "lat": 13.7349,
+    "lng": 100.5145,
+    "category": "culture",
+    "vibe_tags": [
+      "street-art",
+      "alleyways",
+      "old-bangkok",
+      "sino-portuguese"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb (cool season)",
+    "thai_description": "ย่านเก่าริมแม่น้ำเจ้าพระยา สถาปัตยกรรมจีน-โปรตุเกส อู่รถยนต์เก่ายุค 60s กลายเป็นคาเฟ่ ศาลเจ้าซ่อนในซอย",
+    "en_description": "Sino-Portuguese alley district hugging the Chao Phraya, where vintage car workshops have morphed into cafés and murals. The opposite of Khao San — slow, weird, alive.",
+    "source_urls": [
+      "https://www.crazydsadventures.com/post/talad-noi-bangkok-thailand"
+    ],
+    "near_traps": [
+      "khaosan",
+      "wat-pho-bangkok"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "7714",
+      "slug": "ตลาดน้อย",
+      "name_th": "ตลาดน้อย",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/fa2ea9ce-e7da-4768-be42-8fcbde5ba8d9.jpeg",
+      "sha_certified": false,
+      "province_th": "กรุงเทพมหานคร",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ตลาดน้อย",
+      "distance_km": 0.1
+    }
+  },
+  {
+    "id": "khlong-bang-luang",
+    "name_th": "คลองบางหลวง",
+    "name_en": "Khlong Bang Luang Artist's House",
+    "province": "Bangkok",
+    "region": "central",
+    "lat": 13.7283,
+    "lng": 100.4641,
+    "category": "culture",
+    "vibe_tags": [
+      "canal",
+      "artist-house",
+      "weekend-puppet-show",
+      "old-thonburi"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Weekends Nov-Feb",
+    "thai_description": "ชุมชนริมคลองยุคอยุธยา บ้านศิลปินจัดหุ่นกระบอกทุกวันเสาร์-อาทิตย์ ร้านขนมไทยโบราณริมคลอง",
+    "en_description": "Ayutthaya-era canal community where the 'Artist's House' stages traditional puppet shows on weekends. The honest version of Damnoen Saduak — locals still buy from the boats.",
+    "source_urls": [
+      "https://readme.me/p/49803"
+    ],
+    "near_traps": [
+      "damnoen-saduak",
+      "khaosan"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "23364",
+      "slug": "ชุมชนคลองบางหลวง-และบ้านศิลปิน-คลองบางหลวง",
+      "name_th": "ชุมชนคลองบางหลวง และบ้านศิลปิน คลองบางหลวง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/0169da2b-f398-4e88-8b03-36b3b5b98c1f.jpeg",
+      "sha_certified": false,
+      "province_th": "กรุงเทพมหานคร",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ชุมชนคลองบางหลวง-และบ้านศิลปิน-คลองบางหลวง",
+      "distance_km": 0.4
+    }
+  },
+  {
+    "id": "tub-kaek-beach",
+    "name_th": "หาดทับแขก",
+    "name_en": "Tub Kaek Beach",
+    "province": "Krabi",
+    "region": "south",
+    "lat": 8.0581,
+    "lng": 98.7506,
+    "category": "beach",
+    "vibe_tags": [
+      "mainland-beach",
+      "no-bars",
+      "boutique-resorts",
+      "sunset-sand"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Apr",
+    "thai_description": "หาดมุมเงียบของกระบี่แผ่นดินใหญ่ ห่างจากอ่าวนางมาทางเหนือ ทรายขาว สงบ ไม่มีบาร์เสียงดัง",
+    "en_description": "Krabi mainland's quiet north coast — long flat-tide beach with no jet-skis, no beach bars, just boutique resorts and Hong Island silhouettes at sunset.",
+    "source_urls": [
+      "https://readme.me/p/1043"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "patong",
+      "maya-bay"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true
+  },
+  {
+    "id": "khao-lak",
+    "name_th": "เขาหลัก",
+    "name_en": "Khao Lak",
+    "province": "Phang Nga",
+    "region": "south",
+    "lat": 8.6325,
+    "lng": 98.2418,
+    "category": "beach",
+    "vibe_tags": [
+      "diving-gateway",
+      "long-quiet-beach",
+      "national-park",
+      "similan-base"
+    ],
+    "crowd_level": 4,
+    "auth_score": 3,
+    "best_time": "Nov-Apr (Similan season)",
+    "thai_description": "ชายฝั่งพังงา จุดเริ่มไป Similan ทำสีลึก หาดยาว เงียบกว่าภูเก็ตชัดเจน",
+    "en_description": "Long Andaman coastline north of Phuket and the launching point for Similan/Surin liveaboards. Resort-y but slow-paced — the polar opposite of Patong's bar grid.",
+    "source_urls": [
+      "https://www.grandmercurekhaolakbangsak.com/beachfront-resort-in-khao-lak-grand-mercure-khao-lak-bangsak/travel-tips/things-to-do-in-khao-lak/"
+    ],
+    "near_traps": [
+      "patong",
+      "phi-phi",
+      "maya-bay"
+    ],
+    "family_friendly": true,
+    "tat": {
+      "place_id": "23972",
+      "slug": "อุทยานแห่งชาติเขาหลัก-ลำรู่",
+      "name_th": "อุทยานแห่งชาติเขาหลัก-ลำรู่",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/78dac137-c906-45fa-8959-24b2e1d69f3b.jpg",
+      "sha_certified": true,
+      "province_th": "พังงา",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติเขาหลัก-ลำรู่",
+      "distance_km": 0.7
+    }
+  },
+  {
+    "id": "mae-sa-valley",
+    "name_th": "หุบเขาแม่สา",
+    "name_en": "Mae Sa Valley & Botanical Garden",
+    "province": "Chiang Mai",
+    "region": "north",
+    "lat": 18.8917,
+    "lng": 98.8842,
+    "category": "nature",
+    "vibe_tags": [
+      "waterfall",
+      "botanical-garden",
+      "day-trip-from-old-city",
+      "valley"
+    ],
+    "crowd_level": 4,
+    "auth_score": 3,
+    "best_time": "Jun-Oct (waterfall full)",
+    "thai_description": "หุบเขาแม่ริมเหนือเชียงใหม่ น้ำตกแม่สา 8 ชั้น และสวนพฤกษศาสตร์ควีนสิริกิติ์ ห่างเมืองเก่า 30 นาที",
+    "en_description": "Forested valley 30 min north of Chiang Mai's Old City. Mae Sa Falls (8 tiers) plus Queen Sirikit Botanical Garden — skip the elephant camps, the trail-and-glasshouse circuit is the move.",
+    "source_urls": [
+      "https://chillpainai.com/scoop/6031/15-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9E%E0%B8%B1%E0%B8%81-%E0%B8%8A%E0%B8%A1%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4-%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A5%E0%B8%A1%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%A7-%E0%B8%AD%E0%B8%B3%E0%B9%80%E0%B8%A0%E0%B8%AD%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A3%E0%B8%B4%E0%B8%A1-%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city",
+      "tiger-temple"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "doi-mae-salong",
+    "name_th": "ดอยแม่สลอง (สันติคีรี)",
+    "name_en": "Doi Mae Salong (Santikhiri)",
+    "province": "Chiang Rai",
+    "region": "north",
+    "lat": 20.1486,
+    "lng": 99.6347,
+    "category": "village",
+    "vibe_tags": [
+      "yunnanese",
+      "oolong-tea",
+      "kuomintang-history",
+      "mountain-village"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Dec-Feb (tea harvest, sakura)",
+    "thai_description": "หมู่บ้านชาวจีนยูนนานบนสันเขา ปลูกชาอู่หลง ประวัติศาสตร์กองทัพ 93 ก๊กมินตั๋ง อาหารจีนยูนนานแท้",
+    "en_description": "Yunnanese mountain village settled by ex-KMT soldiers and their families. Oolong terraces, Yunnan-style noodle stalls, and a sakura-pink February — utterly unlike northern Thai villages.",
+    "source_urls": [
+      "https://migrationology.com/day-trip-mae-salong-chiang-rai-guide/"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "family_friendly": true,
+    "tat": {
+      "place_id": "27469",
+      "slug": "ดอยแม่สลอง",
+      "name_th": "ดอยแม่สลอง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/ea560949-420c-4e0b-b876-7bcbde6c05b5.jpeg",
+      "sha_certified": false,
+      "province_th": "เชียงราย",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ดอยแม่สลอง",
+      "distance_km": 2.5
+    }
+  },
+  {
+    "id": "phrae-old-town",
+    "name_th": "เมืองเก่าแพร่",
+    "name_en": "Phrae Old Town",
+    "province": "Phrae",
+    "region": "north",
+    "lat": 18.1456,
+    "lng": 100.1408,
+    "category": "culture",
+    "vibe_tags": [
+      "lanna-teakwood",
+      "indigo-mor-hom",
+      "old-mansions",
+      "slow-town"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "เมืองเก่าล้านนาตะวันออก บ้านวงศ์บุรี บ้านเสาร์เก่า เสื้อม่อฮ่อมย้อมคราม ถนนคนเดินทุกศุกร์-เสาร์",
+    "en_description": "Lanna teakwood town the tour buses skip. Wong Buri House, indigo mor-hom workshops, a Friday-Saturday walking street that's still 95% locals.",
+    "source_urls": [
+      "https://pantip.com/topic/33318022"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true
+  },
+  {
+    "id": "phayao-lake",
+    "name_th": "กว๊านพะเยา",
+    "name_en": "Kwan Phayao (Phayao Lake)",
+    "province": "Phayao",
+    "region": "north",
+    "lat": 19.1664,
+    "lng": 99.9019,
+    "category": "culture",
+    "vibe_tags": [
+      "lake-sunset",
+      "lanna-temple",
+      "small-town",
+      "seafood-by-water"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "ทะเลสาบใหญ่กลางเมือง วัดศรีโคมคำมีอุโบสถกลางน้ำ พระอาทิตย์ตกหลังดอย ปลาส้มกว๊านพะเยา",
+    "en_description": "Largest natural freshwater lake in northern Thailand. Wat Sri Khom Kham's water-bound bot, sunsets behind the mountains, and a lakeside fish-grill scene that has no foreign price tier.",
+    "source_urls": [
+      "https://chillpainai.com/scoop/13818"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "20028",
+      "slug": "กว๊านพะเยา",
+      "name_th": "กว๊านพะเยา",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/88bb8e00-c937-484b-a478-e8893511f92d.jpg",
+      "sha_certified": false,
+      "province_th": "พะเยา",
+      "detail_url": "https://thai.tourismthailand.org/attraction/กว๊านพะเยา",
+      "distance_km": 1.0
+    }
+  },
+  {
+    "id": "mae-sot-old-town",
+    "name_th": "เมืองเก่าแม่สอด",
+    "name_en": "Mae Sot Old Town",
+    "province": "Tak",
+    "region": "north",
+    "lat": 16.7196,
+    "lng": 98.5717,
+    "category": "culture",
+    "vibe_tags": [
+      "burma-border",
+      "karen-burmese",
+      "rim-moei-market",
+      "frontier"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "เมืองชายแดนพม่า ตลาดริมเมยขายของพม่า ชาวกะเหรี่ยง อาหารพม่า-มอญ มัสยิดและวัดอยู่ติดกัน",
+    "en_description": "Thai-Burmese border town with Karen, Mon, and Burmese populations layered into the streetscape. Rim Moei market sells Burmese cheroots and longyis, and the food is half Mae Sot Thai, half Mandalay.",
+    "source_urls": [
+      "https://chillpainai.com/scoop/7618"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "songkhla-old-town",
+    "name_th": "เมืองเก่าสงขลา",
+    "name_en": "Songkhla Old Town",
+    "province": "Songkhla",
+    "region": "south",
+    "lat": 7.198,
+    "lng": 100.595,
+    "category": "food",
+    "vibe_tags": [
+      "sino-portuguese",
+      "hokkien-food",
+      "street-art",
+      "thanon-nang-ngam"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Year-round (avoid Nov-Dec deep south rain)",
+    "thai_description": "เมืองเก่าสงขลา ถนนนางงาม บ้านชิโน-โปรตุกีสยุคปลายรัชกาลที่ 5 ขนมจีนสงขลา หมูฮ้องและไอติมโบราณ",
+    "en_description": "Sino-Portuguese trading town with Thanon Nang Ngam — a single street of preserved 1900s shophouses, Hokkien noodle joints, and old-school ice-cream parlours that survive untouched.",
+    "source_urls": [
+      "https://readme.me/p/41979"
+    ],
+    "near_traps": [
+      "patong",
+      "phi-phi"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "8785",
+      "slug": "ย่านเมืองเก่าสงขลา",
+      "name_th": "ย่านเมืองเก่าสงขลา",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/95d3efe9-321a-4744-af1c-02e98f5297be.jpeg",
+      "sha_certified": false,
+      "province_th": "สงขลา",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ย่านเมืองเก่าสงขลา",
+      "distance_km": 0.8
+    }
+  },
+  {
+    "id": "wat-phra-mahathat-nst",
+    "name_th": "วัดพระมหาธาตุวรมหาวิหาร",
+    "name_en": "Wat Phra Mahathat Woramahawihan",
+    "province": "Nakhon Si Thammarat",
+    "region": "south",
+    "lat": 8.4083,
+    "lng": 99.9647,
+    "category": "temple",
+    "vibe_tags": [
+      "unesco-tentative",
+      "buddhist-pilgrimage",
+      "ancient-chedi",
+      "sri-lankan-style"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "เจดีย์โบราณทรงระฆังคว่ำสูง 55 เมตร ศิลปะลังกาวงศ์ พุทธศาสนิกชนมาเวียนเทียน ไม่ใช่กลุ่มทัวร์ฝรั่ง",
+    "en_description": "55m Sri Lankan-style stupa that is Thailand's most important southern pilgrimage temple — and a leading UNESCO World Heritage candidate. Locals circumambulate at dusk; tour groups don't bother coming this far south.",
+    "source_urls": [
+      "https://pantip.com/topic/38991244"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "2280",
+      "slug": "วัดพระมหาธาตุวรมหาวิหาร",
+      "name_th": "วัดพระมหาธาตุวรมหาวิหาร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/a6a304cb-7ddd-40a6-a5ae-eaefe5ba67e6.jpg",
+      "sha_certified": false,
+      "province_th": "นครศรีธรรมราช",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดพระมหาธาตุวรมหาวิหาร",
+      "distance_km": 0.4
+    }
+  },
+  {
+    "id": "chanthaburi-riverside",
+    "name_th": "ชุมชนริมน้ำจันทบูร",
+    "name_en": "Chanthaburi Riverside Old Town",
+    "province": "Chanthaburi",
+    "region": "east",
+    "lat": 12.6113,
+    "lng": 102.1037,
+    "category": "food",
+    "vibe_tags": [
+      "vietnamese-thai-food",
+      "gem-trade",
+      "riverside",
+      "catholic-cathedral"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Apr (avoid May-Oct rain)",
+    "thai_description": "ชุมชนริมแม่น้ำจันทบูร อาหารไทย-เวียดนามจากอพยพยุคโคลด์วอร์ โบสถ์คริสต์ใหญ่ที่สุดในไทย ตลาดเก่าค้าอัญมณี",
+    "en_description": "Riverside community shaped by 1970s Vietnamese refugees and centuries of Cambodian gem trade. Bánh tét, ขนมโก๋, and a Gothic cathedral make this the most layered small town in eastern Thailand.",
+    "source_urls": [
+      "https://pantip.com/topic/37922134"
+    ],
+    "near_traps": [
+      "pattaya"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "4172",
+      "slug": "วัดโบสถ์เมือง-และชุมชนริมน้ำจันทบูร",
+      "name_th": "วัดโบสถ์เมือง และชุมชนริมน้ำจันทบูร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/ad7f08b5-7561-4476-bbba-909e26f9fac7.jpeg",
+      "sha_certified": false,
+      "province_th": "จันทบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดโบสถ์เมือง-และชุมชนริมน้ำจันทบูร",
+      "distance_km": 1.1
+    }
+  },
+  {
+    "id": "mukdahan-mekong",
+    "name_th": "มุกดาหารริมโขง",
+    "name_en": "Mukdahan Riverfront",
+    "province": "Mukdahan",
+    "region": "northeast",
+    "lat": 16.5439,
+    "lng": 104.7227,
+    "category": "culture",
+    "vibe_tags": [
+      "mekong-views",
+      "indochina-market",
+      "lao-border",
+      "river-sunset"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "ตัวเมืองมุกดาหารริมโขง ตลาดอินโดจีนของฝั่งลาว-เวียดนาม หอแก้วมุกดาหารชมโขงมุมสูง",
+    "en_description": "Sleepy Mekong town opposite Savannakhet, Laos. Indochina market sells Lao silver and Vietnamese coffee; sunset over the river from Ho Kaew tower has zero queue.",
+    "source_urls": [
+      "https://readme.me/p/76090"
+    ],
+    "near_traps": [
+      "khao-yai-tour-bus"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "16143",
+      "slug": "นัดพบริมโขง",
+      "name_th": "นัดพบริมโขง",
+      "thumbnail_url": null,
+      "sha_certified": false,
+      "province_th": "มุกดาหาร",
+      "detail_url": "https://thai.tourismthailand.org/restaurant/นัดพบริมโขง",
+      "distance_km": 1.9
+    }
+  },
+  {
+    "id": "pha-mor-i-daeng",
+    "name_th": "ผามออีแดง",
+    "name_en": "Pha Mor I Daeng (Khao Phra Wihan NP)",
+    "province": "Sisaket",
+    "region": "northeast",
+    "lat": 14.3625,
+    "lng": 104.7325,
+    "category": "nature",
+    "vibe_tags": [
+      "cliff-viewpoint",
+      "khmer-history",
+      "preah-vihear-views",
+      "border"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb (cool, dry)",
+    "thai_description": "หน้าผาแดงในอุทยานเขาพระวิหาร ขอบเขตชายแดนไทย-กัมพูชา มองเห็นปราสาทพระวิหารบนเขาด้านกัมพูชา จุดชมวิวที่คนไทยน้อย คนต่างชาติน้อยกว่า",
+    "en_description": "Red sandstone cliff on the Cambodian border with sweeping views into the Preah Vihear plain. Khmer-era stair-cut bas-reliefs in the rock — and on a clear day you can see the Preah Vihear temple itself.",
+    "source_urls": [
+      "https://readme.me/p/44580"
+    ],
+    "near_traps": [
+      "khao-yai-tour-bus"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "sukhothai-historical-park",
+    "name_th": "อุทยานประวัติศาสตร์สุโขทัย",
+    "name_en": "Sukhothai Historical Park",
+    "province": "Sukhothai",
+    "region": "central",
+    "lat": 17.0167,
+    "lng": 99.7036,
+    "category": "culture",
+    "vibe_tags": [
+      "unesco",
+      "bicycle",
+      "ancient-capital",
+      "lotus-ponds"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "อุทยานประวัติศาสตร์มรดกโลก ปั่นจักรยานชมวัดมหาธาตุ วัดศรีชุม สุโขทัยใหญ่กว่าอยุธยาเงียบกว่ามาก",
+    "en_description": "UNESCO ruins of Thailand's first kingdom — bigger than Ayutthaya and a fraction of the foot traffic. Rent a bike at the gate and you'll mostly hear birds in the lotus ponds between temples.",
+    "source_urls": [
+      "https://readme.me/p/29233"
+    ],
+    "near_traps": [
+      "wat-pho-bangkok"
+    ],
+    "vegan_friendly": true,
+    "family_friendly": true,
+    "tat": {
+      "place_id": "8282",
+      "slug": "อุทยานประวัติศาสตร์สุโขทัย-(เมืองเก่าสุโขทัย)",
+      "name_th": "อุทยานประวัติศาสตร์สุโขทัย (เมืองเก่าสุโขทัย)",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/f4e50c66-f666-48c9-a744-950ecbc8a4f5.jpeg",
+      "sha_certified": false,
+      "province_th": "สุโขทัย",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานประวัติศาสตร์สุโขทัย-(เมืองเก่าสุโขทัย)",
+      "distance_km": 0.1
+    }
+  },
+  {
+    "id": "khao-sam-roi-yot",
+    "name_th": "เขาสามร้อยยอด",
+    "name_en": "Khao Sam Roi Yot National Park",
+    "province": "Prachuap Khiri Khan",
+    "region": "west",
+    "lat": 12.15,
+    "lng": 99.95,
+    "category": "nature",
+    "vibe_tags": [
+      "limestone-mountains",
+      "phraya-nakhon-cave",
+      "marshland-birding",
+      "near-hua-hin"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb (dry, cool, marsh full)",
+    "thai_description": "อุทยานริมทะเลที่มีหินปูน 300 ยอด ถ้ำพระยานครพระที่นั่งคูหาคฤหาสน์ มีแสงแดดส่องผ่านปล่องในตอนสาย",
+    "en_description": "Coastal limestone karst park 60 km south of Hua Hin. Tham Phraya Nakhon's morning sun-shaft photo is iconic; the Sam Roi Yot marshland is a major stopover for migrating birds.",
+    "source_urls": [
+      "https://readme.me/p/5571"
+    ],
+    "near_traps": [
+      "pattaya"
+    ],
+    "family_friendly": true,
+    "tat": {
+      "place_id": "33604",
+      "slug": "บึงบัวสามร้อยยอด-อุทยานแห่งชาติเขาสามร้อยยอด",
+      "name_th": "บึงบัวสามร้อยยอด  อุทยานแห่งชาติเขาสามร้อยยอด ",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/dc5b7c56-c091-4b6d-a52d-b781ba984b5c.jpg",
+      "sha_certified": false,
+      "province_th": "ประจวบคีรีขันธ์",
+      "detail_url": "https://thai.tourismthailand.org/attraction/บึงบัวสามร้อยยอด-อุทยานแห่งชาติเขาสามร้อยยอด",
+      "distance_km": 10.7
+    }
+  },
+  {
+    "id": "koh-si-chang",
+    "name_th": "เกาะสีชัง",
+    "name_en": "Koh Si Chang",
+    "province": "Chonburi",
+    "region": "east",
+    "lat": 13.15,
+    "lng": 100.8167,
+    "category": "beach",
+    "vibe_tags": [
+      "near-bangkok",
+      "weekend-island",
+      "rama-v-palace",
+      "no-jet-skis"
+    ],
+    "crowd_level": 2,
+    "auth_score": 4,
+    "best_time": "Nov-Apr",
+    "thai_description": "เกาะใกล้ศรีราชา 45 นาทีทางเรือ พระราชนิเวศน์รัชกาลที่ 5 อ่าวอัษฎางค์ ไม่มีเจ็ตสกีไม่มีบาร์",
+    "en_description": "45-minute ferry from Si Racha lands you on a cliff-fringed island with King Rama V's palace ruins and a quiet swimming bay (Atsadang). The Koh Larn / Pattaya alternative no foreigner finds.",
+    "source_urls": [
+      "https://readme.me/p/8755"
+    ],
+    "near_traps": [
+      "pattaya",
+      "phi-phi"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "20717",
+      "slug": "เกาะสีชัง",
+      "name_th": "เกาะสีชัง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/546bbb87-df36-4a30-bac1-d8614cc11624.jpeg",
+      "sha_certified": false,
+      "province_th": "ชลบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เกาะสีชัง",
+      "distance_km": 0.8
+    }
+  },
+  {
+    "id": "trang-food-trail",
+    "name_th": "ตรัง วงเวียนหมูย่าง",
+    "name_en": "Trang Food Trail",
+    "province": "Trang",
+    "region": "south",
+    "lat": 7.5645,
+    "lng": 99.6111,
+    "category": "food",
+    "vibe_tags": [
+      "dim-sum-breakfast",
+      "char-siu-pork",
+      "hokkien",
+      "morning-coffee-shop"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Year-round",
+    "thai_description": "เมืองตรังเริ่มกินตั้งแต่ตี 4 ติ่มซำเช้า หมูย่างเมืองตรัง โกปี๊โบราณ ขนมจีนน้ำยาปูในตอนสาย",
+    "en_description": "Trang is a Hokkien food town that runs on a 4am-to-noon clock — dim sum trolleys, Trang-style char siu pork, and the only Thai city where breakfast is the main meal.",
+    "source_urls": [
+      "https://pantip.com/topic/35920822"
+    ],
+    "near_traps": [
+      "phi-phi",
+      "patong"
+    ],
+    "family_friendly": true
+  },
+  {
+    "id": "wiang-kum-kam",
+    "name_th": "เวียงกุมกาม",
+    "name_en": "Wiang Kum Kam",
+    "province": "Chiang Mai",
+    "region": "north",
+    "lat": 18.7549,
+    "lng": 99.0036,
+    "category": "culture",
+    "vibe_tags": [
+      "lanna-archeology",
+      "ruins-under-river",
+      "13th-century",
+      "horse-cart-tour"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "เมืองโบราณก่อน Chiang Mai พ่อขุนเม็งรายสร้างก่อนย้ายเมือง ถูกน้ำท่วมจนหายไป ค้นพบใต้ดินเมื่อ 1984",
+    "en_description": "Pre-Chiang Mai capital that King Mengrai founded in the 1280s, then abandoned when the Ping flooded it. Excavated since 1984 — Lanna ruins on a horse-cart loop, almost no visitors.",
+    "source_urls": [
+      "https://readme.me/p/26558"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city",
+      "tiger-temple"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "780",
+      "slug": "เวียงกุมกาม",
+      "name_th": "เวียงกุมกาม",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/5159907e-73c0-4d31-962d-6bd640a70377.jpg",
+      "sha_certified": false,
+      "province_th": "เชียงใหม่",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เวียงกุมกาม",
+      "distance_km": 0.8
+    }
+  },
+  {
+    "id": "ban-na-ton-chan",
+    "name_th": "บ้านนาต้นจั่น",
+    "name_en": "Ban Na Ton Chan Homestay Village",
+    "province": "Sukhothai",
+    "region": "central",
+    "lat": 17.555,
+    "lng": 99.6722,
+    "category": "village",
+    "vibe_tags": [
+      "homestay",
+      "weaving",
+      "mist-mountain",
+      "sufficiency-village"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Oct-Feb (mist, cool)",
+    "thai_description": "หมู่บ้านโฮมสเตย์ใต้ทะเลหมอก ทอผ้าหมักโคลน ก๋วยเตี๋ยวพระร่วง ตุ๊กตาบาร์โหน นอนกับชาวบ้านจริงๆ",
+    "en_description": "Sufficiency-economy village under a regular morning mist sea. Stay in a real family home, watch mud-dyed weaving, eat Phra Ruang noodles — winner of multiple national homestay awards.",
+    "source_urls": [
+      "https://readme.me/p/6496"
+    ],
+    "near_traps": [
+      "chiang-mai-old-city"
+    ],
+    "family_friendly": true,
+    "vegan_friendly": true,
+    "tat": {
+      "place_id": "31809",
+      "slug": "ชุมชนท่องเที่ยวบ้านนาต้นจั่น-จังหวัดสุโขทัย",
+      "name_th": "ชุมชนท่องเที่ยวบ้านนาต้นจั่น จังหวัดสุโขทัย",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/7e209c86-2372-4bbf-92d8-65d0da260bb8.jpeg",
+      "sha_certified": true,
+      "province_th": "สุโขทัย",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ชุมชนท่องเที่ยวบ้านนาต้นจั่น-จังหวัดสุโขทัย",
+      "distance_km": 17.9
+    }
   }
 ]

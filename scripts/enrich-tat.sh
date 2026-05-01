@@ -49,11 +49,11 @@ except Exception:
 ")
     if [ -n "$found" ]; then
       echo "✓ $gem_id → $found"
-      python3 -c "
-import json, sys
+      TAT_FOUND="$found" GEM_ID="$gem_id" python3 -c "
+import json, os
 with open('/tmp/tat_enrich.json') as f:
     arr = json.load(f)
-arr.append({'gem_id': '$gem_id', 'tat': $found})
+arr.append({'gem_id': os.environ['GEM_ID'], 'tat': json.loads(os.environ['TAT_FOUND'])})
 with open('/tmp/tat_enrich.json','w') as f:
     json.dump(arr, f, ensure_ascii=False, indent=2)
 "

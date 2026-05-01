@@ -67,7 +67,7 @@ User prompt + start date
 | `lib/weather.ts` | Open-Meteo client (free, no API key) |
 | `lib/thai-holidays.ts` | Hardcoded 2026/2027 holidays + range helper |
 | `lib/types.ts` | Shared types: `HiddenGem`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
-| `data/hidden_gems.json` | 33 curated gems (14 with `tat` enrichment block) |
+| `data/hidden_gems.json` | 52 curated gems (28 with `tat` enrichment block) |
 | `data/tourist_traps.json` | 11 known traps + their better alternatives |
 | `app/api/orchestrate/route.ts` | SSE endpoint, validates input, calls the orchestrator |
 | `app/page.tsx` | Landing — prompt + date picker + composer |

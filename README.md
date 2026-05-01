@@ -92,7 +92,7 @@ components/
   ItineraryMap.tsx            Leaflet map (dynamic, ssr: false)
   ui/*                        Buttons, cards, badges, textarea
 data/
-  hidden_gems.json            33 curated gems across all 6 regions
+  hidden_gems.json            52 curated gems across all 6 regions
   tourist_traps.json          11 well-known traps + better alternatives
 ```
 
