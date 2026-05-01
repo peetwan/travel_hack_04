@@ -23,6 +23,7 @@ export const FLASH_25_MODEL = google("gemini-2.5-flash");
 export const FLASH_LITE_MODEL = google("gemini-3.1-flash-lite-preview");
 
 export const MODELS = {
+  destinationScout: FLASH_LITE_MODEL,
   orchestrator: FLASH_LITE_MODEL,
   planner: FLASH_LITE_MODEL,
   listener: FLASH_LITE_MODEL,

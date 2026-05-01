@@ -1,6 +1,7 @@
 import { generateObject } from "ai";
 import { MODELS } from "../ai";
 import type {
+  DestinationSuggestion,
   HiddenGem,
   MapsCrowdSignal,
   TouristTrap,
@@ -16,6 +17,7 @@ import type { DailyWeather } from "../weather";
 import {
   CROWD_ANALYST_PROMPT,
   CURATOR_PROMPT,
+  DESTINATION_SCOUT_PROMPT,
   LISTENER_PROMPT,
   PLANNER_PROMPT,
   VERIFIER_PROMPT,
@@ -26,6 +28,7 @@ import {
 import {
   crowdAnalystOutputSchema,
   curatorOutputSchema,
+  destinationSuggestionOutputSchema,
   listenerOutputSchema,
   plannerOutputSchema,
   verifierOutputSchema,
@@ -34,6 +37,7 @@ import {
   wellnessPulseOutputSchema,
   type CrowdAnalystOutput,
   type CuratorOutput,
+  type DestinationSuggestionOutput,
   type ListenerOutput,
   type PlannerOutput,
   type VerifierOutput,
@@ -63,6 +67,364 @@ const slimGem = (g: HiddenGem) => ({
   near_traps: g.near_traps,
   one_liner: g.en_description.slice(0, 140),
 });
+
+const slimDestinationGem = (g: HiddenGem) => ({
+  id: g.id,
+  name_en: g.name_en,
+  province: g.province,
+  region: g.region,
+  lat: g.lat,
+  lng: g.lng,
+  category: g.category,
+  vibe_tags: g.vibe_tags,
+  crowd_level: g.crowd_level,
+  auth_score: g.auth_score,
+  best_time: g.best_time,
+  vegan_friendly: g.vegan_friendly ?? false,
+  family_friendly: g.family_friendly ?? false,
+  one_liner: g.en_description.slice(0, 150),
+});
+
+const REGION_LABELS: Record<HiddenGem["region"], string> = {
+  north: "Northern Thailand",
+  northeast: "Northeast Thailand",
+  central: "Central Thailand",
+  east: "Eastern coast",
+  south: "Southern Thailand",
+  west: "Western forests",
+};
+
+const CATEGORY_LABELS: Record<HiddenGem["category"], string> = {
+  nature: "nature",
+  temple: "temple culture",
+  food: "food trails",
+  culture: "local culture",
+  adventure: "soft adventure",
+  beach: "quiet coast",
+  village: "village slow travel",
+};
+
+const STYLE_HINTS: Array<{
+  tag: string;
+  words: string[];
+  categories?: HiddenGem["category"][];
+  vibes?: string[];
+}> = [
+  {
+    tag: "quiet",
+    words: ["quiet", "peaceful", "calm", "slow", "uncrowded", "crowd", "crowds", "tourist traps"],
+    vibes: ["quiet", "peaceful", "low-carbon", "slow-life"],
+  },
+  {
+    tag: "nature",
+    words: ["nature", "forest", "jungle", "mountain", "hike", "wildlife", "waterfall"],
+    categories: ["nature", "adventure"],
+    vibes: ["jungle", "forest", "wildlife", "misty-mornings"],
+  },
+  {
+    tag: "beach",
+    words: ["beach", "island", "sea", "snorkel", "water", "sunset", "coast"],
+    categories: ["beach"],
+    vibes: ["no-jet-skis", "low-carbon"],
+  },
+  {
+    tag: "food",
+    words: ["food", "seafood", "market", "coffee", "eat", "restaurant"],
+    categories: ["food"],
+    vibes: ["market", "seafood", "coffee"],
+  },
+  {
+    tag: "culture",
+    words: ["culture", "heritage", "history", "local", "village", "craft"],
+    categories: ["culture", "village"],
+    vibes: ["heritage", "craft", "mon-culture"],
+  },
+  {
+    tag: "temples",
+    words: ["temple", "temples", "buddhist", "monk", "spiritual"],
+    categories: ["temple"],
+    vibes: ["temple", "heritage"],
+  },
+  {
+    tag: "wellness",
+    words: ["wellness", "spa", "relax", "reset", "massage", "onsen", "yoga"],
+    vibes: ["peaceful", "slow-life"],
+  },
+  {
+    tag: "family",
+    words: ["family", "kids", "children"],
+  },
+  {
+    tag: "vegetarian",
+    words: ["vegetarian", "vegan", "plant-based", "jay"],
+  },
+];
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 70);
+}
+
+function unique<T>(items: T[]): T[] {
+  return Array.from(new Set(items));
+}
+
+function styleMatches(stylePrompt: string): typeof STYLE_HINTS {
+  const lower = stylePrompt.toLowerCase();
+  return STYLE_HINTS.filter((hint) =>
+    hint.words.some((word) => lower.includes(word))
+  );
+}
+
+function scoreGemForStyle(gem: HiddenGem, stylePrompt: string): number {
+  const lower = stylePrompt.toLowerCase();
+  const matches = styleMatches(stylePrompt);
+  let score = gem.auth_score * 2 + (6 - gem.crowd_level) * 1.7;
+
+  for (const hint of matches) {
+    if (hint.categories?.includes(gem.category)) score += 7;
+    if (hint.vibes?.some((vibe) => gem.vibe_tags.includes(vibe))) score += 3;
+  }
+
+  for (const tag of gem.vibe_tags) {
+    const words = tag.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+    if (words.some((word) => word.length > 3 && lower.includes(word))) {
+      score += 2;
+    }
+  }
+
+  if ((lower.includes("vegan") || lower.includes("vegetarian")) && gem.vegan_friendly) {
+    score += 4;
+  }
+  if ((lower.includes("family") || lower.includes("kids")) && gem.family_friendly) {
+    score += 4;
+  }
+  if ((lower.includes("hate crowds") || lower.includes("no crowds")) && gem.crowd_level <= 2) {
+    score += 4;
+  }
+
+  return score;
+}
+
+function dominantCategory(gems: HiddenGem[]): HiddenGem["category"] {
+  const counts = new Map<HiddenGem["category"], number>();
+  for (const gem of gems) {
+    counts.set(gem.category, (counts.get(gem.category) ?? 0) + 1);
+  }
+  return [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "culture";
+}
+
+function extractStyleTags(stylePrompt: string, anchors: HiddenGem[]): string[] {
+  const matched = styleMatches(stylePrompt).map((hint) => hint.tag);
+  const vibeTags = anchors.flatMap((gem) => gem.vibe_tags).slice(0, 8);
+  return unique([...matched, ...vibeTags])
+    .map((tag) => tag.replace(/-/g, " "))
+    .slice(0, 6);
+}
+
+function composeDestinationPrompt(args: {
+  stylePrompt: string;
+  title: string;
+  provinces: string[];
+  anchors: HiddenGem[];
+  startDate?: string;
+}): string {
+  const startLine = args.startDate ? `Trip starts on ${args.startDate}. ` : "";
+  const anchorLine = args.anchors
+    .map((gem) => `${gem.name_en} (${gem.province})`)
+    .join("; ");
+  return [
+    `Travel style: ${args.stylePrompt.trim()}.`,
+    startLine,
+    `Focus on the ${args.title} trip cluster in ${args.provinces.join(", ")}.`,
+    `Anchor ideas: ${anchorLine}.`,
+    "Build a slow, less-crowded itinerary around this cluster and avoid famous tourist traps.",
+  ]
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildSuggestionFromAnchors(args: {
+  stylePrompt: string;
+  anchors: HiddenGem[];
+  startDate?: string;
+  idSuffix?: string;
+}): DestinationSuggestion | null {
+  const anchors = args.anchors.slice(0, 4);
+  if (anchors.length < 2) return null;
+
+  const provinces = unique(anchors.map((gem) => gem.province)).slice(0, 3);
+  const region = anchors[0].region;
+  const category = dominantCategory(anchors);
+  const titleBase = `${provinces.slice(0, 2).join(" + ")} ${CATEGORY_LABELS[category]}`;
+  const title = titleBase.replace(/\s+/g, " ").trim();
+  const avgCrowd =
+    anchors.reduce((sum, gem) => sum + gem.crowd_level, 0) / anchors.length;
+  const styleTags = extractStyleTags(args.stylePrompt, anchors);
+  const firstNames = anchors.slice(0, 2).map((gem) => gem.name_en).join(" + ");
+  const id = slugify(`${region}-${category}-${provinces.join("-")}-${args.idSuffix ?? ""}`);
+
+  return {
+    id,
+    title,
+    subtitle: `${REGION_LABELS[region]} cluster anchored by ${firstNames}.`,
+    provinces,
+    region,
+    anchor_gem_ids: anchors.map((gem) => gem.id),
+    style_tags: styleTags.length >= 2 ? styleTags : [CATEGORY_LABELS[category], "low crowd"],
+    why: `It matches ${styleTags.slice(0, 3).join(", ") || CATEGORY_LABELS[category]} while keeping the route compact and local.`,
+    avoidance_note:
+      avgCrowd <= 2.5
+        ? "Built around low-crowd anchors instead of the famous checklist route."
+        : "Keeps the main bases outside Thailand's highest-pressure tourist bottlenecks.",
+    composed_prompt: composeDestinationPrompt({
+      stylePrompt: args.stylePrompt,
+      title,
+      provinces,
+      anchors,
+      startDate: args.startDate,
+    }),
+  };
+}
+
+export function buildFallbackDestinationSuggestions(args: {
+  dataset: HiddenGem[];
+  stylePrompt: string;
+  startDate?: string;
+  count?: number;
+  excludeSuggestionIds?: string[];
+}): DestinationSuggestion[] {
+  const target = args.count ?? 3;
+  const scored = args.dataset
+    .map((gem) => ({ gem, score: scoreGemForStyle(gem, args.stylePrompt) }))
+    .sort((a, b) => b.score - a.score);
+  const usedSuggestionIds = new Set(args.excludeSuggestionIds ?? []);
+  const usedPrimaryProvinces = new Set<string>();
+  const suggestions: DestinationSuggestion[] = [];
+
+  for (const { gem: seed } of scored) {
+    if (suggestions.length >= target) break;
+    if (usedPrimaryProvinces.has(seed.province)) continue;
+
+    const nearby = scored
+      .filter(({ gem }) => gem.id !== seed.id && gem.region === seed.region)
+      .map(({ gem, score }) => ({
+        gem,
+        score: score - Math.min(haversineKm(seed, gem) / 80, 4),
+      }))
+      .sort((a, b) => b.score - a.score)
+      .map(({ gem }) => gem);
+
+    const anchors = [seed];
+    for (const gem of nearby) {
+      const nextProvinceCount = unique([...anchors.map((a) => a.province), gem.province]).length;
+      if (nextProvinceCount > 3) continue;
+      anchors.push(gem);
+      if (anchors.length >= 4) break;
+    }
+
+    const suggestion = buildSuggestionFromAnchors({
+      stylePrompt: args.stylePrompt,
+      anchors,
+      startDate: args.startDate,
+      idSuffix: String(suggestions.length + 1),
+    });
+    if (!suggestion || usedSuggestionIds.has(suggestion.id)) continue;
+
+    suggestions.push(suggestion);
+    usedSuggestionIds.add(suggestion.id);
+    usedPrimaryProvinces.add(seed.province);
+  }
+
+  return suggestions;
+}
+
+export function normalizeDestinationSuggestions(args: {
+  output: DestinationSuggestionOutput | null;
+  dataset: HiddenGem[];
+  stylePrompt: string;
+  startDate?: string;
+}): DestinationSuggestion[] {
+  const byId = new Map(args.dataset.map((gem) => [gem.id, gem]));
+  const seenSuggestionIds = new Set<string>();
+  const seenAnchorKeys = new Set<string>();
+  const normalized: DestinationSuggestion[] = [];
+
+  for (const suggestion of args.output?.suggestions ?? []) {
+    const anchors = unique(suggestion.anchor_gem_ids)
+      .map((id) => byId.get(id))
+      .filter((gem): gem is HiddenGem => !!gem)
+      .slice(0, 4);
+    if (anchors.length < 2) continue;
+
+    const anchorKey = anchors
+      .map((gem) => gem.id)
+      .sort()
+      .join("|");
+    if (seenAnchorKeys.has(anchorKey)) continue;
+
+    const anchorProvinces = anchors.map((gem) => gem.province);
+    const provinces = unique([
+      ...anchorProvinces,
+      ...suggestion.provinces.map((p) => p.trim()).filter(Boolean),
+    ]).slice(0, 3);
+    const region = anchors.some((gem) => gem.region === suggestion.region)
+      ? suggestion.region
+      : anchors[0].region;
+    const title =
+      suggestion.title.trim() ||
+      `${provinces.slice(0, 2).join(" + ")} ${CATEGORY_LABELS[dominantCategory(anchors)]}`;
+    const baseId = slugify(suggestion.id || title) || `destination-${normalized.length + 1}`;
+    let id = baseId;
+    let suffix = 2;
+    while (seenSuggestionIds.has(id)) {
+      id = `${baseId}-${suffix}`;
+      suffix += 1;
+    }
+    const aiStyleTags = suggestion.style_tags
+      .map((tag) => tag.trim())
+      .filter(Boolean)
+      .slice(0, 6);
+
+    normalized.push({
+      id,
+      title,
+      subtitle:
+        suggestion.subtitle.trim() ||
+        `${REGION_LABELS[region]} cluster anchored by ${anchors[0].name_en}.`,
+      provinces,
+      region,
+      anchor_gem_ids: anchors.map((gem) => gem.id),
+      style_tags:
+        aiStyleTags.length >= 2
+          ? aiStyleTags
+          : extractStyleTags(args.stylePrompt, anchors),
+      why:
+        suggestion.why.trim() ||
+        `It matches your style while keeping the route compact around ${provinces.join(", ")}.`,
+      avoidance_note:
+        suggestion.avoidance_note.trim() ||
+        "Built around lower-crowd anchors instead of the famous checklist route.",
+      composed_prompt:
+        suggestion.composed_prompt.trim() ||
+        composeDestinationPrompt({
+          stylePrompt: args.stylePrompt,
+          title,
+          provinces,
+          anchors,
+          startDate: args.startDate,
+        }),
+    });
+    seenSuggestionIds.add(id);
+    seenAnchorKeys.add(anchorKey);
+  }
+
+  return normalized.slice(0, 5);
+}
 
 function bangkokYear(): string {
   return new Intl.DateTimeFormat("en-CA", {
@@ -103,6 +465,36 @@ function scrubUndatedEvidenceLanguage(text: string): string {
     .replace(/\brecent visitor feedback\b/gi, "undated live-search visibility")
     .replace(/\bfresh confirmations?\b/gi, "visibility signals")
     .replace(/\bfreshly confirmed\b/gi, "visible in search results");
+}
+
+export async function runDestinationScout(args: {
+  stylePrompt: string;
+  startDate?: string;
+  dataset: HiddenGem[];
+}): Promise<DestinationSuggestionOutput> {
+  const slim = args.dataset.map(slimDestinationGem);
+  const dateLine = args.startDate
+    ? `Trip start date: ${args.startDate}`
+    : "Trip start date: not specified";
+
+  const { object } = await generateObject({
+    model: MODELS.destinationScout,
+    schema: destinationSuggestionOutputSchema,
+    system: DESTINATION_SCOUT_PROMPT,
+    providerOptions: fastThinking,
+    prompt: `User style prompt:
+"""
+${args.stylePrompt}
+"""
+
+${dateLine}
+
+Curated Hidden Siam gems (${slim.length} entries):
+${JSON.stringify(slim)}
+
+Return 3-5 trip clusters. Each must include 2-4 anchor_gem_ids from the dataset and a composed_prompt for the existing itinerary flow.`,
+  });
+  return object;
 }
 
 export async function runListener(args: {

@@ -93,6 +93,7 @@ function DiscoverInner() {
   const params = useSearchParams();
   const prompt = params.get("q") ?? "";
   const startDate = params.get("start") ?? "";
+  const destinationTitle = params.get("destinationTitle") ?? "";
   const [agents, setAgents] = useState<Record<AgentName, AgentState>>(
     initialAgents()
   );
@@ -306,14 +307,24 @@ function DiscoverInner() {
             <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
               Your prompt
             </p>
-            {startDate && (
-              <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
-                <span className="text-[var(--muted)]">trip starts</span>
-                <span className="rounded-md bg-[var(--saffron-tint)] px-2 py-0.5 text-[var(--saffron)]">
-                  {startDate}
-                </span>
-              </p>
-            )}
+            <div className="flex flex-wrap items-center gap-2">
+              {destinationTitle && (
+                <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
+                  <span className="text-[var(--muted)]">chosen</span>
+                  <span className="rounded-md bg-[var(--jade-tint)] px-2 py-0.5 text-[var(--jade)]">
+                    {destinationTitle}
+                  </span>
+                </p>
+              )}
+              {startDate && (
+                <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
+                  <span className="text-[var(--muted)]">trip starts</span>
+                  <span className="rounded-md bg-[var(--saffron-tint)] px-2 py-0.5 text-[var(--saffron)]">
+                    {startDate}
+                  </span>
+                </p>
+              )}
+            </div>
           </div>
           <p className="font-display text-xl leading-snug text-[var(--foreground)]">
             “{prompt}”

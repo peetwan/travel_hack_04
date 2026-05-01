@@ -19,6 +19,49 @@ export const listenerOutputSchema = z.object({
 });
 export type ListenerOutput = z.infer<typeof listenerOutputSchema>;
 
+export const destinationSuggestionOutputSchema = z.object({
+  suggestions: z
+    .array(
+      z.object({
+        id: z
+          .string()
+          .describe("Stable kebab-case id for this suggested trip cluster."),
+        title: z
+          .string()
+          .describe("Short user-facing cluster name, not just a province."),
+        subtitle: z
+          .string()
+          .describe("One compact line describing the cluster's travel mood."),
+        provinces: z
+          .array(z.string())
+          .min(1)
+          .max(3)
+          .describe("One to three Thai provinces in this cluster."),
+        region: z.enum(["north", "northeast", "central", "east", "south", "west"]),
+        anchor_gem_ids: z
+          .array(z.string())
+          .min(2)
+          .max(4)
+          .describe("Two to four hidden gem ids from the curated dataset."),
+        style_tags: z.array(z.string()).min(2).max(6),
+        why: z
+          .string()
+          .describe("One short sentence explaining why this matches the style prompt."),
+        avoidance_note: z
+          .string()
+          .describe("One short sentence on what mainstream tourist pressure this avoids."),
+        composed_prompt: z
+          .string()
+          .describe("Prompt to send into the existing itinerary flow after selection."),
+      })
+    )
+    .min(1)
+    .max(5),
+});
+export type DestinationSuggestionOutput = z.infer<
+  typeof destinationSuggestionOutputSchema
+>;
+
 export const crowdAnalystOutputSchema = z.object({
   narration: z.string(),
   filtered_ids: z.array(z.string()).min(0).max(15),

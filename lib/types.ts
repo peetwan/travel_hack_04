@@ -41,6 +41,19 @@ export interface HiddenGem {
   tat?: TatEnrichment;
 }
 
+export interface DestinationSuggestion {
+  id: string;
+  title: string;
+  subtitle: string;
+  provinces: string[];
+  region: HiddenGem["region"];
+  anchor_gem_ids: string[];
+  style_tags: string[];
+  why: string;
+  avoidance_note: string;
+  composed_prompt: string;
+}
+
 export interface TouristTrap {
   id: string;
   name_en: string;
