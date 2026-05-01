@@ -23,14 +23,6 @@ const REGION_LABELS: Record<DestinationSuggestion["region"], string> = {
   west: "West",
 };
 
-function formatGemId(id: string): string {
-  return id
-    .split("-")
-    .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
 export default function DestinationsPage() {
   return (
     <Suspense fallback={<DestinationsFallback />}>
@@ -44,7 +36,7 @@ function DestinationsFallback() {
     <main className="flex flex-1 items-center justify-center px-6 py-20 text-center">
       <div className="flex flex-col items-center gap-3 text-sm text-[var(--muted-foreground)]">
         <Loader2 className="h-5 w-5 animate-spin text-[var(--saffron)]" />
-        Loading destination scout…
+        Loading destinations…
       </div>
     </main>
   );
@@ -159,7 +151,7 @@ function DestinationsInner() {
             Tell us your travel style first.
           </h1>
           <p className="mt-2 text-sm text-[var(--muted-foreground)]">
-            Start from the home page so the scout can suggest Thailand clusters.
+            Start from the home page so we can suggest Thailand destinations.
           </p>
           <Button
             type="button"
@@ -190,7 +182,7 @@ function DestinationsInner() {
           Edit prompt
         </button>
         <span className="hidden rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 font-mono text-xs text-[var(--muted)] sm:inline-flex">
-          Destination Scout
+          Hidden Siam
         </span>
       </header>
 
@@ -198,7 +190,7 @@ function DestinationsInner() {
         <section className="max-w-3xl">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border-saffron)] bg-[var(--saffron-tint)] px-3 py-1 text-xs font-medium uppercase tracking-widest text-[var(--saffron)]">
             <Sparkles className="h-3 w-3" />
-            Pick a cluster
+            Choose destination
           </span>
           <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-[var(--foreground)] sm:text-5xl">
             Choose the version of Thailand you want.
@@ -218,7 +210,7 @@ function DestinationsInner() {
           <div className="flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] text-center shadow-[var(--shadow-xs)]">
             <Loader2 className="h-6 w-6 animate-spin text-[var(--saffron)]" />
             <p className="text-sm text-[var(--muted-foreground)]">
-              Scouting clusters from curated Hidden Siam gems…
+              Finding a few good fits…
             </p>
           </div>
         )}
@@ -240,7 +232,7 @@ function DestinationsInner() {
               return (
                 <article
                   key={suggestion.id}
-                  className="flex min-h-[300px] flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-xs)]"
+                  className="flex min-h-[260px] flex-col rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-xs)] transition-all hover:-translate-y-0.5 hover:border-[var(--border-saffron)] hover:shadow-[var(--shadow-sm)]"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -270,42 +262,18 @@ function DestinationsInner() {
                     ))}
                   </div>
 
-                  <p className="mt-4 text-sm leading-relaxed text-[var(--foreground)]">
+                  <p className="mt-5 text-sm leading-relaxed text-[var(--foreground)]">
                     {suggestion.why}
                   </p>
-                  <p className="mt-2 text-xs leading-relaxed text-[var(--muted-foreground)]">
+                  <p className="mt-3 text-xs leading-relaxed text-[var(--muted-foreground)]">
                     {suggestion.avoidance_note}
                   </p>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {suggestion.style_tags.slice(0, 4).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-[var(--surface-soft)] px-2.5 py-1 text-xs text-[var(--muted-foreground)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
                   <div className="mt-auto border-t border-[var(--border)] pt-4">
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-                      Anchor gems
-                    </p>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {suggestion.anchor_gem_ids.slice(0, 4).map((id) => (
-                        <span
-                          key={id}
-                          className="rounded-full bg-[var(--saffron-tint)] px-2.5 py-1 text-xs text-[var(--saffron)]"
-                        >
-                          {formatGemId(id)}
-                        </span>
-                      ))}
-                    </div>
                     <Button
                       type="button"
                       size="lg"
-                      className="mt-4 w-full"
+                      className="w-full"
                       disabled={!!routingId}
                       onClick={() => chooseSuggestion(suggestion)}
                     >
@@ -314,7 +282,7 @@ function DestinationsInner() {
                       ) : (
                         <Compass className="h-4 w-4" />
                       )}
-                      Choose this cluster
+                      Plan this trip
                       {!isRouting && <ArrowRight className="h-4 w-4" />}
                     </Button>
                   </div>
