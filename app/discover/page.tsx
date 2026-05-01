@@ -758,11 +758,6 @@ function WeatherChip({
 }) {
   const meta = WEATHER_META[weather.condition];
   const Icon = meta.Icon;
-<<<<<<< HEAD
-  return (
-    <div
-      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs ${meta.tone}`}
-=======
   const airQuality = weather.air_quality;
   const airQualityTone =
     airQuality?.level === "good"
@@ -773,7 +768,6 @@ function WeatherChip({
   return (
     <div
       className={`inline-flex flex-wrap items-center gap-2 rounded-full border px-3 py-1 text-xs ${meta.tone}`}
->>>>>>> 8f57626 (Test)
     >
       <Icon className="h-3.5 w-3.5" />
       <span className="font-medium">{meta.label}</span>
@@ -787,8 +781,6 @@ function WeatherChip({
           <span className="font-mono">{weather.precip_probability}% rain</span>
         </>
       )}
-<<<<<<< HEAD
-=======
       {airQuality && (
         <>
           <span className="opacity-50">·</span>
@@ -801,7 +793,6 @@ function WeatherChip({
           </span>
         </>
       )}
->>>>>>> 8f57626 (Test)
       {isBestOutdoor && (
         <>
           <span className="opacity-50">·</span>

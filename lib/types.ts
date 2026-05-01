@@ -148,24 +148,6 @@ export type WeatherCondition =
   | "rain"
   | "thunderstorm";
 
-export interface DayWeather {
-  date: string; // YYYY-MM-DD
-  condition: WeatherCondition;
-  weather_code: number;
-  temp_max_c: number;
-  temp_min_c: number;
-  precip_probability: number;
-  precip_mm: number;
-  uv_index_max: number;
-<<<<<<< HEAD
-  advice?: string;
-}
-
-=======
-  air_quality?: DayAirQuality;
-  advice?: string;
-}
-
 export interface DayAirQuality {
   date: string; // YYYY-MM-DD
   pm2_5_avg: number;
@@ -183,7 +165,19 @@ export interface DayAirQuality {
   source: "open-meteo-air-quality";
 }
 
->>>>>>> 8f57626 (Test)
+export interface DayWeather {
+  date: string; // YYYY-MM-DD
+  condition: WeatherCondition;
+  weather_code: number;
+  temp_max_c: number;
+  temp_min_c: number;
+  precip_probability: number;
+  precip_mm: number;
+  uv_index_max?: number;
+  air_quality?: DayAirQuality;
+  advice?: string;
+}
+
 export type WebEvidenceProvider = "tavily" | "exa" | "firecrawl";
 
 export type WebEvidenceProviderStatus =

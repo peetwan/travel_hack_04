@@ -292,11 +292,8 @@ export async function runWebPulse(args: {
   query: string;
   search: WebSearchResult;
 }> {
-  // Build a focused query from the Listener's candidate set and ask providers
-  // for current Thai-language visibility around those places.
   const query = buildWebPulseQuery(args.userPrompt, args.dataset);
 
-  // 8s timeout for combined web search — providers occasionally stall.
   const ac = new AbortController();
   const timer = setTimeout(() => ac.abort(), 8000);
   let search: WebSearchResult;
@@ -340,7 +337,6 @@ export async function runWebPulse(args: {
   }
   const rawHits = search.hits;
 
-  // If no live data, return a graceful empty result so the rest of the pipeline runs.
   if (rawHits.length === 0) {
     return {
       output: {
@@ -364,7 +360,7 @@ export async function runWebPulse(args: {
 
   try {
     const { object } = await generateObject({
-      model: MODELS.curator, // same Flash Lite, fine for this
+      model: MODELS.curator,
       schema: webPulseOutputSchema,
       system: WEB_PULSE_PROMPT,
       providerOptions: fastThinking,
@@ -441,7 +437,6 @@ export async function runWeatherWatcher(args: {
     forecast: DailyWeather;
   }>;
 }): Promise<WeatherWatcherOutput> {
-  // Compact view — model doesn't need every field, just the salient parts.
   const view = args.daysWithForecast.map((d) => ({
     day: d.day,
     title: d.title,
@@ -457,8 +452,6 @@ export async function runWeatherWatcher(args: {
       temp_min_c: d.forecast.temp_min_c,
       precip_probability: d.forecast.precip_probability,
       uv_index_max: d.forecast.uv_index_max,
-<<<<<<< HEAD
-=======
       air_quality: d.forecast.air_quality
         ? {
             pm2_5_avg: d.forecast.air_quality.pm2_5_avg,
@@ -469,12 +462,11 @@ export async function runWeatherWatcher(args: {
             level: d.forecast.air_quality.level,
           }
         : undefined,
->>>>>>> 8f57626 (Test)
     },
   }));
 
   const { object } = await generateObject({
-    model: MODELS.verifier, // same Flash Lite — cheap and quick
+    model: MODELS.verifier,
     schema: weatherWatcherOutputSchema,
     system: WEATHER_WATCHER_PROMPT,
     providerOptions: fastThinking,
@@ -542,11 +534,6 @@ export async function runWellnessPulse(args: {
     query: string;
   } | null;
 }> {
-  // Geographic pre-filter — keep wellness venues within `radius` km of ANY
-  // listener candidate gem. This stops the model from choosing a venue in a
-  // neighbouring province that's actually 130 km from the trip's bases (e.g.
-  // a Mae Hong Son monastery for a Chiang Mai trip). Falls back to the full
-  // dataset only if the radius removes everything (safety net).
   const radiusKm = args.proximityRadiusKm ?? 80;
   const annotated = args.dataset
     .map((v) => {
@@ -572,8 +559,6 @@ export async function runWellnessPulse(args: {
     slimWellness(v, nearestKm, nearestProvince)
   );
 
-  // If geographic filter wiped everything, the dataset is just too sparse for
-  // this trip (e.g. Isaan with no curated wellness venues yet). Skip cleanly.
   if (slim.length === 0) {
     return {
       output: {
@@ -587,9 +572,6 @@ export async function runWellnessPulse(args: {
     };
   }
 
-  // Run a non-blocking luxury web search in parallel with the model call.
-  // The model doesn't see these results — they exist purely to enrich the UI
-  // and prove our cross-validation across the four data layers.
   const liveQuery = [
     "luxury Thai wellness",
     args.tripProvinces.slice(0, 3).join(" "),

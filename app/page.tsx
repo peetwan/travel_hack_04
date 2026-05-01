@@ -94,11 +94,7 @@ export default function Home() {
               <span className="relative z-10 italic">other</span>
               <span className="absolute inset-x-0 bottom-1 z-0 h-3 rounded-full bg-[var(--saffron-soft)]/60 sm:bottom-2 sm:h-4" />
             </span>{" "}
-<<<<<<< HEAD
-            Thailand.
-=======
             Travel.
->>>>>>> 8f57626 (Test)
           </h1>
           <p className="max-w-xl text-balance text-lg leading-relaxed text-[var(--muted-foreground)]">
             Seven specialised AI agents collaborate to surface authentic Thai
