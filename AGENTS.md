@@ -16,6 +16,7 @@ Multi-agent AI travel planner for Thailand, built against overtourism. Eight spe
 - **Vercel AI SDK v6** — `generateObject` with Zod schemas is how every agent calls Gemini. The Google provider (`@ai-sdk/google`) supports Gemini 3 with `thinkingConfig.thinkingLevel`. Gemini 2.5 does **not** accept `thinkingLevel` (it 400s); use `thinkingBudget` instead, or omit the option entirely.
 - **Tailwind CSS v4** — design tokens live in `app/globals.css` under `@theme inline`. There is no `tailwind.config.js`. Use CSS variables (`var(--saffron)`, `bg-[var(--saffron)]`).
 - **React 19 + Strict Mode** — `useEffect` runs twice in dev. Don't add ref-guards to "fetch only once" — they break the second mount silently when the first is aborted (we got burned; see "Don't break" below).
+- **Verification — do NOT run the local preview yourself.** The maintainer runs `localhost:3001` in their own browser and checks UI changes manually. Stop after `npx tsc --noEmit` + `npx next build` pass. Skip Claude Preview MCP calls (`preview_eval`, `preview_screenshot`, `preview_snapshot`, etc.), do not auto-navigate the dev server, and do not screenshot the result. If a change is purely visual and the build passes, report what changed and let the maintainer verify.
 
 ## Architecture
 
