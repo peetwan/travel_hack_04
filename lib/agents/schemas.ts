@@ -25,6 +25,17 @@ export const crowdAnalystOutputSchema = z.object({
   warned_traps: z
     .array(z.string())
     .describe("Tourist trap IDs the user might be heading toward."),
+  candidate_assessments: z
+    .array(
+      z.object({
+        id: z.string(),
+        crowd_pressure: z.enum(["low", "medium", "high", "unknown"]),
+        action: z.enum(["keep", "caution", "drop"]),
+        reason: z.string().describe("One short sentence grounded in dataset or Maps signals."),
+      })
+    )
+    .max(15)
+    .optional(),
   reasoning: z.string(),
 });
 export type CrowdAnalystOutput = z.infer<typeof crowdAnalystOutputSchema>;
@@ -124,6 +135,8 @@ export const webPulseOutputSchema = z.object({
         verdict: z.enum(["supports", "contradicts", "neutral"]),
         quote: z.string().describe("Short paraphrase from the web hit (<= 240 chars)."),
         source_url: z.string(),
+        source_published_at: z.string().optional(),
+        evidence_level: z.enum(["search-snippet", "page-scrape"]).optional(),
       })
     )
     .max(10),

@@ -82,6 +82,7 @@ export interface AgentRow {
   name: AgentName;
   status: AgentStatus;
   message?: string;
+  data?: Record<string, unknown>;
   durationMs?: number;
 }
 
@@ -237,6 +238,7 @@ export function AgentCrewPanel({
                           {row.message}
                         </p>
                       )}
+                      <AgentDataSummary row={row} />
                     </div>
                   </li>
                 );
@@ -247,6 +249,140 @@ export function AgentCrewPanel({
       </AnimatePresence>
     </section>
   );
+}
+
+function AgentDataSummary({ row }: { row: AgentRow }) {
+  if (!row.data || row.status === "idle") return null;
+
+  const chips = summaryChips(row);
+  if (chips.length === 0) return null;
+
+  return (
+    <div className="mt-1 flex flex-wrap gap-1.5">
+      {chips.map((chip) => (
+        <span
+          key={chip}
+          className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-2 py-0.5 font-mono text-[10px] text-[var(--muted-foreground)]"
+        >
+          {chip}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function summaryChips(row: AgentRow): string[] {
+  const data = row.data ?? {};
+  const chips: string[] = [];
+  const numberChip = (key: string, label: string) => {
+    const value = data[key];
+    if (typeof value === "number") chips.push(`${value} ${label}`);
+  };
+
+  if (row.name === "listener") {
+    numberChip("candidate_count", "candidates");
+  }
+
+  if (row.name === "web-pulse") {
+    numberChip("hit_count", "hits");
+    numberChip("validation_count", "validations");
+    const searchedAt = formatSearchedAt(data.searched_at);
+    if (searchedAt) chips.push(`searched ${searchedAt}`);
+    const sourceCounts = formatSourceCounts(data.source_counts);
+    if (sourceCounts) chips.push(sourceCounts);
+    const providerIssues = formatProviderIssues(data.provider_statuses);
+    if (providerIssues) chips.push(providerIssues);
+  }
+
+  if (row.name === "crowd-analyst") {
+    numberChip("filtered_count", "kept");
+    const radar = data.maps_radar;
+    if (radar && typeof radar === "object") {
+      const r = radar as Record<string, unknown>;
+      if (typeof r.signal_count === "number") {
+        chips.push(`${r.signal_count} Maps signals`);
+      }
+      if (typeof r.high_pressure === "number" && r.high_pressure > 0) {
+        chips.push(`${r.high_pressure} high pressure`);
+      }
+    }
+    const traps = data.warned_traps;
+    if (Array.isArray(traps) && traps.length > 0) {
+      chips.push(`${traps.length} traps flagged`);
+    }
+  }
+
+  if (row.name === "curator") {
+    const picks = data.top_picks;
+    if (Array.isArray(picks) && picks.length > 0) chips.push(`${picks.length} scored picks`);
+  }
+
+  if (row.name === "planner") {
+    numberChip("day_count", "days");
+    numberChip("stay_count", "bases");
+  }
+
+  if (row.name === "weather-watcher") {
+    if (data.skipped === true) {
+      chips.push("weather skipped");
+    } else {
+      numberChip("bases_checked", "bases checked");
+      numberChip("rainy_days", "rainy days");
+      const window = data.forecast_window;
+      if (window && typeof window === "object") {
+        const { start, end } = window as { start?: unknown; end?: unknown };
+        if (typeof start === "string" && typeof end === "string") {
+          chips.push(`${start} to ${end}`);
+        }
+      }
+    }
+  }
+
+  if (row.name === "verifier") {
+    const warnings = data.warnings;
+    if (Array.isArray(warnings)) chips.push(`${warnings.length} warnings`);
+  }
+
+  return chips.slice(0, 4);
+}
+
+function formatSearchedAt(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Bangkok",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(date);
+}
+
+function formatSourceCounts(value: unknown): string | null {
+  if (!value || typeof value !== "object") return null;
+  const counts = value as Record<string, unknown>;
+  const parts = [
+    typeof counts.tavily === "number" ? `Tavily ${counts.tavily}` : null,
+    typeof counts.exa === "number" ? `Exa ${counts.exa}` : null,
+    typeof counts.firecrawl === "number" ? `pages ${counts.firecrawl}` : null,
+  ].filter(Boolean);
+  return parts.length ? parts.join(" · ") : null;
+}
+
+function formatProviderIssues(value: unknown): string | null {
+  if (!Array.isArray(value)) return null;
+  const issues = value
+    .map((item) => {
+      if (!item || typeof item !== "object") return null;
+      const report = item as { provider?: unknown; status?: unknown };
+      if (typeof report.provider !== "string" || typeof report.status !== "string") {
+        return null;
+      }
+      if (report.status === "ok" || report.status === "skipped") return null;
+      return `${report.provider} ${report.status}`;
+    })
+    .filter(Boolean);
+  return issues.length ? issues.join(" · ") : null;
 }
 
 function StatusLabel({

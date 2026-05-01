@@ -7,9 +7,15 @@ import type {
   FinalItinerary,
   HiddenGem,
   ItineraryDay,
+  MapsCrowdReport,
   TouristTrap,
   WebEvidence,
 } from "../types";
+import { fetchMapsCrowdSignals } from "../google-maps";
+import {
+  enrichCrowdReport,
+  inferTripDaysFromPrompt,
+} from "../crowd-radar";
 import { fetchForecastsForBases, type DailyWeather } from "../weather";
 import {
   holidaysInRange,
@@ -38,7 +44,8 @@ const now = () => Date.now();
 const startMessages: Record<AgentName, string> = {
   orchestrator: "Routing your request through the agent crew…",
   listener: "Scanning our curated dataset of authentic Thai destinations…",
-  "web-pulse": "Searching live Thai web (Tavily + Exa) for fresh mentions…",
+  "web-pulse":
+    "Searching live Thai web (Tavily + Exa, Firecrawl where available) for fresh evidence…",
   "crowd-analyst": "Reading your tolerance for crowds and tourist traps…",
   curator: "Matching every candidate against your vibe + web evidence…",
   planner: "Grouping picks by region and shaping a route…",
@@ -48,7 +55,15 @@ const startMessages: Record<AgentName, string> = {
 };
 
 function todayISO(): string {
-  return new Date().toISOString().slice(0, 10);
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Bangkok",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const get = (type: string) =>
+    parts.find((part) => part.type === type)?.value ?? "";
+  return `${get("year")}-${get("month")}-${get("day")}`;
 }
 
 function addDaysISO(iso: string, days: number): string {
@@ -63,6 +78,30 @@ function diffDaysISO(fromISO: string, toISO: string): number {
   return Math.round((to.getTime() - from.getTime()) / 86_400_000);
 }
 
+function normalizeStayNights<T extends { gem_id: string; nights: number }>(
+  stays: T[],
+  days?: Array<{ day: number; stay_at: string }>
+): T[] {
+  if (!days || days.length <= 1) return stays;
+
+  // A 3-day itinerary has 2 sleeps. Count the base for every day except the
+  // departure day so the UI never shows "3 days / 3 nights" unless the plan
+  // explicitly spans four calendar days.
+  const nightCounts = new Map<string, number>();
+  for (const day of days.slice(0, -1)) {
+    nightCounts.set(day.stay_at, (nightCounts.get(day.stay_at) ?? 0) + 1);
+  }
+
+  const normalized = stays
+    .map((stay) => ({
+      ...stay,
+      nights: nightCounts.get(stay.gem_id) ?? 0,
+    }))
+    .filter((stay) => stay.nights > 0);
+
+  return normalized.length > 0 ? normalized : stays;
+}
+
 export async function orchestrate(
   userPrompt: string,
   emit: Emit,
@@ -72,6 +111,9 @@ export async function orchestrate(
   // week from today so the planner has weather data and the result feels real.
   const today = todayISO();
   const tripStart = options.startDate ?? addDaysISO(today, 7);
+  const inferredTripDays = inferTripDaysFromPrompt(userPrompt);
+  const inferredTripEnd = tripEndDate(tripStart, inferredTripDays);
+  const crowdWindowHolidays = holidaysInRange(tripStart, inferredTripEnd);
   const start = now();
   emit({
     type: "agent_start",
@@ -80,29 +122,25 @@ export async function orchestrate(
     timestamp: now(),
   });
 
-  // 1. Listener + Web Pulse — run in parallel.
-  //    Listener queries our curated dataset; Web Pulse hits live Thai web sources.
+  // 1. Listener first, then Web Pulse.
+  //    Web Pulse used to search broadly in parallel; focusing it on Listener
+  //    candidates makes the realtime evidence easier to audit and less noisy.
   emit({
     type: "agent_start",
     agent: "listener",
     message: startMessages.listener,
     timestamp: now(),
   });
-  emit({
-    type: "agent_start",
-    agent: "web-pulse",
-    message: startMessages["web-pulse"],
-    timestamp: now(),
-  });
 
-  const [listener, webPulseResult] = await Promise.all([
-    runListener({ userPrompt, dataset: GEMS }),
-    runWebPulse({ userPrompt, dataset: GEMS }),
-  ]);
+  const listener = await runListener({ userPrompt, dataset: GEMS });
 
   const listenerCandidates = listener.candidate_ids
     .map((id) => GEMS_BY_ID.get(id))
     .filter((g): g is HiddenGem => !!g);
+  const crowdRadarTask: Promise<MapsCrowdReport> = fetchMapsCrowdSignals({
+    gems: listenerCandidates,
+    timeoutMs: 7000,
+  });
   emit({
     type: "agent_complete",
     agent: "listener",
@@ -115,18 +153,54 @@ export async function orchestrate(
     timestamp: now(),
   });
 
+  emit({
+    type: "agent_start",
+    agent: "web-pulse",
+    message: `Validating ${listenerCandidates.length} Listener picks against live Thai web sources…`,
+    timestamp: now(),
+  });
+  emit({
+    type: "agent_progress",
+    agent: "web-pulse",
+    message:
+      "Checking provider health, Thai travel hits, and page-level evidence where available…",
+    data: {
+      candidate_ids: listenerCandidates.map((g) => g.id),
+    },
+    timestamp: now(),
+  });
+
+  const webPulseResult = await runWebPulse({
+    userPrompt,
+    dataset: listenerCandidates.length > 0 ? listenerCandidates : GEMS,
+  });
+
+  const hitByUrl = new Map(webPulseResult.rawHits.map((h) => [h.url, h]));
   const webEvidence: WebEvidence = {
     query: webPulseResult.query,
+    searched_at: webPulseResult.search.searched_at,
+    freshness_note: webPulseResult.search.freshness_note,
+    provider_statuses: webPulseResult.search.provider_statuses,
+    source_counts: webPulseResult.search.source_counts,
     hits: webPulseResult.rawHits.map((h) => ({
       title: h.title,
       url: h.url,
       snippet: h.snippet,
       source: h.source,
       published_at: h.published_at,
+      scraped_at: h.scraped_at,
+      evidence_level: h.evidence_level,
     })),
-    validations: webPulseResult.output.validations.filter((v) =>
-      GEMS_BY_ID.has(v.gem_id)
-    ),
+    validations: webPulseResult.output.validations
+      .filter((v) => GEMS_BY_ID.has(v.gem_id))
+      .map((v) => {
+        const source = hitByUrl.get(v.source_url);
+        return {
+          ...v,
+          source_published_at: v.source_published_at ?? source?.published_at,
+          evidence_level: v.evidence_level ?? source?.evidence_level,
+        };
+      }),
   };
   emit({
     type: "agent_complete",
@@ -140,9 +214,15 @@ export async function orchestrate(
       contradicts: webEvidence.validations.filter(
         (v) => v.verdict === "contradicts"
       ).length,
+      searched_at: webEvidence.searched_at,
+      freshness_note: webEvidence.freshness_note,
+      source_counts: webEvidence.source_counts,
+      provider_statuses: webEvidence.provider_statuses,
       sample_sources: webEvidence.hits.slice(0, 3).map((h) => ({
         title: h.title,
         url: h.url,
+        published_at: h.published_at,
+        evidence_level: h.evidence_level,
       })),
       reasoning: webPulseResult.output.reasoning,
     },
@@ -156,10 +236,27 @@ export async function orchestrate(
     message: startMessages["crowd-analyst"],
     timestamp: now(),
   });
+  emit({
+    type: "agent_progress",
+    agent: "crowd-analyst",
+    message:
+      "Checking Google Maps request-time popularity and opening-status signals…",
+    timestamp: now(),
+  });
+  const rawCrowdRadar = await crowdRadarTask;
+  const crowdRadar = enrichCrowdReport({
+    report: rawCrowdRadar,
+    gems: listenerCandidates,
+    tripStart,
+    tripDays: inferredTripDays,
+    holidays: crowdWindowHolidays,
+    webEvidence,
+  });
   const crowd = await runCrowdAnalyst({
     userPrompt,
     candidates: listenerCandidates,
     traps: TRAPS,
+    mapsCrowdSignals: crowdRadar.signals,
   });
   const crowdFiltered = crowd.filtered_ids
     .map((id) => GEMS_BY_ID.get(id))
@@ -179,6 +276,38 @@ export async function orchestrate(
         name_en: t.name_en,
         why_avoid: t.why_avoid,
       })),
+      maps_radar: {
+        checked_at: crowdRadar.checked_at,
+        status: crowdRadar.status,
+        signal_count: crowdRadar.signal_count,
+        message: crowdRadar.message,
+        trip_window: {
+          start: tripStart,
+          end: inferredTripEnd,
+          days: inferredTripDays,
+          holidays: crowdWindowHolidays.map((h) => ({
+            date: h.date,
+            name_en: h.name_en,
+            crowd_impact: h.crowd_impact,
+          })),
+        },
+        high_pressure: crowdRadar.signals.filter((s) => s.pressure === "high")
+          .length,
+        medium_pressure: crowdRadar.signals.filter(
+          (s) => s.pressure === "medium"
+        ).length,
+        top_pressure: crowdRadar.signals
+          .filter((s) => s.pressure !== "unknown")
+          .sort((a, b) => (b.pressure_score ?? 0) - (a.pressure_score ?? 0))
+          .slice(0, 3)
+          .map((s) => ({
+            gem_id: s.gem_id,
+            pressure: s.pressure,
+            score: s.pressure_score,
+            reasons: s.reasons.slice(0, 2),
+          })),
+      },
+      candidate_assessments: crowd.candidate_assessments,
       reasoning: crowd.reasoning,
     },
     timestamp: now(),
@@ -228,6 +357,7 @@ export async function orchestrate(
     scored: sortedScored.map((s) => ({ id: s.id, score: s.score })),
     gemsById: GEMS_BY_ID,
   });
+  planner.stays = normalizeStayNights(planner.stays, planner.days);
   const selectedGems = planner.selected_ids
     .map((id) => GEMS_BY_ID.get(id))
     .filter((g): g is HiddenGem => !!g);
@@ -508,6 +638,7 @@ export async function orchestrate(
             : undefined,
       };
     }),
+    crowd_radar: crowdRadar,
   };
 
   emit({

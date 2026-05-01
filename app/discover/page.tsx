@@ -181,6 +181,22 @@ function DiscoverInner() {
             finishedAt: evt.timestamp,
           },
         }));
+      } else if (
+        (evt.type === "agent_progress" || evt.type === "agent_thinking") &&
+        evt.agent
+      ) {
+        setAgents((prev) => ({
+          ...prev,
+          [evt.agent!]: {
+            ...prev[evt.agent!],
+            status:
+              prev[evt.agent!].status === "idle"
+                ? "thinking"
+                : prev[evt.agent!].status,
+            message: evt.message ?? prev[evt.agent!].message,
+            data: evt.data as Record<string, unknown> | undefined,
+          },
+        }));
       } else if (evt.type === "agent_error" && evt.agent) {
         setAgents((prev) => ({
           ...prev,
@@ -216,6 +232,7 @@ function DiscoverInner() {
       name,
       status: s.status,
       message: s.message,
+      data: s.data,
       durationMs:
         s.startedAt && s.finishedAt ? s.finishedAt - s.startedAt : undefined,
     };
@@ -399,6 +416,15 @@ function ResultFooter({ final }: { final: FinalItinerary }) {
   const hasTips = final.tips.length > 0;
   const hasSources =
     final.web_evidence && final.web_evidence.hits.length > 0;
+  const hasCrowdRadar = Boolean(final.crowd_radar);
+  const selectedGemNames = new Map(final.selected_gems.map((g) => [g.id, g.name_en]));
+  const crowdSignalsByGem = new Map(
+    final.crowd_radar?.signals.map((signal) => [signal.gem_id, signal]) ?? []
+  );
+  const radarSignals =
+    final.crowd_radar?.signals
+      .filter((signal) => selectedGemNames.has(signal.gem_id))
+      .slice(0, 6) ?? [];
   return (
     <div className="flex flex-col gap-8 border-t border-[var(--border)] pt-8">
       {/* Gems list — keep visible since users want to know what they get */}
@@ -419,13 +445,18 @@ function ResultFooter({ final }: { final: FinalItinerary }) {
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {final.selected_gems.map((g, i) => (
-            <GemCard key={g.id} gem={g} index={i} />
+            <GemCard
+              key={g.id}
+              gem={g}
+              index={i}
+              crowdSignal={crowdSignalsByGem.get(g.id)}
+            />
           ))}
         </div>
       </div>
 
-      {(hasTips || hasSources) && (
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      {(hasTips || hasSources || hasCrowdRadar) && (
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {hasTips && (
             <div className="flex flex-col gap-3">
               <h3 className="font-display text-sm font-semibold tracking-tight text-[var(--foreground)]">
@@ -452,9 +483,14 @@ function ResultFooter({ final }: { final: FinalItinerary }) {
               <h3 className="font-display text-sm font-semibold tracking-tight text-[var(--foreground)]">
                 Live web sources{" "}
                 <span className="font-sans text-xs font-normal text-[var(--muted)]">
-                  (this search)
+                  ({formatEvidenceRun(final.web_evidence)})
                 </span>
               </h3>
+              {final.web_evidence?.freshness_note && (
+                <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
+                  {final.web_evidence.freshness_note}
+                </p>
+              )}
               <ul className="flex flex-col divide-y divide-[var(--border)] rounded-xl border border-[var(--border)] bg-[var(--surface)]">
                 {final.web_evidence!.hits.slice(0, 6).map((hit) => {
                   let host = hit.url;
@@ -481,11 +517,64 @@ function ResultFooter({ final }: { final: FinalItinerary }) {
                         </span>
                         <span className="font-mono text-[var(--jade)]">
                           {host}
+                          {hit.published_at ? ` · ${hit.published_at}` : ""}
+                          {hit.evidence_level === "page-scrape"
+                            ? " · page checked"
+                            : ""}
                         </span>
                       </a>
                     </li>
                   );
                 })}
+              </ul>
+            </div>
+          )}
+
+          {hasCrowdRadar && (
+            <div className="flex flex-col gap-3">
+              <h3 className="font-display text-sm font-semibold tracking-tight text-[var(--foreground)]">
+                Google Maps crowd radar{" "}
+                <span className="font-sans text-xs font-normal text-[var(--muted)]">
+                  ({final.crowd_radar!.signal_count} matched)
+                </span>
+              </h3>
+              <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
+                Popularity proxy from Maps place data, not a live crowd counter.
+              </p>
+              <ul className="flex flex-col divide-y divide-[var(--border)] rounded-xl border border-[var(--border)] bg-[var(--surface)]">
+                {radarSignals.map((signal) => (
+                  <li
+                    key={signal.gem_id}
+                    className="flex flex-col gap-0.5 px-4 py-3 text-xs"
+                  >
+                    <span className="flex items-center justify-between gap-2">
+                      <span className="line-clamp-1 font-medium text-[var(--foreground)]">
+                        {selectedGemNames.get(signal.gem_id) ?? signal.gem_id}
+                      </span>
+                      <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-[var(--subtle)]">
+                        {signal.pressure}
+                        {typeof signal.pressure_score === "number"
+                          ? ` · ${signal.pressure_score.toFixed(1)}`
+                          : ""}
+                      </span>
+                    </span>
+                    <span className="text-[var(--muted-foreground)]">
+                      {signal.matched_place?.user_rating_count
+                        ? `${signal.matched_place.user_rating_count.toLocaleString()} reviews`
+                        : signal.message ?? signal.reasons[0]}
+                      {typeof signal.matched_place?.open_now === "boolean"
+                        ? signal.matched_place.open_now
+                          ? " · open now"
+                          : " · not open now"
+                        : ""}
+                    </span>
+                    {signal.reasons[0] && (
+                      <span className="line-clamp-2 text-[var(--muted)]">
+                        {signal.reasons[0]}
+                      </span>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
           )}
@@ -703,6 +792,20 @@ function formatDayDate(iso: string): string {
   return `${WEEKDAYS_FULL[d.getUTCDay()]}, ${
     MONTHS_SHORT[d.getUTCMonth()]
   } ${d.getUTCDate()}`;
+}
+
+function formatEvidenceRun(evidence?: FinalItinerary["web_evidence"]): string {
+  if (!evidence?.searched_at) return "this search";
+  const d = new Date(evidence.searched_at);
+  if (Number.isNaN(d.getTime())) return "this search";
+  const label = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Bangkok",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(d);
+  return `searched ${label} ICT`;
 }
 
 // One day inside the timeline. Uses a label/description grid so the body

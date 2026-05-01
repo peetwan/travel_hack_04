@@ -1,7 +1,11 @@
 import { generateObject } from "ai";
 import { MODELS } from "../ai";
-import type { HiddenGem, TouristTrap } from "../types";
-import { combinedThaiSearch, type WebHit } from "../web-search";
+import type { HiddenGem, MapsCrowdSignal, TouristTrap } from "../types";
+import {
+  realtimeThaiSearch,
+  type WebHit,
+  type WebSearchResult,
+} from "../web-search";
 import type { DailyWeather } from "../weather";
 import {
   CROWD_ANALYST_PROMPT,
@@ -51,6 +55,47 @@ const slimGem = (g: HiddenGem) => ({
   one_liner: g.en_description.slice(0, 140),
 });
 
+function bangkokYear(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Bangkok",
+    year: "numeric",
+  }).format(new Date());
+}
+
+function buildWebPulseQuery(userPrompt: string, candidates: HiddenGem[]): string {
+  const names = candidates
+    .slice(0, 6)
+    .map((g) => `${g.name_th} ${g.name_en}`)
+    .join(" ");
+  const provinces = Array.from(new Set(candidates.map((g) => g.province)))
+    .slice(0, 4)
+    .join(" ");
+  return [
+    userPrompt,
+    names,
+    provinces,
+    "รีวิวล่าสุด",
+    "ที่เที่ยวลับ",
+    bangkokYear(),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .slice(0, 480);
+}
+
+function scrubUndatedEvidenceLanguage(text: string): string {
+  return text
+    .replace(/\blive-search evidence confirms\b/gi, "undated live-search evidence suggests")
+    .replace(/\bsearch evidence confirms\b/gi, "undated search evidence suggests")
+    .replace(/\bevidence confirms\b/gi, "evidence suggests")
+    .replace(/\brecent live-search evidence\b/gi, "undated live-search evidence")
+    .replace(/\brecent search evidence\b/gi, "undated search evidence")
+    .replace(/\brecent evidence\b/gi, "undated evidence")
+    .replace(/\brecent visitor feedback\b/gi, "undated live-search visibility")
+    .replace(/\bfresh confirmations?\b/gi, "visibility signals")
+    .replace(/\bfreshly confirmed\b/gi, "visible in search results");
+}
+
 export async function runListener(args: {
   userPrompt: string;
   dataset: HiddenGem[];
@@ -78,6 +123,7 @@ export async function runCrowdAnalyst(args: {
   userPrompt: string;
   candidates: HiddenGem[];
   traps: TouristTrap[];
+  mapsCrowdSignals?: MapsCrowdSignal[];
 }): Promise<CrowdAnalystOutput> {
   const candidateView = args.candidates.map((g) => ({
     id: g.id,
@@ -89,6 +135,26 @@ export async function runCrowdAnalyst(args: {
     id: t.id,
     name_en: t.name_en,
     why_avoid: t.why_avoid,
+  }));
+  const mapsSignals = (args.mapsCrowdSignals ?? []).map((signal) => ({
+    gem_id: signal.gem_id,
+    status: signal.status,
+    pressure: signal.pressure,
+    pressure_score: signal.pressure_score,
+    confidence: signal.confidence,
+    reasons: signal.reasons,
+    adjustments: signal.adjustments,
+    matched_place: signal.matched_place
+      ? {
+          name: signal.matched_place.name,
+          business_status: signal.matched_place.business_status,
+          open_now: signal.matched_place.open_now,
+          rating: signal.matched_place.rating,
+          user_rating_count: signal.matched_place.user_rating_count,
+          primary_type: signal.matched_place.primary_type,
+          match_distance_km: signal.matched_place.match_distance_km,
+        }
+      : undefined,
   }));
 
   const { object } = await generateObject({
@@ -105,7 +171,10 @@ Candidates from Listener:
 ${JSON.stringify(candidateView)}
 
 Known tourist traps:
-${JSON.stringify(trapsView)}`,
+${JSON.stringify(trapsView)}
+
+Google Maps crowd radar signals (latest request-time proxy data; not a live crowd count):
+${JSON.stringify(mapsSignals)}`,
   });
   return object;
 }
@@ -118,6 +187,8 @@ export async function runCurator(args: {
     verdict: "supports" | "contradicts" | "neutral";
     quote: string;
     source_url: string;
+    source_published_at?: string;
+    evidence_level?: "search-snippet" | "page-scrape";
   }>;
 }): Promise<CuratorOutput> {
   const view = args.candidates.map((g) => ({
@@ -151,7 +222,19 @@ ${JSON.stringify(view)}
 Live web evidence from the Web Pulse agent (use to nudge scores up/down):
 ${JSON.stringify(validations)}`,
   });
-  return object;
+  const hasOnlyUndatedEvidence =
+    validations.length > 0 && validations.every((v) => !v.source_published_at);
+  if (!hasOnlyUndatedEvidence) return object;
+
+  return {
+    ...object,
+    narration: scrubUndatedEvidenceLanguage(object.narration),
+    reasoning: scrubUndatedEvidenceLanguage(object.reasoning),
+    scored: object.scored.map((score) => ({
+      ...score,
+      why: scrubUndatedEvidenceLanguage(score.why),
+    })),
+  };
 }
 
 export async function runPlanner(args: {
@@ -194,37 +277,72 @@ ${JSON.stringify(enriched)}`,
 export async function runWebPulse(args: {
   userPrompt: string;
   dataset: HiddenGem[];
-}): Promise<{ output: WebPulseOutput; rawHits: WebHit[]; query: string }> {
-  // Build a focused query from the user prompt; bias toward freshness.
-  const query = `${args.userPrompt} ที่เที่ยว hidden gem 2026`;
+}): Promise<{
+  output: WebPulseOutput;
+  rawHits: WebHit[];
+  query: string;
+  search: WebSearchResult;
+}> {
+  // Build a focused query from the Listener's candidate set and ask providers
+  // for current Thai-language visibility around those places.
+  const query = buildWebPulseQuery(args.userPrompt, args.dataset);
 
   // 8s timeout for combined web search — providers occasionally stall.
   const ac = new AbortController();
   const timer = setTimeout(() => ac.abort(), 8000);
-  let rawHits: WebHit[] = [];
+  let search: WebSearchResult;
   try {
-    rawHits = await combinedThaiSearch({
+    search = await realtimeThaiSearch({
       query,
       maxResults: 8,
       signal: ac.signal,
     });
   } catch {
-    rawHits = [];
+    search = {
+      query,
+      searched_at: new Date().toISOString(),
+      freshness_note:
+        "Live web search failed before returning diagnostics, so this run relied on the curated dataset.",
+      provider_statuses: [
+        {
+          provider: "tavily",
+          status: "error",
+          hit_count: 0,
+          message: "Search pipeline failed before provider diagnostics.",
+        },
+        {
+          provider: "exa",
+          status: "error",
+          hit_count: 0,
+          message: "Search pipeline failed before provider diagnostics.",
+        },
+        {
+          provider: "firecrawl",
+          status: "skipped",
+          enhanced_count: 0,
+          message: "No search hits to scrape.",
+        },
+      ],
+      source_counts: {},
+      hits: [],
+    };
   } finally {
     clearTimeout(timer);
   }
+  const rawHits = search.hits;
 
   // If no live data, return a graceful empty result so the rest of the pipeline runs.
   if (rawHits.length === 0) {
     return {
       output: {
         narration:
-          "The live web search returned no usable hits for this prompt — falling back to the curated dataset alone.",
+          "The live web search returned no usable Thai-source hits for these candidates — I am falling back to the curated dataset and showing that clearly.",
         validations: [],
-        reasoning: "No Tavily/Exa hits within the timeout window.",
+        reasoning: search.freshness_note,
       },
       rawHits: [],
       query,
+      search,
     };
   }
 
@@ -235,31 +353,71 @@ export async function runWebPulse(args: {
     province: g.province,
   }));
 
-  const { object } = await generateObject({
-    model: MODELS.curator, // same Flash Lite, fine for this
-    schema: webPulseOutputSchema,
-    system: WEB_PULSE_PROMPT,
-    providerOptions: fastThinking,
-    prompt: `User prompt:
+  try {
+    const { object } = await generateObject({
+      model: MODELS.curator, // same Flash Lite, fine for this
+      schema: webPulseOutputSchema,
+      system: WEB_PULSE_PROMPT,
+      providerOptions: fastThinking,
+      prompt: `User prompt:
 """
 ${args.userPrompt}
 """
 
-Curated dataset (id + names only):
+Current live-search timestamp:
+${search.searched_at}
+
+Candidate set from the Local Listener (id + names only):
 ${JSON.stringify(slim)}
 
-Live search hits (Tavily + Exa, scoped to Thai travel sources):
+Live search diagnostics:
+${JSON.stringify({
+  freshness_note: search.freshness_note,
+  provider_statuses: search.provider_statuses,
+  source_counts: search.source_counts,
+})}
+
+Live search hits (Thai travel sources; snippets may include Firecrawl page content):
 ${JSON.stringify(
   rawHits.map((h) => ({
     title: h.title,
     url: h.url,
     snippet: h.snippet,
     source: h.source,
+    published_at: h.published_at,
+    scraped_at: h.scraped_at,
+    evidence_level: h.evidence_level,
   }))
 )}`,
-  });
+    });
 
-  return { output: object, rawHits, query };
+    const datedHitCount = rawHits.filter((h) => h.published_at).length;
+    const output =
+      datedHitCount === 0
+        ? {
+            ...object,
+            narration: `I found ${rawHits.length} live-search hits for ${object.validations.length} candidate matches, but none carried publish dates, so I am treating them as visibility signals, not fresh confirmations.`,
+            reasoning: `${object.reasoning} None of the usable hits included a published_at value, so I did not treat them as dated recent evidence.`,
+          }
+        : object;
+
+    return { output, rawHits, query, search };
+  } catch (err) {
+    return {
+      output: {
+        narration:
+          "I found live web hits, but the validation model could not safely map them to our candidates — I am keeping the live sources visible without using them to overrule the route.",
+        validations: [],
+        reasoning:
+          err instanceof Error
+            ? `Web Pulse validation failed: ${err.message}`
+            : "Web Pulse validation failed.",
+      },
+      rawHits,
+      query,
+      search,
+    };
+  }
 }
 
 export async function runWeatherWatcher(args: {

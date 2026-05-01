@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Star, BadgeCheck, ExternalLink } from "lucide-react";
+import { MapPin, Star, BadgeCheck, ExternalLink, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { HiddenGem } from "@/lib/types";
+import type { HiddenGem, MapsCrowdSignal } from "@/lib/types";
 
 const CATEGORY_LABEL: Record<HiddenGem["category"], string> = {
   nature: "Nature",
@@ -28,9 +28,28 @@ const CATEGORY_VARIANT: Record<
   village: "gold",
 };
 
-export function GemCard({ gem, index }: { gem: HiddenGem; index: number }) {
+export function GemCard({
+  gem,
+  index,
+  crowdSignal,
+}: {
+  gem: HiddenGem;
+  index: number;
+  crowdSignal?: MapsCrowdSignal;
+}) {
   const hasTat = !!gem.tat;
   const heroImage = gem.tat?.thumbnail_url ?? null;
+  const mapsReviews = crowdSignal?.matched_place?.user_rating_count;
+  const mapsUri = crowdSignal?.matched_place?.google_maps_uri;
+  const mapsPressure = crowdSignal?.pressure;
+  const pressureTone =
+    mapsPressure === "high"
+      ? "border-[var(--burgundy-soft)] bg-[#fdf2f2] text-[var(--burgundy)]"
+      : mapsPressure === "medium"
+        ? "border-[var(--gold-soft)] bg-[#fdf6e3] text-[var(--gold)]"
+        : mapsPressure === "low"
+          ? "border-[var(--jade-soft)] bg-[var(--jade-tint)] text-[var(--jade)]"
+          : "border-[var(--border)] bg-[var(--surface-soft)] text-[var(--muted)]";
 
   return (
     <motion.div
@@ -107,6 +126,18 @@ export function GemCard({ gem, index }: { gem: HiddenGem; index: number }) {
             </span>
             <span className="ml-1 text-[var(--muted)]">crowd</span>
           </span>
+          {crowdSignal && (
+            <span
+              className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest ${pressureTone}`}
+              title={
+                crowdSignal.reasons[0] ??
+                "Google Maps popularity proxy, not a live crowd counter."
+              }
+            >
+              <Users className="h-3 w-3" />
+              Maps {mapsPressure ?? "unknown"}
+            </span>
+          )}
           {hasTat && !heroImage && (
             <span className="inline-flex items-center gap-1 rounded-full border border-[var(--border-saffron)] bg-[var(--saffron-tint)] px-2 py-0.5 font-medium uppercase tracking-widest text-[var(--saffron)]">
               <BadgeCheck className="h-3 w-3" />
@@ -127,22 +158,48 @@ export function GemCard({ gem, index }: { gem: HiddenGem; index: number }) {
         </div>
 
         <div className="flex items-center justify-between gap-2 border-t border-[var(--border)] pt-3 text-xs text-[var(--muted)]">
-          <span>
-            Best:{" "}
-            <span className="text-[var(--foreground)]">{gem.best_time}</span>
-          </span>
-          {gem.tat?.detail_url && (
-            <a
-              href={gem.tat.detail_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[var(--saffron)] transition-colors hover:text-[var(--burgundy)]"
-              title="Open in TAT (Tourism Authority of Thailand) database"
-            >
-              TAT page
-              <ExternalLink className="h-3 w-3" />
-            </a>
-          )}
+          <div className="flex flex-col gap-0.5">
+            <span>
+              Best:{" "}
+              <span className="text-[var(--foreground)]">{gem.best_time}</span>
+            </span>
+            {mapsReviews && (
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
+                {mapsReviews.toLocaleString()} Google reviews
+                {typeof crowdSignal?.matched_place?.open_now === "boolean"
+                  ? crowdSignal.matched_place.open_now
+                    ? " · open now"
+                    : " · not open now"
+                  : ""}
+              </span>
+            )}
+          </div>
+          <div className="flex flex-wrap justify-end gap-2">
+            {mapsUri && (
+              <a
+                href={mapsUri}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[var(--jade)] transition-colors hover:text-[var(--saffron)]"
+                title="Open matched place in Google Maps"
+              >
+                Maps
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            )}
+            {gem.tat?.detail_url && (
+              <a
+                href={gem.tat.detail_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[var(--saffron)] transition-colors hover:text-[var(--burgundy)]"
+                title="Open in TAT (Tourism Authority of Thailand) database"
+              >
+                TAT
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

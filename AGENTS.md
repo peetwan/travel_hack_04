@@ -23,10 +23,12 @@ Multi-agent AI travel planner for Thailand, built against overtourism. Seven spe
 User prompt + start date
     ↓
 [Orchestrator]
-    ├─→ Local Listener  ──┐ (parallel)
-    └─→ Web Pulse  ───────┤
+    ↓
+ Local Listener            (candidate set from curated data)
+    ├─→ Web Pulse          (candidate-focused Thai web search)
+    └─→ Maps Crowd Radar   (Google Places proxy signals)
                           ↓
-                   Crowd Analyst       (filters + flags traps)
+                   Crowd Analyst       (filters + flags traps + crowd pressure)
                           ↓
                       Curator         (scores + uses web evidence)
                           ↓
@@ -43,10 +45,12 @@ User prompt + start date
                   (streamed via SSE)
 ```
 
-- Listener + Web Pulse run in parallel — curated moat + live ground-truth
+- Listener runs first so Web Pulse and Maps Crowd Radar can validate the exact candidate set instead of searching broadly
+- Web Pulse + Maps Crowd Radar run from the Listener's candidates — live Thai-web visibility + Google Places popularity/open-status proxies
+- Crowd Analyst combines curated `crowd_level`, Maps review volume, trip calendar pressure, and Web Pulse tourism-pressure terms before filtering
 - Weather Watcher + Verifier run in parallel after the Planner
 - All steps emit Server-Sent Events; the UI shows each agent live
-- End-to-end target: ~15 seconds with `gemini-3.1-flash-lite-preview` and `thinkingLevel: "minimal"`
+- End-to-end target: ~20-30 seconds with live web + Maps enabled, `gemini-3.1-flash-lite-preview`, and `thinkingLevel: "minimal"`
 
 ## Where things live
 
@@ -57,17 +61,19 @@ User prompt + start date
 | `lib/agents/prompts.ts` | System prompts — **the language quality of the demo lives here** |
 | `lib/agents/schemas.ts` | Zod output schemas for `generateObject` |
 | `lib/ai.ts` | Gemini provider config + per-agent model picks |
-| `lib/web-search.ts` | Tavily + Exa + Firecrawl HTTP wrappers |
+| `lib/web-search.ts` | Tavily + Exa + Firecrawl HTTP wrappers + freshness/provider diagnostics |
+| `lib/google-maps.ts` | Google Places (New) text-search wrapper for request-time Maps crowd signals |
+| `lib/crowd-radar.ts` | Deterministic crowd-pressure scoring: Maps + trip calendar + Web Pulse terms |
 | `lib/weather.ts` | Open-Meteo client (free, no API key) |
 | `lib/thai-holidays.ts` | Hardcoded 2026/2027 holidays + range helper |
-| `lib/types.ts` | Shared types: `HiddenGem`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather` |
+| `lib/types.ts` | Shared types: `HiddenGem`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
 | `data/hidden_gems.json` | 33 curated gems (14 with `tat` enrichment block) |
 | `data/tourist_traps.json` | 11 known traps + their better alternatives |
 | `app/api/orchestrate/route.ts` | SSE endpoint, validates input, calls the orchestrator |
 | `app/page.tsx` | Landing — prompt + date picker + composer |
 | `app/discover/page.tsx` | Live agent stream + final itinerary view |
-| `components/AgentCrewPanel.tsx` | Single collapsible panel for the 7-agent stream |
-| `components/GemCard.tsx` | Gem card with TAT image + verified badge |
+| `components/AgentCrewPanel.tsx` | Single collapsible panel for the 7-agent stream, including realtime diagnostic chips |
+| `components/GemCard.tsx` | Gem card with TAT image, verified badge, Maps crowd proxy, reviews, and Maps link |
 | `components/ItineraryMap.tsx` | react-leaflet map with light CARTO tiles + saffron pin |
 | `scripts/enrich-tat.sh` + `merge-tat.sh` | Offline TAT data enrichment (curl-based; see "Don't break" #1) |
 
@@ -77,6 +83,8 @@ User prompt + start date
 - Agents speak in **first person** ("I have selected...", "I am parking you in...")
 - Each prompt explicitly instructs a `narration` field — one sentence, English, what the user sees streamed live
 - Prompts include **rules of thumb** ("always keep at least 5 gems", "1-2 bases max for short trips", "prefer concentration over coverage")
+- Web Pulse and Curator must be precise about freshness: only call evidence "recent" if a source has `published_at`; undated hits are "live-search visibility" or "indexed visibility"
+- Crowd Analyst must never claim Google Maps gives a live crowd count. Maps signals are popularity/open-status proxies only: review volume, business status, open now, match distance
 - Verifier and Weather Watcher receive structured context (trip dates, holidays, forecasts) in the user `prompt`, not the system prompt — the system prompt stays static for prompt-cache friendliness
 
 ### Models (`lib/ai.ts`)
@@ -107,6 +115,9 @@ Light theme inspired by Thai luxury hospitality.
 ### Data shape
 - `HiddenGem` has optional `tat?: TatEnrichment` — `place_id`, `slug`, `thumbnail_url`, `sha_certified`, `province_th`, `detail_url`, `distance_km`
 - TAT enrichment is **lat/lng-validated** — within 50km of the gem's recorded coordinates, otherwise dropped (the keyword search occasionally returns same-named places in different provinces; e.g. "เกาะหมาก" exists in both Trat and Phatthalung)
+- `WebEvidence` carries `searched_at`, `freshness_note`, per-provider status, source counts, and per-hit `evidence_level` (`search-snippet` vs `page-scrape`)
+- `MapsCrowdReport` carries one `MapsCrowdSignal` per Listener candidate. `pressure_score` is deterministic and combines calibrated Maps review volume, weekend/holiday pressure, and Web Pulse tourism-pressure terms
+- `MapsCrowdSignal.pressure` is a proxy (`low` / `medium` / `high` / `unknown`), not a live crowd reading. Keep this wording in UI and prompts
 
 ## Don't break (the "burned by this" list)
 
@@ -114,7 +125,8 @@ Light theme inspired by Thai luxury hospitality.
 2. **No `startedRef` guard in the Discover page's `useEffect`.** React Strict Mode double-mount aborts the first fetch; a "fetch only once" ref blocks the second mount and the agents stay idle forever. The cancel-via-`AbortController`-in-cleanup pattern is correct as written; don't re-add the ref.
 3. **Open-Meteo forecast horizon = 16 days.** When `tripStart > today + 16 days`, the orchestrator skips the Weather Watcher step and emits a "beyond forecast horizon" message. Don't fall back to repeating the last available forecast — that fabricates data and was caught in testing.
 4. **Gemini 2.5 doesn't accept `thinkingLevel`.** It returns 400 "Thinking level is not supported for this model." Only Gemini 3.x. The `providerOptions` config in `runners.ts` only sets `thinkingLevel` for runners that route to a 3.x model.
-5. **No keys in tracked files.** `.env*` is gitignored. The deploy reads from Railway env vars; the enrichment scripts read from `.env.local`. Don't paste keys into source, comments, commit messages, or docs. Rotate after demo.
+5. **Google Places is a proxy, not "busy now".** The Places fields we use do not expose official live crowd counts. Review volume/open status can move candidates from keep → caution/drop, but copy must say "Maps popularity proxy" or "review volume suggests".
+6. **No keys in tracked files.** `.env*` is gitignored. The deploy reads from Railway env vars; the enrichment scripts read from `.env.local`. Don't paste keys into source, comments, commit messages, or docs. Rotate after demo.
 
 ## Adding things
 
@@ -145,6 +157,8 @@ npm run dev                             # http://localhost:3000 (or 3001 if 3000
 
 For the Web Pulse agent to actually search live, also set `TAVILY_API_KEY` and `EXA_API_KEY`. Without them the agent emits an empty result and the rest of the pipeline still runs.
 
+For Crowd Radar, set `GOOGLE_MAPS_API_KEY` with Places API (New) enabled. The app uses it server-side to call `places:searchText` with field masks for place identity, open status, business status, rating, review count, type, Maps URI, and location. If the key is browser/referrer-restricted, create a server-allowed key for local/Railway.
+
 ## Deploy (Railway)
 
-`railway.json` + `nixpacks.toml` are wired. Connect this repo to Railway, set env vars from `.env.local.example`, Railway auto-detects Next.js and runs `npm run build && npm run start`. PORT is injected automatically.
+`railway.json` + `nixpacks.toml` are wired. Connect this repo to Railway, set env vars from `.env.local.example`, Railway auto-detects Next.js and runs `npm run build && npm run start`. PORT is injected automatically. Set `GOOGLE_MAPS_API_KEY`, `TAVILY_API_KEY`, `EXA_API_KEY`, and `FIRECRAWL_API_KEY` for the full realtime demo.

@@ -81,21 +81,97 @@ export interface DayWeather {
   advice?: string;
 }
 
+export type WebEvidenceProvider = "tavily" | "exa" | "firecrawl";
+
+export type WebEvidenceProviderStatus =
+  | "ok"
+  | "missing-key"
+  | "timeout"
+  | "error"
+  | "skipped";
+
+export interface WebEvidenceProviderReport {
+  provider: WebEvidenceProvider;
+  status: WebEvidenceProviderStatus;
+  hit_count?: number;
+  enhanced_count?: number;
+  message?: string;
+}
+
 export interface WebEvidence {
   query: string;
+  searched_at: string;
+  freshness_note: string;
+  source_counts: Partial<Record<WebEvidenceProvider, number>>;
+  provider_statuses: WebEvidenceProviderReport[];
   hits: Array<{
     title: string;
     url: string;
     snippet: string;
     source: "tavily" | "exa" | "firecrawl";
     published_at?: string;
+    scraped_at?: string;
+    evidence_level?: "search-snippet" | "page-scrape";
   }>;
   validations: Array<{
     gem_id: string;
     verdict: "supports" | "contradicts" | "neutral";
     quote: string;
     source_url: string;
+    source_published_at?: string;
+    evidence_level?: "search-snippet" | "page-scrape";
   }>;
+}
+
+export type CrowdPressure = "low" | "medium" | "high" | "unknown";
+
+export type CrowdSignalSource = "google-maps" | "trip-calendar" | "web-pulse";
+
+export interface CrowdSignalAdjustment {
+  source: CrowdSignalSource;
+  pressure: CrowdPressure;
+  weight: number;
+  reason: string;
+}
+
+export type MapsCrowdSignalStatus =
+  | "ok"
+  | "missing-key"
+  | "no-match"
+  | "timeout"
+  | "error";
+
+export interface MapsCrowdSignal {
+  gem_id: string;
+  checked_at: string;
+  status: MapsCrowdSignalStatus;
+  pressure: CrowdPressure;
+  pressure_score?: number;
+  confidence: "low" | "medium" | "high";
+  reasons: string[];
+  adjustments?: CrowdSignalAdjustment[];
+  matched_place?: {
+    id: string;
+    name: string;
+    business_status?: string;
+    open_now?: boolean;
+    rating?: number;
+    user_rating_count?: number;
+    primary_type?: string;
+    types?: string[];
+    google_maps_uri?: string;
+    match_distance_km?: number;
+  };
+  message?: string;
+}
+
+export interface MapsCrowdReport {
+  provider: "google-maps";
+  checked_at: string;
+  status: MapsCrowdSignalStatus;
+  signal_count: number;
+  message?: string;
+  signals: MapsCrowdSignal[];
 }
 
 export type AgentStatus = "idle" | "thinking" | "done" | "error";
@@ -163,6 +239,7 @@ export interface FinalItinerary {
   };
   trip_dates?: { start: string; end: string };
   holidays?: ThaiHolidayHit[];
+  crowd_radar?: MapsCrowdReport;
 }
 
 export interface UserQuery {
