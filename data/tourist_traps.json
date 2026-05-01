@@ -5,7 +5,11 @@
     "name_th": "อ่าวมาหยา",
     "province": "Krabi",
     "why_avoid": "Closed 2018-2022 due to ecosystem collapse from overtourism (5,000+ visitors/day). Reopened with strict caps. Even a 'good' day means cattle-line boats and timed visits.",
-    "better_alternatives": ["koh-yao-noi", "trang-islands", "koh-kood"]
+    "better_alternatives": [
+      "koh-yao-noi",
+      "trang-islands",
+      "koh-kood"
+    ]
   },
   {
     "id": "phi-phi",
@@ -13,7 +17,12 @@
     "name_th": "เกาะพีพี",
     "province": "Krabi",
     "why_avoid": "Tonsai village is a wall-to-wall bar/hostel grid. Beautiful from above; on the ground, mostly fire-shows for backpackers and chartered tour boats.",
-    "better_alternatives": ["koh-yao-noi", "koh-mak", "koh-phayam", "koh-kood"]
+    "better_alternatives": [
+      "koh-yao-noi",
+      "koh-mak",
+      "koh-phayam",
+      "koh-kood"
+    ]
   },
   {
     "id": "patong",
@@ -21,7 +30,12 @@
     "name_th": "ป่าตอง",
     "province": "Phuket",
     "why_avoid": "Bangla Road, jet-ski scams, sex-tourism vibe. The beach is mediocre after decades of overdevelopment.",
-    "better_alternatives": ["koh-mak", "koh-kood", "trang-islands", "koh-phayam"]
+    "better_alternatives": [
+      "koh-mak",
+      "koh-kood",
+      "trang-islands",
+      "koh-phayam"
+    ]
   },
   {
     "id": "khaosan",
@@ -29,7 +43,10 @@
     "name_th": "ถนนข้าวสาร",
     "province": "Bangkok",
     "why_avoid": "Backpacker-trap caricature of Thailand. Scorpion skewers, fake IDs, $10 buckets. Authentic Bangkok is a 5-minute walk in any direction.",
-    "better_alternatives": ["bangkok-bang-kachao", "amphawa-canal"]
+    "better_alternatives": [
+      "bangkok-bang-kachao",
+      "amphawa-canal"
+    ]
   },
   {
     "id": "damnoen-saduak",
@@ -37,7 +54,10 @@
     "name_th": "ตลาดน้ำดำเนินสะดวก",
     "province": "Ratchaburi",
     "why_avoid": "100% staged for tour buses since the 1970s. Vendors have learned to charge tourist prices for souvenirs nobody local would buy.",
-    "better_alternatives": ["amphawa-canal", "bangkok-bang-kachao"]
+    "better_alternatives": [
+      "amphawa-canal",
+      "bangkok-bang-kachao"
+    ]
   },
   {
     "id": "tiger-temple",
@@ -45,7 +65,10 @@
     "name_th": "วัดเสือ",
     "province": "Kanchanaburi / Phuket / Chiang Mai",
     "why_avoid": "Animal welfare violations documented repeatedly. The original Tiger Temple was raided in 2016 with dead cubs found. Avoid all 'pet a tiger' venues.",
-    "better_alternatives": ["khao-sok-cheow-lan", "khao-yai-pak-chong"]
+    "better_alternatives": [
+      "khao-sok-cheow-lan",
+      "khao-yai-pak-chong"
+    ]
   },
   {
     "id": "phangan-full-moon",
@@ -53,7 +76,11 @@
     "name_th": "ฟูลมูนปาร์ตี้",
     "province": "Surat Thani",
     "why_avoid": "Iconic for backpackers but environmentally devastating — beaches trashed monthly, multiple deaths/year. The rest of Phangan is gorgeous; skip the party.",
-    "better_alternatives": ["koh-mak", "koh-phayam", "koh-kood"]
+    "better_alternatives": [
+      "koh-mak",
+      "koh-phayam",
+      "koh-kood"
+    ]
   },
   {
     "id": "wat-pho-bangkok",
@@ -61,7 +88,11 @@
     "name_th": "วัดโพธิ์/พระบรมมหาราชวัง (ช่วงพีค)",
     "province": "Bangkok",
     "why_avoid": "Worth seeing once, but go before 8am or you're shoulder-to-shoulder with cruise tours. Skip the gem-scam tuk-tuks waiting outside.",
-    "better_alternatives": ["nan-old-town", "ayutthaya-hidden", "phra-nakhon-khiri"]
+    "better_alternatives": [
+      "nan-old-town",
+      "ayutthaya-hidden",
+      "phra-nakhon-khiri"
+    ]
   },
   {
     "id": "chiang-mai-old-city",
@@ -69,7 +100,12 @@
     "name_th": "เมืองเก่าเชียงใหม่ (วันเดียวจบ)",
     "province": "Chiang Mai",
     "why_avoid": "The 12 temples in 1 day grand-tour misses what makes Chiang Mai special. Locals roll their eyes at Sunday Walking Street.",
-    "better_alternatives": ["mae-kampong", "nan-old-town", "ban-rak-thai", "doi-inthanon-kew-mae-pan"]
+    "better_alternatives": [
+      "mae-kampong",
+      "nan-old-town",
+      "ban-rak-thai",
+      "doi-inthanon-kew-mae-pan"
+    ]
   },
   {
     "id": "pattaya",
@@ -77,7 +113,11 @@
     "name_th": "พัทยากลาง",
     "province": "Chonburi",
     "why_avoid": "Walking Street area is sex-tourism central. Beach water quality is poor.",
-    "better_alternatives": ["koh-mak", "koh-kood", "sam-phan-bok"]
+    "better_alternatives": [
+      "koh-mak",
+      "koh-kood",
+      "sam-phan-bok"
+    ]
   },
   {
     "id": "khao-yai-tour-bus",
@@ -85,6 +125,223 @@
     "name_th": "เขาใหญ่ทัวร์เช้า-เย็น",
     "province": "Nakhon Ratchasima",
     "why_avoid": "Day-trip tours hit only Haew Suwat waterfall + a viewpoint, miss what makes the park UNESCO. Stay 2+ nights or visit Suan Phueng instead.",
-    "better_alternatives": ["khao-yai-pak-chong", "suan-phueng"]
+    "better_alternatives": [
+      "khao-yai-pak-chong",
+      "suan-phueng"
+    ]
+  },
+  {
+    "id": "doi-suthep-tour-bus",
+    "name_en": "Wat Phra That Doi Suthep tour-bus rush",
+    "name_th": "วัดพระธาตุดอยสุเทพ (ช่วงทัวร์)",
+    "province": "Chiang Mai",
+    "why_avoid": "The temple is real and worth respecting, but daytime is wall-to-wall buses + selfie sticks at the chedi viewpoint. If you must go, ride up before 7am for monks' morning chants — otherwise locals roll their eyes at the all-day rush.",
+    "better_alternatives": [
+      "mae-kampong",
+      "doi-inthanon-kew-mae-pan",
+      "wiang-kum-kam"
+    ]
+  },
+  {
+    "id": "wat-rong-khun-white-temple",
+    "name_en": "Wat Rong Khun (White Temple) selfie queue",
+    "name_th": "วัดร่องขุ่น (วัดขาว)",
+    "province": "Chiang Rai",
+    "why_avoid": "The bridge approach has a one-way human conveyor belt at peak hours. The art is genuinely interesting but the experience is a parking-lot queue — visit at 7am open or skip for less-photographed Lanna temples.",
+    "better_alternatives": [
+      "phu-chi-fa",
+      "doi-mae-salong"
+    ]
+  },
+  {
+    "id": "wat-rong-suea-ten-blue-temple",
+    "name_en": "Wat Rong Suea Ten (Blue Temple) Insta-mob",
+    "name_th": "วัดร่องเสือเต้น (วัดน้ำเงิน)",
+    "province": "Chiang Rai",
+    "why_avoid": "Modern temple built for the Insta crowd post-2016. The blue paint photographs beautifully but the visit is 15 minutes of jostling for the same angle — it is not a place of practice.",
+    "better_alternatives": [
+      "phu-chi-fa",
+      "doi-mae-salong"
+    ]
+  },
+  {
+    "id": "pai-walking-street-weekend",
+    "name_en": "Pai Walking Street weekend",
+    "name_th": "ถนนคนเดินปาย วันสุดสัปดาห์",
+    "province": "Mae Hong Son",
+    "why_avoid": "Friday-Sunday nights the lane is shoulder-to-shoulder with Bangkok and Chinese tour vans. The original Pai vibe is intact mid-week or up the valley — pick those windows.",
+    "better_alternatives": [
+      "ban-rak-thai",
+      "pai-loop-mhs"
+    ]
+  },
+  {
+    "id": "ayutthaya-tour-bus-loop",
+    "name_en": "Ayutthaya tour-bus selfie loop",
+    "name_th": "ทัวร์อยุธยาแบบเช้า-เย็น",
+    "province": "Phra Nakhon Si Ayutthaya",
+    "why_avoid": "The Buddha-head-in-the-tree spot at Wat Mahathat clears 80 buses a day and the tour-bus circuit hits 4 wats in 3 hours, missing the river temples entirely. Stay overnight or rent a bike instead.",
+    "better_alternatives": [
+      "ayutthaya-hidden",
+      "kamphaeng-phet-historical-park"
+    ]
+  },
+  {
+    "id": "sukhothai-sunset-mob",
+    "name_en": "Sukhothai Old City sunset mob",
+    "name_th": "อุทยานสุโขทัย ช่วงพระอาทิตย์ตก",
+    "province": "Sukhothai",
+    "why_avoid": "Wat Mahathat at sunset gets a coordinated tour-bus crush — tripods 3-deep around the Buddha. The site is breathtaking at 6:30am or in the rain; pick those.",
+    "better_alternatives": [
+      "sukhothai-historical-park",
+      "ban-na-ton-chan",
+      "kamphaeng-phet-historical-park"
+    ]
+  },
+  {
+    "id": "chaweng-beach-samui",
+    "name_en": "Chaweng Beach (Koh Samui)",
+    "name_th": "หาดเฉวง เกาะสมุย",
+    "province": "Surat Thani",
+    "why_avoid": "Mid-island party strip — beach clubs, jet-ski touts, packed sand most months. Even the quiet pockets share a road with all the bars.",
+    "better_alternatives": [
+      "koh-mak",
+      "koh-kood",
+      "khao-sok-cheow-lan",
+      "koh-yao-noi"
+    ]
+  },
+  {
+    "id": "sairee-beach-koh-tao",
+    "name_en": "Sairee Beach (Koh Tao) party scene",
+    "name_th": "หาดทรายรี เกาะเต่า",
+    "province": "Surat Thani",
+    "why_avoid": "Once a quiet diving cove, now a wall of bars and Open-Water dive shops. The diving is fine; the village experience is gone.",
+    "better_alternatives": [
+      "koh-mak",
+      "koh-kood",
+      "koh-yao-noi"
+    ]
+  },
+  {
+    "id": "railay-high-season",
+    "name_en": "Railay Beach high-season crush",
+    "name_th": "หาดไร่เลย์ ช่วงไฮซีซั่น",
+    "province": "Krabi",
+    "why_avoid": "Dec-March the peninsula is wall-to-wall longtails and kayak rentals — the cliffs are still gorgeous but the beaches are not quiet by any definition. Tub Kaek and the Yao islands are the same coastline without the crush.",
+    "better_alternatives": [
+      "tub-kaek-beach",
+      "koh-yao-noi",
+      "trang-islands"
+    ]
+  },
+  {
+    "id": "james-bond-island-tour",
+    "name_en": "James Bond Island (Khao Phing Kan) tour boat",
+    "name_th": "เกาะเจมส์บอนด์ (เขาตะปู)",
+    "province": "Phang Nga",
+    "why_avoid": "The karst is famous but the visit is 20 minutes of trinket stalls on a tiny beach with 30 other speedboats. Phang Nga Bay's quieter coves are right next door.",
+    "better_alternatives": [
+      "koh-yao-noi",
+      "khao-lak",
+      "trang-islands"
+    ]
+  },
+  {
+    "id": "wat-arun-sunset",
+    "name_en": "Wat Arun sunset photo spot",
+    "name_th": "วัดอรุณ ช่วงพระอาทิตย์ตก",
+    "province": "Bangkok",
+    "why_avoid": "The temple is real, but the across-the-river photo lanes (Eat Sight Story, The Deck) get blocked by Thai-dress rental photoshoots — wait time for the cliché shot can hit an hour. Sunrise from the same spot is empty.",
+    "better_alternatives": [
+      "talat-noi-bangkok",
+      "khlong-bang-luang",
+      "bangkok-bang-kachao"
+    ]
+  },
+  {
+    "id": "erawan-falls-weekend",
+    "name_en": "Erawan Falls weekend day-trip",
+    "name_th": "น้ำตกเอราวัณ วันสุดสัปดาห์",
+    "province": "Kanchanaburi",
+    "why_avoid": "Sat-Sun the day-tripper bus from Bangkok parks 200 visitors at each tier; fish-feeding-people videos are nice on TikTok and miserable in person. Weekday or skip to Sangkhlaburi's quieter waterfalls.",
+    "better_alternatives": [
+      "sangkhlaburi",
+      "khao-yai-pak-chong"
+    ]
+  },
+  {
+    "id": "doi-inthanon-summit-bus",
+    "name_en": "Doi Inthanon summit selfie bus",
+    "name_th": "ทัวร์ยอดดอยอินทนนท์",
+    "province": "Chiang Mai",
+    "why_avoid": "Bus tours stop at the highest-point sign + the twin chedis and call it a day, missing the Kew Mae Pan ridge that is the actual experience of Inthanon. Drive yourself or hike.",
+    "better_alternatives": [
+      "doi-inthanon-kew-mae-pan",
+      "mae-kampong"
+    ]
+  },
+  {
+    "id": "mae-sa-elephant-riding",
+    "name_en": "Mae Sa Valley elephant-riding camps",
+    "name_th": "ค่ายขี่ช้างแม่สา",
+    "province": "Chiang Mai",
+    "why_avoid": "Riding-and-show camps still operate up the Mae Sa valley despite years of welfare investigations. Genuine sanctuaries (no riding, no painting, no shows) exist; the curated camps off the main road do not qualify.",
+    "better_alternatives": [
+      "mae-sa-valley",
+      "khao-sok-cheow-lan"
+    ]
+  },
+  {
+    "id": "yaowarat-night-tour",
+    "name_en": "Yaowarat (Chinatown) packaged night tour",
+    "name_th": "ทัวร์เยาวราชยามค่ำ",
+    "province": "Bangkok",
+    "why_avoid": "The headline night-food tours move 25 tourists between 4 well-rated stalls — the queue waits become the night. Walk one block off Yaowarat into the Talat Noi lanes and you have the same food without the chain.",
+    "better_alternatives": [
+      "talat-noi-bangkok",
+      "khlong-bang-luang"
+    ]
+  },
+  {
+    "id": "kao-takiab-monkey-temple",
+    "name_en": "Khao Takiab Monkey Temple (Hua Hin)",
+    "name_th": "เขาตะเกียบ",
+    "province": "Prachuap Khiri Khan",
+    "why_avoid": "The Hua Hin tour add-on. Monkeys here are aggressive grabbers — bag-snatch incidents are routine, the temple itself is forgettable. Khao Sam Roi Yot's coast 60 km south is quiet and dramatic.",
+    "better_alternatives": [
+      "khao-sam-roi-yot"
+    ]
+  },
+  {
+    "id": "phromthep-cape-sunset-mob",
+    "name_en": "Phromthep Cape sunset crowd",
+    "name_th": "แหลมพรหมเทพ พระอาทิตย์ตก",
+    "province": "Phuket",
+    "why_avoid": "Phuket's southern-tip sunset spot is on every tour itinerary — 500 visitors crowd a small cliff every evening. Beautiful colour, terrible vibe.",
+    "better_alternatives": [
+      "khao-phra-thaeo-phuket",
+      "koh-yao-noi"
+    ]
+  },
+  {
+    "id": "surin-elephant-show",
+    "name_en": "Surin Elephant Round-up show",
+    "name_th": "การแสดงช้างสุรินทร์",
+    "province": "Surin",
+    "why_avoid": "The annual show (3rd weekend of November) features tug-of-war and football games staged for tourist photos. The mahout culture is genuine and worth visiting; the show format is not. Stay with a Kuay family at Ban Ta Klang and skip the stadium.",
+    "better_alternatives": [
+      "ban-ta-klang-surin"
+    ]
+  },
+  {
+    "id": "khao-kho-busy-resorts",
+    "name_en": "Khao Kho weekend resort glut",
+    "name_th": "เขาค้อ ช่วงรีสอร์ทแน่น",
+    "province": "Phetchabun",
+    "why_avoid": "The Khao Kho ridge has been overbuilt with cookie-cutter cabin resorts and Insta cafes since 2018. Long weekends mean hour-long queues at every viewpoint. Phu Thap Boek further along the same range still has the cloud-sea without the bar lights.",
+    "better_alternatives": [
+      "phu-thap-boek-phetchabun"
+    ]
   }
 ]

@@ -24,7 +24,9 @@
     ],
     "near_traps": [
       "phi-phi",
-      "patong"
+      "patong",
+      "chaweng-beach-samui",
+      "sairee-beach-koh-tao"
     ],
     "vegan_friendly": true,
     "family_friendly": true
@@ -54,7 +56,9 @@
     ],
     "near_traps": [
       "phi-phi",
-      "phangan-full-moon"
+      "phangan-full-moon",
+      "chaweng-beach-samui",
+      "sairee-beach-koh-tao"
     ],
     "vegan_friendly": true,
     "family_friendly": true
@@ -84,7 +88,8 @@
     ],
     "near_traps": [
       "damnoen-saduak",
-      "khaosan"
+      "khaosan",
+      "erawan-falls-weekend"
     ],
     "vegan_friendly": true,
     "family_friendly": true
@@ -144,7 +149,8 @@
     ],
     "near_traps": [
       "khaosan",
-      "patong"
+      "patong",
+      "pai-walking-street-weekend"
     ],
     "vegan_friendly": true,
     "family_friendly": true
@@ -173,7 +179,8 @@
       "https://readme.me/ban-rak-thai"
     ],
     "near_traps": [
-      "chiang-mai-old-city"
+      "chiang-mai-old-city",
+      "pai-walking-street-weekend"
     ],
     "vegan_friendly": true,
     "family_friendly": true
@@ -202,7 +209,9 @@
       "https://chillpainai.com/maekampong"
     ],
     "near_traps": [
-      "chiang-mai-old-city"
+      "chiang-mai-old-city",
+      "doi-suthep-tour-bus",
+      "doi-inthanon-summit-bus"
     ],
     "vegan_friendly": true,
     "family_friendly": true,
@@ -241,7 +250,9 @@
       "https://chillpainai.com/phu-chi-fa"
     ],
     "near_traps": [
-      "chiang-mai-old-city"
+      "chiang-mai-old-city",
+      "wat-rong-khun-white-temple",
+      "wat-rong-suea-ten-blue-temple"
     ],
     "family_friendly": true,
     "tat": {
@@ -355,7 +366,7 @@
       "sha_certified": false,
       "province_th": "อุบลราชธานี",
       "detail_url": "https://thai.tourismthailand.org/attraction/แก่งสามพันโบก",
-      "distance_km": 6.0
+      "distance_km": 6
     }
   },
   {
@@ -467,7 +478,9 @@
     "near_traps": [
       "phi-phi",
       "patong",
-      "maya-bay"
+      "maya-bay",
+      "james-bond-island-tour",
+      "railay-high-season"
     ],
     "vegan_friendly": false,
     "family_friendly": true,
@@ -615,7 +628,9 @@
     ],
     "near_traps": [
       "phi-phi",
-      "patong"
+      "patong",
+      "chaweng-beach-samui",
+      "sairee-beach-koh-tao"
     ]
   },
   {
@@ -747,7 +762,8 @@
       "https://www.tourismthailand.org/Attraction/khao-yai-national-park"
     ],
     "near_traps": [
-      "damnoen-saduak"
+      "damnoen-saduak",
+      "erawan-falls-weekend"
     ],
     "family_friendly": true
   },
@@ -775,7 +791,8 @@
       "https://www.tourismthailand.org/Attraction/doi-inthanon"
     ],
     "near_traps": [
-      "chiang-mai-old-city"
+      "chiang-mai-old-city",
+      "doi-inthanon-summit-bus"
     ],
     "family_friendly": false,
     "tat": {
@@ -913,7 +930,9 @@
     ],
     "near_traps": [
       "phi-phi",
-      "patong"
+      "patong",
+      "chaweng-beach-samui",
+      "sairee-beach-koh-tao"
     ],
     "family_friendly": true
   },
@@ -942,7 +961,8 @@
     ],
     "near_traps": [
       "wat-pho-bangkok",
-      "khaosan"
+      "khaosan",
+      "ayutthaya-tour-bus-loop"
     ],
     "family_friendly": true
   },
@@ -1009,7 +1029,8 @@
     ],
     "near_traps": [
       "khaosan",
-      "chiang-mai-old-city"
+      "chiang-mai-old-city",
+      "sukhothai-sunset-mob"
     ],
     "family_friendly": true,
     "vegan_friendly": true
@@ -1079,7 +1100,9 @@
     ],
     "near_traps": [
       "khaosan",
-      "wat-pho-bangkok"
+      "wat-pho-bangkok",
+      "wat-arun-sunset",
+      "yaowarat-night-tour"
     ],
     "vegan_friendly": true,
     "family_friendly": true,
@@ -1119,7 +1142,9 @@
     ],
     "near_traps": [
       "damnoen-saduak",
-      "khaosan"
+      "khaosan",
+      "wat-arun-sunset",
+      "yaowarat-night-tour"
     ],
     "vegan_friendly": true,
     "family_friendly": true,
@@ -1160,7 +1185,8 @@
     "near_traps": [
       "phi-phi",
       "patong",
-      "maya-bay"
+      "maya-bay",
+      "railay-high-season"
     ],
     "family_friendly": true,
     "vegan_friendly": true
@@ -1191,7 +1217,8 @@
     "near_traps": [
       "patong",
       "phi-phi",
-      "maya-bay"
+      "maya-bay",
+      "james-bond-island-tour"
     ],
     "family_friendly": true,
     "tat": {
@@ -1230,7 +1257,9 @@
     ],
     "near_traps": [
       "chiang-mai-old-city",
-      "tiger-temple"
+      "tiger-temple",
+      "mae-sa-elephant-riding",
+      "doi-suthep-tour-bus"
     ],
     "family_friendly": true
   },
@@ -1258,7 +1287,9 @@
       "https://migrationology.com/day-trip-mae-salong-chiang-rai-guide/"
     ],
     "near_traps": [
-      "chiang-mai-old-city"
+      "chiang-mai-old-city",
+      "wat-rong-khun-white-temple",
+      "wat-rong-suea-ten-blue-temple"
     ],
     "family_friendly": true,
     "tat": {
@@ -1337,7 +1368,7 @@
       "sha_certified": false,
       "province_th": "พะเยา",
       "detail_url": "https://thai.tourismthailand.org/attraction/กว๊านพะเยา",
-      "distance_km": 1.0
+      "distance_km": 1
     }
   },
   {
@@ -1577,7 +1608,8 @@
       "https://readme.me/p/29233"
     ],
     "near_traps": [
-      "wat-pho-bangkok"
+      "wat-pho-bangkok",
+      "sukhothai-sunset-mob"
     ],
     "vegan_friendly": true,
     "family_friendly": true,
@@ -1616,7 +1648,8 @@
       "https://readme.me/p/5571"
     ],
     "near_traps": [
-      "pattaya"
+      "pattaya",
+      "kao-takiab-monkey-temple"
     ],
     "family_friendly": true,
     "tat": {
@@ -1724,7 +1757,8 @@
     ],
     "near_traps": [
       "chiang-mai-old-city",
-      "tiger-temple"
+      "tiger-temple",
+      "doi-suthep-tour-bus"
     ],
     "family_friendly": true,
     "vegan_friendly": true,
@@ -1763,7 +1797,8 @@
       "https://readme.me/p/6496"
     ],
     "near_traps": [
-      "chiang-mai-old-city"
+      "chiang-mai-old-city",
+      "sukhothai-sunset-mob"
     ],
     "family_friendly": true,
     "vegan_friendly": true,
@@ -1965,7 +2000,7 @@
       "sha_certified": false,
       "province_th": "มหาสารคาม",
       "detail_url": "https://thai.tourismthailand.org/attraction/กู่มหาธาตุ-(ปรางค์กู่บ้านเขวา)",
-      "distance_km": 44.0
+      "distance_km": 44
     }
   },
   {
@@ -2259,7 +2294,8 @@
       "https://whc.unesco.org/en/list/574/"
     ],
     "near_traps": [
-      "sukhothai-old-park-busy-hours"
+      "sukhothai-sunset-mob",
+      "ayutthaya-tour-bus-loop"
     ],
     "tat": {
       "place_id": "24213",
@@ -2401,7 +2437,7 @@
       "https://www.tourismthailand.org/Attraction/ko-kret"
     ],
     "near_traps": [
-      "damnoen-saduak-floating-market"
+      "damnoen-saduak"
     ],
     "tat": {
       "place_id": "21036",
@@ -2780,7 +2816,7 @@
       "https://portal.dnp.go.th/Content/nationalpark"
     ],
     "near_traps": [
-      "khao-yai-pak-chong-tour-buses"
+      "khao-yai-tour-bus"
     ]
   },
   {
@@ -2807,7 +2843,7 @@
       "https://portal.dnp.go.th/Content/nationalpark"
     ],
     "near_traps": [
-      "pattaya-beach-jet-ski-scams"
+      "pattaya"
     ],
     "tat": {
       "place_id": "24096",
@@ -2817,7 +2853,7 @@
       "sha_certified": false,
       "province_th": "ระยอง",
       "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติเขาชะเมา-เขาวง",
-      "distance_km": 10.0
+      "distance_km": 10
     }
   },
   {
@@ -2879,7 +2915,7 @@
       "https://www.tourismthailand.org/Attraction/mu-ko-chumphon"
     ],
     "near_traps": [
-      "koh-tao-party-pier"
+      "sairee-beach-koh-tao"
     ],
     "tat": {
       "place_id": "17228",
@@ -2889,7 +2925,7 @@
       "sha_certified": true,
       "province_th": "ชุมพร",
       "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติหมู่เกาะชุมพร",
-      "distance_km": 10.0
+      "distance_km": 10
     }
   },
   {
@@ -3021,7 +3057,7 @@
       "https://www.tourismthailand.org/Attraction/khao-phra-thaeo-non-hunting-area"
     ],
     "near_traps": [
-      "patong-walking-street",
+      "patong",
       "phromthep-cape-sunset-mob"
     ],
     "tat": {
