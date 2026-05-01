@@ -555,22 +555,17 @@ function WellnessFinds({ final }: { final: FinalItinerary }) {
   );
 }
 
-// Compact footer: gems detail + tips + sources in a tight 3-column grid on desktop.
+// Footer: gems list + the prominent Verifier tips block.
+// Live web sources + Maps crowd radar were removed — those signals already
+// surface inside individual GemCards (Maps pressure chip + reviews) and the
+// Web Pulse agent line; doubling them in the footer was visual noise.
 function ResultFooter({ final }: { final: FinalItinerary }) {
   const hasTips = final.tips.length > 0;
-  const hasSources =
-    final.web_evidence && final.web_evidence.hits.length > 0;
-  const hasCrowdRadar = Boolean(final.crowd_radar);
-  const selectedGemNames = new Map(final.selected_gems.map((g) => [g.id, g.name_en]));
   const crowdSignalsByGem = new Map(
     final.crowd_radar?.signals.map((signal) => [signal.gem_id, signal]) ?? []
   );
-  const radarSignals =
-    final.crowd_radar?.signals
-      .filter((signal) => selectedGemNames.has(signal.gem_id))
-      .slice(0, 6) ?? [];
   return (
-    <div className="flex flex-col gap-8 border-t border-[var(--border)] pt-8">
+    <div className="flex flex-col gap-10 border-t border-[var(--border)] pt-8">
       {/* Gems list — keep visible since users want to know what they get */}
       <div className="flex flex-col gap-4">
         <div className="flex items-baseline justify-between">
@@ -599,130 +594,41 @@ function ResultFooter({ final }: { final: FinalItinerary }) {
         </div>
       </div>
 
-      {(hasTips || hasSources || hasCrowdRadar) && (
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {hasTips && (
-            <div className="flex flex-col gap-3">
-              <h3 className="font-display text-sm font-semibold tracking-tight text-[var(--foreground)]">
-                Local tips from the verifier
-              </h3>
-              <ul className="flex flex-col divide-y divide-[var(--border)] rounded-xl border border-[var(--border)] bg-[var(--surface)]">
-                {final.tips.map((t, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 px-4 py-3 text-sm leading-relaxed text-[var(--foreground)]"
-                  >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold-soft)] font-mono text-[10px] font-bold text-[var(--gold)]">
-                      {i + 1}
-                    </span>
-                    <span className="text-[var(--muted-foreground)]">{t}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {hasSources && (
-            <div className="flex flex-col gap-3">
-              <h3 className="font-display text-sm font-semibold tracking-tight text-[var(--foreground)]">
-                Live web sources{" "}
-                <span className="font-sans text-xs font-normal text-[var(--muted)]">
-                  ({formatEvidenceRun(final.web_evidence)})
+      {hasTips && (
+        <section className="overflow-hidden rounded-3xl border border-[var(--border-saffron)] bg-gradient-to-br from-[var(--saffron-tint)] via-[var(--surface)] to-[#fdf6e3] p-6 shadow-[var(--shadow-xs)] sm:p-10">
+          <div className="mb-7 flex flex-col gap-2">
+            <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--saffron)]">
+              <Sparkles className="h-3 w-3" />
+              Local intel · Verifier
+            </p>
+            <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-3xl">
+              Notes from the local guide
+            </h3>
+            <p className="max-w-2xl text-sm leading-relaxed text-[var(--muted-foreground)]">
+              The kind of detail a generic AI itinerary skips — etiquette,
+              seasonal gear, holiday-aware tweaks, and small things that change
+              the day.
+            </p>
+          </div>
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {final.tips.map((t, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: i * 0.06 }}
+                className="flex items-start gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-xs)] transition-all hover:border-[var(--border-saffron)] hover:shadow-[var(--shadow-sm)]"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--saffron)] font-display text-base font-semibold text-white">
+                  {i + 1}
                 </span>
-              </h3>
-              {final.web_evidence?.freshness_note && (
-                <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
-                  {final.web_evidence.freshness_note}
+                <p className="text-[15px] leading-relaxed text-[var(--foreground)]">
+                  {t}
                 </p>
-              )}
-              <ul className="flex flex-col divide-y divide-[var(--border)] rounded-xl border border-[var(--border)] bg-[var(--surface)]">
-                {final.web_evidence!.hits.slice(0, 6).map((hit) => {
-                  let host = hit.url;
-                  try {
-                    host = new URL(hit.url).hostname.replace(/^www\./, "");
-                  } catch {
-                    /* keep raw */
-                  }
-                  return (
-                    <li key={hit.url}>
-                      <a
-                        href={hit.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex flex-col gap-0.5 px-4 py-3 text-xs transition-colors hover:bg-[var(--jade-tint)]"
-                      >
-                        <span className="flex items-center justify-between gap-2">
-                          <span className="line-clamp-1 font-medium text-[var(--foreground)]">
-                            {hit.title || hit.url}
-                          </span>
-                          <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-[var(--subtle)]">
-                            {hit.source}
-                          </span>
-                        </span>
-                        <span className="font-mono text-[var(--jade)]">
-                          {host}
-                          {hit.published_at ? ` · ${hit.published_at}` : ""}
-                          {hit.evidence_level === "page-scrape"
-                            ? " · page checked"
-                            : ""}
-                        </span>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-
-          {hasCrowdRadar && (
-            <div className="flex flex-col gap-3">
-              <h3 className="font-display text-sm font-semibold tracking-tight text-[var(--foreground)]">
-                Google Maps crowd radar{" "}
-                <span className="font-sans text-xs font-normal text-[var(--muted)]">
-                  ({final.crowd_radar!.signal_count} matched)
-                </span>
-              </h3>
-              <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
-                Popularity proxy from Maps place data, not a live crowd counter.
-              </p>
-              <ul className="flex flex-col divide-y divide-[var(--border)] rounded-xl border border-[var(--border)] bg-[var(--surface)]">
-                {radarSignals.map((signal) => (
-                  <li
-                    key={signal.gem_id}
-                    className="flex flex-col gap-0.5 px-4 py-3 text-xs"
-                  >
-                    <span className="flex items-center justify-between gap-2">
-                      <span className="line-clamp-1 font-medium text-[var(--foreground)]">
-                        {selectedGemNames.get(signal.gem_id) ?? signal.gem_id}
-                      </span>
-                      <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-[var(--subtle)]">
-                        {signal.pressure}
-                        {typeof signal.pressure_score === "number"
-                          ? ` · ${signal.pressure_score.toFixed(1)}`
-                          : ""}
-                      </span>
-                    </span>
-                    <span className="text-[var(--muted-foreground)]">
-                      {signal.matched_place?.user_rating_count
-                        ? `${signal.matched_place.user_rating_count.toLocaleString()} reviews`
-                        : signal.message ?? signal.reasons[0]}
-                      {typeof signal.matched_place?.open_now === "boolean"
-                        ? signal.matched_place.open_now
-                          ? " · open now"
-                          : " · not open now"
-                        : ""}
-                    </span>
-                    {signal.reasons[0] && (
-                      <span className="line-clamp-2 text-[var(--muted)]">
-                        {signal.reasons[0]}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+              </motion.li>
+            ))}
+          </ul>
+        </section>
       )}
     </div>
   );
@@ -936,20 +842,6 @@ function formatDayDate(iso: string): string {
   return `${WEEKDAYS_FULL[d.getUTCDay()]}, ${
     MONTHS_SHORT[d.getUTCMonth()]
   } ${d.getUTCDate()}`;
-}
-
-function formatEvidenceRun(evidence?: FinalItinerary["web_evidence"]): string {
-  if (!evidence?.searched_at) return "this search";
-  const d = new Date(evidence.searched_at);
-  if (Number.isNaN(d.getTime())) return "this search";
-  const label = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Bangkok",
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(d);
-  return `searched ${label} ICT`;
 }
 
 // One day inside the timeline. Uses a label/description grid so the body
