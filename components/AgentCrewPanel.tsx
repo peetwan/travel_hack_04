@@ -14,6 +14,7 @@ import {
   Globe,
   CloudSun,
   ChevronDown,
+  Leaf,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -45,6 +46,12 @@ const META: Record<
     Icon: Globe,
     accent: "text-[var(--jade)]",
     bg: "bg-[var(--jade-tint)]",
+  },
+  "wellness-pulse": {
+    title: "Wellness Pulse",
+    Icon: Leaf,
+    accent: "text-[var(--gold)]",
+    bg: "bg-[#fdf6e3]",
   },
   "crowd-analyst": {
     title: "Crowd Analyst",
@@ -295,6 +302,21 @@ function summaryChips(row: AgentRow): string[] {
     if (sourceCounts) chips.push(sourceCounts);
     const providerIssues = formatProviderIssues(data.provider_statuses);
     if (providerIssues) chips.push(providerIssues);
+  }
+
+  if (row.name === "wellness-pulse") {
+    if (data.skipped === true) {
+      chips.push("wellness skipped");
+    } else {
+      numberChip("validated_count", "validated");
+      numberChip("picked_count", "picks");
+      if (typeof data.live_boost_status === "string") {
+        chips.push(`editorial ${data.live_boost_status}`);
+      }
+      if (typeof data.live_boost_hits === "number" && data.live_boost_hits > 0) {
+        chips.push(`${data.live_boost_hits} editorial hits`);
+      }
+    }
   }
 
   if (row.name === "crowd-analyst") {

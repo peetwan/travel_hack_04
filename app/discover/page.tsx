@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { AgentCrewPanel, type AgentRow } from "@/components/AgentCrewPanel";
 import { GemCard } from "@/components/GemCard";
+import { WellnessCard } from "@/components/WellnessCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type {
@@ -51,6 +52,7 @@ const AGENT_ORDER: AgentName[] = [
   "orchestrator",
   "listener",
   "web-pulse",
+  "wellness-pulse",
   "crowd-analyst",
   "curator",
   "planner",
@@ -346,6 +348,7 @@ function DiscoverInner() {
               <ItineraryHero final={final} />
               <ItineraryMapHero gems={final.selected_gems} />
               <DayTimeline final={final} />
+              <WellnessFinds final={final} />
               <LiveFinds final={final} />
               <ResultFooter final={final} />
             </motion.div>
@@ -502,6 +505,52 @@ function LiveFinds({ final }: { final: FinalItinerary }) {
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+// Wellness finds — curated Thai wellness venues (data/wellness_local.json)
+// cross-validated by the Wellness Pulse agent against trip provinces, then
+// against Google Places (rating ≥4.3, reviews ≥100, business OPERATIONAL).
+// Distinct visual treatment from "Live finds": jade + gold (wellness palette),
+// Thai-character signals up front, awards block.
+function WellnessFinds({ final }: { final: FinalItinerary }) {
+  const finds = final.wellness_finds ?? [];
+  if (finds.length === 0) return null;
+
+  const diag = final.wellness_diagnostics;
+
+  return (
+    <div className="flex flex-col gap-4 rounded-2xl border border-[var(--jade-soft)] bg-gradient-to-br from-[var(--jade-tint)]/60 via-[var(--surface)] to-[#fdf6e3]/40 p-5 sm:p-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <div className="flex flex-col gap-1">
+          <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--jade)]">
+            <Sparkles className="h-3 w-3" />
+            Thai wellness picks · {finds.length} {finds.length === 1 ? "venue" : "venues"} · cross-validated
+          </p>
+          <h3 className="font-display text-xl font-semibold tracking-tight text-[var(--foreground)]">
+            Where to slow down — quality Thai wellness, hand-picked
+          </h3>
+          <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
+            Cross-checked across four sources: a hand-curated dataset, TAT SHA
+            certification, luxury-travel editorial mentions, and live Google
+            Places ratings (≥4.3, ≥100 reviews, currently operating). Boutique
+            and Thai-heritage venues only — no chain spas.
+            {diag?.search_status === "missing-key" ? " Live editorial search skipped (no Tavily/Exa key set)." : null}
+          </p>
+        </div>
+      </div>
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {finds.map((venue, i) => (
+          <li key={venue.id}>
+            <WellnessCard venue={venue} index={i} />
+          </li>
+        ))}
+      </ul>
+      <p className="border-t border-[var(--border)] pt-3 font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
+        Curated dataset · TAT SHA · Forbes / Condé Nast / Travel + Leisure ·
+        Google Places
+      </p>
     </div>
   );
 }

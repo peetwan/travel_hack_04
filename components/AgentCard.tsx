@@ -13,6 +13,7 @@ import {
   Check,
   Globe,
   CloudSun,
+  Leaf,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AgentName, AgentStatus } from "@/lib/types";
@@ -51,6 +52,14 @@ const META: Record<
     accentText: "text-[var(--jade)]",
     accentBg: "bg-[var(--jade-tint)]",
     accentBorder: "border-[var(--jade-soft)]",
+  },
+  "wellness-pulse": {
+    title: "Wellness Pulse",
+    subtitle: "Curated Thai wellness, cross-validated against SHA + Maps",
+    Icon: Leaf,
+    accentText: "text-[var(--gold)]",
+    accentBg: "bg-[#fdf6e3]",
+    accentBorder: "border-[var(--gold-soft)]",
   },
   "crowd-analyst": {
     title: "Crowd Analyst",

@@ -34,6 +34,7 @@ interface GooglePlace {
   primaryType?: string;
   types?: string[];
   googleMapsUri?: string;
+  photos?: Array<{ name?: string; widthPx?: number; heightPx?: number }>;
 }
 
 interface GoogleTextSearchResponse {
@@ -336,7 +337,42 @@ const GEOCODE_FIELD_MASK = [
   "places.rating",
   "places.userRatingCount",
   "places.googleMapsUri",
+  "places.photos",
 ].join(",");
+
+// Resolve a Google Places photo `name` (e.g. "places/<pid>/photos/<ref>")
+// into a publicly-fetchable image URL on lh3.googleusercontent.com without
+// exposing the API key to the browser. We use `skipHttpRedirect=true` to make
+// the Photos API return a JSON envelope with the photoUri instead of redirecting.
+async function resolveGooglePhotoUri(args: {
+  photoName: string;
+  apiKey: string;
+  maxHeightPx?: number;
+  maxWidthPx?: number;
+  signal?: AbortSignal;
+}): Promise<string | null> {
+  const url = new URL(
+    `https://places.googleapis.com/v1/${args.photoName}/media`
+  );
+  url.searchParams.set("skipHttpRedirect", "true");
+  url.searchParams.set("maxHeightPx", String(args.maxHeightPx ?? 480));
+  url.searchParams.set("maxWidthPx", String(args.maxWidthPx ?? 720));
+
+  let res: Response;
+  try {
+    res = await fetch(url.toString(), {
+      headers: { "X-Goog-Api-Key": args.apiKey },
+      signal: args.signal,
+    });
+  } catch {
+    return null;
+  }
+  if (!res.ok) return null;
+  const data = (await res.json().catch(() => null)) as
+    | { photoUri?: string }
+    | null;
+  return data?.photoUri ?? null;
+}
 
 export async function geocodeDiscoveredPlace(args: {
   name_en: string;
@@ -395,6 +431,147 @@ export async function geocodeDiscoveredPlace(args: {
     user_rating_count: place.userRatingCount,
     rating: place.rating,
     business_status: place.businessStatus,
+  };
+}
+
+export interface WellnessValidation {
+  google_rating?: number;
+  google_review_count?: number;
+  google_maps_uri?: string;
+  google_photo_url?: string;
+  business_status?: string;
+  match_distance_km?: number;
+  passes_threshold: boolean;
+  reason: string;
+}
+
+export async function validateWellnessVenue(args: {
+  name_en: string;
+  name_th?: string;
+  province: string;
+  lat: number;
+  lng: number;
+  signal?: AbortSignal;
+  minRating?: number;
+  minReviews?: number;
+}): Promise<WellnessValidation | null> {
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY?.trim();
+  if (!apiKey) return null;
+
+  const namePart = [args.name_en, args.name_th].filter(Boolean).join(" ");
+  const textQuery = `${namePart} ${args.province} Thailand`;
+  const minRating = args.minRating ?? 4.3;
+  const minReviews = args.minReviews ?? 100;
+
+  let res: Response;
+  try {
+    res = await fetch(PLACES_TEXT_SEARCH_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask": GEOCODE_FIELD_MASK,
+      },
+      body: JSON.stringify({
+        textQuery,
+        pageSize: 3,
+        languageCode: "en",
+        regionCode: "TH",
+        locationBias: {
+          circle: {
+            center: { latitude: args.lat, longitude: args.lng },
+            radius: 5000,
+          },
+        },
+      }),
+      signal: args.signal,
+    });
+  } catch {
+    return null;
+  }
+  if (!res.ok) return null;
+  const data = (await res.json().catch(() => null)) as
+    | GoogleTextSearchResponse
+    | null;
+  const places = data?.places ?? [];
+  if (places.length === 0) {
+    return {
+      passes_threshold: false,
+      reason: "Google Places returned no match for the venue name + province.",
+    };
+  }
+
+  const scored = places
+    .map((place) => {
+      const loc = place.location;
+      const distanceKm =
+        typeof loc?.latitude === "number" && typeof loc?.longitude === "number"
+          ? haversineKm(
+              { lat: args.lat, lng: args.lng },
+              { lat: loc.latitude, lng: loc.longitude }
+            )
+          : undefined;
+      return { place, distanceKm };
+    })
+    .sort((a, b) => (a.distanceKm ?? 9999) - (b.distanceKm ?? 9999));
+
+  const best = scored[0];
+  if (!best?.place) return null;
+  if (typeof best.distanceKm === "number" && best.distanceKm > 15) {
+    return {
+      match_distance_km: Number(best.distanceKm.toFixed(1)),
+      passes_threshold: false,
+      reason: `Closest Google Maps match was ${best.distanceKm.toFixed(1)} km from the curated coordinates — likely a different venue.`,
+    };
+  }
+
+  const place = best.place;
+  if (place.businessStatus && place.businessStatus !== "OPERATIONAL") {
+    return {
+      google_rating: place.rating,
+      google_review_count: place.userRatingCount,
+      google_maps_uri: place.googleMapsUri,
+      business_status: place.businessStatus,
+      match_distance_km:
+        typeof best.distanceKm === "number"
+          ? Number(best.distanceKm.toFixed(1))
+          : undefined,
+      passes_threshold: false,
+      reason: `Business status is ${place.businessStatus}.`,
+    };
+  }
+
+  const rating = place.rating ?? 0;
+  const reviews = place.userRatingCount ?? 0;
+  const passes = rating >= minRating && reviews >= minReviews;
+
+  let google_photo_url: string | undefined;
+  const firstPhotoName = place.photos?.find((p) => p.name)?.name;
+  if (passes && firstPhotoName) {
+    const uri = await resolveGooglePhotoUri({
+      photoName: firstPhotoName,
+      apiKey,
+      maxHeightPx: 480,
+      maxWidthPx: 720,
+      signal: args.signal,
+    });
+    if (uri) google_photo_url = uri;
+  }
+
+  return {
+    google_rating: place.rating,
+    google_review_count: place.userRatingCount,
+    google_maps_uri: place.googleMapsUri,
+    google_photo_url,
+    business_status: place.businessStatus,
+    match_distance_km:
+      typeof best.distanceKm === "number"
+        ? Number(best.distanceKm.toFixed(1))
+        : undefined,
+    passes_threshold: passes,
+    reason: passes
+      ? `${reviews.toLocaleString()} reviews at ${rating}/5 — clears the ${minRating}/${minReviews} threshold.`
+      : `${reviews.toLocaleString()} reviews at ${rating}/5 — below the ${minRating}/${minReviews} threshold for luxury wellness.`,
   };
 }
 

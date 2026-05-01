@@ -6,7 +6,7 @@ Before any Next.js work, find and read the relevant doc in `node_modules/next/di
 
 # Hidden Siam
 
-Multi-agent AI travel planner for Thailand, built against overtourism. Seven specialised AI agents collaborate over a curated dataset of authentic destinations and live Thai-web search to surface routes that the famous travel bots never recommend.
+Multi-agent AI travel planner for Thailand, built against overtourism. Eight specialised AI agents collaborate over a curated dataset of authentic destinations and live Thai-web search to surface routes that the famous travel bots never recommend.
 
 > Built for the Thailand Tourism Mini Hackathon (AI Hackathon SS6, May 2026).
 > Production-deployed on Railway.
@@ -30,7 +30,11 @@ User prompt + start date
     │     └─ discovered_gems[]  → fresh places NOT in dataset
     │           ↓
     │       Google Places geocoding (drop unresolvable)
-    └─→ Maps Crowd Radar   (Google Places proxy signals)
+    ├─→ Maps Crowd Radar   (Google Places proxy signals)
+    └─→ Wellness Pulse     (curated wellness dataset → Thai-character picks)
+                          ↓
+                Google Places validation (rating ≥4.3, reviews ≥100, OPERATIONAL)
+                + optional luxury-domain editorial boost (Tavily/Exa)
                           ↓
                    Crowd Analyst       (filters + flags traps + crowd pressure)
                           ↓
@@ -45,13 +49,14 @@ User prompt + start date
          Gemini)                   holidays, etiquette)
               └───────────┬────────────┘
                           ↓
-                  Final itinerary + Live finds panel
+                  Final itinerary + Live finds + Thai Wellness Picks
                   (streamed via SSE)
 ```
 
-- Listener runs first so Web Pulse and Maps Crowd Radar can validate the exact candidate set instead of searching broadly
-- Web Pulse + Maps Crowd Radar run from the Listener's candidates — live Thai-web visibility + Google Places popularity/open-status proxies
+- Listener runs first so Web Pulse, Maps Crowd Radar, and Wellness Pulse can validate the exact candidate set instead of searching broadly
+- Web Pulse + Maps Crowd Radar + Wellness Pulse run in parallel after the Listener — live Thai-web visibility + Google Places popularity/open-status proxies + curated Thai wellness picks
 - Web Pulse also proposes up to 5 `discovered_gems[]` — places named in fresh Thai-source hits that are NOT in the curated dataset. The orchestrator geocodes each via Google Places and drops anything unresolvable. Discoveries DO NOT enter Curator/Planner — they appear as a sidebar "Live finds" panel, labeled clearly as leads, not vetted picks
+- Wellness Pulse picks 0-5 venues from `data/wellness_local.json` matching the trip provinces, then the orchestrator validates each via Google Places (rating ≥4.3, reviews ≥100, OPERATIONAL) and drops failures. Optional Tavily/Exa search across luxury-travel domains (`cntraveler.com`, `forbestravelguide.com`, `tatlerasia.com`, etc.) runs in parallel for editorial freshness diagnostics. Wellness picks DO NOT enter Curator/Planner — they appear as a sidebar "Thai Wellness Picks" panel, cross-validated across four data layers
 - Crowd Analyst combines curated `crowd_level`, Maps review volume, trip calendar pressure, and Web Pulse tourism-pressure terms before filtering
 - Weather Watcher + Verifier run in parallel after the Planner
 - All steps emit Server-Sent Events; the UI shows each agent live
@@ -62,25 +67,29 @@ User prompt + start date
 | Path | Purpose |
 | --- | --- |
 | `lib/agents/orchestrator.ts` | Composes the run, emits SSE events, decorates days with weather + holiday |
-| `lib/agents/runners.ts` | One function per agent (`runListener`, `runWebPulse`, `runCrowdAnalyst`, `runCurator`, `runPlanner`, `runWeatherWatcher`, `runVerifier`) |
+| `lib/agents/runners.ts` | One function per agent (`runListener`, `runWebPulse`, `runWellnessPulse`, `runCrowdAnalyst`, `runCurator`, `runPlanner`, `runWeatherWatcher`, `runVerifier`) |
 | `lib/agents/prompts.ts` | System prompts — **the language quality of the demo lives here** |
 | `lib/agents/schemas.ts` | Zod output schemas for `generateObject` |
 | `lib/ai.ts` | Gemini provider config + per-agent model picks |
-| `lib/web-search.ts` | Tavily + Exa + Firecrawl HTTP wrappers + freshness/provider diagnostics |
-| `lib/google-maps.ts` | Google Places (New) text-search wrapper — `fetchMapsCrowdSignals` for crowd radar + `geocodeDiscoveredPlace` for resolving Web Pulse's live finds |
+| `lib/web-search.ts` | Tavily + Exa + Firecrawl HTTP wrappers + freshness/provider diagnostics + `luxuryWellnessSearch` for editorial domains |
+| `lib/google-maps.ts` | Google Places (New) text-search wrapper — `fetchMapsCrowdSignals` for crowd radar, `geocodeDiscoveredPlace` for Web Pulse live finds, `validateWellnessVenue` for Wellness Pulse cross-validation |
 | `lib/crowd-radar.ts` | Deterministic crowd-pressure scoring: Maps + trip calendar + Web Pulse terms |
 | `lib/weather.ts` | Open-Meteo client (free, no API key) |
 | `lib/thai-holidays.ts` | Hardcoded 2026/2027 holidays + range helper |
-| `lib/types.ts` | Shared types: `HiddenGem`, `DiscoveredGem`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
+| `lib/types.ts` | Shared types: `HiddenGem`, `DiscoveredGem`, `WellnessVenue`, `AgentEvent`, `FinalItinerary`, `ItineraryDay`, `ThaiHolidayHit`, `DayWeather`, `WebEvidence`, `MapsCrowdReport` |
 | `data/hidden_gems.json` | 52 curated gems (28 with `tat` enrichment block) |
 | `data/tourist_traps.json` | 11 known traps + their better alternatives |
+| `data/wellness_local.json` | 21 curated Thai wellness venues — spa / wellness-resort / massage school / onsen / yoga / meditation. See `docs/wellness-data-sources.md` for source & maintenance |
 | `app/api/orchestrate/route.ts` | SSE endpoint, validates input, calls the orchestrator |
 | `app/page.tsx` | Landing — prompt + date picker + composer |
-| `app/discover/page.tsx` | Live agent stream + final itinerary view |
-| `components/AgentCrewPanel.tsx` | Single collapsible panel for the 7-agent stream, including realtime diagnostic chips |
+| `app/discover/page.tsx` | Live agent stream + final itinerary view (includes "Thai Wellness Picks" sidebar) |
+| `components/AgentCrewPanel.tsx` | Single collapsible panel for the 8-agent stream, including realtime diagnostic chips |
 | `components/GemCard.tsx` | Gem card with TAT image, verified badge, Maps crowd proxy, reviews, and Maps link |
+| `components/WellnessCard.tsx` | Wellness venue card — SHA tier badge, awards block, Thai authenticity stars, signature treatments, Maps + booking links |
 | `components/ItineraryMap.tsx` | react-leaflet map with light CARTO tiles + saffron pin |
 | `scripts/enrich-tat.sh` + `merge-tat.sh` | Offline TAT data enrichment (curl-based; see "Don't break" #1) |
+| `scripts/fetch-sha-wellness.sh` | Discover candidate Thai wellness venues from TAT API filtered for SHA Plus / Extra Plus (curl-based) |
+| `docs/wellness-data-sources.md` | Layered cross-validation rules + maintenance cadence for `data/wellness_local.json` |
 
 ## Conventions
 
@@ -90,6 +99,7 @@ User prompt + start date
 - Prompts include **rules of thumb** ("always keep at least 5 gems", "1-2 bases max for short trips", "prefer concentration over coverage")
 - Web Pulse and Curator must be precise about freshness: only call evidence "recent" if a source has `published_at`; undated hits are "live-search visibility" or "indexed visibility"
 - Web Pulse outputs two separate arrays: `validations[]` (must use a `gem_id` from the candidate set) and `discovered_gems[]` (places NOT in the dataset, max 5). Don't merge them in the prompt — the geocoding step depends on this separation
+- Wellness Pulse picks 0-5 ids from `data/wellness_local.json`, biased toward Thai-owned / Thai-heritage brands and SHA Plus / Extra Plus. The prompt forbids mass-market chains (Let's Relax, Health Land, So Thai Spa). Empty array is a valid response when the trip has no wellness intent — better than forcing irrelevant venues
 - Crowd Analyst must never claim Google Maps gives a live crowd count. Maps signals are popularity/open-status proxies only: review volume, business status, open now, match distance
 - Verifier and Weather Watcher receive structured context (trip dates, holidays, forecasts) in the user `prompt`, not the system prompt — the system prompt stays static for prompt-cache friendliness
 
@@ -153,6 +163,22 @@ Light theme inspired by Thai luxury hospitality.
 
 ### A new tourist trap
 Append to `data/tourist_traps.json` with `id`, `name_en`, `name_th`, `province`, `why_avoid`, `better_alternatives`. The Crowd Analyst will pick it up automatically when a gem references it via `near_traps`.
+
+### A new wellness venue
+1. Verify against the editorial criteria in `docs/wellness-data-sources.md` — must clear ≥2 of: TAT SHA Plus, Tier 1 award listing (Forbes / Condé Nast / Travel + Leisure / World Spa Awards), Google Places ≥4.3 / ≥100 reviews. Must have a Thai-character signature (Lanna, Royal Thai medicine, herbal compress, monastery-led, natural Thai onsen).
+2. Append to `data/wellness_local.json` — required: `id`, `name_th`, `name_en`, `province`, `region`, `lat`, `lng`, `wellness_type`, `signature_treatments`, `price_tier`, `thai_authenticity` (1-5), `crowd_level` (1-5), `sha_certified`, `awards`, `languages`, `local_character`, `en_description`, `th_description`, `source_urls`. Optional: `sha_tier`, `booking_url`.
+3. Run `bash scripts/enrich-tat.sh && bash scripts/merge-tat.sh` to attach TAT thumbnail + SHA cert (the same pipeline as gems — lat/lng-validated automatically).
+4. Optional: `bash scripts/fetch-sha-wellness.sh` writes candidate suggestions from TAT to `/tmp/sha_wellness_candidates.json` for the next manual review pass.
+5. The Wellness Pulse system prompt does not need changes — it reads the dataset live each request.
+
+### A new agent's data layer
+The Wellness Pulse pattern is the template for any future "parallel sidebar" agent that uses a curated dataset + cross-validation:
+1. Add a curated `data/<thing>.json` + types in `lib/types.ts`.
+2. Add a Zod schema in `lib/agents/schemas.ts` with `narration` + `picks[]`.
+3. Add a system prompt in `lib/agents/prompts.ts` with the "empty array is valid" rule.
+4. Add a `runX` runner that loads the dataset, slims it for the model, and returns `{ output, liveBoost }`.
+5. Run it in parallel with `runWebPulse` in `lib/agents/orchestrator.ts`. Cross-validate via Google Places before attaching to the final itinerary.
+6. Add a sidebar panel to `app/discover/page.tsx` and a new card component to `components/`.
 
 ### Tuning live finds (Web Pulse discoveries)
 - Cap is set in the schema: `webPulseOutputSchema.discovered_gems.max(5)` in `lib/agents/schemas.ts`. Raise/lower there.

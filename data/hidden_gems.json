@@ -1777,5 +1777,1287 @@
       "detail_url": "https://thai.tourismthailand.org/attraction/ชุมชนท่องเที่ยวบ้านนาต้นจั่น-จังหวัดสุโขทัย",
       "distance_km": 17.9
     }
+  },
+  {
+    "id": "wat-phra-that-haripunchai",
+    "name_th": "วัดพระธาตุหริภุญชัย",
+    "name_en": "Wat Phra That Hariphunchai",
+    "province": "Lamphun",
+    "region": "north",
+    "lat": 18.5774,
+    "lng": 99.0091,
+    "category": "temple",
+    "vibe_tags": [
+      "mon-heritage",
+      "golden-chedi",
+      "ancient-stupa",
+      "pilgrimage"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb (cool, festival season)",
+    "thai_description": "วัดเก่าแก่อายุกว่า 1,000 ปี ของอาณาจักรหริภุญชัย เจดีย์ทองคำสูงเด่น ผู้คนมานมัสการตลอดทั้งปี",
+    "en_description": "Thousand-year-old golden chedi from the Mon Hariphunchai kingdom. Locals come to pour water at sunrise; quieter than its Lanna cousins.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-phrathat-hariphunchai-woramahawihan"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "2169",
+      "slug": "วัดพระธาตุหริภุญชัยวรมหาวิหาร",
+      "name_th": "วัดพระธาตุหริภุญชัยวรมหาวิหาร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/a5573f0f-2d04-4fee-9591-6d28cf1ac5a0.jpg",
+      "sha_certified": true,
+      "province_th": "ลำพูน",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดพระธาตุหริภุญชัยวรมหาวิหาร",
+      "distance_km": 0.1
+    }
+  },
+  {
+    "id": "wat-tham-phu-tok-amnat",
+    "name_th": "วัดถ้ำแสงเพชร",
+    "name_en": "Wat Tham Saeng Phet Forest Monastery",
+    "province": "Amnat Charoen",
+    "region": "northeast",
+    "lat": 15.8612,
+    "lng": 104.63,
+    "category": "temple",
+    "vibe_tags": [
+      "forest-monastery",
+      "meditation",
+      "cave-shrine",
+      "vipassana"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Nov-Feb (cool, dry)",
+    "thai_description": "วัดป่าในถ้ำหินใหญ่ พระธุดงค์มาจำพรรษา เปิดให้บุคคลทั่วไปปฏิบัติธรรม",
+    "en_description": "Forest meditation temple set inside a sandstone cave-cliff. Monks lead Vipassana sessions for visitors who write ahead.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-tham-saeng-phet"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "pa-hin-ngam-chaiyaphum",
+    "name_th": "ป่าหินงาม ชัยภูมิ",
+    "name_en": "Pa Hin Ngam National Park",
+    "province": "Chaiyaphum",
+    "region": "northeast",
+    "lat": 15.6483,
+    "lng": 101.4181,
+    "category": "nature",
+    "vibe_tags": [
+      "rock-formations",
+      "wild-tulips",
+      "viewpoint",
+      "geological"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Jun-Aug (Krachiao bloom)",
+    "thai_description": "ป่าหินรูปทรงประหลาดและทุ่งดอกกระเจียวสีชมพูม่วงบาน ฤดูฝนเดือนกรกฎาคม",
+    "en_description": "Surreal sandstone shapes plus a pink-purple wild Krachiao tulip field that blooms only in late rainy season — a worthy detour off the Khao Yai loop.",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "15119",
+      "slug": "อุทยานแห่งชาติป่าหินงาม",
+      "name_th": "อุทยานแห่งชาติป่าหินงาม",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/0615e19c-cee8-4a73-adb2-e2d983b17d46.jpeg",
+      "sha_certified": false,
+      "province_th": "ชัยภูมิ",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติป่าหินงาม",
+      "distance_km": 3.2
+    }
+  },
+  {
+    "id": "phu-pha-man-kalasin",
+    "name_th": "ภูผาม่าน กาฬสินธุ์",
+    "name_en": "Phu Pha Man Cliffs",
+    "province": "Kalasin",
+    "region": "northeast",
+    "lat": 16.7833,
+    "lng": 103.2333,
+    "category": "nature",
+    "vibe_tags": [
+      "cliff-viewpoint",
+      "fossil-history",
+      "limestone",
+      "low-tourist"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "หน้าผาหินปูนสูงเด่น ใกล้แหล่งฟอสซิลไดโนเสาร์ภูเวียง บรรยากาศเงียบสงบ",
+    "en_description": "Long limestone cliff line and fossil-rich foothills near the Phu Wiang dinosaur dig. Almost no foreign tourists make it here.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Kalasin/353"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "phu-pha-man-khon-kaen",
+    "name_th": "ภูผาม่าน ขอนแก่น",
+    "name_en": "Phu Pha Man National Park",
+    "province": "Khon Kaen",
+    "region": "northeast",
+    "lat": 16.7167,
+    "lng": 101.65,
+    "category": "nature",
+    "vibe_tags": [
+      "bat-cave",
+      "limestone",
+      "evening-bat-flight",
+      "low-tourist"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Mar",
+    "thai_description": "อุทยานหินปูน มีถ้ำค้างคาวออกบินยามเย็น ฝูงนับล้านตัวทำให้ท้องฟ้ามืดครึ้ม",
+    "en_description": "Limestone-cliff park whose evening bat-cloud rivals the famous Khao Yai exodus — fewer crowds, no entrance queue.",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "12776",
+      "slug": "อุทยานแห่งชาติภูผาม่าน",
+      "name_th": "อุทยานแห่งชาติภูผาม่าน",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/2050c49f-9aa5-49f1-887c-067da24addb6.jpg",
+      "sha_certified": true,
+      "province_th": "ขอนแก่น",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติภูผาม่าน",
+      "distance_km": 34.5
+    }
+  },
+  {
+    "id": "ku-mahathat-maha-sarakham",
+    "name_th": "กู่มหาธาตุ มหาสารคาม",
+    "name_en": "Ku Mahathat Khmer Ruins",
+    "province": "Maha Sarakham",
+    "region": "northeast",
+    "lat": 16.0167,
+    "lng": 103.0333,
+    "category": "culture",
+    "vibe_tags": [
+      "khmer-ruins",
+      "12th-century",
+      "off-the-radar",
+      "history"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "กู่หินสมัยขอม อายุนับพันปี ไม่ค่อยมีนักท่องเที่ยวต่างชาติ แต่งานสลักนูนต่ำสมบูรณ์",
+    "en_description": "Standalone 12th-century Khmer sanctuary with intact lintels. You will likely have the entire complex to yourself.",
+    "source_urls": [
+      "https://www.finearts.go.th/main"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "20120",
+      "slug": "กู่มหาธาตุ-(ปรางค์กู่บ้านเขวา)",
+      "name_th": "กู่มหาธาตุ (ปรางค์กู่บ้านเขวา)",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/54f5cd51-7494-4928-811b-0e47d1407c97.jpeg",
+      "sha_certified": false,
+      "province_th": "มหาสารคาม",
+      "detail_url": "https://thai.tourismthailand.org/attraction/กู่มหาธาตุ-(ปรางค์กู่บ้านเขวา)",
+      "distance_km": 44.0
+    }
+  },
+  {
+    "id": "wat-phra-that-phanom",
+    "name_th": "วัดพระธาตุพนม",
+    "name_en": "Wat Phra That Phanom",
+    "province": "Nakhon Phanom",
+    "region": "northeast",
+    "lat": 16.6918,
+    "lng": 104.7426,
+    "category": "temple",
+    "vibe_tags": [
+      "mon-lao-stupa",
+      "mekong-view",
+      "pilgrimage",
+      "old-festival"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Jan-Feb (full-moon festival)",
+    "thai_description": "พระธาตุที่ศักดิ์สิทธิ์ที่สุดของลาวและอีสาน ริมแม่น้ำโขง ใส่บาตรเช้าสวยที่สุด",
+    "en_description": "The most sacred stupa for both Isan Thai and Lao Buddhists, on the Mekong's edge. Pre-dawn alms-round still feels untouched by tourism.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-phrathat-phanom-woramahawihan"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "phu-phan-kham-nong-bua",
+    "name_th": "ภูผาวัว หนองบัวลำภู",
+    "name_en": "Phu Pha Wua Forest Park",
+    "province": "Nong Bua Lamphu",
+    "region": "northeast",
+    "lat": 17.205,
+    "lng": 102.4264,
+    "category": "nature",
+    "vibe_tags": [
+      "dipterocarp-forest",
+      "petroglyphs",
+      "ranger-led",
+      "no-foreign-tourists"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "อุทยานป่าและภาพเขียนหินสมัยก่อนประวัติศาสตร์ ไกด์ท้องถิ่นพาเดิน",
+    "en_description": "Quiet forest reserve with prehistoric rock paintings — local rangers will guide you in Thai but the trail is short and clear.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nong-Bua-Lamphu/376"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "sala-kaew-ku-nong-khai",
+    "name_th": "ศาลาแก้วกู่ หนองคาย",
+    "name_en": "Sala Kaew Ku Sculpture Park",
+    "province": "Nong Khai",
+    "region": "northeast",
+    "lat": 17.8772,
+    "lng": 102.7794,
+    "category": "culture",
+    "vibe_tags": [
+      "surreal-sculpture",
+      "buddhist-hindu",
+      "outsider-art",
+      "mekong"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "สวนปฏิมากรรมทางศาสนาขนาดยักษ์ ผสมพุทธ-ฮินดู ออกแบบโดยศิลปินชาวบ้าน",
+    "en_description": "Towering concrete Buddhist + Hindu figures by a self-taught visionary. Surreal, photogenic, and 30 minutes from the Lao border bridge.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/sala-kaew-ku"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "10262",
+      "slug": "ศาลาแก้วกู่-(วัดแขก)",
+      "name_th": "ศาลาแก้วกู่ หรือวัดแขก",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/f8cbf56e-fa35-46f2-a090-d91a377e3417.jpeg",
+      "sha_certified": false,
+      "province_th": "หนองคาย",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ศาลาแก้วกู่-(วัดแขก)",
+      "distance_km": 1.1
+    }
+  },
+  {
+    "id": "wat-pa-pho-sit-roi-et",
+    "name_th": "วัดป่าโพธิสิทธิ์",
+    "name_en": "Wat Pa Pho Sit Forest Monastery",
+    "province": "Roi Et",
+    "region": "northeast",
+    "lat": 16.0539,
+    "lng": 103.6502,
+    "category": "temple",
+    "vibe_tags": [
+      "forest-monastery",
+      "ajahn-lineage",
+      "meditation",
+      "rural-isan"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "วัดป่าในสายอาจารย์มั่น ภูริทัตโต บรรยากาศเงียบ ข้าวบิณฑบาตเช้า",
+    "en_description": "Quiet Ajahn Mun-lineage forest monastery. Visitors welcome for the dawn alms-round and afternoon Dhamma talk.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Roi-Et/391"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "phu-phan-national-park",
+    "name_th": "อุทยานแห่งชาติภูพาน",
+    "name_en": "Phu Phan National Park",
+    "province": "Sakon Nakhon",
+    "region": "northeast",
+    "lat": 17.0167,
+    "lng": 103.9,
+    "category": "nature",
+    "vibe_tags": [
+      "communist-trail",
+      "forest-hike",
+      "viewpoint",
+      "history"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "อุทยานในเทือกเขาภูพาน เคยเป็นที่ตั้งฐานพรรคคอมมิวนิสต์ มีถ้ำซีกซ้อน",
+    "en_description": "Forest park along the spine of Phu Phan range — historic Communist-Party hideout caves and high viewpoints, still mostly Thai trekkers only.",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "12664",
+      "slug": "อุทยานแห่งชาติภูพาน",
+      "name_th": "อุทยานแห่งชาติภูพาน",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/0ddb705c-3a5c-4ce8-9861-1bb5c19ee707.jpeg",
+      "sha_certified": false,
+      "province_th": "สกลนคร",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติภูพาน",
+      "distance_km": 9.1
+    }
+  },
+  {
+    "id": "ban-ta-klang-surin",
+    "name_th": "บ้านตากลาง สุรินทร์",
+    "name_en": "Ban Ta Klang Elephant Village",
+    "province": "Surin",
+    "region": "northeast",
+    "lat": 15.4794,
+    "lng": 103.4828,
+    "category": "culture",
+    "vibe_tags": [
+      "elephant-mahout",
+      "kuay-people",
+      "cultural-village",
+      "ethical-encounters"
+    ],
+    "crowd_level": 2,
+    "auth_score": 4,
+    "best_time": "Nov (Surin elephant round-up)",
+    "thai_description": "หมู่บ้านชาวกูยและช้างเลี้ยง สอนการดูแลช้างแบบดั้งเดิม ไม่มีรายการแสดงแบบใหญ่",
+    "en_description": "Kuay (Suay) ethnic village where families have kept elephants for generations. Mahout home-stays here are gentler than the big show camps.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/ban-ta-klang"
+    ],
+    "near_traps": [
+      "surin-elephant-show"
+    ],
+    "tat": {
+      "place_id": "8048",
+      "slug": "หมู่บ้านช้าง-บ้านตากลาง",
+      "name_th": "หมู่บ้านช้าง บ้านตากลาง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/b9004585-b050-4807-bae9-3a3e7d1f9ade.jpeg",
+      "sha_certified": false,
+      "province_th": "สุรินทร์",
+      "detail_url": "https://thai.tourismthailand.org/attraction/หมู่บ้านช้าง-บ้านตากลาง",
+      "distance_km": 23.8
+    }
+  },
+  {
+    "id": "phu-pho-yasothon",
+    "name_th": "ภูถ้ำพระ ยโสธร",
+    "name_en": "Phu Tham Phra Forest Temple",
+    "province": "Yasothon",
+    "region": "northeast",
+    "lat": 15.9833,
+    "lng": 104.45,
+    "category": "temple",
+    "vibe_tags": [
+      "forest-cave",
+      "buddha-cave",
+      "rural",
+      "dirt-road-only"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "ถ้ำหินปูนกลางป่าซึ่งภายในมีพระพุทธรูป ผู้ปฏิบัติธรรมไปคนเดียวเงียบสงบ",
+    "en_description": "Forest cave shrine on a back road. Buddhist hermit monks come for solitary retreat; you can sit quietly without being noticed.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Yasothon/411"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "wat-muang-ang-thong",
+    "name_th": "วัดม่วง อ่างทอง",
+    "name_en": "Wat Muang Giant Buddha",
+    "province": "Ang Thong",
+    "region": "central",
+    "lat": 14.5614,
+    "lng": 100.4117,
+    "category": "temple",
+    "vibe_tags": [
+      "giant-buddha",
+      "92m-statue",
+      "pilgrimage",
+      "photogenic"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "พระพุทธรูปกลางแจ้งสูง 92 เมตร ใหญ่ที่สุดในไทย ไปง่ายจากกรุงเทพ",
+    "en_description": "Thailand's largest seated Buddha — 92m of saffron concrete sitting in rice fields. Day-trippable from Bangkok, mostly empty after 3pm.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-muang"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "3136",
+      "slug": "วัดม่วง",
+      "name_th": "วัดม่วง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/bf4d936e-75d4-4799-a1e6-e9e96f5d7ee2.jpg",
+      "sha_certified": false,
+      "province_th": "อ่างทอง",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดม่วง",
+      "distance_km": 4.9
+    }
+  },
+  {
+    "id": "sankhaburi-old-city",
+    "name_th": "เมืองโบราณสรรคบุรี",
+    "name_en": "Sankhaburi Old City",
+    "province": "Chai Nat",
+    "region": "central",
+    "lat": 15.0653,
+    "lng": 100.1414,
+    "category": "culture",
+    "vibe_tags": [
+      "sukhothai-era-ruins",
+      "wat-mahathat",
+      "river-town",
+      "no-tourists"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "เมืองโบราณสมัยสุโขทัย วัดมหาธาตุยังคงอิฐแบบเดิม ตลาดเช้าริมแม่น้ำน้อย",
+    "en_description": "An untouristed Sukhothai-era town along the Noi River — Wat Mahathat is still in honest brick, no chair lift, no tour bus.",
+    "source_urls": [
+      "https://www.finearts.go.th/main"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "kamphaeng-phet-historical-park",
+    "name_th": "อุทยานประวัติศาสตร์กำแพงเพชร",
+    "name_en": "Kamphaeng Phet Historical Park",
+    "province": "Kamphaeng Phet",
+    "region": "central",
+    "lat": 16.4853,
+    "lng": 99.5111,
+    "category": "culture",
+    "vibe_tags": [
+      "unesco",
+      "sukhothai-era",
+      "laterite-temples",
+      "forest-ruins"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "อุทยานประวัติศาสตร์ UNESCO มรดกโลกร่วมกับสุโขทัย แต่นักท่องเที่ยวน้อยมาก",
+    "en_description": "Forest-set laterite temple ruins, UNESCO-listed alongside Sukhothai but visited by perhaps a tenth of the people.",
+    "source_urls": [
+      "https://whc.unesco.org/en/list/574/"
+    ],
+    "near_traps": [
+      "sukhothai-old-park-busy-hours"
+    ],
+    "tat": {
+      "place_id": "24213",
+      "slug": "อุทยานประวัติศาสตร์กำแพงเพชร",
+      "name_th": "อุทยานประวัติศาสตร์กำแพงเพชร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/3fe6770f-ebcd-4560-b8f1-d1c68b2e4e16.jpeg",
+      "sha_certified": false,
+      "province_th": "กำแพงเพชร",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานประวัติศาสตร์กำแพงเพชร",
+      "distance_km": 2.6
+    }
+  },
+  {
+    "id": "khun-dan-prakan-chon",
+    "name_th": "เขื่อนขุนด่านปราการชล",
+    "name_en": "Khun Dan Prakan Chon Dam",
+    "province": "Nakhon Nayok",
+    "region": "central",
+    "lat": 14.3169,
+    "lng": 101.2961,
+    "category": "nature",
+    "vibe_tags": [
+      "roller-coaster-dam",
+      "kayaking",
+      "weekend-day-trip",
+      "cycling"
+    ],
+    "crowd_level": 3,
+    "auth_score": 3,
+    "best_time": "Jul-Oct (full waterfalls nearby)",
+    "thai_description": "เขื่อนคอนกรีตยาวที่สุดในโลก ขับรถบนสันเขื่อนได้ มีตลาดน้ำชาวบ้านบริเวณปลาย",
+    "en_description": "World's longest roller-compacted-concrete dam, you can drive across it. Local floating-market on the downstream end at weekends.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/khun-dan-prakan-chon-dam"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "22022",
+      "slug": "เขื่อนขุนด่านปราการชล-(เขื่อนคลองท่าด่าน)",
+      "name_th": "เขื่อนขุนด่านปราการชล (เขื่อนคลองท่าด่าน)",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/e44390fb-a44e-419c-a890-5d4690d963cb.jpeg",
+      "sha_certified": false,
+      "province_th": "นครนายก",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เขื่อนขุนด่านปราการชล-(เขื่อนคลองท่าด่าน)",
+      "distance_km": 2.7
+    }
+  },
+  {
+    "id": "phra-pathom-chedi",
+    "name_th": "พระปฐมเจดีย์ นครปฐม",
+    "name_en": "Phra Pathom Chedi",
+    "province": "Nakhon Pathom",
+    "region": "central",
+    "lat": 13.8197,
+    "lng": 100.0608,
+    "category": "temple",
+    "vibe_tags": [
+      "tallest-stupa",
+      "dvaravati-relic",
+      "pilgrimage",
+      "twilight-visit"
+    ],
+    "crowd_level": 4,
+    "auth_score": 5,
+    "best_time": "Nov-Feb (cooler), early evening",
+    "thai_description": "เจดีย์สูงที่สุดของไทย กว่า 120 เมตร แนะนำมาช่วงพระอาทิตย์ตก คนน้อยกว่าและสีสวย",
+    "en_description": "Thailand's tallest stupa (120 m) and the country's oldest pilgrimage site. Come at golden hour — most local devotees are early-morning, leaving sunset quiet.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/phra-pathom-chedi"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "13489",
+      "slug": "พิพิธภัณฑสถานแห่งชาติ-พระปฐมเจดีย์",
+      "name_th": "พิพิธภัณฑสถานแห่งชาติ พระปฐมเจดีย์",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/35789e66-1b33-4e11-917e-9e2f67bea2d8.jpg",
+      "sha_certified": false,
+      "province_th": "นครปฐม",
+      "detail_url": "https://thai.tourismthailand.org/attraction/พิพิธภัณฑสถานแห่งชาติ-พระปฐมเจดีย์",
+      "distance_km": 0.1
+    }
+  },
+  {
+    "id": "bueng-boraphet-nakhon-sawan",
+    "name_th": "บึงบอระเพ็ด",
+    "name_en": "Bueng Boraphet Wetlands",
+    "province": "Nakhon Sawan",
+    "region": "central",
+    "lat": 15.7028,
+    "lng": 100.2014,
+    "category": "nature",
+    "vibe_tags": [
+      "bird-watching",
+      "lotus-fields",
+      "longtail-boat",
+      "wetland"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb (migratory birds)",
+    "thai_description": "ทะเลสาบจืดที่ใหญ่ที่สุดในไทย จุดดูนกอพยพหลายร้อยชนิด เช้าตรู่ดอกบัวเต็ม",
+    "en_description": "Thailand's largest freshwater lake — long-tail boats glide through lotus blooms past 100+ migratory bird species. Few foreign visitors.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/bueng-boraphet"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "30218",
+      "slug": "บึงบอระเพ็ด",
+      "name_th": "บึงบอระเพ็ด",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/5ee80910-f21a-49f1-ae39-c8c5c3321399.jpg",
+      "sha_certified": false,
+      "province_th": "นครสวรรค์",
+      "detail_url": "https://thai.tourismthailand.org/attraction/บึงบอระเพ็ด",
+      "distance_km": 2.5
+    }
+  },
+  {
+    "id": "ko-kret-nonthaburi",
+    "name_th": "เกาะเกร็ด",
+    "name_en": "Ko Kret Pottery Island",
+    "province": "Nonthaburi",
+    "region": "central",
+    "lat": 13.9119,
+    "lng": 100.4767,
+    "category": "village",
+    "vibe_tags": [
+      "mon-people",
+      "pottery-workshop",
+      "river-island",
+      "weekend-only"
+    ],
+    "crowd_level": 4,
+    "auth_score": 4,
+    "best_time": "Weekdays Nov-Feb (avoid Sat/Sun crush)",
+    "thai_description": "เกาะกลางแม่น้ำเจ้าพระยา ชุมชนมอญทำเครื่องปั้นดินเผามาหลายร้อยปี วันธรรมดาเงียบกว่า",
+    "en_description": "Mon-Thai pottery island in the Chao Phraya, 30 minutes from central Bangkok. Weekdays are 10× quieter — workshops still happily teach you.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/ko-kret"
+    ],
+    "near_traps": [
+      "damnoen-saduak-floating-market"
+    ],
+    "tat": {
+      "place_id": "21036",
+      "slug": "สวนผลไม้เกาะเกร็ด",
+      "name_th": "สวนผลไม้เกาะเกร็ด",
+      "thumbnail_url": null,
+      "sha_certified": false,
+      "province_th": "นนทบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/สวนผลไม้เกาะเกร็ด",
+      "distance_km": 0.1
+    }
+  },
+  {
+    "id": "wat-chedi-hoy-pathum",
+    "name_th": "วัดเจดีย์หอย ปทุมธานี",
+    "name_en": "Wat Chedi Hoy",
+    "province": "Pathum Thani",
+    "region": "central",
+    "lat": 14.07,
+    "lng": 100.6361,
+    "category": "temple",
+    "vibe_tags": [
+      "oyster-shell-stupa",
+      "fossil",
+      "unusual",
+      "day-trip-bangkok"
+    ],
+    "crowd_level": 2,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "เจดีย์ที่สร้างจากเปลือกหอยฟอสซิลอายุล้านปี รูปลักษณ์เหมือนปะการัง",
+    "en_description": "Stupa built from million-year-old oyster fossils — looks like coral, locals call it the \"shell pagoda\". Easy day trip from Bangkok.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-chedi-hoy"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "4016",
+      "slug": "วัดเจดีย์หอย",
+      "name_th": "วัดเจดีย์หอย",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/dc0e6553-707d-41b2-9e3e-cf3ea1544806.jpg",
+      "sha_certified": false,
+      "province_th": "ปทุมธานี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดเจดีย์หอย",
+      "distance_km": 27.8
+    }
+  },
+  {
+    "id": "phu-thap-boek-phetchabun",
+    "name_th": "ภูทับเบิก เพชรบูรณ์",
+    "name_en": "Phu Thap Boek",
+    "province": "Phetchabun",
+    "region": "central",
+    "lat": 16.9833,
+    "lng": 101.0667,
+    "category": "nature",
+    "vibe_tags": [
+      "sea-of-clouds",
+      "hmong-village",
+      "cabbage-fields",
+      "high-altitude"
+    ],
+    "crowd_level": 4,
+    "auth_score": 4,
+    "best_time": "Nov-Jan (clearest skies)",
+    "thai_description": "ยอดเขาสูงที่สุดของเพชรบูรณ์ ชมทะเลหมอกเช้าตรู่และไร่กะหล่ำของชาวม้ง",
+    "en_description": "Phetchabun's highest peak — pre-dawn cloud sea over Hmong cabbage terraces. Crowded on holidays; weekday sunrise is private.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/phu-thap-boek"
+    ],
+    "near_traps": [
+      "khao-kho-busy-resorts"
+    ],
+    "tat": {
+      "place_id": "12640",
+      "slug": "ภูทับเบิก",
+      "name_th": "ภูทับเบิก",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/193819c1-4a28-40e6-9485-20fb2507a7b6.jpg",
+      "sha_certified": false,
+      "province_th": "เพชรบูรณ์",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ภูทับเบิก",
+      "distance_km": 9.5
+    }
+  },
+  {
+    "id": "bueng-si-fai-phichit",
+    "name_th": "บึงสีไฟ พิจิตร",
+    "name_en": "Bueng Si Fai Lake",
+    "province": "Phichit",
+    "region": "central",
+    "lat": 16.4444,
+    "lng": 100.3361,
+    "category": "nature",
+    "vibe_tags": [
+      "lakeside",
+      "crocodile-park",
+      "cycling",
+      "sunset"
+    ],
+    "crowd_level": 2,
+    "auth_score": 3,
+    "best_time": "Nov-Feb",
+    "thai_description": "ทะเลสาบใหญ่ที่สุดของพิจิตร มีสวนปั่นจักรยานรอบบึง พระอาทิตย์ตกสวย",
+    "en_description": "Phichit's huge wetland lake with a 12 km cycle ring around it. Sunsets reflect off the lotus pads — almost no foreigners visit.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/bueng-si-fai"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "30175",
+      "slug": "บึงสีไฟ",
+      "name_th": "บึงสีไฟ",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/94ce8ac9-5854-4c56-8289-e6fea27a0f61.jpg",
+      "sha_certified": false,
+      "province_th": "พิจิตร",
+      "detail_url": "https://thai.tourismthailand.org/attraction/บึงสีไฟ",
+      "distance_km": 2.1
+    }
+  },
+  {
+    "id": "wat-phra-si-rattana-phitsanulok",
+    "name_th": "วัดพระศรีรัตนมหาธาตุ",
+    "name_en": "Wat Phra Si Rattana Mahathat",
+    "province": "Phitsanulok",
+    "region": "central",
+    "lat": 16.8311,
+    "lng": 100.2589,
+    "category": "temple",
+    "vibe_tags": [
+      "phra-buddha-chinnarat",
+      "most-beautiful-buddha",
+      "ayutthaya-era",
+      "pilgrimage"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Nov-Feb, early morning",
+    "thai_description": "วัดที่ประดิษฐานพระพุทธชินราช พระพุทธรูปที่งดงามที่สุดในประเทศ",
+    "en_description": "Houses Phra Buddha Chinnarat — widely considered the most beautiful Buddha image in Thailand. Pre-9am visit avoids the tour-bus wave.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-phra-si-rattana-mahathat"
+    ],
+    "near_traps": []
+  },
+  {
+    "id": "don-hoy-lot-samut-sakhon",
+    "name_th": "ดอนหอยหลอด",
+    "name_en": "Don Hoy Lot Tidal Flats",
+    "province": "Samut Sakhon",
+    "region": "central",
+    "lat": 13.4297,
+    "lng": 100.0294,
+    "category": "beach",
+    "vibe_tags": [
+      "razor-clams",
+      "low-tide-walk",
+      "fresh-seafood",
+      "no-foreigners"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Mar-May (lowest tides)",
+    "thai_description": "ดอนหอยหลอดน้ำลด เดินเก็บหอยหลอดได้ ตลาดอาหารทะเลสด ๆ ติดทะเล",
+    "en_description": "Tidal flat where you can walk for kilometres at low tide and watch families harvest razor clams. Seafood market right on the beach.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/don-hoy-lot"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "27374",
+      "slug": "ดอนหอยหลอด",
+      "name_th": "ดอนหอยหลอด",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/c74cd0b2-4fc7-4d40-8576-4966976bba5d.jpeg",
+      "sha_certified": false,
+      "province_th": "สมุทรสงคราม",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ดอนหอยหลอด",
+      "distance_km": 7.5
+    }
+  },
+  {
+    "id": "phra-phutthabat-saraburi",
+    "name_th": "วัดพระพุทธบาทสระบุรี",
+    "name_en": "Wat Phra Phutthabat",
+    "province": "Saraburi",
+    "region": "central",
+    "lat": 14.7244,
+    "lng": 100.7836,
+    "category": "temple",
+    "vibe_tags": [
+      "buddha-footprint",
+      "ayutthaya-era",
+      "pilgrimage",
+      "festival-season"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Feb (Phra Phutthabat fair)",
+    "thai_description": "พระพุทธบาทศักดิ์สิทธิ์อายุกว่า 400 ปี เป็นจุดแสวงบุญสำคัญที่สุดของภาคกลาง",
+    "en_description": "400-year-old Buddha-footprint shrine, the central Thai pilgrimage site that gave Saraburi its name. Best off festival days for quiet.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-phra-phutthabat"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "2256",
+      "slug": "วัดพระพุทธบาทราชวรมหาวิหาร",
+      "name_th": "วัดพระพุทธบาทราชวรมหาวิหาร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/9b426771-0738-4839-81bb-6f521c46fd6e.jpeg",
+      "sha_certified": false,
+      "province_th": "สระบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดพระพุทธบาทราชวรมหาวิหาร",
+      "distance_km": 0.9
+    }
+  },
+  {
+    "id": "wat-phra-non-chaksi-sing-buri",
+    "name_th": "วัดพระนอนจักรสีห์",
+    "name_en": "Wat Phra Non Chaksi Reclining Buddha",
+    "province": "Sing Buri",
+    "region": "central",
+    "lat": 14.8889,
+    "lng": 100.3792,
+    "category": "temple",
+    "vibe_tags": [
+      "46m-reclining-buddha",
+      "u-thong-style",
+      "pilgrimage",
+      "river-temple"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "พระนอนสมัยอู่ทอง ยาว 46 เมตร อยู่ริมแม่น้ำเจ้าพระยา ผู้คนมาทำบุญตั้งแต่อยุธยา",
+    "en_description": "U-thong-period 46m reclining Buddha by the Chao Phraya. The bricks are still 600 years old — cool morning light through the open hall is the moment.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-phra-non-chaksi"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "2268",
+      "slug": "วัดพระนอนจักรสีห์วรวิหาร",
+      "name_th": "วัดพระนอนจักรสีห์วรวิหาร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/6a5c5c8c-2f99-49c7-990f-919b3991fc09.jpeg",
+      "sha_certified": false,
+      "province_th": "สิงห์บุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดพระนอนจักรสีห์วรวิหาร",
+      "distance_km": 4.4
+    }
+  },
+  {
+    "id": "don-chedi-suphanburi",
+    "name_th": "ดอนเจดีย์ สุพรรณบุรี",
+    "name_en": "Don Chedi Memorial",
+    "province": "Suphan Buri",
+    "region": "central",
+    "lat": 14.6306,
+    "lng": 100.0044,
+    "category": "culture",
+    "vibe_tags": [
+      "naresuan-victory",
+      "elephant-duel",
+      "ayutthaya-era",
+      "rural-monument"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Jan (King Naresuan day)",
+    "thai_description": "อนุสรณ์การยุทธหัตถีของสมเด็จพระนเรศวร อายุ 400 ปี งานวันที่ 18 มกราคม",
+    "en_description": "Memorial chedi marking King Naresuan's 1593 elephant duel — site is genuinely empty most days, full only on the January 18 anniversary.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/don-chedi-monument"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "27376",
+      "slug": "พระบรมราชานุสรณ์ดอนเจดีย์",
+      "name_th": "พระบรมราชานุสรณ์ดอนเจดีย์",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/4e935555-6292-499e-a84f-45ac89f15d61.jpeg",
+      "sha_certified": false,
+      "province_th": "สุพรรณบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/พระบรมราชานุสรณ์ดอนเจดีย์",
+      "distance_km": 1.8
+    }
+  },
+  {
+    "id": "wat-tha-sung-uthai",
+    "name_th": "วัดท่าซุง",
+    "name_en": "Wat Tha Sung Mirror Temple",
+    "province": "Uthai Thani",
+    "region": "central",
+    "lat": 15.4067,
+    "lng": 100.1372,
+    "category": "temple",
+    "vibe_tags": [
+      "all-mirror-vihara",
+      "instagrammable-but-deep",
+      "luangpor-ruesi",
+      "pilgrimage"
+    ],
+    "crowd_level": 3,
+    "auth_score": 4,
+    "best_time": "Nov-Feb",
+    "thai_description": "วิหารแก้วประดับกระจกทุกตารางนิ้ว สร้างโดยหลวงพ่อฤๅษีลิงดำ",
+    "en_description": "Mirror-glass-clad vihara built by the famed Luangpor Ruesi-Lingdam. Gimmicky from outside, profoundly quiet inside before 10am.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-tha-sung"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "4036",
+      "slug": "วัดจันทาราม-(วัดท่าซุง)",
+      "name_th": "วัดจันทาราม (วัดท่าซุง)",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/303e39d9-1297-4c9e-ab72-6c5a7158e647.jpeg",
+      "sha_certified": false,
+      "province_th": "อุทัยธานี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดจันทาราม-(วัดท่าซุง)",
+      "distance_km": 11.2
+    }
+  },
+  {
+    "id": "wat-sothon-chachoengsao",
+    "name_th": "วัดโสธรวรารามวรวิหาร",
+    "name_en": "Wat Sothon Wararam Worawihan",
+    "province": "Chachoengsao",
+    "region": "east",
+    "lat": 13.6886,
+    "lng": 101.0703,
+    "category": "temple",
+    "vibe_tags": [
+      "luang-pho-sothon",
+      "river-temple",
+      "national-pilgrimage",
+      "alms"
+    ],
+    "crowd_level": 4,
+    "auth_score": 5,
+    "best_time": "Nov-Feb, weekdays",
+    "thai_description": "หลวงพ่อโสธร พระคู่บ้านคู่เมืองฉะเชิงเทรา คนมาขอพรเรื่องการงานและสุขภาพ",
+    "en_description": "Home of the Luang Pho Sothon image — a national pilgrimage stop. Weekday mornings are deeply atmospheric; weekends are heaving.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-sothon"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "1470",
+      "slug": "วัดโสธรวรารามวรวิหาร",
+      "name_th": "วัดโสธรวรารามวรวิหาร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/b37d20b3-70bb-436e-a6f5-8b4b37c92473.jpeg",
+      "sha_certified": false,
+      "province_th": "ฉะเชิงเทรา",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดโสธรวรารามวรวิหาร",
+      "distance_km": 1.7
+    }
+  },
+  {
+    "id": "khao-yai-prachinburi-side",
+    "name_th": "เขาใหญ่ ฝั่งปราจีนบุรี",
+    "name_en": "Khao Yai (Prachinburi side)",
+    "province": "Prachinburi",
+    "region": "east",
+    "lat": 14.2,
+    "lng": 101.65,
+    "category": "nature",
+    "vibe_tags": [
+      "thai-largest-park",
+      "elephant-trail",
+      "haew-narok-waterfall",
+      "less-trafficked-side"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Aug-Oct (lush, waterfalls full)",
+    "thai_description": "เขาใหญ่ฝั่งปราจีนบุรี เข้าทาง Haew Narok เห็นช้างป่าได้บ่อยกว่าฝั่งโคราช",
+    "en_description": "The Prachinburi gate of Khao Yai — Haew Narok waterfall and reliable wild elephant sightings. Far less crowded than the Pak Chong side.",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ],
+    "near_traps": [
+      "khao-yai-pak-chong-tour-buses"
+    ]
+  },
+  {
+    "id": "khao-chamao-rayong",
+    "name_th": "อุทยานแห่งชาติเขาชะเมา",
+    "name_en": "Khao Chamao National Park",
+    "province": "Rayong",
+    "region": "east",
+    "lat": 12.9667,
+    "lng": 101.65,
+    "category": "nature",
+    "vibe_tags": [
+      "fish-feeding-stream",
+      "rainforest",
+      "off-the-bus",
+      "swimming-pool"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Apr",
+    "thai_description": "อุทยานป่าฝน มีแอ่งน้ำใสและฝูงปลาพลวง ห่างจากชายหาด 1 ชั่วโมง",
+    "en_description": "Rainforest park 1 h inland from Rayong's beach hotels — clear pools full of pla phluang carp that you can wade with. Few foreigners turn up.",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ],
+    "near_traps": [
+      "pattaya-beach-jet-ski-scams"
+    ],
+    "tat": {
+      "place_id": "24096",
+      "slug": "อุทยานแห่งชาติเขาชะเมา-เขาวง",
+      "name_th": "อุทยานแห่งชาติเขาชะเมา-เขาวง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/792d3d59-7319-415d-89e3-322453446ab8.jpeg",
+      "sha_certified": false,
+      "province_th": "ระยอง",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติเขาชะเมา-เขาวง",
+      "distance_km": 10.0
+    }
+  },
+  {
+    "id": "pang-sida-sa-kaeo",
+    "name_th": "อุทยานแห่งชาติปางสีดา",
+    "name_en": "Pang Sida National Park",
+    "province": "Sa Kaeo",
+    "region": "east",
+    "lat": 14.0667,
+    "lng": 102.2167,
+    "category": "nature",
+    "vibe_tags": [
+      "butterfly-stream",
+      "thai-rare-elephant",
+      "waterfall",
+      "border-of-cambodia"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Jun-Aug (butterflies)",
+    "thai_description": "ผีเสื้อหายากกว่า 400 ชนิดบริเวณลำธารช่วงฝน อุทยานชายแดนกัมพูชา",
+    "en_description": "Butterfly hotspot — 400+ species swarm a small stream June-August. Borders Cambodia, almost no tourist traffic.",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "14753",
+      "slug": "อุทยานแห่งชาติปางสีดา",
+      "name_th": "อุทยานแห่งชาติปางสีดา",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/cc29eb1c-966a-47ea-af79-7d8a055de905.jpg",
+      "sha_certified": true,
+      "province_th": "สระแก้ว",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติปางสีดา",
+      "distance_km": 9.3
+    }
+  },
+  {
+    "id": "mu-ko-chumphon",
+    "name_th": "หมู่เกาะชุมพร",
+    "name_en": "Mu Ko Chumphon Marine Park",
+    "province": "Chumphon",
+    "region": "south",
+    "lat": 10.4167,
+    "lng": 99.3,
+    "category": "beach",
+    "vibe_tags": [
+      "pre-koh-tao-stop",
+      "snorkel-day-trip",
+      "reef",
+      "no-jet-ski"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Feb-Apr",
+    "thai_description": "หมู่เกาะปะการังก่อนถึงเกาะเต่า เงียบสงบ ไม่มีเจ็ตสกี เหมาะเที่ยวแบบเรียบง่าย",
+    "en_description": "The string of coral islands you pass on the ferry to Koh Tao — locals stop here, foreigners almost never do. No jet skis, no party.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/mu-ko-chumphon"
+    ],
+    "near_traps": [
+      "koh-tao-party-pier"
+    ],
+    "tat": {
+      "place_id": "17228",
+      "slug": "อุทยานแห่งชาติหมู่เกาะชุมพร",
+      "name_th": "อุทยานแห่งชาติหมู่เกาะชุมพร",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/1cd229b0-d048-4623-a828-684c1ef14cc3.JPG",
+      "sha_certified": true,
+      "province_th": "ชุมพร",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติหมู่เกาะชุมพร",
+      "distance_km": 10.0
+    }
+  },
+  {
+    "id": "budo-narathiwat",
+    "name_th": "บูโด-สุไหงปาดี",
+    "name_en": "Budo-Su-ngai Padi National Park",
+    "province": "Narathiwat",
+    "region": "south",
+    "lat": 6.4667,
+    "lng": 101.7667,
+    "category": "nature",
+    "vibe_tags": [
+      "rajini-palm",
+      "rainforest",
+      "endemic-flora",
+      "deep-south"
+    ],
+    "crowd_level": 1,
+    "auth_score": 5,
+    "best_time": "Feb-May",
+    "thai_description": "อุทยานป่าฝนชายแดนใต้ มีต้นใบสีทองและปาล์มราชินีเป็นพืชเฉพาะถิ่น",
+    "en_description": "Far-south rainforest with the endemic Rajini palm and golden-leaf bai si thong tree. Visit with a guide arranged through TAT Narathiwat.",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "30231",
+      "slug": "อุทยานแห่งชาติบูโด-สุไหงปาดี",
+      "name_th": "อุทยานแห่งชาติบูโด-สุไหงปาดี",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/b5f68316-5357-4e72-bded-a5fbbf79f9d1.jpeg",
+      "sha_certified": false,
+      "province_th": "นราธิวาส",
+      "detail_url": "https://thai.tourismthailand.org/attraction/อุทยานแห่งชาติบูโด-สุไหงปาดี",
+      "distance_km": 14.9
+    }
+  },
+  {
+    "id": "krue-se-pattani",
+    "name_th": "มัสยิดกรือเซะ",
+    "name_en": "Krue Se Mosque",
+    "province": "Pattani",
+    "region": "south",
+    "lat": 6.8772,
+    "lng": 101.3119,
+    "category": "culture",
+    "vibe_tags": [
+      "malay-heritage",
+      "400-year-mosque",
+      "deep-south",
+      "history"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb",
+    "thai_description": "มัสยิดอายุ 400 ปี ที่ยังสร้างไม่เสร็จ สถาปัตยกรรมมลายู-ไทย",
+    "en_description": "Unfinished 400-year-old Malay-Thai mosque built from porous laterite — a poignant heritage site at the heart of Pattani's old town.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/krue-se-mosque"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "20175",
+      "slug": "มัสยิดกรือเซะ",
+      "name_th": "มัสยิดกรือเซะ",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/f6b3b823-89a3-4ee3-9012-d8321aa68a87.jpeg",
+      "sha_certified": false,
+      "province_th": "ปัตตานี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/มัสยิดกรือเซะ",
+      "distance_km": 1.1
+    }
+  },
+  {
+    "id": "thale-noi-phatthalung",
+    "name_th": "ทะเลน้อย พัทลุง",
+    "name_en": "Thale Noi Wetlands",
+    "province": "Phatthalung",
+    "region": "south",
+    "lat": 7.7833,
+    "lng": 100.1667,
+    "category": "nature",
+    "vibe_tags": [
+      "water-buffalo-swimming",
+      "lotus-fields",
+      "sunrise-boat",
+      "ramsar-site"
+    ],
+    "crowd_level": 3,
+    "auth_score": 5,
+    "best_time": "Mar-Apr (lotuses + buffalo)",
+    "thai_description": "เขตห้ามล่าน้ำจืด ควายว่ายน้ำตอนเช้า ดอกบัวบานเต็มทะเลสาบ",
+    "en_description": "Ramsar wetland where wild water buffalo swim through pink-lotus carpets at sunrise. Long-tail boat rides for less than 200 baht.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/thale-noi-non-hunting-area"
+    ],
+    "near_traps": [],
+    "tat": {
+      "place_id": "7055",
+      "slug": "เขตห้ามล่าสัตว์ป่าทะเลน้อย",
+      "name_th": "เขตห้ามล่าสัตว์ป่าทะเลน้อย",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/8bfdad5d-4532-4ad2-9eb1-89ebd9859b52.jpg",
+      "sha_certified": false,
+      "province_th": "พัทลุง",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เขตห้ามล่าสัตว์ป่าทะเลน้อย",
+      "distance_km": 4.9
+    }
+  },
+  {
+    "id": "khao-phra-thaeo-phuket",
+    "name_th": "เขาพระแทว ภูเก็ต",
+    "name_en": "Khao Phra Thaeo Forest Reserve",
+    "province": "Phuket",
+    "region": "south",
+    "lat": 8.0333,
+    "lng": 98.3833,
+    "category": "nature",
+    "vibe_tags": [
+      "last-rainforest-phuket",
+      "gibbon-rehab",
+      "bang-pae-waterfall",
+      "cool-counterpoint"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Apr",
+    "thai_description": "ผืนป่าฝนเดียวที่เหลือของภูเก็ต ชะนีถูกฟื้นฟูคืนสู่ธรรมชาติ น้ำตกบางแป",
+    "en_description": "The last patch of original rainforest on Phuket. Hike to Bang Pae waterfall past the gibbon rehab project — the antidote to Patong.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/khao-phra-thaeo-non-hunting-area"
+    ],
+    "near_traps": [
+      "patong-walking-street",
+      "phromthep-cape-sunset-mob"
+    ],
+    "tat": {
+      "place_id": "23577",
+      "slug": "ศูนย์ศึกษาธรรมชาติและสัตว์ป่าเขาพระแทว",
+      "name_th": "ศูนย์ศึกษาธรรมชาติและสัตว์ป่าเขาพระแทว",
+      "thumbnail_url": null,
+      "sha_certified": false,
+      "province_th": "ภูเก็ต",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ศูนย์ศึกษาธรรมชาติและสัตว์ป่าเขาพระแทว",
+      "distance_km": 3.5
+    }
+  },
+  {
+    "id": "yala-old-town",
+    "name_th": "เมืองยะลาเก่า",
+    "name_en": "Yala Old Town Grid",
+    "province": "Yala",
+    "region": "south",
+    "lat": 6.5413,
+    "lng": 101.2803,
+    "category": "culture",
+    "vibe_tags": [
+      "modernist-grid-city",
+      "street-art",
+      "old-shophouses",
+      "deep-south-coffee"
+    ],
+    "crowd_level": 2,
+    "auth_score": 5,
+    "best_time": "Nov-Feb, weekday afternoons",
+    "thai_description": "เมืองวางผังถนนเป็นใยแมงมุม สถาปัตยกรรมจีน-มลายู-ไทย ชาวเน็ตเรียก 'เมืองสวยที่สุดของไทย'",
+    "en_description": "Spider-web urban plan from the 1930s, lined with Sino-Malay shophouses, mural alleys, and the Khao Mor Hill viewpoint. Far calmer than Hat Yai.",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Yala/410"
+    ],
+    "near_traps": []
   }
 ]

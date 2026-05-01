@@ -54,11 +54,90 @@ export type AgentName =
   | "orchestrator"
   | "listener"
   | "web-pulse"
+  | "wellness-pulse"
   | "crowd-analyst"
   | "curator"
   | "planner"
   | "weather-watcher"
   | "verifier";
+
+export type WellnessType =
+  | "spa"
+  | "wellness-resort"
+  | "thai-massage-school"
+  | "herbal-sauna"
+  | "onsen"
+  | "yoga-retreat"
+  | "meditation-retreat"
+  | "muay-thai-camp"
+  | "traditional-medicine";
+
+export type WellnessPriceTier = "$" | "$$" | "$$$" | "$$$$";
+
+export type WellnessAwardSource =
+  | "forbes-travel-guide"
+  | "conde-nast"
+  | "travel-leisure"
+  | "world-spa-awards"
+  | "michelin-keys"
+  | "tatler"
+  | "tat-sha";
+
+export interface WellnessAward {
+  source: WellnessAwardSource;
+  year: number;
+  rank?: string;
+}
+
+export type ShaTier = "SHA" | "SHA Plus" | "SHA Extra Plus";
+
+export interface WellnessVenue {
+  id: string;
+  name_th: string;
+  name_en: string;
+  province: string;
+  region: "north" | "northeast" | "central" | "east" | "south" | "west";
+  lat: number;
+  lng: number;
+  wellness_type: WellnessType;
+  signature_treatments: string[];
+  price_tier: WellnessPriceTier;
+  thai_authenticity: 1 | 2 | 3 | 4 | 5;
+  crowd_level: 1 | 2 | 3 | 4 | 5;
+  sha_certified: boolean;
+  sha_tier?: ShaTier;
+  awards: WellnessAward[];
+  languages: string[];
+  local_character: string;
+  en_description: string;
+  th_description: string;
+  booking_url?: string;
+  source_urls: string[];
+  google_rating?: number;
+  google_review_count?: number;
+  google_maps_uri?: string;
+  google_photo_url?: string;
+  business_status?: string;
+  match_distance_km?: number;
+  why?: string;
+  tat?: TatEnrichment;
+}
+
+export interface WellnessPulsePick {
+  id: string;
+  why: string;
+  luxury_signals: string[];
+}
+
+export interface WellnessPulseDiagnostics {
+  candidate_count: number;
+  picked_count: number;
+  validated_count: number;
+  search_status: "ok" | "missing-key" | "skipped" | "timeout" | "error";
+  search_message?: string;
+  search_query?: string;
+  searched_at?: string;
+}
 
 export type WeatherCondition =
   | "sunny"
@@ -258,6 +337,8 @@ export interface FinalItinerary {
   holidays?: ThaiHolidayHit[];
   crowd_radar?: MapsCrowdReport;
   discovered_gems?: DiscoveredGem[];
+  wellness_finds?: WellnessVenue[];
+  wellness_diagnostics?: WellnessPulseDiagnostics;
 }
 
 export interface UserQuery {

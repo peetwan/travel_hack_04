@@ -1,7 +1,13 @@
 import { generateObject } from "ai";
 import { MODELS } from "../ai";
-import type { HiddenGem, MapsCrowdSignal, TouristTrap } from "../types";
+import type {
+  HiddenGem,
+  MapsCrowdSignal,
+  TouristTrap,
+  WellnessVenue,
+} from "../types";
 import {
+  luxuryWellnessSearch,
   realtimeThaiSearch,
   type WebHit,
   type WebSearchResult,
@@ -15,6 +21,7 @@ import {
   VERIFIER_PROMPT,
   WEATHER_WATCHER_PROMPT,
   WEB_PULSE_PROMPT,
+  WELLNESS_PULSE_PROMPT,
 } from "./prompts";
 import {
   crowdAnalystOutputSchema,
@@ -24,6 +31,7 @@ import {
   verifierOutputSchema,
   weatherWatcherOutputSchema,
   webPulseOutputSchema,
+  wellnessPulseOutputSchema,
   type CrowdAnalystOutput,
   type CuratorOutput,
   type ListenerOutput,
@@ -31,6 +39,7 @@ import {
   type VerifierOutput,
   type WeatherWatcherOutput,
   type WebPulseOutput,
+  type WellnessPulseOutput,
 } from "./schemas";
 
 // Gemini 3 thinking levels — keep low so demo latency stays under control.
@@ -465,6 +474,165 @@ Days with aligned forecasts:
 ${JSON.stringify(view)}`,
   });
   return object;
+}
+
+const slimWellness = (
+  v: WellnessVenue,
+  nearestKm?: number,
+  nearestProvince?: string
+) => ({
+  id: v.id,
+  name_en: v.name_en,
+  province: v.province,
+  region: v.region,
+  wellness_type: v.wellness_type,
+  thai_authenticity: v.thai_authenticity,
+  sha_tier: v.sha_tier,
+  awards: v.awards.map((a) => `${a.source}${a.rank ? ` (${a.rank})` : ""}`),
+  signature_treatments: v.signature_treatments.slice(0, 4),
+  local_character: v.local_character,
+  price_tier: v.price_tier,
+  km_from_trip:
+    typeof nearestKm === "number" ? Number(nearestKm.toFixed(0)) : undefined,
+  nearest_trip_province: nearestProvince,
+});
+
+function haversineKm(
+  a: { lat: number; lng: number },
+  b: { lat: number; lng: number }
+): number {
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const R = 6371;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+export async function runWellnessPulse(args: {
+  userPrompt: string;
+  dataset: WellnessVenue[];
+  tripProvinces: string[];
+  candidateGems: Array<{ province: string; lat: number; lng: number }>;
+  proximityRadiusKm?: number;
+}): Promise<{
+  output: WellnessPulseOutput;
+  liveBoost: {
+    hits: WebHit[];
+    status: "ok" | "missing-key" | "timeout" | "error";
+    message?: string;
+    searched_at: string;
+    query: string;
+  } | null;
+}> {
+  // Geographic pre-filter — keep wellness venues within `radius` km of ANY
+  // listener candidate gem. This stops the model from choosing a venue in a
+  // neighbouring province that's actually 130 km from the trip's bases (e.g.
+  // a Mae Hong Son monastery for a Chiang Mai trip). Falls back to the full
+  // dataset only if the radius removes everything (safety net).
+  const radiusKm = args.proximityRadiusKm ?? 80;
+  const annotated = args.dataset
+    .map((v) => {
+      let nearestKm = Infinity;
+      let nearestProvince = "";
+      for (const g of args.candidateGems) {
+        const km = haversineKm(
+          { lat: v.lat, lng: v.lng },
+          { lat: g.lat, lng: g.lng }
+        );
+        if (km < nearestKm) {
+          nearestKm = km;
+          nearestProvince = g.province;
+        }
+      }
+      return { v, nearestKm, nearestProvince };
+    })
+    .sort((a, b) => a.nearestKm - b.nearestKm);
+
+  const withinRadius = annotated.filter((a) => a.nearestKm <= radiusKm);
+  const usable = withinRadius.length > 0 ? withinRadius : annotated.slice(0, 6);
+  const slim = usable.map(({ v, nearestKm, nearestProvince }) =>
+    slimWellness(v, nearestKm, nearestProvince)
+  );
+
+  // If geographic filter wiped everything, the dataset is just too sparse for
+  // this trip (e.g. Isaan with no curated wellness venues yet). Skip cleanly.
+  if (slim.length === 0) {
+    return {
+      output: {
+        narration:
+          "I checked our curated Thai wellness dataset, but none of the venues are within easy reach of your trip — I am leaving the wellness panel empty rather than suggesting venues you'd have to fly to.",
+        picks: [],
+        reasoning:
+          "Geographic pre-filter dropped every curated venue beyond 80km from the listener's candidate gems.",
+      },
+      liveBoost: null,
+    };
+  }
+
+  // Run a non-blocking luxury web search in parallel with the model call.
+  // The model doesn't see these results — they exist purely to enrich the UI
+  // and prove our cross-validation across the four data layers.
+  const liveQuery = [
+    "luxury Thai wellness",
+    args.tripProvinces.slice(0, 3).join(" "),
+    "spa retreat onsen",
+    bangkokYear(),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .slice(0, 240);
+
+  const liveBoostPromise = luxuryWellnessSearch({
+    query: liveQuery,
+    maxResults: 5,
+  }).then((res) => ({ ...res, query: liveQuery }));
+
+  const modelPromise = generateObject({
+    model: MODELS.curator,
+    schema: wellnessPulseOutputSchema,
+    system: WELLNESS_PULSE_PROMPT,
+    providerOptions: fastThinking,
+    prompt: `User prompt:
+"""
+${args.userPrompt}
+"""
+
+Trip provinces (from the Listener's candidate gems):
+${JSON.stringify(args.tripProvinces)}
+
+Curated Thai wellness venues (${slim.length} entries — pick 0-5 by id):
+${JSON.stringify(slim)}
+
+Pick the 0-5 venues whose Thai character + signature treatments + awards best match the user's prompt and trip provinces. Empty array is a valid answer if no venue fits.`,
+  });
+
+  let output: WellnessPulseOutput;
+  try {
+    const { object } = await modelPromise;
+    const validIds = new Set(args.dataset.map((v) => v.id));
+    output = {
+      ...object,
+      picks: object.picks.filter((p) => validIds.has(p.id)).slice(0, 5),
+    };
+  } catch (err) {
+    output = {
+      narration:
+        "I could not score the wellness picks safely this run, so I am leaving the wellness panel empty rather than guessing.",
+      picks: [],
+      reasoning:
+        err instanceof Error
+          ? `Wellness Pulse model failed: ${err.message}`
+          : "Wellness Pulse model failed.",
+    };
+  }
+
+  const liveBoost = await liveBoostPromise;
+  return { output, liveBoost };
 }
 
 export async function runVerifier(args: {

@@ -124,6 +124,35 @@ export const weatherWatcherOutputSchema = z.object({
 });
 export type WeatherWatcherOutput = z.infer<typeof weatherWatcherOutputSchema>;
 
+export const wellnessPulseOutputSchema = z.object({
+  narration: z
+    .string()
+    .describe("First-person sentence summarising the wellness picks (English)."),
+  picks: z
+    .array(
+      z.object({
+        id: z
+          .string()
+          .describe("Wellness venue id from the curated dataset (must match)."),
+        why: z
+          .string()
+          .describe(
+            "One short sentence on why this fits the user's prompt — refer to a specific signature treatment, Thai-character detail, or award."
+          ),
+        luxury_signals: z
+          .array(z.string())
+          .max(3)
+          .describe(
+            "Up to 3 short labels: SHA Plus, Forbes 5-star, Lanna heritage, Royal Thai medicine, etc."
+          ),
+      })
+    )
+    .min(0)
+    .max(5),
+  reasoning: z.string(),
+});
+export type WellnessPulseOutput = z.infer<typeof wellnessPulseOutputSchema>;
+
 export const webPulseOutputSchema = z.object({
   narration: z
     .string()

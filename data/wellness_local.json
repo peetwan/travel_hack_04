@@ -1,0 +1,3188 @@
+[
+  {
+    "id": "rakxa-wellness-medical-retreat",
+    "name_th": "รักษ์ษา เวลเนส",
+    "name_en": "RAKxa Wellness & Medical Retreat",
+    "province": "Bangkok",
+    "region": "central",
+    "lat": 13.6859,
+    "lng": 100.5489,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Royal Thai herbal compress",
+      "Integrative medical assessment",
+      "Hyperbaric oxygen therapy",
+      "VitalLife functional medicine"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [
+      {
+        "source": "forbes-travel-guide",
+        "year": 2024,
+        "rank": "Five-Star Spa"
+      },
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Thailand's Best Wellness Retreat"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh",
+      "ja",
+      "ru"
+    ],
+    "local_character": "Modern integrative wellness on the green lung of Bangkok, blending Royal Thai medicine with Western functional medicine.",
+    "en_description": "Bangkok's only fully integrative wellness retreat — Thai herbal medicine, IV therapy, hyperbaric oxygen, and Bumrungrad-grade diagnostics on Bang Krachao's quiet riverside.",
+    "th_description": "เวลเนสรีทรีตที่ผสมแพทย์แผนไทยกับแพทย์ฟังก์ชันแบบตะวันตก ตั้งอยู่บางกะเจ้า ปอดของกรุงเทพ",
+    "booking_url": "https://www.rakxawellness.com/",
+    "source_urls": [
+      "https://www.forbestravelguide.com/hotels/bangkok-thailand/rakxa-wellness-medical-retreat",
+      "https://www.cntraveler.com/story/rakxa-bangkok-wellness-retreat",
+      "https://www.rakxawellness.com/"
+    ]
+  },
+  {
+    "id": "panpuri-wellness-bangkok",
+    "name_th": "ปัญญ์ปุริ เวลเนส",
+    "name_en": "Panpuri Wellness",
+    "province": "Bangkok",
+    "region": "central",
+    "lat": 13.7449,
+    "lng": 100.5419,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Thai Royal massage",
+      "Onsen-style hydrotherapy",
+      "Tok-sen wooden hammer therapy",
+      "Aromatic herbal steam"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "tatler",
+        "year": 2024,
+        "rank": "Asia's Best Spas"
+      },
+      {
+        "source": "world-spa-awards",
+        "year": 2022,
+        "rank": "Thailand's Best Day Spa"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "ja",
+      "zh"
+    ],
+    "local_character": "Thailand's home-grown wellness brand crowning Gaysorn Tower with a full onsen + tea ritual + Thai apothecary scent line.",
+    "en_description": "Thai-owned heritage wellness brand atop Gaysorn Tower — full onsen circuit, Lanna tok-sen therapy, and the in-house Panpuri scent apothecary one floor below.",
+    "th_description": "แบรนด์เวลเนสไทยแท้บนยอดเกษรทาวเวอร์ มีออนเซ็นเต็มรูปแบบและแพทย์แผนไทยร่วมสมัย",
+    "booking_url": "https://www.panpuriwellness.com/",
+    "source_urls": [
+      "https://www.tatlerasia.com/lifestyle/health-wellness/panpuri-wellness-bangkok-review",
+      "https://www.panpuriwellness.com/"
+    ]
+  },
+  {
+    "id": "wat-pho-traditional-massage-school",
+    "name_th": "โรงเรียนแพทย์แผนโบราณ วัดโพธิ์",
+    "name_en": "Wat Pho Traditional Medical and Massage School",
+    "province": "Bangkok",
+    "region": "central",
+    "lat": 13.7464,
+    "lng": 100.4929,
+    "wellness_type": "thai-massage-school",
+    "signature_treatments": [
+      "Royal Thai (Nuad Rachasamnak) massage",
+      "Foot reflexology",
+      "Herbal compress treatment",
+      "Reusi Dat Ton self-stretching"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 4,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "tat-sha",
+        "year": 2024,
+        "rank": "UNESCO recognition for Nuad Thai (2019)"
+      },
+      {
+        "source": "travel-leisure",
+        "year": 2023,
+        "rank": "World's Best Wellness Experiences"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "ja",
+      "zh",
+      "ko"
+    ],
+    "local_character": "The reference point for Thai massage worldwide — temple grounds, marble inscriptions, and teachers training the lineage since 1955.",
+    "en_description": "The original school of Thai massage, on the temple grounds where the canon of Nuad Thai was carved into stone in 1832. Lessons or one-hour sessions, both equally rooted.",
+    "th_description": "ต้นตำรับนวดแผนไทยจากศิลาจารึกในวัดพระเชตุพน เปิดสอนนักเรียนทั่วโลก",
+    "booking_url": "https://watpomassage.com/",
+    "source_urls": [
+      "https://watpomassage.com/",
+      "https://en.unesco.org/news/nuad-thai-traditional-thai-massage-inscribed-unesco-list-intangible-cultural-heritage"
+    ]
+  },
+  {
+    "id": "divana-nurture-spa-bangkok",
+    "name_th": "ดิวานา เนิร์ทเจอร์ สปา",
+    "name_en": "Divana Nurture Spa",
+    "province": "Bangkok",
+    "region": "central",
+    "lat": 13.7426,
+    "lng": 100.5612,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Siamese Royal sense ritual",
+      "Jasmine rice scrub",
+      "Thai herbal hot stone",
+      "Mountain-tea body cocoon"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Thailand's Best Boutique Spa"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "ja",
+      "zh"
+    ],
+    "local_character": "Garden villa hidden behind Sukhumvit 11's nightlife — a quiet wooden-house spa using rice, jasmine, and lemongrass from local cooperatives.",
+    "en_description": "Thai-owned boutique chain best known for its garden-villa Sukhumvit 11 location — a wooden Thai house behind the noise, with rice scrubs and slow tea rituals.",
+    "th_description": "สปาบูทิคไทยที่มีบ้านสวนเรือนไทยซ่อนอยู่หลังตึกถนนสุขุมวิทซอย 11",
+    "booking_url": "https://www.divanaspa.com/",
+    "source_urls": [
+      "https://www.divanaspa.com/",
+      "https://www.tatlerasia.com/lifestyle/health-wellness/best-spas-bangkok"
+    ]
+  },
+  {
+    "id": "chiva-som-hua-hin",
+    "name_th": "ชีวาศรม หัวหิน",
+    "name_en": "Chiva-Som International Health Resort",
+    "province": "Prachuap Khiri Khan",
+    "region": "west",
+    "lat": 12.5557,
+    "lng": 99.9633,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Holistic health consultation",
+      "Watsu aquatic bodywork",
+      "Thai massage with prescribed herbs",
+      "Ayurvedic shirodhara"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [
+      {
+        "source": "conde-nast",
+        "year": 2023,
+        "rank": "Top Resort in Thailand — Readers' Choice"
+      },
+      {
+        "source": "forbes-travel-guide",
+        "year": 2024,
+        "rank": "Five-Star Spa"
+      },
+      {
+        "source": "world-spa-awards",
+        "year": 2024,
+        "rank": "World's Best Wellness Retreat"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "ja",
+      "zh",
+      "ru",
+      "de"
+    ],
+    "local_character": "The grandparent of Asian wellness retreats since 1995 — Thai royal-family ties, beachfront, and the original \"holistic check-in\" model copied across the region.",
+    "en_description": "Thailand's first destination wellness retreat, opened 1995 by a royal initiative — beachfront Hua Hin, holistic medical consults, and over 200 treatments tailored per guest.",
+    "th_description": "เวลเนสรีสอร์ตแห่งแรกของไทย เปิดปี 2538 ริมหาดหัวหิน",
+    "booking_url": "https://www.chivasom.com/",
+    "source_urls": [
+      "https://www.chivasom.com/",
+      "https://www.cntraveler.com/hotels/hua-hin/chiva-som-international-health-resort",
+      "https://www.forbestravelguide.com/hotels/hua-hin-thailand/chiva-som-international-health-resort"
+    ]
+  },
+  {
+    "id": "kamalaya-koh-samui",
+    "name_th": "กมลายา เกาะสมุย",
+    "name_en": "Kamalaya Wellness Sanctuary & Holistic Spa",
+    "province": "Surat Thani",
+    "region": "south",
+    "lat": 9.4546,
+    "lng": 100.0517,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Detox cleanse program",
+      "Traditional Chinese medicine consultation",
+      "Buddhist monk-cave meditation",
+      "Personal stress-burnout reset"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [
+      {
+        "source": "conde-nast",
+        "year": 2024,
+        "rank": "Top Wellness Retreat — Asia"
+      },
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Asia's Best Wellness Retreat"
+      },
+      {
+        "source": "travel-leisure",
+        "year": 2024,
+        "rank": "World's Best Resort Spa"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "ja",
+      "zh",
+      "ru",
+      "de",
+      "fr"
+    ],
+    "local_character": "Built around a Buddhist monk-cave the founder meditated in for years — Asian healing traditions on a Lamai cliffside, programs over rooms.",
+    "en_description": "Cliffside wellness sanctuary on Koh Samui's south coast, built around a Buddhist meditation cave. Stay-by-program (detox, sleep, burnout) rather than stay-by-room.",
+    "th_description": "เวลเนสริมหน้าผาเกาะสมุยที่สร้างรอบถ้ำพระธุดงค์ เน้นโปรแกรมล้างพิษและฟื้นฟู",
+    "booking_url": "https://www.kamalaya.com/",
+    "source_urls": [
+      "https://www.kamalaya.com/",
+      "https://www.cntraveler.com/hotels/koh-samui/kamalaya-wellness-sanctuary-and-holistic-spa",
+      "https://www.travelandleisure.com/worlds-best/resort-spas-asia"
+    ]
+  },
+  {
+    "id": "tamarind-springs-koh-samui",
+    "name_th": "ทามารินด์ สปริงส์ เกาะสมุย",
+    "name_en": "Tamarind Springs Forest Spa",
+    "province": "Surat Thani",
+    "region": "south",
+    "lat": 9.4691,
+    "lng": 100.0639,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Steam herbal cave",
+      "Cold plunge between granite boulders",
+      "Coconut-oil four-hand massage",
+      "Lemongrass body wrap"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "tatler",
+        "year": 2023,
+        "rank": "Best Jungle Spas in Asia"
+      }
+    ],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Open-air spa built between giant granite boulders in a Lamai jungle — the herbal steam cave and natural cold plunge are the signature experience.",
+    "en_description": "Locally owned forest spa on Koh Samui's east — herbal steam carved into a real granite cave, cold plunge between boulders, no roof but the canopy.",
+    "th_description": "สปากลางป่าเขาเกาะสมุยฝั่งลำใย ห้องอบสมุนไพรอยู่ในถ้ำหินจริง",
+    "booking_url": "https://www.tamarindsprings.com/",
+    "source_urls": [
+      "https://www.tamarindsprings.com/",
+      "https://www.tatlerasia.com/lifestyle/travel/jungle-spas-asia"
+    ]
+  },
+  {
+    "id": "fah-lanna-spa-chiang-mai",
+    "name_th": "ฟ้าล้านนา สปา",
+    "name_en": "Fah Lanna Spa",
+    "province": "Chiang Mai",
+    "region": "north",
+    "lat": 18.7906,
+    "lng": 98.9853,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Lanna herbal compress (luk pra-kob)",
+      "Tok-sen wooden hammer therapy",
+      "Northern Thai saksit ritual",
+      "Hill-tribe coffee scrub"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "travel-leisure",
+        "year": 2023,
+        "rank": "Best Spas in Chiang Mai"
+      },
+      {
+        "source": "tat-sha",
+        "year": 2024,
+        "rank": "SHA Plus"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh"
+    ],
+    "local_character": "Old-City teak compound using Lanna northern-Thai techniques — tok-sen, sak-yant blessing, and herbs grown by partner hill-tribe villages.",
+    "en_description": "Restored teak compound in Chiang Mai's Old City. Lanna-specific therapies — tok-sen, hot herbal compresses, and a saksit blessing welcome — distinguish it from generic city spas.",
+    "th_description": "สปาเรือนไม้สักในเมืองเก่าเชียงใหม่ ใช้ตำรับล้านนาแท้ มีตอกเส้นและประคบสมุนไพร",
+    "booking_url": "https://fahlanna.com/",
+    "source_urls": [
+      "https://fahlanna.com/",
+      "https://www.travelandleisure.com/worlds-best/spas-in-asia"
+    ],
+    "tat": {
+      "place_id": "27098",
+      "slug": "ฟ้าล้านนาสปา",
+      "name_th": "ฟ้าล้านนาสปา",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/5a70f9e9-326d-4394-b216-1eac8e691b5d.jpg",
+      "sha_certified": true,
+      "province_th": "เชียงใหม่",
+      "detail_url": "https://thai.tourismthailand.org/shop/ฟ้าล้านนาสปา",
+      "distance_km": 0.3
+    }
+  },
+  {
+    "id": "oasis-spa-lanna-chiang-mai",
+    "name_th": "โอเอซิส สปา ล้านนา",
+    "name_en": "Oasis Spa Lanna",
+    "province": "Chiang Mai",
+    "region": "north",
+    "lat": 18.7837,
+    "lng": 98.9764,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "King of Oasis 4-hand massage",
+      "Royal Thai spa package",
+      "Bamboo deep-tissue",
+      "Aroma-therapy steam"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Thailand's Best Spa Group"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh",
+      "ja"
+    ],
+    "local_character": "Thai-owned chain whose Lanna branch is its flagship — garden villas, signature 4-hand \"King of Oasis\" massage rooted in Royal Thai sequence.",
+    "en_description": "Thailand's largest Thai-owned spa group, with the Lanna flagship set in restored teak villas around a tropical garden five minutes from Tha Phae Gate.",
+    "th_description": "สาขาเรือเด่นของกลุ่มสปาไทยรายใหญ่ ตั้งอยู่ในเรือนสักหลังประตูท่าแพ",
+    "booking_url": "https://www.oasisspa.net/destination/chiang-mai/oasis-spa-lanna/",
+    "source_urls": [
+      "https://www.oasisspa.net/",
+      "https://www.worldspaawards.com/"
+    ]
+  },
+  {
+    "id": "cheeva-spa-chiang-mai",
+    "name_th": "ชีวา สปา เชียงใหม่",
+    "name_en": "Cheeva Spa Chiang Mai",
+    "province": "Chiang Mai",
+    "region": "north",
+    "lat": 18.7895,
+    "lng": 98.9947,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Lanna deep-tissue ritual",
+      "Coconut milk body polish",
+      "Meditation-tea welcome",
+      "Aromatherapy facial"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "tatler",
+        "year": 2024,
+        "rank": "Best Day Spas in Chiang Mai"
+      }
+    ],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Quiet boutique day spa just outside the moat — single therapist per guest, slow-paced rituals, no upsell scripts.",
+    "en_description": "Boutique Thai-owned day spa on Chiang Mai's quieter north side — six private suites, one therapist per guest, two-hour rituals are the standard not the upsell.",
+    "th_description": "เดย์สปาบูทิคไทยข้างคูเมืองด้านเหนือเชียงใหม่ ทรีตเมนต์แบบเงียบสงบ",
+    "booking_url": "https://cheevaspa.com/",
+    "source_urls": [
+      "https://cheevaspa.com/",
+      "https://www.tatlerasia.com/lifestyle/health-wellness/best-spas-chiang-mai"
+    ]
+  },
+  {
+    "id": "suan-mokkh-international-dharma-hermitage",
+    "name_th": "สวนโมกข์นานาชาติ",
+    "name_en": "Suan Mokkh International Dharma Hermitage",
+    "province": "Surat Thani",
+    "region": "south",
+    "lat": 9.1761,
+    "lng": 99.1933,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "10-day silent Anapanasati retreat",
+      "Pre-dawn yoga + sitting",
+      "Dhamma talks (English)",
+      "Hot springs after morning sit"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [
+      {
+        "source": "travel-leisure",
+        "year": 2022,
+        "rank": "Best Meditation Retreats Worldwide"
+      }
+    ],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Built by Buddhadasa Bhikkhu — Thailand's most influential 20th-century monk. Forest hermitage, wooden pillows, and a pace that returns the brain to factory settings.",
+    "en_description": "Forest meditation hermitage founded by Buddhadasa Bhikkhu. The international centre runs a 10-day silent retreat starting on the 1st of every month, English-led, donation-based.",
+    "th_description": "สำนักวิปัสสนาที่ท่านพุทธทาสภิกขุก่อตั้ง รับผู้ปฏิบัติทั่วโลก 10 วันเงียบ",
+    "booking_url": "https://www.suanmokkh-idh.org/",
+    "source_urls": [
+      "https://www.suanmokkh-idh.org/",
+      "https://www.travelandleisure.com/trip-ideas/spa-wellness/meditation-retreats-around-the-world"
+    ]
+  },
+  {
+    "id": "wat-pa-tam-wua-forest-monastery",
+    "name_th": "วัดป่าถ้ำวัว",
+    "name_en": "Wat Pa Tam Wua Forest Monastery",
+    "province": "Mae Hong Son",
+    "region": "north",
+    "lat": 19.5742,
+    "lng": 98.0431,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Walking + sitting Vipassana",
+      "Daily alms-round (pindabat)",
+      "English Dhamma teaching",
+      "Cave meditation sits"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [
+      {
+        "source": "tatler",
+        "year": 2023,
+        "rank": "Asia's Most Authentic Meditation Retreats"
+      }
+    ],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Forest temple between Pai and Mae Hong Son — open to foreign meditators on a no-fee, donation basis, with white robes and English instruction from the monks.",
+    "en_description": "Open forest temple in a Mae Hong Son valley. Foreigners join monks for walking meditation, alms-rounds, and Dhamma talks in English — donation only, stay as long as you commit.",
+    "th_description": "วัดป่าระหว่างปายกับแม่ฮ่องสอน เปิดรับผู้ปฏิบัติชาวต่างชาติ สอนเป็นภาษาอังกฤษ",
+    "source_urls": [
+      "https://www.watpatamwua.com/",
+      "https://www.tatlerasia.com/lifestyle/travel/meditation-retreats-asia"
+    ]
+  },
+  {
+    "id": "tha-pai-hot-springs",
+    "name_th": "น้ำพุร้อนท่าปาย",
+    "name_en": "Tha Pai Hot Springs",
+    "province": "Mae Hong Son",
+    "region": "north",
+    "lat": 19.3194,
+    "lng": 98.4781,
+    "wellness_type": "onsen",
+    "signature_treatments": [
+      "Mineral-spring soaking",
+      "Boiled-egg ritual at the source",
+      "Outdoor jungle bathing pools",
+      "Streamside picnic stretch"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Natural geothermal stream inside Huai Nam Dang National Park — the source pool runs at 80°C, bathing pools downstream around 35°C, surrounded by mountain forest.",
+    "en_description": "Natural hot-spring complex in a Pai jungle — source pool reaches 80°C (locals boil eggs in it), with mineral-bath pools downstream at comfortable temperatures.",
+    "th_description": "น้ำพุร้อนธรรมชาติในเขตอุทยานห้วยน้ำดัง ปาย ต้มไข่ได้และมีบ่อแช่ที่อุณหภูมิพอดี",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/tha-pai-hot-spring",
+      "https://www.lonelyplanet.com/thailand/northern-thailand/pai/attractions/tha-pai-hot-springs"
+    ]
+  },
+  {
+    "id": "anantara-spa-hua-hin",
+    "name_th": "อนันตรา สปา หัวหิน",
+    "name_en": "Anantara Spa Hua Hin",
+    "province": "Prachuap Khiri Khan",
+    "region": "west",
+    "lat": 12.5731,
+    "lng": 99.9583,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Royal Thai signature massage",
+      "Hammam-style Thai herbal scrub",
+      "Coconut-husk pressure-point",
+      "Sunset beach yoga"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 4,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Thailand's Best Hotel Spa"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh",
+      "ru"
+    ],
+    "local_character": "Beachfront pavilion of the Thai-owned Anantara group — large enough for couples retreats, small enough that Royal Thai sequences aren't shortcut to 60 minutes.",
+    "en_description": "Beachfront spa pavilion at the flagship Anantara — Thai-owned Minor Hotels brand. Royal Thai sequence in 90+ minutes, ocean-view treatment rooms.",
+    "th_description": "สปาริมหาดของกลุ่มอนันตรา (เครือไมเนอร์) ห้องทรีตเมนต์มองวิวทะเล",
+    "booking_url": "https://www.anantara.com/en/hua-hin/spa",
+    "source_urls": [
+      "https://www.anantara.com/en/hua-hin/spa",
+      "https://www.worldspaawards.com/"
+    ]
+  },
+  {
+    "id": "khlong-thom-hot-springs",
+    "name_th": "น้ำตกร้อนคลองท่อม",
+    "name_en": "Khlong Thom Hot Springs",
+    "province": "Krabi",
+    "region": "south",
+    "lat": 7.895,
+    "lng": 99.2722,
+    "wellness_type": "onsen",
+    "signature_treatments": [
+      "Cascading thermal pools",
+      "Mineral mud bath",
+      "Forest stream cold-plunge",
+      "Emerald Pool combo walk"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Hot waterfall where geothermal water cascades over limestone into natural sitting pools — locals come for the joints, foreigners for the photos.",
+    "en_description": "Natural hot waterfall — thermal water tumbles into limestone pools shaped like bathtubs. Pair with Emerald Pool 1 km away for a hot-cold contrast loop.",
+    "th_description": "น้ำตกน้ำร้อนธรรมชาติบนหินปูน เป็นแอ่งเหมือนอ่างอาบน้ำ มาคู่กับสระมรกตใกล้ๆ",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/krabi-hot-spring-waterfall",
+      "https://www.lonelyplanet.com/thailand/krabi-province"
+    ],
+    "tat": {
+      "place_id": "16426",
+      "slug": "น้ำตกร้อนคลองท่อม",
+      "name_th": "น้ำตกร้อนคลองท่อม",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/71039620-d0a0-405e-ae1e-d0ee9493c314.jpeg",
+      "sha_certified": false,
+      "province_th": "กระบี่",
+      "detail_url": "https://thai.tourismthailand.org/attraction/น้ำตกร้อนคลองท่อม",
+      "distance_km": 8.7
+    }
+  },
+  {
+    "id": "vikasa-yoga-retreat-koh-samui",
+    "name_th": "วิกาสะ โยคะ รีทรีต",
+    "name_en": "Vikasa Yoga Retreat",
+    "province": "Surat Thani",
+    "region": "south",
+    "lat": 9.4732,
+    "lng": 100.0668,
+    "wellness_type": "yoga-retreat",
+    "signature_treatments": [
+      "Daily ocean-cliff yoga",
+      "Pranayama + meditation",
+      "200-hour teacher training",
+      "Plant-based detox menu"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 3,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Asia's Best Yoga Retreat"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "ru",
+      "fr"
+    ],
+    "local_character": "Cliffside yoga shala on Koh Samui's east — open-air sessions over the Gulf, plant-based kitchen, programs up to 21 days.",
+    "en_description": "Cliffside yoga retreat on Koh Samui's quiet east coast. Daily classes in an open-air shala over the Gulf — long programs (7/14/21 days) attract serious practitioners.",
+    "th_description": "รีทรีตโยคะริมหน้าผาเกาะสมุยฝั่งตะวันออก โปรแกรม 7-21 วัน",
+    "booking_url": "https://www.vikasayoga.com/",
+    "source_urls": [
+      "https://www.vikasayoga.com/",
+      "https://www.worldspaawards.com/"
+    ]
+  },
+  {
+    "id": "pranamar-koh-lanta",
+    "name_th": "ปราณามาร์ เกาะลันตา",
+    "name_en": "Pranamar Vegetarian Retreat",
+    "province": "Krabi",
+    "region": "south",
+    "lat": 7.5014,
+    "lng": 99.0769,
+    "wellness_type": "yoga-retreat",
+    "signature_treatments": [
+      "Beachfront morning yoga",
+      "Plant-based whole-food menu",
+      "Thai massage on the sand",
+      "Sunset breath-work"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 3,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [
+      {
+        "source": "tatler",
+        "year": 2023,
+        "rank": "Quietest Beach Yoga Retreats in Thailand"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "de"
+    ],
+    "local_character": "Small bungalow retreat on Koh Lanta's quiet south beach — yoga deck on sand, no air-con, fan + ocean breeze.",
+    "en_description": "Small fan-cooled bungalow yoga retreat on Koh Lanta's quiet southern beach. Plant-based kitchen and a beach yoga deck — no resort polish, by design.",
+    "th_description": "รีทรีตโยคะหลังเล็กชายหาดเงียบเกาะลันตาใต้ อาหารมังสวิรัติและเดคโยคะบนทราย",
+    "booking_url": "https://www.pranamarvillas.com/",
+    "source_urls": [
+      "https://www.pranamarvillas.com/",
+      "https://www.tatlerasia.com/lifestyle/travel/best-yoga-retreats-thailand"
+    ]
+  },
+  {
+    "id": "sampran-riverside-nakhon-pathom",
+    "name_th": "สวนสามพราน",
+    "name_en": "Sampran Riverside",
+    "province": "Nakhon Pathom",
+    "region": "central",
+    "lat": 13.7222,
+    "lng": 100.2347,
+    "wellness_type": "traditional-medicine",
+    "signature_treatments": [
+      "Organic Thai herbal compress",
+      "Rice-field forest bathing",
+      "Traditional Thai cooking class",
+      "Lotus-pond meditation"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2022,
+        "rank": "Sustainable Tourism — Thailand"
+      }
+    ],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Family-run riverside retreat off the Bangkok-Nakhon Pathom road — organic farm, Thai cultural shows, and herbalist-led wellness day programs.",
+    "en_description": "Family-run riverside retreat west of Bangkok with an organic farm, Thai dance pavilion, and a wellness building led by Thai herbalists — day or overnight programs.",
+    "th_description": "รีทรีตริมแม่น้ำของครอบครัวคุณอรุษ มีฟาร์มอินทรีย์และโปรแกรมเวลเนสตำรับไทย",
+    "booking_url": "https://www.sampranriverside.com/",
+    "source_urls": [
+      "https://www.sampranriverside.com/",
+      "https://www.worldspaawards.com/"
+    ],
+    "tat": {
+      "place_id": "10217",
+      "slug": "สวนสามพราน",
+      "name_th": "สวนสามพราน",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/f7aac1ff-cf38-4ee4-a566-622a65157221.jpg",
+      "sha_certified": true,
+      "province_th": "นครปฐม",
+      "detail_url": "https://thai.tourismthailand.org/attraction/สวนสามพราน",
+      "distance_km": 1.7
+    }
+  },
+  {
+    "id": "banyan-tree-spa-phuket",
+    "name_th": "บันยันทรี สปา ภูเก็ต",
+    "name_en": "Banyan Tree Spa Phuket",
+    "province": "Phuket",
+    "region": "south",
+    "lat": 7.9851,
+    "lng": 98.2942,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Banyan signature massage",
+      "Lemongrass body wrap",
+      "Couple's villa treatment",
+      "Watercourt rain mist"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 3,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [
+      {
+        "source": "forbes-travel-guide",
+        "year": 2024,
+        "rank": "Five-Star Spa"
+      },
+      {
+        "source": "conde-nast",
+        "year": 2023,
+        "rank": "Top Resort Spas in Asia"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh",
+      "ja",
+      "ru"
+    ],
+    "local_character": "The original tropical-villa spa concept that defined Asian luxury wellness in the 1990s — private spa villas with their own steam, plunge, and treatment beds.",
+    "en_description": "The brand that pioneered the standalone tropical spa villa. Each guest gets a private villa with steam room and outdoor plunge — Phuket flagship since 1994.",
+    "th_description": "สปาวิลล่าส่วนตัวต้นแบบของเอเชีย ภูเก็ตเปิดตั้งแต่ปี 2537",
+    "booking_url": "https://www.banyantree.com/thailand/phuket/spa",
+    "source_urls": [
+      "https://www.banyantree.com/thailand/phuket/spa",
+      "https://www.forbestravelguide.com/hotels/phuket-thailand/banyan-tree-phuket"
+    ],
+    "tat": {
+      "place_id": "30662",
+      "slug": "บันยันทรีสปา",
+      "name_th": "บันยันทรีสปา",
+      "thumbnail_url": null,
+      "sha_certified": false,
+      "province_th": "ภูเก็ต",
+      "detail_url": "https://thai.tourismthailand.org/shop/บันยันทรีสปา",
+      "distance_km": 3.0
+    }
+  },
+  {
+    "id": "sukhothai-bangkok-spa-botanica",
+    "name_th": "สปา โบทานิกา โรงแรมสุโขทัย",
+    "name_en": "Spa Botanica at The Sukhothai Bangkok",
+    "province": "Bangkok",
+    "region": "central",
+    "lat": 13.7256,
+    "lng": 100.5394,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Thai garden ritual",
+      "Sukhothai-era inspired massage",
+      "Frangipani body cocoon",
+      "Lotus-petal facial"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Thailand's Best Hotel Spa"
+      },
+      {
+        "source": "tatler",
+        "year": 2024,
+        "rank": "Best Bangkok Spas"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "ja",
+      "zh"
+    ],
+    "local_character": "Garden-set spa pavilion at The Sukhothai — design references the Sukhothai-era stupa silhouettes, treatments draw on early-Thai herbal traditions.",
+    "en_description": "Garden spa pavilion at The Sukhothai Bangkok — Thai-design hotel landmark on Sathorn. Treatments reference the Sukhothai-period kingdom's herbal traditions.",
+    "th_description": "สปาในสวนของโรงแรมสุโขทัย กรุงเทพ ออกแบบอ้างอิงเจดีย์ยุคสุโขทัย",
+    "booking_url": "https://www.sukhothai.com/bangkok/spa-botanica",
+    "source_urls": [
+      "https://www.sukhothai.com/bangkok/spa-botanica",
+      "https://www.tatlerasia.com/lifestyle/health-wellness/best-spas-bangkok"
+    ]
+  },
+  {
+    "id": "anantara-golden-triangle-spa",
+    "name_th": "อนันตรา สามเหลี่ยมทองคำ สปา",
+    "name_en": "Anantara Golden Triangle Spa",
+    "province": "Chiang Rai",
+    "region": "north",
+    "lat": 20.3711,
+    "lng": 100.0828,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Lanna herbal compress",
+      "Elephant-keeper massage",
+      "Mekong-view yoga",
+      "Sak yant blessing"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2023,
+        "rank": "Thailand's Best Hilltop Spa"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh"
+    ],
+    "local_character": "Hilltop spa overlooking Laos and Myanmar at the actual Golden Triangle — Thai Minor brand, full Lanna ritual menu.",
+    "en_description": "Luxury wellness pavilion overlooking the Mekong meeting point of three countries — Thai-owned, Lanna treatment menu, elephant-camp adjacent.",
+    "th_description": "สปาบนเขาริมแม่น้ำโขง วิวลาว-เมียนมา-ไทย",
+    "booking_url": "https://www.anantara.com/en/golden-triangle-chiang-rai/spa",
+    "source_urls": [
+      "https://www.anantara.com/en/golden-triangle-chiang-rai/spa"
+    ],
+    "tat": {
+      "place_id": "32860",
+      "slug": "อนันตรา-สามเหลี่ยมทองคำ-แคมป์ช้าง-แอนด์-รีสอร์ท",
+      "name_th": "อนันตรา สามเหลี่ยมทองคำ แคมป์ช้าง แอนด์ รีสอร์ท",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/9ae38763-c458-4c31-a332-00e4baa915db.jpg",
+      "sha_certified": true,
+      "province_th": "เชียงราย",
+      "detail_url": "https://thai.tourismthailand.org/accommodation/อนันตรา-สามเหลี่ยมทองคำ-แคมป์ช้าง-แอนด์-รีสอร์ท",
+      "distance_km": 0.7
+    }
+  },
+  {
+    "id": "lampang-river-lodge-spa",
+    "name_th": "ลำปาง ริเวอร์ ลอด์จ สปา",
+    "name_en": "Lampang River Lodge Spa",
+    "province": "Lampang",
+    "region": "north",
+    "lat": 18.2783,
+    "lng": 99.4894,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Lanna teak-house massage",
+      "Riverbank herbal sauna",
+      "Hill-tribe tea cleanse"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Teak riverside resort spa using local Lampang ceramics in the design and herbs from nearby hill-tribe gardens.",
+    "en_description": "Quiet riverside spa in a restored teak compound on the Wang River — Lanna treatments, almost no foreign visitors.",
+    "th_description": "สปาเรือนไม้สักริมแม่น้ำวัง ใช้สมุนไพรท้องถิ่น",
+    "source_urls": [
+      "https://www.lampangriverlodge.com/"
+    ]
+  },
+  {
+    "id": "wat-mahawan-lamphun-herbal",
+    "name_th": "อบสมุนไพรวัดมหาวัน",
+    "name_en": "Wat Mahawan Herbal Sauna",
+    "province": "Lamphun",
+    "region": "north",
+    "lat": 18.5783,
+    "lng": 99.0078,
+    "wellness_type": "herbal-sauna",
+    "signature_treatments": [
+      "Lanna herbal steam",
+      "Donation-based Thai massage",
+      "Buddhist herbal-water blessing"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th",
+      "en"
+    ],
+    "local_character": "Temple-run herbal sauna in Lamphun's old city. Income supports the temple, donation only.",
+    "en_description": "Donation-based herbal sauna run by Wat Mahawan monks — Lanna herbal steam in clay rooms, no commercial pretense.",
+    "th_description": "อบสมุนไพรเรียบร้อยที่วัดมหาวัน ลำพูน บริจาคตามศรัทธา",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Lamphun/362"
+    ]
+  },
+  {
+    "id": "nan-riverside-spa-boutique",
+    "name_th": "น่าน ริเวอร์ไซด์ สปา",
+    "name_en": "Nan Riverside Boutique Spa",
+    "province": "Nan",
+    "region": "north",
+    "lat": 18.7833,
+    "lng": 100.7794,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Tai Lue ethnic compress",
+      "Cotton-press massage",
+      "Forest tea cleanse"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Boutique spa in Nan's slow-travel old quarter, drawing on Tai Lue ethnic-textile and herbal traditions.",
+    "en_description": "Riverside boutique spa next to the Nan Riverside Art Gallery. Tai Lue–inspired treatments, slow pacing, no big-resort vibe.",
+    "th_description": "สปาเล็กริมแม่น้ำน่าน ใช้ภูมิปัญญาไทลื้อ",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nan/372"
+    ]
+  },
+  {
+    "id": "phayao-lake-wellness",
+    "name_th": "พะเยา เลค สปา",
+    "name_en": "Phayao Lake Wellness House",
+    "province": "Phayao",
+    "region": "north",
+    "lat": 19.1664,
+    "lng": 99.9028,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Kwan Phayao morning yoga",
+      "Lanna herbal compress",
+      "Lakeside foot reflexology"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Lakeside wellness house in laid-back Phayao town — yoga deck right on Kwan Phayao at sunrise.",
+    "en_description": "Lakefront yoga + spa house in Phayao town. Sunrise sessions on a wooden deck over Kwan Phayao lake.",
+    "th_description": "สปาริมกว๊านพะเยา โยคะเช้าตรู่",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Phayao/383"
+    ]
+  },
+  {
+    "id": "phrae-ban-suan-mae-spa",
+    "name_th": "บ้านสวนแม่ สปา แพร่",
+    "name_en": "Ban Suan Mae Garden Spa",
+    "province": "Phrae",
+    "region": "north",
+    "lat": 18.1397,
+    "lng": 100.1419,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Indigo cloth wrap",
+      "Phrae herbal sauna",
+      "Garden Thai massage"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th",
+      "en"
+    ],
+    "local_character": "Family-run garden spa using Phrae's indigo (Mor Hom) cloth in body wraps — extremely rural feel.",
+    "en_description": "Garden spa run by a Phrae family using local Mor Hom indigo cloth wraps and home-grown herbs. Very few foreign visitors.",
+    "th_description": "สปาบ้านสวนเมืองแพร่ ใช้หม้อห้อมพื้นเมือง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Phrae/385"
+    ]
+  },
+  {
+    "id": "uttaradit-sirikit-dam-retreat",
+    "name_th": "เขื่อนสิริกิติ์ รีทรีต",
+    "name_en": "Sirikit Dam Lakeside Retreat",
+    "province": "Uttaradit",
+    "region": "north",
+    "lat": 17.7611,
+    "lng": 100.5575,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Lakeside silent meditation",
+      "Forest bathing",
+      "Traditional Thai massage"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Quiet lakeside retreat by the country's largest reservoir — lake-cottage rooms, no resort scale.",
+    "en_description": "Forest-and-lake retreat at the Sirikit Dam — Thailand's largest reservoir. Run by EGAT for low-key wellness stays.",
+    "th_description": "รีทรีตริมเขื่อนสิริกิติ์ เงียบสงบในป่า",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Uttaradit/406"
+    ]
+  },
+  {
+    "id": "wat-pa-sangwon-amnat",
+    "name_th": "วัดป่าสังวร",
+    "name_en": "Wat Pa Sangwon Forest Retreat",
+    "province": "Amnat Charoen",
+    "region": "northeast",
+    "lat": 15.8589,
+    "lng": 104.63,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Vipassana retreat",
+      "Forest walking meditation",
+      "Pre-dawn alms"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Tiny forest monastery accepting Thai meditators on open-ended retreat — monks speak limited English.",
+    "en_description": "Open-ended Vipassana retreat at a tiny forest monastery. Donation-based, monks speak limited English — write ahead via TAT.",
+    "th_description": "วัดป่าเล็ก ๆ รับผู้ปฏิบัติธรรมระยะเวลาเปิด",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Amnat-Charoen/421"
+    ]
+  },
+  {
+    "id": "wat-phu-tok-bueng-kan",
+    "name_th": "วัดภูทอก",
+    "name_en": "Wat Phu Tok Cliff Monastery",
+    "province": "Bueng Kan",
+    "region": "northeast",
+    "lat": 18.0561,
+    "lng": 103.9572,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Wooden-stairs walking meditation",
+      "Cliff-cave sitting",
+      "Silent retreat"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Seven-tier wooden walkway up a sandstone cliff — monks have meditated here since the 1960s.",
+    "en_description": "Vertiginous wooden walkway monastery up a sandstone tower. The seven levels are themselves a Theravada meditation path.",
+    "th_description": "วัดบนยอดภูทอก บันไดไม้เจ็ดชั้น เป็นเส้นทางสมาธิ",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-phu-tok"
+    ]
+  },
+  {
+    "id": "phanom-rung-buriram-herbal",
+    "name_th": "อบสมุนไพรพนมรุ้ง",
+    "name_en": "Phanom Rung Khmer Herbal Sauna",
+    "province": "Buriram",
+    "region": "northeast",
+    "lat": 14.5328,
+    "lng": 102.9408,
+    "wellness_type": "herbal-sauna",
+    "signature_treatments": [
+      "Khmer herbal steam",
+      "Hill-temple massage",
+      "Stupa-walk meditation"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Village herbal-sauna co-op next to the Khmer-era Phanom Rung stupa — uses recipes from temple records.",
+    "en_description": "Village co-op herbal sauna near the Phanom Rung Khmer sanctuary. Recipes drawn from temple manuscripts; very rural.",
+    "th_description": "ห้องอบสมุนไพรหมู่บ้านใกล้พนมรุ้ง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Buriram/431"
+    ]
+  },
+  {
+    "id": "wat-pa-phu-klon-chaiyaphum",
+    "name_th": "วัดป่าภูคล้อ",
+    "name_en": "Wat Pa Phu Klon Forest Monastery",
+    "province": "Chaiyaphum",
+    "region": "northeast",
+    "lat": 15.809,
+    "lng": 101.6467,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Forest Vipassana",
+      "Pre-dawn alms",
+      "Cave sitting"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Forest monastery in the Phu Khiao reserve — silent retreats around the rains-retreat (Phansa).",
+    "en_description": "Forest Vipassana monastery inside Chaiyaphum's Phu Khiao reserve. Open meditation around the rains retreat (Jul-Oct).",
+    "th_description": "วัดป่ากลางเขตรักษาพันธุ์สัตว์ภูเขียว ปฏิบัติธรรมเงียบ",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Chaiyaphum/441"
+    ]
+  },
+  {
+    "id": "wat-pa-phu-klon-kalasin",
+    "name_th": "วัดป่าภูค่าว",
+    "name_en": "Wat Pa Phu Khao Forest Monastery",
+    "province": "Kalasin",
+    "region": "northeast",
+    "lat": 16.7833,
+    "lng": 103.5,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Reclining-Buddha meditation",
+      "Forest walking",
+      "Donation retreats"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Hilltop monastery known for a reclining Buddha carved from a single sandstone slab.",
+    "en_description": "Hilltop forest monastery whose centrepiece is a reclining Buddha carved from a single block of sandstone. Quiet meditation welcomed.",
+    "th_description": "วัดป่าบนเขา พระนอนสกัดจากหินก้อนเดียว",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Kalasin/443"
+    ]
+  },
+  {
+    "id": "khon-kaen-pho-sok-spa",
+    "name_th": "ขอนแก่น สปา",
+    "name_en": "Khon Kaen Pho Sok Wellness Center",
+    "province": "Khon Kaen",
+    "region": "northeast",
+    "lat": 16.4322,
+    "lng": 102.8236,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Isan herbal compress",
+      "Sticky-rice exfoliation",
+      "Local massage"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Provincial spa using Isan-specific herbs and the local sticky-rice scrub recipe.",
+    "en_description": "Provincial wellness centre in Khon Kaen city using Isan-specific herbs (sangyod, makwaen). Inexpensive, very Thai.",
+    "th_description": "สปาภาคอีสานในเมืองขอนแก่น ใช้สมุนไพรท้องถิ่น",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Khon-Kaen/451"
+    ]
+  },
+  {
+    "id": "phu-ruea-loei-resort-spa",
+    "name_th": "ภูเรือ รีสอร์ท สปา",
+    "name_en": "Phu Ruea Mountain Spa",
+    "province": "Loei",
+    "region": "northeast",
+    "lat": 17.4794,
+    "lng": 101.3578,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Cold-mountain herbal compress",
+      "Wine-grape body polish",
+      "Sunrise yoga"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Highland boutique spa above 800m — uses grapes from Loei's wineries in body-polish treatments.",
+    "en_description": "Cool-mountain boutique spa in Phu Ruea — Thailand's coldest district. Local wine-grape polishes and herbal compresses.",
+    "th_description": "สปาเขาสูงภูเรือ อากาศเย็น ใช้องุ่นจากไร่ท้องถิ่น",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Loei/461"
+    ],
+    "tat": {
+      "place_id": "12584",
+      "slug": "ภูเรือคีรี-รีสอร์ต",
+      "name_th": "ภูเรือคีรี รีสอร์ต",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/ced9a0be-be7a-4576-afaa-0b5b2087e9d7.jpg",
+      "sha_certified": true,
+      "province_th": "เลย",
+      "detail_url": "https://thai.tourismthailand.org/accommodation/ภูเรือคีรี-รีสอร์ต",
+      "distance_km": 4.8
+    }
+  },
+  {
+    "id": "wat-pa-wang-nam-yen-maha-sarakham",
+    "name_th": "วัดป่าวังน้ำเย็น",
+    "name_en": "Wat Pa Wang Nam Yen Forest Monastery",
+    "province": "Maha Sarakham",
+    "region": "northeast",
+    "lat": 16.0792,
+    "lng": 103.3097,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Forest Vipassana",
+      "Walking meditation",
+      "Donation retreats"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Quiet forest monastery in the Ajahn Mun lineage. Meditators come unannounced.",
+    "en_description": "Ajahn Mun-lineage forest monastery in central Isan. Walk-in meditation visits welcome.",
+    "th_description": "วัดป่าสายหลวงปู่มั่น ปฏิบัติธรรมแบบชาวบ้าน",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Maha-Sarakham/471"
+    ],
+    "tat": {
+      "place_id": "33451",
+      "slug": "วัดพุทธวนาราม-(วัดป่าวังน้ำเย็น)",
+      "name_th": "วัดพุทธวนาราม (วัดป่าวังน้ำเย็น)",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/0e501b85-d7f4-44ad-8b79-815664a4c0d9.jpeg",
+      "sha_certified": false,
+      "province_th": "มหาสารคาม",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดพุทธวนาราม-(วัดป่าวังน้ำเย็น)",
+      "distance_km": 13.9
+    }
+  },
+  {
+    "id": "mukdahan-spa-river",
+    "name_th": "มุกดาหาร ริเวอร์ สปา",
+    "name_en": "Mukdahan Riverside Spa",
+    "province": "Mukdahan",
+    "region": "northeast",
+    "lat": 16.5447,
+    "lng": 104.7235,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Mekong herbal compress",
+      "Riverside foot reflexology",
+      "Lao-Thai blend massage"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Mekong-bank provincial spa with Lao-influenced herbal mix.",
+    "en_description": "Quiet provincial spa overlooking the Mekong and Savannakhet, Laos. Lao-Thai herbal blends, no chains.",
+    "th_description": "สปาริมโขงมุกดาหาร ผสมตำรับลาว",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Mukdahan/473"
+    ]
+  },
+  {
+    "id": "phra-that-phanom-herbal",
+    "name_th": "อบสมุนไพรพระธาตุพนม",
+    "name_en": "Phra That Phanom Pilgrim Herbal House",
+    "province": "Nakhon Phanom",
+    "region": "northeast",
+    "lat": 16.6928,
+    "lng": 104.743,
+    "wellness_type": "herbal-sauna",
+    "signature_treatments": [
+      "Mon-Lao herbal steam",
+      "Pilgrim foot massage",
+      "Herbal balm blessing"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Pilgrim-run herbal house steps from Phra That Phanom stupa.",
+    "en_description": "Pilgrim herbal sauna at the foot of Phra That Phanom — Mon-Lao recipes, donation-based, unmarked from outside.",
+    "th_description": "ห้องอบสมุนไพรชาวบ้านริมพระธาตุพนม",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nakhon-Phanom/475"
+    ]
+  },
+  {
+    "id": "sala-khao-yai-korat",
+    "name_th": "สาลา เขาใหญ่",
+    "name_en": "Sala Khao Yai Resort & Spa",
+    "province": "Nakhon Ratchasima",
+    "region": "northeast",
+    "lat": 14.4525,
+    "lng": 101.3631,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Forest-canopy yoga",
+      "Lemongrass body wrap",
+      "Khao Yai herbal compress"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Khao Yai foothills boutique resort. Yoga deck floats over a forest pool.",
+    "en_description": "Boutique forest resort spa in the Khao Yai foothills — Thai design, valley-view yoga deck. Quieter than the highway resorts.",
+    "th_description": "บูทิครีสอร์ทเขาใหญ่ สปาเงียบสงบในป่า",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nakhon-Ratchasima/477"
+    ]
+  },
+  {
+    "id": "wat-tham-klong-phen-nong-bua",
+    "name_th": "วัดถ้ำกลองเพล",
+    "name_en": "Wat Tham Klong Phen Forest Monastery",
+    "province": "Nong Bua Lamphu",
+    "region": "northeast",
+    "lat": 17.235,
+    "lng": 102.4258,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Cave-floor meditation",
+      "Forest walking",
+      "Ajahn Khao relics blessing"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th",
+      "en"
+    ],
+    "local_character": "Resting place of Ajahn Khao Analayo — a famed forest monk. Meditators retreat in the cave below.",
+    "en_description": "Ajahn Khao Analayo's forest monastery and museum. Cave-floor meditation accepted by appointment.",
+    "th_description": "วัดถ้ำกลองเพล ที่บูชาพระอาจารย์ขาว อนาลโย",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nong-Bua-Lamphu/484"
+    ],
+    "tat": {
+      "place_id": "33495",
+      "slug": "วัดถ้ำกลองเพล",
+      "name_th": "วัดถ้ำกลองเพล",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/b2a8617f-2dc7-4843-84d8-a4c679018c72.jpeg",
+      "sha_certified": false,
+      "province_th": "หนองบัวลำภู",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดถ้ำกลองเพล",
+      "distance_km": 11.2
+    }
+  },
+  {
+    "id": "nong-khai-mekong-spa",
+    "name_th": "หนองคาย แม่โขง สปา",
+    "name_en": "Mekong Riverside Spa Nong Khai",
+    "province": "Nong Khai",
+    "region": "northeast",
+    "lat": 17.8783,
+    "lng": 102.7414,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Mekong herbal compress",
+      "Lao-Thai massage",
+      "Sunset balcony reflexology"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Riverside spa balcony watching Lao fishing boats. Tiny but Thai-owned.",
+    "en_description": "Mekong-bank spa balcony in Nong Khai's old quarter. Lao-Thai herbal massage at fraction of Bangkok prices.",
+    "th_description": "สปาเล็กริมโขง หนองคาย",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nong-Khai/491"
+    ],
+    "tat": {
+      "place_id": "11604",
+      "slug": "ระเบียงแม่โขง",
+      "name_th": "ระเบียงแม่โขง",
+      "thumbnail_url": null,
+      "sha_certified": false,
+      "province_th": "หนองคาย",
+      "detail_url": "https://thai.tourismthailand.org/restaurant/ระเบียงแม่โขง",
+      "distance_km": 0.9
+    }
+  },
+  {
+    "id": "wat-pa-pho-sit-roi-et-meditation",
+    "name_th": "วัดป่าโพธิสิทธิ์ ร้อยเอ็ด",
+    "name_en": "Wat Pa Pho Sit Meditation Centre",
+    "province": "Roi Et",
+    "region": "northeast",
+    "lat": 16.0539,
+    "lng": 103.6502,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Forest Vipassana",
+      "Open-air sittings",
+      "Donation retreats"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Open-grounds Vipassana monastery with rain-shelter halls. Meditators welcome to walk in.",
+    "en_description": "Roi Et's quiet Vipassana monastery — meditators can walk in for a day, week, or open retreat.",
+    "th_description": "วัดป่าร้อยเอ็ด รับผู้ปฏิบัติธรรมแบบไม่ต้องจองล่วงหน้า",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Roi-Et/494"
+    ]
+  },
+  {
+    "id": "wat-pa-suthawat-sakon",
+    "name_th": "วัดป่าสุทธาวาส",
+    "name_en": "Wat Pa Suthawat Forest Monastery",
+    "province": "Sakon Nakhon",
+    "region": "northeast",
+    "lat": 17.1556,
+    "lng": 104.1456,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Ajahn Mun lineage Vipassana",
+      "Pre-dawn meditation",
+      "Walking jungle paths"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th",
+      "en"
+    ],
+    "local_character": "Final monastery of Ajahn Mun — the founder of the Thai Forest Tradition. Pilgrim retreats year-round.",
+    "en_description": "Final residence of Ajahn Mun, founder of the Thai Forest tradition. Open monastery: pilgrim retreats welcomed.",
+    "th_description": "วัดสุดท้ายของหลวงปู่มั่น ภูริทัตโต ต้นสายวัดป่าไทย",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/wat-pa-suthawat"
+    ],
+    "tat": {
+      "place_id": "33395",
+      "slug": "วัดป่าสุทธาวาส",
+      "name_th": "วัดป่าสุทธาวาส",
+      "thumbnail_url": null,
+      "sha_certified": false,
+      "province_th": "สกลนคร",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดป่าสุทธาวาส",
+      "distance_km": 0.9
+    }
+  },
+  {
+    "id": "khao-phra-wihan-sisaket-meditation",
+    "name_th": "เขาพระวิหาร ฝั่งศรีสะเกษ ปฏิบัติธรรม",
+    "name_en": "Khao Phra Wihan Border Meditation",
+    "province": "Sisaket",
+    "region": "northeast",
+    "lat": 14.3878,
+    "lng": 104.6919,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Cliff-top sittings",
+      "Khmer-era walking meditation",
+      "Sunset cave retreats"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Border-cliff Khmer ruins where local monks have used the ancient platforms for sitting practice for centuries.",
+    "en_description": "Border-cliff Khmer-era platforms used by local forest monks for sittings. Quiet at sunset, reach with a Sisaket guide.",
+    "th_description": "ที่ปฏิบัติธรรมบนเขาพระวิหาร ฝั่งศรีสะเกษ ทำเลริมหน้าผา",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Sisaket/495"
+    ]
+  },
+  {
+    "id": "surin-elephant-wellness",
+    "name_th": "สุรินทร์ ช้างและบุคคลผ่อนคลาย",
+    "name_en": "Surin Elephant Project Wellness",
+    "province": "Surin",
+    "region": "northeast",
+    "lat": 15.4825,
+    "lng": 103.4836,
+    "wellness_type": "traditional-medicine",
+    "signature_treatments": [
+      "Mahout walking meditation",
+      "Kuay herbal massage",
+      "Elephant-keeper hospitality"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Live with a Kuay mahout family — herbal recipes refined over generations of caring for elephants.",
+    "en_description": "Stay-with-mahout wellness — Kuay elephant-keeper families share herbal tonics they use on themselves and their elephants.",
+    "th_description": "พักกับครอบครัวควาญช้างชาวกูย รับสมุนไพรสูตรดั้งเดิม",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Surin/501"
+    ]
+  },
+  {
+    "id": "wat-nong-pa-phong-ubon",
+    "name_th": "วัดหนองป่าพง",
+    "name_en": "Wat Nong Pa Phong (Ajahn Chah)",
+    "province": "Ubon Ratchathani",
+    "region": "northeast",
+    "lat": 15.1361,
+    "lng": 104.7858,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Ajahn Chah lineage Vipassana",
+      "International Forest Monk programme",
+      "Walking + sitting cycles"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": false,
+    "awards": [
+      {
+        "source": "tatler",
+        "year": 2023,
+        "rank": "Asia's Most Authentic Meditation Lineages"
+      }
+    ],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Ajahn Chah's home monastery — lineage seat for Western Buddhist practice (Wat Pah Nanachat is its branch).",
+    "en_description": "Ajahn Chah's home forest monastery and the lineage that produced Wat Pah Nanachat for Western monks. Visitors welcomed for retreats.",
+    "th_description": "วัดของพระโพธิญาณ (อาจารย์ชา) ต้นสายวัดป่าสากล",
+    "source_urls": [
+      "https://www.watnongpahpong.org/"
+    ],
+    "tat": {
+      "place_id": "2908",
+      "slug": "วัดหนองป่าพง",
+      "name_th": "วัดหนองป่าพง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/7d052c70-ceec-4e70-8bea-778b8c093a91.jpeg",
+      "sha_certified": false,
+      "province_th": "อุบลราชธานี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดหนองป่าพง",
+      "distance_km": 5.6
+    }
+  },
+  {
+    "id": "wat-pa-ban-tat-udon",
+    "name_th": "วัดป่าบ้านตาด",
+    "name_en": "Wat Pa Ban Tat (Ajahn Maha Boowa)",
+    "province": "Udon Thani",
+    "region": "northeast",
+    "lat": 17.2933,
+    "lng": 102.7942,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Ajahn Maha Boowa lineage Vipassana",
+      "Forest walking",
+      "Pre-dawn alms"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Ajahn Maha Boowa's monastery — one of the most respected meditation masters of the 20th century.",
+    "en_description": "Ajahn Maha Boowa's home monastery near Udon Thani — Thai Forest Tradition retreats with English instruction available.",
+    "th_description": "วัดของพระอาจารย์มหาบัว ญาณสัมปันโน",
+    "source_urls": [
+      "https://www.luangta.com/"
+    ],
+    "tat": {
+      "place_id": "33462",
+      "slug": "วัดป่าบ้านตาด",
+      "name_th": "วัดป่าบ้านตาด",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/35ca4627-00ef-4cb7-932a-559ce690eba3.jpg",
+      "sha_certified": false,
+      "province_th": "อุดรธานี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/วัดป่าบ้านตาด",
+      "distance_km": 1.8
+    }
+  },
+  {
+    "id": "wat-pa-yasothon",
+    "name_th": "วัดป่ายโสธร",
+    "name_en": "Wat Pa Yasothon Forest Monastery",
+    "province": "Yasothon",
+    "region": "northeast",
+    "lat": 15.7944,
+    "lng": 104.1453,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Forest Vipassana",
+      "Walking meditation",
+      "Donation-based retreats"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Yasothon's quiet forest monastery hosting walk-in meditators in the Ajahn Mun tradition.",
+    "en_description": "Yasothon's small forest monastery — Ajahn Mun tradition, walk-in retreats for meditators.",
+    "th_description": "วัดป่ายโสธร เล็ก เงียบ สายอาจารย์มั่น",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Yasothon/511"
+    ]
+  },
+  {
+    "id": "wat-muang-ang-thong-herbal",
+    "name_th": "อบสมุนไพรวัดม่วง อ่างทอง",
+    "name_en": "Wat Muang Pilgrim Herbal Sauna",
+    "province": "Ang Thong",
+    "region": "central",
+    "lat": 14.5614,
+    "lng": 100.4117,
+    "wellness_type": "herbal-sauna",
+    "signature_treatments": [
+      "Pilgrim herbal steam",
+      "Foot massage",
+      "Donation-based"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 3,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th",
+      "en"
+    ],
+    "local_character": "Donation herbal sauna at the giant Buddha temple — used by pilgrims after long-bus rides.",
+    "en_description": "Pilgrim herbal sauna run by Wat Muang volunteers. Used after the giant-Buddha visit. Donation only.",
+    "th_description": "อบสมุนไพรชาวบ้านที่วัดม่วง อ่างทอง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Ang-Thong/521"
+    ]
+  },
+  {
+    "id": "sala-ayutthaya-spa",
+    "name_th": "สาลา อยุธยา สปา",
+    "name_en": "Sala Ayutthaya Riverside Spa",
+    "province": "Phra Nakhon Si Ayutthaya",
+    "region": "central",
+    "lat": 14.355,
+    "lng": 100.5614,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Ayutthaya royal-court ritual",
+      "River-view massage",
+      "Heritage herbal compress"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Boutique riverside spa across from Wat Phutthaisawan — uses Ayutthaya court-medicine recipes.",
+    "en_description": "Boutique heritage spa on the Chao Phraya facing Ayutthaya's old royal precinct. Royal-court ritual treatments.",
+    "th_description": "สปาบูทิคริมแม่น้ำ ฝั่งวัดพุทไธศวรรย์",
+    "booking_url": "https://www.salaayutthaya.com/",
+    "source_urls": [
+      "https://www.salaayutthaya.com/"
+    ]
+  },
+  {
+    "id": "chai-nat-traditional-medicine",
+    "name_th": "ชัยนาท แพทย์แผนไทย",
+    "name_en": "Chai Nat Traditional Thai Medicine Centre",
+    "province": "Chai Nat",
+    "region": "central",
+    "lat": 15.1851,
+    "lng": 100.125,
+    "wellness_type": "traditional-medicine",
+    "signature_treatments": [
+      "Pulse-diagnosis consult",
+      "Herbal prescription",
+      "Tok-sen referral"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Provincial Public Health traditional-medicine clinic — pulse diagnosis + herb prescriptions.",
+    "en_description": "Provincial public-health Thai traditional medicine clinic. Pulse diagnosis and herb prescriptions; Thai-only, take an interpreter.",
+    "th_description": "คลินิกแพทย์แผนไทยของจังหวัดชัยนาท",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Chai-Nat/523"
+    ]
+  },
+  {
+    "id": "kamphaeng-phet-spa-resort",
+    "name_th": "กำแพงเพชร สปา",
+    "name_en": "Kamphaeng Phet Heritage Spa",
+    "province": "Kamphaeng Phet",
+    "region": "central",
+    "lat": 16.4853,
+    "lng": 99.5111,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Sukhothai-era herbal compress",
+      "Forest-temple foot massage",
+      "Royal Thai sequence"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Provincial spa near the UNESCO ruins, drawing on Sukhothai-period herbal records.",
+    "en_description": "Boutique spa beside the Kamphaeng Phet UNESCO ruins. Sukhothai-era herbal recipes, very few visitors.",
+    "th_description": "สปาเล็กในเมืองมรดกโลกกำแพงเพชร",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Kamphaeng-Phet/525"
+    ]
+  },
+  {
+    "id": "lopburi-monkey-town-spa",
+    "name_th": "ลพบุรี สปา",
+    "name_en": "Lopburi Old-Town Boutique Spa",
+    "province": "Lopburi",
+    "region": "central",
+    "lat": 14.7933,
+    "lng": 100.6533,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Khmer-Lopburi herbal compress",
+      "Old-town foot massage",
+      "Historic-park walking"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Tiny boutique spa in Lopburi's old quarter — careful staff, no monkeys allowed in.",
+    "en_description": "Old-town boutique spa down the lane from Phra Prang Sam Yot — Khmer-Lopburi herbal compress, no monkey hassle inside.",
+    "th_description": "สปาเมืองเก่าลพบุรี ไม่มีลิงในร้าน",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Lopburi/527"
+    ]
+  },
+  {
+    "id": "khao-yai-nakhon-nayok-spa",
+    "name_th": "สปาเขาใหญ่ ฝั่งนครนายก",
+    "name_en": "Khao Yai South Forest Spa",
+    "province": "Nakhon Nayok",
+    "region": "central",
+    "lat": 14.2031,
+    "lng": 101.1428,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Forest-canopy yoga",
+      "Cliffside meditation",
+      "Khao Yai herbal compress"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Boutique forest resort on the Nakhon Nayok side of Khao Yai — quieter than Pak Chong.",
+    "en_description": "Forest resort spa on Khao Yai's southern Nakhon Nayok side — far quieter than the Pak Chong belt.",
+    "th_description": "สปาในป่าฝั่งใต้ของเขาใหญ่ จังหวัดนครนายก",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nakhon-Nayok/528"
+    ]
+  },
+  {
+    "id": "nakhon-sawan-bueng-spa",
+    "name_th": "นครสวรรค์ บึงสปา",
+    "name_en": "Bueng Boraphet Wellness Lodge",
+    "province": "Nakhon Sawan",
+    "region": "central",
+    "lat": 15.7028,
+    "lng": 100.2014,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Lotus body wrap",
+      "Wetland-bird-watching morning",
+      "Lotus-pollen scrub"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Lakeside wellness lodge using lotus pollen + roots from Bueng Boraphet.",
+    "en_description": "Lotus-themed lakeside wellness lodge by Thailand's largest freshwater lake. Quiet bird-watching mornings.",
+    "th_description": "สปาริมบึงบอระเพ็ด ใช้บัวสด ๆ จากบึง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nakhon-Sawan/532"
+    ]
+  },
+  {
+    "id": "nonthaburi-riverside-spa",
+    "name_th": "นนทบุรี ริเวอร์ไซด์ สปา",
+    "name_en": "Nonthaburi Riverside Spa",
+    "province": "Nonthaburi",
+    "region": "central",
+    "lat": 13.8581,
+    "lng": 100.5147,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Riverside foot reflexology",
+      "Ko Kret pottery clay wrap",
+      "Garden Thai massage"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Garden river-spa next to the Ko Kret ferry — clay wraps from the pottery island next door.",
+    "en_description": "Garden river-spa at the Ko Kret ferry pier — clay-wrap treatment uses pottery clay from Ko Kret artisans.",
+    "th_description": "สปาริมแม่น้ำเจ้าพระยา ข้างเรือไปเกาะเกร็ด",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nonthaburi/536"
+    ]
+  },
+  {
+    "id": "pathum-thani-sala-wellness",
+    "name_th": "ปทุมธานี สาลา เวลเนส",
+    "name_en": "Sala Pathum Thani Wellness House",
+    "province": "Pathum Thani",
+    "region": "central",
+    "lat": 14.0207,
+    "lng": 100.5253,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Lotus-petal body wrap",
+      "Shell stupa walking",
+      "Thai herbal sauna"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Boutique spa near Wat Chedi Hoy — uses lotus from Pathum Thani's lotus farms.",
+    "en_description": "Boutique wellness house near the Oyster-Stupa Temple — uses lotus from Pathum Thani's lotus farms (the province name = lotus).",
+    "th_description": "สปาบูทิคใกล้วัดเจดีย์หอย ใช้ดอกบัวจากท้องถิ่น",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Pathum-Thani/541"
+    ]
+  },
+  {
+    "id": "khao-kho-phetchabun-resort-spa",
+    "name_th": "เขาค้อ บูทิค สปา",
+    "name_en": "Khao Kho Mountain Boutique Spa",
+    "province": "Phetchabun",
+    "region": "central",
+    "lat": 16.65,
+    "lng": 100.9694,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Sea-of-clouds yoga",
+      "Mountain herbal compress",
+      "Bamboo deep-tissue"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Mountain boutique resort spa on Khao Kho ridge — sunrise yoga over the Phetchabun cloud sea.",
+    "en_description": "Khao Kho boutique resort spa with sunrise yoga deck over Phetchabun's signature cloud sea.",
+    "th_description": "สปารีสอร์ทบนยอดเขาค้อ ชมทะเลหมอกยามเช้า",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Phetchabun/543"
+    ]
+  },
+  {
+    "id": "phichit-bueng-temple-herbal",
+    "name_th": "อบสมุนไพรพิจิตร",
+    "name_en": "Phichit Bueng Si Fai Herbal House",
+    "province": "Phichit",
+    "region": "central",
+    "lat": 16.4444,
+    "lng": 100.3361,
+    "wellness_type": "herbal-sauna",
+    "signature_treatments": [
+      "Lakeside herbal steam",
+      "Lotus-pad massage",
+      "Donation-based"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Community herbal sauna on the Bueng Si Fai shore — donation-based.",
+    "en_description": "Community herbal sauna on the Bueng Si Fai lake shore in Phichit. Donation only.",
+    "th_description": "ห้องอบสมุนไพรชุมชนริมบึงสีไฟ",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Phichit/545"
+    ]
+  },
+  {
+    "id": "phitsanulok-wat-pa-meditation",
+    "name_th": "วัดป่าพิษณุโลก",
+    "name_en": "Phitsanulok Forest Vipassana Centre",
+    "province": "Phitsanulok",
+    "region": "central",
+    "lat": 16.8311,
+    "lng": 100.2589,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Forest Vipassana",
+      "Walking meditation",
+      "Donation retreats"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Forest meditation centre outside Phitsanulok — open retreats around Phansa.",
+    "en_description": "Forest meditation centre on Phitsanulok's outskirts — open retreats during the rains retreat.",
+    "th_description": "วัดป่ารอบเมืองพิษณุโลก",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Phitsanulok/547"
+    ]
+  },
+  {
+    "id": "samut-prakan-bang-pu-spa",
+    "name_th": "บางปู สปา",
+    "name_en": "Bang Pu Seaside Spa",
+    "province": "Samut Prakan",
+    "region": "central",
+    "lat": 13.5081,
+    "lng": 100.6594,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Sea-air pranayama",
+      "Mangrove herbal compress",
+      "Foot reflexology"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Quiet seaside boardwalk spa at the gulf-edge of greater Bangkok — almost no farangs.",
+    "en_description": "Quiet seaside spa at Bang Pu boardwalk — at the very mouth of Greater Bangkok's gulf coast.",
+    "th_description": "สปาริมทะเลบางปู ปากแม่น้ำเจ้าพระยา",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Samut-Prakan/551"
+    ]
+  },
+  {
+    "id": "samut-sakhon-mahachai-herbal",
+    "name_th": "อบสมุนไพรมหาชัย",
+    "name_en": "Mahachai Fishermen Herbal Sauna",
+    "province": "Samut Sakhon",
+    "region": "central",
+    "lat": 13.5475,
+    "lng": 100.2744,
+    "wellness_type": "herbal-sauna",
+    "signature_treatments": [
+      "Salt-air herbal steam",
+      "Foot massage for boatmen",
+      "Sea-mineral wrap"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Fishermen-run herbal sauna on the Mahachai pier. Used after long fishing days.",
+    "en_description": "Community herbal sauna run by Mahachai fishing families. Open evenings; donation-based.",
+    "th_description": "ห้องอบสมุนไพรของชาวประมงมหาชัย",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Samut-Sakhon/553"
+    ]
+  },
+  {
+    "id": "amphawa-samut-songkhram-spa",
+    "name_th": "อัมพวา บูทิค สปา",
+    "name_en": "Amphawa Boutique Riverside Spa",
+    "province": "Samut Songkhram",
+    "region": "central",
+    "lat": 13.4256,
+    "lng": 99.955,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Coconut-sugar scrub",
+      "Riverside Thai massage",
+      "Firefly-night meditation"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Wooden-house boutique spa beside Amphawa floating market — coconut sugar scrubs from the local palm groves.",
+    "en_description": "Wooden-house spa on the Amphawa canal — coconut-sugar scrubs from Samut Songkhram's palm groves.",
+    "th_description": "สปาเรือนไทยริมคลองอัมพวา",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Samut-Songkhram/555"
+    ]
+  },
+  {
+    "id": "saraburi-khun-sant-spa",
+    "name_th": "ขุนสันต์ สระบุรี สปา",
+    "name_en": "Khun Sant Cottage Spa",
+    "province": "Saraburi",
+    "region": "central",
+    "lat": 14.5333,
+    "lng": 101.0167,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Sunflower-field morning yoga",
+      "Thai herbal compress",
+      "Pilgrim foot massage"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Cottage-style spa near Phra Phutthabat — among Saraburi's sunflower fields in winter.",
+    "en_description": "Cottage spa among Saraburi's winter sunflower fields, a stop on the Phra Phutthabat pilgrimage road.",
+    "th_description": "สปาคอตเทจในไร่ทานตะวันสระบุรี",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Saraburi/561"
+    ]
+  },
+  {
+    "id": "sing-buri-river-spa",
+    "name_th": "สิงห์บุรี ริเวอร์ สปา",
+    "name_en": "Sing Buri Riverside Wellness Cottage",
+    "province": "Sing Buri",
+    "region": "central",
+    "lat": 14.8889,
+    "lng": 100.3792,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Riverside Thai massage",
+      "Reclining-Buddha walking meditation",
+      "Local herbal compress"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Tiny family-run riverside spa near Wat Phra Non Chaksi. Walking distance to the reclining Buddha.",
+    "en_description": "Riverside cottage spa near Wat Phra Non Chaksi's reclining Buddha. Family-run, very few visitors.",
+    "th_description": "สปาเล็กริมแม่น้ำใกล้วัดพระนอนจักรสีห์",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Sing-Buri/563"
+    ]
+  },
+  {
+    "id": "sukhothai-heritage-spa",
+    "name_th": "สุโขทัย เฮอริเทจ สปา",
+    "name_en": "Sukhothai Heritage Resort Spa",
+    "province": "Sukhothai",
+    "region": "central",
+    "lat": 17.0167,
+    "lng": 99.7,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Sukhothai-court herbal compress",
+      "Walking meditation in old city",
+      "Lotus-pond yoga"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [
+      {
+        "source": "world-spa-awards",
+        "year": 2022,
+        "rank": "Thailand's Best Heritage Resort Spa"
+      }
+    ],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Heritage resort spa modelled on Sukhothai-period architecture — drives 30 min to UNESCO ruins.",
+    "en_description": "Heritage resort spa with architecture echoing the Sukhothai-period kingdom. 30 min from the UNESCO old city.",
+    "th_description": "สปาเฮอริเทจตามแบบสถาปัตยกรรมสุโขทัย",
+    "booking_url": "https://www.sukhothaiheritage.com/",
+    "source_urls": [
+      "https://www.sukhothaiheritage.com/"
+    ]
+  },
+  {
+    "id": "suphanburi-banglen-wellness",
+    "name_th": "สุพรรณบุรี บางเลน สปา",
+    "name_en": "Suphan Buri Banglen Garden Spa",
+    "province": "Suphan Buri",
+    "region": "central",
+    "lat": 14.4744,
+    "lng": 100.1167,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Buffalo-village herbal compress",
+      "Rice-field yoga",
+      "Foot reflexology"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Garden spa in Suphan Buri's rice-field belt — herbs from the buffalo village down the road.",
+    "en_description": "Garden spa in Suphan Buri's rice-field belt. Herbs sourced from the nearby buffalo village.",
+    "th_description": "สปาในสวนกลางทุ่งนา สุพรรณบุรี",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Suphan-Buri/571"
+    ]
+  },
+  {
+    "id": "uthai-thani-forest-monastery",
+    "name_th": "วัดป่าอุทัยธานี",
+    "name_en": "Uthai Thani Forest Monastery",
+    "province": "Uthai Thani",
+    "region": "central",
+    "lat": 15.4067,
+    "lng": 100.1372,
+    "wellness_type": "meditation-retreat",
+    "signature_treatments": [
+      "Forest Vipassana",
+      "Walking meditation",
+      "Donation retreats"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Quiet forest monastery in Uthai Thani's deep countryside — open Vipassana retreats.",
+    "en_description": "Forest Vipassana monastery in Uthai Thani's countryside — open retreats during the rains retreat.",
+    "th_description": "วัดป่าในชนบทอุทัยธานี เปิดให้ปฏิบัติธรรม",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Uthai-Thani/573"
+    ]
+  },
+  {
+    "id": "wat-sothon-chachoengsao-herbal",
+    "name_th": "อบสมุนไพรวัดโสธร",
+    "name_en": "Wat Sothon Pilgrim Herbal Sauna",
+    "province": "Chachoengsao",
+    "region": "east",
+    "lat": 13.6886,
+    "lng": 101.0703,
+    "wellness_type": "herbal-sauna",
+    "signature_treatments": [
+      "Pilgrim herbal steam",
+      "Foot massage",
+      "Donation-based"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th"
+    ],
+    "local_character": "Pilgrim herbal sauna at the Luang Pho Sothon temple — used by visitors after offering.",
+    "en_description": "Donation-based herbal sauna at Wat Sothon. Used by pilgrims after their offering to Luang Pho Sothon.",
+    "th_description": "ห้องอบสมุนไพรชาวพุทธที่วัดโสธร",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Chachoengsao/581"
+    ]
+  },
+  {
+    "id": "kp-river-chanthaburi-spa",
+    "name_th": "เคพี ริเวอร์ จันทบุรี สปา",
+    "name_en": "Chanthaburi Riverside Spa",
+    "province": "Chanthaburi",
+    "region": "east",
+    "lat": 12.6113,
+    "lng": 102.1037,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Mangosteen-rind body polish",
+      "Riverside Thai massage",
+      "Foot reflexology"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Riverside spa using mangosteen-rind polish — Chanthaburi is Thailand's mangosteen capital.",
+    "en_description": "Boutique riverside spa using mangosteen-rind body polish — Chanthaburi grows the country's best mangosteen.",
+    "th_description": "สปาริมแม่น้ำจันทบุรี ใช้เปลือกมังคุด",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Chanthaburi/583"
+    ]
+  },
+  {
+    "id": "bangsaen-chonburi-spa",
+    "name_th": "บางแสน สปา",
+    "name_en": "Bangsaen Beach Wellness",
+    "province": "Chonburi",
+    "region": "east",
+    "lat": 13.2861,
+    "lng": 100.935,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Sea-breeze foot reflexology",
+      "Beach Thai massage",
+      "Coconut body wrap"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 4,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Beachfront massage and foot reflexology — local Bangsaen weekend culture, no Pattaya hustle.",
+    "en_description": "Beachfront foot reflexology in Bangsaen — local Bangkok-weekend hangout, far from Pattaya's hustle.",
+    "th_description": "สปาชายหาดบางแสน วัฒนธรรมคนกรุงในวันหยุด",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Chonburi/585"
+    ]
+  },
+  {
+    "id": "khao-yai-prachinburi-spa",
+    "name_th": "เขาใหญ่ ฝั่งปราจีน สปา",
+    "name_en": "Khao Yai South Forest Wellness",
+    "province": "Prachinburi",
+    "region": "east",
+    "lat": 14.2,
+    "lng": 101.65,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Forest yoga",
+      "Rainforest herbal compress",
+      "Walking meditation"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Khao Yai south-side wellness resort — quieter than the Pak Chong belt.",
+    "en_description": "Khao Yai's southern Prachinburi face — wellness resorts with deep-forest yoga decks, far quieter than Pak Chong.",
+    "th_description": "สปาในป่าเขาใหญ่ฝั่งปราจีน",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Prachinburi/591"
+    ]
+  },
+  {
+    "id": "rayong-banyan-tree-hin-hua",
+    "name_th": "บันยันทรี สปา ระยอง",
+    "name_en": "Banyan Tree Spa Rayong",
+    "province": "Rayong",
+    "region": "east",
+    "lat": 12.7161,
+    "lng": 101.5536,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Banyan signature massage",
+      "Beachfront yoga",
+      "Tropical body wrap"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 3,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th",
+      "zh",
+      "ja"
+    ],
+    "local_character": "Beachfront private-villa spa concept on Rayong's quieter coast — Singapore Banyan brand, full Thai team.",
+    "en_description": "Banyan Tree's Rayong outpost on a quiet stretch of east coast. Private spa villas, full Thai team.",
+    "th_description": "บันยันทรี ระยอง สปาวิลล่าส่วนตัว",
+    "booking_url": "https://www.banyantree.com/thailand/rayong-grand",
+    "source_urls": [
+      "https://www.banyantree.com/thailand/rayong-grand"
+    ]
+  },
+  {
+    "id": "pang-sida-sa-kaeo-wellness",
+    "name_th": "ปางสีดา สปา",
+    "name_en": "Pang Sida Forest Wellness House",
+    "province": "Sa Kaeo",
+    "region": "east",
+    "lat": 14.0667,
+    "lng": 102.2167,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Butterfly-stream walking meditation",
+      "Forest herbal compress",
+      "Bird-watching morning"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Tiny forest wellness house at Pang Sida National Park gates. Quiet, no foreigners.",
+    "en_description": "Forest-edge wellness house at the Pang Sida National Park gates. Quiet, almost no foreigners.",
+    "th_description": "บ้านสปาริมอุทยานปางสีดา สระแก้ว",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Sa-Kaeo/596"
+    ]
+  },
+  {
+    "id": "soneva-kiri-trat",
+    "name_th": "โซเนวา คีรี ตราด",
+    "name_en": "Soneva Kiri Spa Koh Kood",
+    "province": "Trat",
+    "region": "east",
+    "lat": 11.6342,
+    "lng": 102.5475,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Six Senses-style integrative wellness",
+      "Watsu",
+      "Sleep programme",
+      "Sound bath"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 3,
+    "crowd_level": 1,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [
+      {
+        "source": "conde-nast",
+        "year": 2024,
+        "rank": "Top Resort Spas in Asia"
+      },
+      {
+        "source": "forbes-travel-guide",
+        "year": 2024,
+        "rank": "Five-Star Spa"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh",
+      "ru"
+    ],
+    "local_character": "Tropical eco-luxury resort on remote Koh Kood — wellness programmes worth the seaplane.",
+    "en_description": "Eco-luxury resort spa on remote Koh Kood. Sleep programmes and integrative wellness; reachable only by seaplane.",
+    "th_description": "รีสอร์ทเวลเนสบนเกาะกูด ไปได้ทางเครื่องบินทะเล",
+    "booking_url": "https://www.soneva.com/soneva-kiri",
+    "source_urls": [
+      "https://www.soneva.com/soneva-kiri"
+    ]
+  },
+  {
+    "id": "x2-river-kwai-kanchanaburi",
+    "name_th": "เอ็กซ์ทู ริเวอร์แคว สปา",
+    "name_en": "X2 River Kwai Spa",
+    "province": "Kanchanaburi",
+    "region": "west",
+    "lat": 14.0227,
+    "lng": 99.5328,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Riverside floating yoga",
+      "Mon-style herbal compress",
+      "Sunset paddleboard meditation"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Floating villa spa on the River Kwai. Mon-style treatments and sunset paddleboards.",
+    "en_description": "Floating-villa spa on the River Kwai. Mon-style herbal compress, sunset paddleboard meditation.",
+    "th_description": "สปาวิลล่าลอยน้ำริมแคว",
+    "booking_url": "https://www.x2resorts.com/resorts/river-kwai",
+    "source_urls": [
+      "https://www.x2resorts.com/resorts/river-kwai"
+    ]
+  },
+  {
+    "id": "cha-am-phetchaburi-spa",
+    "name_th": "ชะอำ เพชรบุรี สปา",
+    "name_en": "Cha-am Beach Wellness Boutique",
+    "province": "Phetchaburi",
+    "region": "west",
+    "lat": 12.8,
+    "lng": 99.9667,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Palmyra-sugar scrub",
+      "Beach Thai massage",
+      "Petchaburi golden honey wrap"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Cha-am beachfront boutique spa using Phetchaburi palmyra sugar and golden honey from local farms.",
+    "en_description": "Cha-am boutique spa using Phetchaburi palm-sugar and local golden honey.",
+    "th_description": "สปาริมหาดชะอำ ใช้น้ำตาลโตนดและน้ำผึ้งเพชรบุรี",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Phetchaburi/603"
+    ],
+    "tat": {
+      "place_id": "26310",
+      "slug": "หาดชะอำ",
+      "name_th": "หาดชะอำ",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/8479e84d-67fb-4858-b015-bf4c0c2bee2f.jpeg",
+      "sha_certified": false,
+      "province_th": "เพชรบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/หาดชะอำ",
+      "distance_km": 2.0
+    }
+  },
+  {
+    "id": "suan-phueng-ratchaburi-spa",
+    "name_th": "สวนผึ้ง ราชบุรี สปา",
+    "name_en": "Suan Phueng Forest Wellness",
+    "province": "Ratchaburi",
+    "region": "west",
+    "lat": 13.5511,
+    "lng": 99.35,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Karen herbal compress",
+      "Forest yoga",
+      "River-stream meditation"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 3,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Boutique resort spa in Ratchaburi's Suan Phueng valley near the Myanmar border. Karen herbal recipes.",
+    "en_description": "Boutique forest resort spa in Suan Phueng valley near the Myanmar border. Karen-ethnic herbal recipes.",
+    "th_description": "สปาบูทิคในหุบเขาสวนผึ้ง ใช้สมุนไพรชาวกะเหรี่ยง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Ratchaburi/605"
+    ],
+    "tat": {
+      "place_id": "5052",
+      "slug": "เวเนโต้สวนผึ้ง",
+      "name_th": "เวเนโต้สวนผึ้ง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/1456293e-d748-4a58-98ba-2508b8c7aef1.jpg",
+      "sha_certified": true,
+      "province_th": "ราชบุรี",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เวเนโต้สวนผึ้ง",
+      "distance_km": 6.4
+    }
+  },
+  {
+    "id": "mae-sot-tak-border-spa",
+    "name_th": "แม่สอด ตาก สปา",
+    "name_en": "Mae Sot Border Wellness House",
+    "province": "Tak",
+    "region": "west",
+    "lat": 16.7167,
+    "lng": 98.5667,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Burmese-Thai herbal compress",
+      "Mae Sot-grown turmeric mask",
+      "Karen massage"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th",
+      "my"
+    ],
+    "local_character": "Border-town wellness house blending Burmese and Karen ethnic recipes — Thai-owned, Burmese herbalists.",
+    "en_description": "Mae Sot border wellness blending Burmese and Karen herbal traditions. Thai-owned, multi-ethnic team.",
+    "th_description": "บ้านเวลเนสที่แม่สอด ผสมตำรับพม่า-กะเหรี่ยง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Tak/611"
+    ],
+    "tat": {
+      "place_id": "18536",
+      "slug": "แม่สอด",
+      "name_th": "แม่สอด",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/5e63e667-d4fb-4ad8-b8d6-372a37d21cf7.jpeg",
+      "sha_certified": false,
+      "province_th": "ตาก",
+      "detail_url": "https://thai.tourismthailand.org/attraction/แม่สอด",
+      "distance_km": 0.6
+    }
+  },
+  {
+    "id": "tusita-chumphon-resort",
+    "name_th": "ทุสิตา ชุมพร",
+    "name_en": "Tusita Wellness Resort Chumphon",
+    "province": "Chumphon",
+    "region": "south",
+    "lat": 10.8794,
+    "lng": 99.1394,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Beach yoga",
+      "Detox programme",
+      "Ocean-view massage"
+    ],
+    "price_tier": "$$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th",
+      "de"
+    ],
+    "local_character": "Beachfront wellness resort in Pathio with detox programmes — far quieter than Phuket or Samui.",
+    "en_description": "Beachfront wellness retreat in Pathio, Chumphon — detox programmes, ocean-view yoga decks, no party scene.",
+    "th_description": "รีสอร์ทเวลเนสริมหาดปะทิว ชุมพร",
+    "booking_url": "https://www.tusitawellnessresort.com/",
+    "source_urls": [
+      "https://www.tusitawellnessresort.com/"
+    ]
+  },
+  {
+    "id": "khao-luang-nakhon-si-spa",
+    "name_th": "เขาหลวง นครศรี สปา",
+    "name_en": "Khao Luang Forest Wellness Lodge",
+    "province": "Nakhon Si Thammarat",
+    "region": "south",
+    "lat": 8.555,
+    "lng": 99.7244,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Mangosteen-rind polish",
+      "Cool-mountain herbal compress",
+      "Forest meditation"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Forest lodge in Khao Luang National Park — mangosteen-rind polishes and cool mountain air.",
+    "en_description": "Forest wellness lodge in Khao Luang National Park. Mangosteen-rind polishes from southern groves; cool nights.",
+    "th_description": "สปารีสอร์ทในอุทยานเขาหลวง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Nakhon-Si-Thammarat/635"
+    ]
+  },
+  {
+    "id": "narathiwat-deep-south-medicine",
+    "name_th": "นราธิวาส แพทย์แผนไทย",
+    "name_en": "Narathiwat Malay-Thai Medicine Centre",
+    "province": "Narathiwat",
+    "region": "south",
+    "lat": 6.4254,
+    "lng": 101.8253,
+    "wellness_type": "traditional-medicine",
+    "signature_treatments": [
+      "Malay-Thai herbal consultation",
+      "Local pulse diagnosis",
+      "Herbal tea blends"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th",
+      "ms"
+    ],
+    "local_character": "Provincial Public Health Malay-Thai medicine clinic — far-south recipes blending Thai and Melayu pharmacopeia.",
+    "en_description": "Provincial Malay-Thai traditional medicine clinic. Far-south herbal tradition blending Thai + Melayu pharmacopeia.",
+    "th_description": "คลินิกแพทย์แผนไทยมลายูที่นราธิวาส",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Narathiwat/641"
+    ]
+  },
+  {
+    "id": "pattani-traditional-spa",
+    "name_th": "ปัตตานี แพทย์แผนไทย",
+    "name_en": "Pattani Old-Town Traditional Spa",
+    "province": "Pattani",
+    "region": "south",
+    "lat": 6.8692,
+    "lng": 101.2553,
+    "wellness_type": "traditional-medicine",
+    "signature_treatments": [
+      "Malay-Thai herbal consult",
+      "Sino-Malay herbal compress",
+      "Pulse diagnosis"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "th",
+      "ms"
+    ],
+    "local_character": "Old-town Sino-Malay traditional medicine practice — pulse diagnosis and herbal tea blends.",
+    "en_description": "Pattani old-town traditional medicine clinic. Sino-Malay heritage; pulse diagnosis with herbal blends.",
+    "th_description": "คลินิกแพทย์แผนไทยในเมืองเก่าปัตตานี",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Pattani/643"
+    ]
+  },
+  {
+    "id": "six-senses-yao-noi",
+    "name_th": "ซิกซ์เซนส์ เยานอย",
+    "name_en": "Six Senses Yao Noi Spa",
+    "province": "Phang Nga",
+    "region": "south",
+    "lat": 8.1342,
+    "lng": 98.6047,
+    "wellness_type": "wellness-resort",
+    "signature_treatments": [
+      "Six Senses sleep programme",
+      "Watsu",
+      "Detox cleanse",
+      "Cliff-top yoga"
+    ],
+    "price_tier": "$$$$",
+    "thai_authenticity": 3,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Extra Plus",
+    "awards": [
+      {
+        "source": "forbes-travel-guide",
+        "year": 2024,
+        "rank": "Five-Star Spa"
+      },
+      {
+        "source": "conde-nast",
+        "year": 2024,
+        "rank": "Top Wellness Resorts in Asia"
+      }
+    ],
+    "languages": [
+      "en",
+      "th",
+      "zh",
+      "ja",
+      "ru"
+    ],
+    "local_character": "Cliffside Six Senses resort with karst views into Phang Nga Bay — ultra-luxe wellness programming.",
+    "en_description": "Cliffside Six Senses on Yao Noi island, with views over Phang Nga Bay's limestone karsts. Sleep + detox programmes.",
+    "th_description": "ซิกซ์เซนส์บนยอดเขาเกาะยาวน้อย ภาคพังงา",
+    "booking_url": "https://www.sixsenses.com/en/resorts/yao-noi",
+    "source_urls": [
+      "https://www.sixsenses.com/en/resorts/yao-noi"
+    ]
+  },
+  {
+    "id": "phatthalung-thale-noi-spa",
+    "name_th": "พัทลุง ทะเลน้อย สปา",
+    "name_en": "Thale Noi Lakeside Wellness Lodge",
+    "province": "Phatthalung",
+    "region": "south",
+    "lat": 7.7833,
+    "lng": 100.1667,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Lotus-pad body wrap",
+      "Buffalo-sunrise yoga",
+      "Lakeside Thai massage"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Lakeside wellness lodge at Thale Noi wetlands — lotus-pad wraps from the wetland itself.",
+    "en_description": "Lakeside wellness lodge at Thale Noi Ramsar wetland. Lotus-pad wraps from local lotus farmers.",
+    "th_description": "เลคไซด์สปาที่ทะเลน้อย พัทลุง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Phatthalung/651"
+    ],
+    "tat": {
+      "place_id": "7055",
+      "slug": "เขตห้ามล่าสัตว์ป่าทะเลน้อย",
+      "name_th": "เขตห้ามล่าสัตว์ป่าทะเลน้อย",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/8bfdad5d-4532-4ad2-9eb1-89ebd9859b52.jpg",
+      "sha_certified": false,
+      "province_th": "พัทลุง",
+      "detail_url": "https://thai.tourismthailand.org/attraction/เขตห้ามล่าสัตว์ป่าทะเลน้อย",
+      "distance_km": 4.9
+    }
+  },
+  {
+    "id": "ranong-hot-springs",
+    "name_th": "บ่อน้ำร้อนรักษะวารินทร์ ระนอง",
+    "name_en": "Raksawarin Hot Springs Ranong",
+    "province": "Ranong",
+    "region": "south",
+    "lat": 9.9617,
+    "lng": 98.6394,
+    "wellness_type": "onsen",
+    "signature_treatments": [
+      "Mineral hot-spring soak",
+      "Boil-egg ritual at the source",
+      "Forest-stream cold plunge"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 3,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Public hot spring complex in Ranong town — source 65°C, bathing pools downstream.",
+    "en_description": "Public Raksawarin Hot Springs — source pool 65°C, downstream bathing pools at comfortable temperatures.",
+    "th_description": "บ่อน้ำร้อนรักษะวารินทร์ ใจกลางเมืองระนอง",
+    "source_urls": [
+      "https://www.tourismthailand.org/Attraction/raksawarin-hot-spring"
+    ]
+  },
+  {
+    "id": "tarutao-satun-wellness",
+    "name_th": "ตะรุเตา สตูล เวลเนส",
+    "name_en": "Tarutao Island Forest Wellness",
+    "province": "Satun",
+    "region": "south",
+    "lat": 6.6864,
+    "lng": 99.6711,
+    "wellness_type": "yoga-retreat",
+    "signature_treatments": [
+      "Beach yoga",
+      "Mangrove walking meditation",
+      "Sea-air pranayama"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Park-run yoga retreats on Tarutao — pristine, ranger-managed, no resort.",
+    "en_description": "Park-run yoga retreats on Tarutao Island — ranger-managed lodging, mangrove walks, no commercial resort.",
+    "th_description": "รีทรีตโยคะในอุทยานเกาะตะรุเตา จังหวัดสตูล",
+    "source_urls": [
+      "https://portal.dnp.go.th/Content/nationalpark"
+    ]
+  },
+  {
+    "id": "songkhla-old-town-spa",
+    "name_th": "สงขลา เมืองเก่า สปา",
+    "name_en": "Songkhla Old Town Boutique Spa",
+    "province": "Songkhla",
+    "region": "south",
+    "lat": 7.1986,
+    "lng": 100.5944,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Sino-Thai-Malay herbal compress",
+      "Old-town walking meditation",
+      "Tea-and-coconut polish"
+    ],
+    "price_tier": "$$",
+    "thai_authenticity": 5,
+    "crowd_level": 2,
+    "sha_certified": true,
+    "sha_tier": "SHA Plus",
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Boutique spa in Songkhla's UNESCO-tentative Sino-Thai-Malay old town — heritage shophouse, mural alleys outside.",
+    "en_description": "Boutique spa in a Sino-Thai-Malay shophouse in Songkhla's old town. Three-cultures herbal compress, mural alleys outside.",
+    "th_description": "สปาในเรือนไม้สามวัฒนธรรม เมืองเก่าสงขลา",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Songkhla/661"
+    ],
+    "tat": {
+      "place_id": "8785",
+      "slug": "ย่านเมืองเก่าสงขลา",
+      "name_th": "ย่านเมืองเก่าสงขลา",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/95d3efe9-321a-4744-af1c-02e98f5297be.jpeg",
+      "sha_certified": false,
+      "province_th": "สงขลา",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ย่านเมืองเก่าสงขลา",
+      "distance_km": 0.8
+    }
+  },
+  {
+    "id": "trang-old-town-spa",
+    "name_th": "ตรัง เมืองเก่า สปา",
+    "name_en": "Trang Old-Town Wellness House",
+    "province": "Trang",
+    "region": "south",
+    "lat": 7.5594,
+    "lng": 99.6111,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Trang dim-sum-morning sleep recovery",
+      "Coffee-and-cocoa polish",
+      "Andaman herbal compress"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 4,
+    "crowd_level": 2,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th"
+    ],
+    "local_character": "Trang old-town wellness house specialising in sleep recovery — locals come after 5am dim sum.",
+    "en_description": "Trang old-town wellness house — sleep-recovery treatments after the 5am Trang dim-sum tradition.",
+    "th_description": "สปาในตรังเมืองเก่า ฟื้นฟูหลังกินติ่มซำเช้า",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Trang/671"
+    ],
+    "tat": {
+      "place_id": "33526",
+      "slug": "ย่านเก่าเมืองตรัง",
+      "name_th": "ย่านเก่าเมืองตรัง",
+      "thumbnail_url": "https://dmc.tatdataapi.io/assets/2e2b52f1-87bd-4ce5-b471-edd4197d3def.jpeg",
+      "sha_certified": false,
+      "province_th": "ตรัง",
+      "detail_url": "https://thai.tourismthailand.org/attraction/ย่านเก่าเมืองตรัง",
+      "distance_km": 0.3
+    }
+  },
+  {
+    "id": "yala-old-town-spa",
+    "name_th": "ยะลา เมืองเก่า สปา",
+    "name_en": "Yala Old-Town Wellness House",
+    "province": "Yala",
+    "region": "south",
+    "lat": 6.5413,
+    "lng": 101.2803,
+    "wellness_type": "spa",
+    "signature_treatments": [
+      "Sino-Malay herbal compress",
+      "Old-grid-walking meditation",
+      "Local sweet-and-sour herbal tea"
+    ],
+    "price_tier": "$",
+    "thai_authenticity": 5,
+    "crowd_level": 1,
+    "sha_certified": false,
+    "awards": [],
+    "languages": [
+      "en",
+      "th",
+      "ms"
+    ],
+    "local_character": "Tiny boutique spa inside Yala's 1930s spider-web grid town. Sino-Malay heritage tradition.",
+    "en_description": "Boutique wellness house in Yala's 1930s grid old-town. Sino-Malay heritage compress, very few foreign visitors.",
+    "th_description": "สปาเล็กในเมืองเก่ายะลา วางผังถนนใยแมงมุม",
+    "source_urls": [
+      "https://www.tourismthailand.org/Destinations/Provinces/Yala/675"
+    ]
+  }
+]

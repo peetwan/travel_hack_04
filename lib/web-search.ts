@@ -16,6 +16,21 @@ const THAI_TRAVEL_DOMAINS = [
   "roigoo.com",
 ];
 
+const LUXURY_TRAVEL_DOMAINS = [
+  "cntraveler.com",
+  "travelandleisure.com",
+  "robbreport.com",
+  "tatlerasia.com",
+  "forbestravelguide.com",
+  "departures.com",
+  "lonelyplanet.com",
+  "afar.com",
+  "mrandmrssmith.com",
+  "tourismthailand.org",
+  "worldspaawards.com",
+  "michelin.com",
+];
+
 export interface WebHit {
   title: string;
   url: string;
@@ -390,6 +405,69 @@ export async function realtimeThaiSearch(args: {
       reports,
     }),
   };
+}
+
+export async function luxuryWellnessSearch(args: {
+  query: string;
+  maxResults?: number;
+  signal?: AbortSignal;
+}): Promise<{
+  hits: WebHit[];
+  status: "ok" | "missing-key" | "timeout" | "error";
+  message?: string;
+  searched_at: string;
+}> {
+  const searchedAt = new Date().toISOString();
+  const maxResults = args.maxResults ?? 5;
+
+  if (!hasEnv("TAVILY_API_KEY") && !hasEnv("EXA_API_KEY")) {
+    return {
+      hits: [],
+      status: "missing-key",
+      message: "Neither TAVILY_API_KEY nor EXA_API_KEY is configured.",
+      searched_at: searchedAt,
+    };
+  }
+
+  try {
+    const results = await Promise.all([
+      hasEnv("TAVILY_API_KEY")
+        ? tavilySearch({
+            query: args.query,
+            maxResults,
+            includeDomains: LUXURY_TRAVEL_DOMAINS,
+            signal: args.signal,
+          }).catch(() => [] as WebHit[])
+        : Promise.resolve([] as WebHit[]),
+      hasEnv("EXA_API_KEY")
+        ? exaSearch({
+            query: args.query,
+            maxResults,
+            includeDomains: LUXURY_TRAVEL_DOMAINS,
+            signal: args.signal,
+          }).catch(() => [] as WebHit[])
+        : Promise.resolve([] as WebHit[]),
+    ]);
+
+    const hits = dedupeHits(results.flat(), maxResults);
+    if (args.signal?.aborted) {
+      return {
+        hits,
+        status: "timeout",
+        message: "Luxury wellness search aborted by timeout.",
+        searched_at: searchedAt,
+      };
+    }
+    return { hits, status: "ok", searched_at: searchedAt };
+  } catch (err) {
+    return {
+      hits: [],
+      status: isAbortError(err) ? "timeout" : "error",
+      message:
+        err instanceof Error ? err.message : "Luxury wellness search failed.",
+      searched_at: searchedAt,
+    };
+  }
 }
 
 export async function combinedThaiSearch(args: {

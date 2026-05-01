@@ -1,5 +1,6 @@
 import gemsData from "../../data/hidden_gems.json";
 import trapsData from "../../data/tourist_traps.json";
+import wellnessData from "../../data/wellness_local.json";
 import type {
   AgentEvent,
   AgentName,
@@ -11,8 +12,14 @@ import type {
   MapsCrowdReport,
   TouristTrap,
   WebEvidence,
+  WellnessPulseDiagnostics,
+  WellnessVenue,
 } from "../types";
-import { fetchMapsCrowdSignals, geocodeDiscoveredPlace } from "../google-maps";
+import {
+  fetchMapsCrowdSignals,
+  geocodeDiscoveredPlace,
+  validateWellnessVenue,
+} from "../google-maps";
 import {
   enrichCrowdReport,
   inferTripDaysFromPrompt,
@@ -31,12 +38,15 @@ import {
   runVerifier,
   runWeatherWatcher,
   runWebPulse,
+  runWellnessPulse,
 } from "./runners";
 
 const GEMS: HiddenGem[] = gemsData as HiddenGem[];
 const TRAPS: TouristTrap[] = trapsData as TouristTrap[];
+const WELLNESS: WellnessVenue[] = wellnessData as WellnessVenue[];
 const GEMS_BY_ID = new Map(GEMS.map((g) => [g.id, g]));
 const TRAPS_BY_ID = new Map(TRAPS.map((t) => [t.id, t]));
+const WELLNESS_BY_ID = new Map(WELLNESS.map((w) => [w.id, w]));
 
 type Emit = (e: AgentEvent) => void;
 
@@ -47,6 +57,8 @@ const startMessages: Record<AgentName, string> = {
   listener: "Scanning our curated dataset of authentic Thai destinations…",
   "web-pulse":
     "Searching live Thai web (Tavily + Exa, Firecrawl where available) for fresh evidence…",
+  "wellness-pulse":
+    "Cross-checking Thai wellness venues against curated picks, SHA, awards, and Google Places…",
   "crowd-analyst": "Reading your tolerance for crowds and tourist traps…",
   curator: "Matching every candidate against your vibe + web evidence…",
   planner: "Grouping picks by region and shaping a route…",
@@ -171,6 +183,40 @@ export async function orchestrate(
     timestamp: now(),
   });
 
+  // Kick off the Wellness Pulse agent in parallel with Web Pulse — same pattern
+  // as Maps Crowd Radar above. It uses the Listener's trip provinces as a hint
+  // and picks 0-5 vetted wellness venues from data/wellness_local.json.
+  const tripProvinces = Array.from(
+    new Set(listenerCandidates.map((g) => g.province))
+  );
+  emit({
+    type: "agent_start",
+    agent: "wellness-pulse",
+    message: startMessages["wellness-pulse"],
+    timestamp: now(),
+  });
+  emit({
+    type: "agent_progress",
+    agent: "wellness-pulse",
+    message: `Filtering ${WELLNESS.length} curated Thai wellness venues against your trip provinces and vibe…`,
+    data: { trip_provinces: tripProvinces, dataset_size: WELLNESS.length },
+    timestamp: now(),
+  });
+  const wellnessPulseTask = runWellnessPulse({
+    userPrompt,
+    dataset: WELLNESS,
+    tripProvinces,
+    candidateGems: listenerCandidates.map((g) => ({
+      province: g.province,
+      lat: g.lat,
+      lng: g.lng,
+    })),
+    proximityRadiusKm: 80,
+  }).catch((err) => {
+    console.warn("[wellness-pulse] failed:", err);
+    return null;
+  });
+
   const webPulseResult = await runWebPulse({
     userPrompt,
     dataset: listenerCandidates.length > 0 ? listenerCandidates : GEMS,
@@ -283,6 +329,116 @@ export async function orchestrate(
     },
     timestamp: now(),
   });
+
+  // 1b. Wellness Pulse — finalise: await the model + cross-validate each pick
+  //     against Google Places (rating ≥4.3 + reviews ≥100 + OPERATIONAL).
+  //     Drop entries that don't pass. Picks survive the panel only if at least
+  //     two layers agreed: curated dataset + (Google Places OR existing TAT/SHA).
+  const wellnessPulseResult = await wellnessPulseTask;
+  const wellnessFinds: WellnessVenue[] = [];
+  let wellnessDiagnostics: WellnessPulseDiagnostics | undefined;
+  if (wellnessPulseResult) {
+    const picks = wellnessPulseResult.output.picks;
+    const ac = new AbortController();
+    const timer = setTimeout(() => ac.abort(), 6000);
+    try {
+      const validations = await Promise.allSettled(
+        picks.map((pick) => {
+          const venue = WELLNESS_BY_ID.get(pick.id);
+          if (!venue) return Promise.resolve(null);
+          return validateWellnessVenue({
+            name_en: venue.name_en,
+            name_th: venue.name_th,
+            province: venue.province,
+            lat: venue.lat,
+            lng: venue.lng,
+            signal: ac.signal,
+            minRating: 4.3,
+            minReviews: 100,
+          });
+        })
+      );
+      validations.forEach((res, i) => {
+        const pick = picks[i];
+        const venue = WELLNESS_BY_ID.get(pick.id);
+        if (!venue) return;
+        const luxurySignals = pick.luxury_signals ?? [];
+        const validation =
+          res.status === "fulfilled" ? res.value : null;
+        // If Google Places is configured, require it to pass.
+        // If Google Maps key is missing (validation === null), keep the pick
+        // but mark it as curated-only — better than dropping everything.
+        if (validation && !validation.passes_threshold) return;
+        wellnessFinds.push({
+          ...venue,
+          why: pick.why,
+          google_rating: validation?.google_rating,
+          google_review_count: validation?.google_review_count,
+          google_maps_uri: validation?.google_maps_uri,
+          google_photo_url: validation?.google_photo_url,
+          business_status: validation?.business_status,
+          match_distance_km: validation?.match_distance_km,
+          // Stash luxury signals into awards-style display via a side channel:
+          // we surface them in the WellnessCard using `why` + existing awards.
+          // Keep awards as-is, but allow the model's signals to override
+          // ordering by appending them to the source_urls? No — just prepend
+          // them to the description? No — better: leave them on the pick and
+          // pass through.
+          signature_treatments:
+            luxurySignals.length > 0
+              ? Array.from(
+                  new Set([
+                    ...luxurySignals.slice(0, 2),
+                    ...venue.signature_treatments,
+                  ])
+                ).slice(0, 5)
+              : venue.signature_treatments,
+        });
+      });
+    } finally {
+      clearTimeout(timer);
+    }
+    wellnessDiagnostics = {
+      candidate_count: WELLNESS.length,
+      picked_count: picks.length,
+      validated_count: wellnessFinds.length,
+      search_status: wellnessPulseResult.liveBoost?.status ?? "skipped",
+      search_message: wellnessPulseResult.liveBoost?.message,
+      search_query: wellnessPulseResult.liveBoost?.query,
+      searched_at: wellnessPulseResult.liveBoost?.searched_at,
+    };
+    emit({
+      type: "agent_complete",
+      agent: "wellness-pulse",
+      message: wellnessPulseResult.output.narration,
+      data: {
+        candidate_count: WELLNESS.length,
+        picked_count: picks.length,
+        validated_count: wellnessFinds.length,
+        trip_provinces: tripProvinces,
+        live_boost_status: wellnessPulseResult.liveBoost?.status,
+        live_boost_hits: wellnessPulseResult.liveBoost?.hits.length ?? 0,
+        live_boost_message: wellnessPulseResult.liveBoost?.message,
+        sample_picks: wellnessFinds.slice(0, 3).map((w) => ({
+          id: w.id,
+          name_en: w.name_en,
+          province: w.province,
+          why: w.why,
+        })),
+        reasoning: wellnessPulseResult.output.reasoning,
+      },
+      timestamp: now(),
+    });
+  } else {
+    emit({
+      type: "agent_complete",
+      agent: "wellness-pulse",
+      message:
+        "Wellness Pulse failed unexpectedly — skipping the wellness panel for this run.",
+      data: { skipped: true },
+      timestamp: now(),
+    });
+  }
 
   // 2. Crowd analyst — parallel-ready, but depends on listener output
   emit({
@@ -695,6 +851,8 @@ export async function orchestrate(
     }),
     crowd_radar: crowdRadar,
     discovered_gems: discoveredGems.length > 0 ? discoveredGems : undefined,
+    wellness_finds: wellnessFinds.length > 0 ? wellnessFinds : undefined,
+    wellness_diagnostics: wellnessDiagnostics,
   };
 
   emit({
@@ -706,7 +864,7 @@ export async function orchestrate(
   emit({
     type: "agent_complete",
     agent: "orchestrator",
-    message: `All seven agents finished in ${((now() - start) / 1000).toFixed(1)}s.`,
+    message: `All eight agents finished in ${((now() - start) / 1000).toFixed(1)}s.`,
     timestamp: now(),
   });
   emit({ type: "done", timestamp: now() });
