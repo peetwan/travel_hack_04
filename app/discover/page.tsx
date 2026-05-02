@@ -303,13 +303,6 @@ function DiscoverInner() {
               </span>
             </span>
           </Link>
-          {done && !error && final && (
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-saffron)] bg-[var(--saffron-tint)] px-3 py-1.5 font-mono text-xs text-[var(--saffron)]">
-              <Sparkles className="h-3 w-3" />
-              {final.selected_gems.length} gems · {final.avoided_traps.length}{" "}
-              traps avoided
-            </span>
-          )}
         </div>
       </header>
 
