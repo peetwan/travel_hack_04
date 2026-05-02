@@ -91,12 +91,6 @@ export function GemCard({
                 SHA
               </span>
             )}
-            {heroImage === googlePhoto && heroImage !== tatThumb && (
-              <span className="inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/40 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white backdrop-blur-md">
-                <MapPin className="h-3 w-3" />
-                Google Maps
-              </span>
-            )}
           </div>
           <div className="absolute right-3 top-3">
             <Badge variant={CATEGORY_VARIANT[gem.category]} className="capitalize backdrop-blur-md">
@@ -148,11 +142,11 @@ export function GemCard({
               className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest ${pressureTone}`}
               title={
                 crowdSignal.reasons[0] ??
-                "Google Maps popularity proxy, not a live crowd counter."
+                "Popularity proxy based on review volume, not a live crowd count."
               }
             >
               <Users className="h-3 w-3" />
-              Maps {mapsPressure ?? "unknown"}
+              {mapsPressure ?? "unknown"} traffic
             </span>
           )}
           {hasTat && !heroImage && (
@@ -182,7 +176,7 @@ export function GemCard({
             </span>
             {mapsReviews && (
               <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-                {mapsReviews.toLocaleString()} Google reviews
+                {mapsReviews.toLocaleString()} reviews
                 {typeof crowdSignal?.matched_place?.open_now === "boolean"
                   ? crowdSignal.matched_place.open_now
                     ? " · open now"
@@ -198,7 +192,6 @@ export function GemCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-[var(--jade)] transition-colors hover:text-[var(--saffron)]"
-                title="Open matched place in Google Maps"
               >
                 Maps
                 <ExternalLink className="h-3 w-3" />
@@ -210,7 +203,7 @@ export function GemCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-[var(--saffron)] transition-colors hover:text-[var(--burgundy)]"
-                title="Open in TAT (Tourism Authority of Thailand) database"
+                title="Open in TAT"
               >
                 TAT
                 <ExternalLink className="h-3 w-3" />

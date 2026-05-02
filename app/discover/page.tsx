@@ -335,12 +335,8 @@ function DiscoverInner() {
           <div className="flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-900">
             <AlertTriangle className="h-4 w-4 shrink-0 translate-y-0.5 text-rose-600" />
             <div>
-              <p className="font-medium">The agent crew tripped.</p>
+              <p className="font-medium">Something went wrong while planning your trip.</p>
               <p className="mt-1 text-rose-700">{error}</p>
-              <p className="mt-2 text-xs text-rose-600">
-                Most common cause: <code>GOOGLE_GENERATIVE_AI_API_KEY</code> not
-                set in <code>.env.local</code>.
-              </p>
             </div>
           </div>
         )}
@@ -442,12 +438,10 @@ function LiveFinds({ final }: { final: FinalItinerary }) {
             Live finds · {finds.length} {finds.length === 1 ? "place" : "places"}
           </p>
           <h3 className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)]">
-            Found in fresh Thai web hits — not in our curated set yet
+            Bonus places we spotted online
           </h3>
           <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
-            Web Pulse surfaced these from live Thai-source articles. Coordinates
-            confirmed via Google Maps, but they have not been TAT-verified or
-            crowd-checked. Treat as leads, not vetted picks.
+            Newer leads — coordinates checked, but treat as ideas to scout, not a vetted pick.
           </p>
         </div>
       </div>
@@ -478,7 +472,7 @@ function LiveFinds({ final }: { final: FinalItinerary }) {
                   {find.province}
                   {typeof find.google_review_count === "number" && (
                     <span className="ml-1">
-                      · {find.google_review_count.toLocaleString()} Maps reviews
+                      · {find.google_review_count.toLocaleString()} reviews
                       {typeof find.google_rating === "number"
                         ? ` · ${find.google_rating.toFixed(1)}★`
                         : ""}
@@ -529,25 +523,19 @@ function WellnessFinds({ final }: { final: FinalItinerary }) {
   const finds = final.wellness_finds ?? [];
   if (finds.length === 0) return null;
 
-  const diag = final.wellness_diagnostics;
-
   return (
     <div className="flex flex-col gap-4 rounded-2xl border border-[var(--jade-soft)] bg-gradient-to-br from-[var(--jade-tint)]/60 via-[var(--surface)] to-[#fdf6e3]/40 p-5 sm:p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <div className="flex flex-col gap-1">
           <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--jade)]">
             <Sparkles className="h-3 w-3" />
-            Thai wellness picks · {finds.length} {finds.length === 1 ? "venue" : "venues"} · cross-validated
+            Thai wellness picks · {finds.length} {finds.length === 1 ? "venue" : "venues"}
           </p>
           <h3 className="font-display text-xl font-semibold tracking-tight text-[var(--foreground)]">
             Where to slow down — quality Thai wellness, hand-picked
           </h3>
           <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
-            Cross-checked across four sources: a hand-curated dataset, TAT SHA
-            certification, luxury-travel editorial mentions, and live Google
-            Places ratings (≥4.3, ≥100 reviews, currently operating). Boutique
-            and Thai-heritage venues only — no chain spas.
-            {diag?.search_status === "missing-key" ? " Live editorial search skipped (no Tavily/Exa key set)." : null}
+            Boutique and Thai-heritage venues only — no chain spas.
           </p>
         </div>
       </div>
@@ -558,10 +546,6 @@ function WellnessFinds({ final }: { final: FinalItinerary }) {
           </li>
         ))}
       </ul>
-      <p className="border-t border-[var(--border)] pt-3 font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-        Curated dataset · TAT SHA · Forbes / Condé Nast / Travel + Leisure ·
-        Google Places
-      </p>
     </div>
   );
 }
@@ -610,15 +594,14 @@ function ResultFooter({ final }: { final: FinalItinerary }) {
           <div className="mb-7 flex flex-col gap-2">
             <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--saffron)]">
               <Sparkles className="h-3 w-3" />
-              Local intel · Verifier
+              Local intel
             </p>
             <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-3xl">
               Notes from the local guide
             </h3>
             <p className="max-w-2xl text-sm leading-relaxed text-[var(--muted-foreground)]">
-              The kind of detail a generic AI itinerary skips — etiquette,
-              seasonal gear, holiday-aware tweaks, and small things that change
-              the day.
+              Small things that change the day — etiquette, seasonal gear, and
+              holiday-aware tweaks.
             </p>
           </div>
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
