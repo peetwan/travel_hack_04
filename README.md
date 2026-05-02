@@ -1,8 +1,29 @@
+<div align="center">
+
 # Hidden Siam
 
-> A Destination Scout pre-flow helps first-time Thailand travelers choose a region, then eight specialized AI agents build an authentic, less-crowded itinerary the famous travel bots never recommend.
+### *Multi-agent AI travel planner for Thailand — built against overtourism.*
 
-Built for the **Thailand Tourism Mini Hackathon** (AI Hackathon SS6, May 2026).
+A Destination Scout helps first-time travellers pick a Thai trip cluster from style-only intent, then eight specialised agents argue, filter, and route across 91 hand-curated gems, 89 Thai wellness venues, and live Thai-web search. The user watches them work in real time.
+
+<br />
+
+[![▶ Try the live demo](https://img.shields.io/badge/%E2%96%B6%20Try%20the%20live%20demo-Open%20app-b45309?style=for-the-badge)](https://travelhack04-copy-3-production.up.railway.app)
+
+<br />
+
+![Next.js 16](https://img.shields.io/badge/Next.js-16-000?logo=nextdotjs&logoColor=white)
+![Vercel AI SDK 6](https://img.shields.io/badge/Vercel%20AI%20SDK-6-000)
+![Gemini 3.1](https://img.shields.io/badge/Gemini-3.1%20Flash%20Lite-4285F4?logo=google&logoColor=white)
+![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS 4](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)
+![License MIT](https://img.shields.io/badge/License-MIT-b45309)
+
+*Built for the **Thailand Tourism Mini Hackathon** · AI Hackathon SS6 · May 2026 · Production-deployed on Railway*
+
+</div>
+
+---
 
 ## The pitch
 
@@ -166,6 +187,9 @@ Each gem and wellness venue tries TAT thumbnail first, then falls back to a Goog
 Three curated JSON files, no database — keeps the deploy footprint trivial.
 
 ## Setup
+
+> [!TIP]
+> Just want to see it run? **[Open the live demo](https://travelhack04-copy-3-production.up.railway.app)** — no install, no keys. The full experience (live Thai web search + Maps validation) is already wired up.
 
 ```bash
 npm install
