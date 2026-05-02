@@ -16,7 +16,7 @@ import {
   ChevronDown,
   Leaf,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { AgentName, AgentStatus } from "@/lib/types";
 
@@ -105,11 +105,10 @@ export function AgentCrewPanel({
   const activeIdx = rows.findIndex((r) => r.status === "thinking");
   const [expanded, setExpanded] = useState(true);
 
-  // Auto-collapse once finished, but only on the first transition.
-  // (User can re-expand manually.)
-  if (allDone && expanded && totalDurationMs === undefined) {
-    // no-op — can't usefully toggle in render
-  }
+  // Auto-collapse once the crew finishes; user can re-expand manually.
+  useEffect(() => {
+    if (allDone) setExpanded(false);
+  }, [allDone]);
 
   return (
     <section className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-[var(--shadow-xs)]">
@@ -298,10 +297,6 @@ function summaryChips(row: AgentRow): string[] {
     }
     const searchedAt = formatSearchedAt(data.searched_at);
     if (searchedAt) chips.push(`searched ${searchedAt}`);
-    const sourceCounts = formatSourceCounts(data.source_counts);
-    if (sourceCounts) chips.push(sourceCounts);
-    const providerIssues = formatProviderIssues(data.provider_statuses);
-    if (providerIssues) chips.push(providerIssues);
   }
 
   if (row.name === "wellness-pulse") {
@@ -310,9 +305,6 @@ function summaryChips(row: AgentRow): string[] {
     } else {
       numberChip("validated_count", "validated");
       numberChip("picked_count", "picks");
-      if (typeof data.live_boost_status === "string") {
-        chips.push(`editorial ${data.live_boost_status}`);
-      }
       if (typeof data.live_boost_hits === "number" && data.live_boost_hits > 0) {
         chips.push(`${data.live_boost_hits} editorial hits`);
       }
@@ -325,7 +317,7 @@ function summaryChips(row: AgentRow): string[] {
     if (radar && typeof radar === "object") {
       const r = radar as Record<string, unknown>;
       if (typeof r.signal_count === "number") {
-        chips.push(`${r.signal_count} Maps signals`);
+        chips.push(`${r.signal_count} popularity signals`);
       }
       if (typeof r.high_pressure === "number" && r.high_pressure > 0) {
         chips.push(`${r.high_pressure} high pressure`);
@@ -381,33 +373,6 @@ function formatSearchedAt(value: unknown): string | null {
     minute: "2-digit",
     hour12: false,
   }).format(date);
-}
-
-function formatSourceCounts(value: unknown): string | null {
-  if (!value || typeof value !== "object") return null;
-  const counts = value as Record<string, unknown>;
-  const parts = [
-    typeof counts.tavily === "number" ? `Tavily ${counts.tavily}` : null,
-    typeof counts.exa === "number" ? `Exa ${counts.exa}` : null,
-    typeof counts.firecrawl === "number" ? `pages ${counts.firecrawl}` : null,
-  ].filter(Boolean);
-  return parts.length ? parts.join(" · ") : null;
-}
-
-function formatProviderIssues(value: unknown): string | null {
-  if (!Array.isArray(value)) return null;
-  const issues = value
-    .map((item) => {
-      if (!item || typeof item !== "object") return null;
-      const report = item as { provider?: unknown; status?: unknown };
-      if (typeof report.provider !== "string" || typeof report.status !== "string") {
-        return null;
-      }
-      if (report.status === "ok" || report.status === "skipped") return null;
-      return `${report.provider} ${report.status}`;
-    })
-    .filter(Boolean);
-  return issues.length ? issues.join(" · ") : null;
 }
 
 function StatusLabel({

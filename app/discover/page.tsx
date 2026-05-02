@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
@@ -93,12 +93,26 @@ function DiscoverInner() {
   const params = useSearchParams();
   const prompt = params.get("q") ?? "";
   const startDate = params.get("start") ?? "";
+  const destinationTitle = params.get("destinationTitle") ?? "";
   const [agents, setAgents] = useState<Record<AgentName, AgentState>>(
     initialAgents()
   );
   const [final, setFinal] = useState<FinalItinerary | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  // Once the crew finishes and the result mounts, scroll the result section
+  // to the top of the viewport. Wait ~250ms so the AgentCrewPanel collapse
+  // animation (200ms) settles first, otherwise the smooth scroll fights with
+  // the shrinking panel above.
+  useEffect(() => {
+    if (!final) return;
+    const t = setTimeout(() => {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 250);
+    return () => clearTimeout(t);
+  }, [final]);
 
   useEffect(() => {
     if (!prompt) return;
@@ -289,13 +303,6 @@ function DiscoverInner() {
               </span>
             </span>
           </Link>
-          {done && !error && final && (
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-saffron)] bg-[var(--saffron-tint)] px-3 py-1.5 font-mono text-xs text-[var(--saffron)]">
-              <Sparkles className="h-3 w-3" />
-              {final.selected_gems.length} gems · {final.avoided_traps.length}{" "}
-              traps avoided
-            </span>
-          )}
         </div>
       </header>
 
@@ -306,14 +313,24 @@ function DiscoverInner() {
             <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
               Your prompt
             </p>
-            {startDate && (
-              <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
-                <span className="text-[var(--muted)]">trip starts</span>
-                <span className="rounded-md bg-[var(--saffron-tint)] px-2 py-0.5 text-[var(--saffron)]">
-                  {startDate}
-                </span>
-              </p>
-            )}
+            <div className="flex flex-wrap items-center gap-2">
+              {destinationTitle && (
+                <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
+                  <span className="text-[var(--muted)]">chosen</span>
+                  <span className="rounded-md bg-[var(--jade-tint)] px-2 py-0.5 text-[var(--jade)]">
+                    {destinationTitle}
+                  </span>
+                </p>
+              )}
+              {startDate && (
+                <p className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted-foreground)]">
+                  <span className="text-[var(--muted)]">trip starts</span>
+                  <span className="rounded-md bg-[var(--saffron-tint)] px-2 py-0.5 text-[var(--saffron)]">
+                    {startDate}
+                  </span>
+                </p>
+              )}
+            </div>
           </div>
           <p className="font-display text-xl leading-snug text-[var(--foreground)]">
             “{prompt}”
@@ -324,12 +341,8 @@ function DiscoverInner() {
           <div className="flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-900">
             <AlertTriangle className="h-4 w-4 shrink-0 translate-y-0.5 text-rose-600" />
             <div>
-              <p className="font-medium">The agent crew tripped.</p>
+              <p className="font-medium">Something went wrong while planning your trip.</p>
               <p className="mt-1 text-rose-700">{error}</p>
-              <p className="mt-2 text-xs text-rose-600">
-                Most common cause: <code>GOOGLE_GENERATIVE_AI_API_KEY</code> not
-                set in <code>.env.local</code>.
-              </p>
             </div>
           </div>
         )}
@@ -340,10 +353,11 @@ function DiscoverInner() {
         <AnimatePresence>
           {final && (
             <motion.div
+              ref={resultRef}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex flex-col gap-10"
+              className="flex scroll-mt-24 flex-col gap-10"
             >
               <ItineraryHero final={final} />
               <ItineraryMapHero gems={final.selected_gems} />
@@ -392,14 +406,6 @@ function ItineraryHero({ final }: { final: FinalItinerary }) {
           </span>
         ))}
       </p>
-      {final.avoided_traps.length > 0 && (
-        <p className="text-sm text-[var(--muted-foreground)]">
-          Skipped:{" "}
-          <span className="text-[var(--burgundy)]">
-            {final.avoided_traps.join(" · ")}
-          </span>
-        </p>
-      )}
     </div>
   );
 }
@@ -431,12 +437,10 @@ function LiveFinds({ final }: { final: FinalItinerary }) {
             Live finds · {finds.length} {finds.length === 1 ? "place" : "places"}
           </p>
           <h3 className="font-display text-lg font-semibold tracking-tight text-[var(--foreground)]">
-            Found in fresh Thai web hits — not in our curated set yet
+            Bonus places we spotted online
           </h3>
           <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
-            Web Pulse surfaced these from live Thai-source articles. Coordinates
-            confirmed via Google Maps, but they have not been TAT-verified or
-            crowd-checked. Treat as leads, not vetted picks.
+            Newer leads — coordinates checked, but treat as ideas to scout, not a vetted pick.
           </p>
         </div>
       </div>
@@ -467,7 +471,7 @@ function LiveFinds({ final }: { final: FinalItinerary }) {
                   {find.province}
                   {typeof find.google_review_count === "number" && (
                     <span className="ml-1">
-                      · {find.google_review_count.toLocaleString()} Maps reviews
+                      · {find.google_review_count.toLocaleString()} reviews
                       {typeof find.google_rating === "number"
                         ? ` · ${find.google_rating.toFixed(1)}★`
                         : ""}
@@ -518,25 +522,19 @@ function WellnessFinds({ final }: { final: FinalItinerary }) {
   const finds = final.wellness_finds ?? [];
   if (finds.length === 0) return null;
 
-  const diag = final.wellness_diagnostics;
-
   return (
     <div className="flex flex-col gap-4 rounded-2xl border border-[var(--jade-soft)] bg-gradient-to-br from-[var(--jade-tint)]/60 via-[var(--surface)] to-[#fdf6e3]/40 p-5 sm:p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <div className="flex flex-col gap-1">
           <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--jade)]">
             <Sparkles className="h-3 w-3" />
-            Thai wellness picks · {finds.length} {finds.length === 1 ? "venue" : "venues"} · cross-validated
+            Thai wellness picks · {finds.length} {finds.length === 1 ? "venue" : "venues"}
           </p>
           <h3 className="font-display text-xl font-semibold tracking-tight text-[var(--foreground)]">
             Where to slow down — quality Thai wellness, hand-picked
           </h3>
           <p className="text-xs leading-relaxed text-[var(--muted-foreground)]">
-            Cross-checked across four sources: a hand-curated dataset, TAT SHA
-            certification, luxury-travel editorial mentions, and live Google
-            Places ratings (≥4.3, ≥100 reviews, currently operating). Boutique
-            and Thai-heritage venues only — no chain spas.
-            {diag?.search_status === "missing-key" ? " Live editorial search skipped (no Tavily/Exa key set)." : null}
+            Boutique and Thai-heritage venues only — no chain spas.
           </p>
         </div>
       </div>
@@ -547,10 +545,6 @@ function WellnessFinds({ final }: { final: FinalItinerary }) {
           </li>
         ))}
       </ul>
-      <p className="border-t border-[var(--border)] pt-3 font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
-        Curated dataset · TAT SHA · Forbes / Condé Nast / Travel + Leisure ·
-        Google Places
-      </p>
     </div>
   );
 }
@@ -599,15 +593,14 @@ function ResultFooter({ final }: { final: FinalItinerary }) {
           <div className="mb-7 flex flex-col gap-2">
             <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--saffron)]">
               <Sparkles className="h-3 w-3" />
-              Local intel · Verifier
+              Local intel
             </p>
             <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-3xl">
               Notes from the local guide
             </h3>
             <p className="max-w-2xl text-sm leading-relaxed text-[var(--muted-foreground)]">
-              The kind of detail a generic AI itinerary skips — etiquette,
-              seasonal gear, holiday-aware tweaks, and small things that change
-              the day.
+              Small things that change the day — etiquette, seasonal gear, and
+              holiday-aware tweaks.
             </p>
           </div>
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">

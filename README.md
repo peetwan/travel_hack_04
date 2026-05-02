@@ -1,6 +1,6 @@
 # Hidden Siam
 
-> Eight specialized AI agents collaborate to find authentic, less-crowded Thai destinations the famous travel bots never recommend — and pair them with hand-picked Thai wellness venues, all cross-validated against four data sources.
+> A Destination Scout pre-flow helps first-time Thailand travelers choose a region, then eight specialized AI agents build an authentic, less-crowded itinerary the famous travel bots never recommend.
 
 Built for the **Thailand Tourism Mini Hackathon** (AI Hackathon SS6, May 2026).
 
@@ -8,7 +8,22 @@ Built for the **Thailand Tourism Mini Hackathon** (AI Hackathon SS6, May 2026).
 
 Maya Bay was closed for four years because of overtourism. Phi Phi is a parking lot of long-tail boats. Damnoen Saduak is staged for cruise tours. And every general-purpose AI travel assistant — ChatGPT, Gemini, you-name-it — keeps recommending exactly those places.
 
-**Hidden Siam** runs **eight specialized AI agents** over hand-curated datasets covering all 77 provinces of Thailand: 91 authentic gems, 89 Thai wellness venues, and 30 known tourist traps with better alternatives. Live web search and Google Places augment the curated set; everything cross-validates before it reaches the user. The agents argue, filter, route, and surface restaurant + wellness picks — and the user sees their work happen live over Server-Sent Events.
+**Hidden Siam** starts with a lightweight **Destination Scout**: the user only describes their travel style, the scout suggests 3-5 Thailand trip clusters, and the user chooses one before the full itinerary run starts. After that, **eight specialized AI agents** run over hand-curated datasets covering all 77 provinces of Thailand: 91 authentic gems, 89 Thai wellness venues, and 30 known tourist traps with better alternatives. Live web search and Google Places augment the curated set; everything cross-validates before it reaches the user. The agents argue, filter, route, and surface restaurant + wellness picks — and the user sees their work happen live over Server-Sent Events.
+
+## Product flow
+
+1. **Home** — user enters only their preferred travel style and trip start date. No province knowledge required.
+2. **Destination Scout** — `/api/destination-suggestions` proposes 3-5 polished trip clusters from the curated hidden-gem dataset.
+3. **Destination picker** — `/destinations` shows clean customer-facing cards: title, region/provinces, why it fits, what it avoids, and a single "Plan this trip" CTA.
+4. **Agent itinerary** — choosing a card sends a composed prompt into `/discover`, where the existing SSE agent crew builds the full route.
+
+See [docs/design-flow.md](docs/design-flow.md) for the detailed UX, data, and system flow.
+
+## Destination Scout pre-flow
+
+| Step | Model / Source | Role |
+| --- | --- | --- |
+| Destination Scout | Gemini 3.1 Flash Lite + curated hidden gems | Converts a style-only prompt into 3-5 trip clusters. This is a preflight step, not part of the live agent crew shown on `/discover`. |
 
 ## The agents
 
@@ -25,10 +40,26 @@ Maya Bay was closed for four years because of overtourism. Phi Phi is a parking 
 
 End-to-end target: **~25 seconds** with live web + Maps enabled.
 
-## Design flow
+## System flow
 
 ```
-                    User prompt + start date
+              Style prompt + start date
+                         │
+                         ▼
+           ┌──────────────────────────┐
+           │ Destination Scout API     │
+           │ /api/destination-         │
+           │ suggestions               │
+           └─────────────┬────────────┘
+                         │ 3-5 trip clusters
+                         ▼
+           ┌──────────────────────────┐
+           │ /destinations picker      │
+           │ clean customer cards      │
+           └─────────────┬────────────┘
+                         │ selected composed_prompt
+                         ▼
+             Composed prompt + start date
                               │
                        [ Orchestrator ]
                               │
@@ -93,7 +124,7 @@ End-to-end target: **~25 seconds** with live web + Maps enabled.
    └──────────────────────────────────────────────┘
 ```
 
-The Listener runs first to set the candidate pool; Web Pulse, Maps Crowd Radar, and Wellness Pulse then run **in parallel** against that exact pool. Curator and Planner reconcile their outputs. Weather Watcher and Verifier run in parallel after the Planner. The Orchestrator routes work between them all and streams progress so the UI shows every step happening live.
+The Destination Scout runs before the SSE stream and does not appear in the agent crew panel. It validates generated clusters against `data/hidden_gems.json` and tops up with deterministic low-crowd fallbacks if the model returns fewer than three valid options. Once the user chooses a cluster, the existing itinerary flow starts: Listener sets the candidate pool; Web Pulse, Maps Crowd Radar, and Wellness Pulse run **in parallel** against that exact pool; Curator and Planner reconcile their outputs; Weather Watcher and Verifier run in parallel after the Planner. The Orchestrator routes work between them all and streams progress so the UI shows every step happening live.
 
 ## Datasets
 
@@ -157,10 +188,10 @@ Without these, the app still works; agents emit empty/skipped diagnostics and th
 ## Demo prompts
 
 ```
-3 days in Chiang Mai. I love nature, hate crowds, vegan-friendly.
-Weekend escape from Bangkok — peaceful, no tourist traps, good food.
-An alternative to Phi Phi for a week. Clear water, no jet skis, sunsets.
-Relaxing wellness trip to Chiang Mai for 4 days, want a Thai spa or onsen.
+Peaceful beaches, no party scene, good seafood, 5 days.
+Temples, local culture, vegetarian-friendly, hate crowds.
+Relaxing wellness trip, Thai spa or onsen, quiet mornings, 4 days.
+Family-friendly nature, easy walks, wildlife, not too touristy.
 10 days exploring temples and culture, but not the Bangkok rush.
 ```
 
@@ -174,12 +205,16 @@ For the full live demo, set `GOOGLE_MAPS_API_KEY`, `TAVILY_API_KEY`, `EXA_API_KE
 
 ```
 app/
-  page.tsx                    Landing + prompt input
+  page.tsx                    Landing + style prompt input
+  destinations/page.tsx       Customer-facing Destination Scout picker
   discover/page.tsx           Live agent stream + final itinerary view
+  api/destination-suggestions/route.ts
+                              Destination Scout JSON endpoint
   api/orchestrate/route.ts    SSE endpoint that runs the agent crew
 lib/
-  ai.ts                       Gemini provider + per-agent model picks
-  types.ts                    HiddenGem, WellnessVenue, AgentEvent, ItineraryDay, ...
+  ai.ts                       Gemini provider + model picks
+  types.ts                    HiddenGem, DestinationSuggestion, WellnessVenue,
+                              AgentEvent, ItineraryDay, ...
   web-search.ts               Tavily + Exa + Firecrawl + luxuryWellnessSearch
   google-maps.ts              Places (New) wrapper: crowd signals, geocoding,
                               wellness validation, photo URI resolution
@@ -187,9 +222,9 @@ lib/
   weather.ts                  Open-Meteo client (free, no API key)
   thai-holidays.ts            Hardcoded 2026/2027 holidays + range helper
   agents/
-    prompts.ts                System prompts for each agent
+    prompts.ts                Destination Scout + system prompts for each agent
     schemas.ts                Zod output schemas
-    runners.ts                One function per agent
+    runners.ts                Destination Scout + one function per agent
     orchestrator.ts           Composes the run, emits SSE events,
                               decorates days with weather + holiday
 components/
@@ -205,6 +240,7 @@ data/
   wellness_local.json         89 wellness venues across all 77 provinces
   tourist_traps.json          30 known traps + better alternatives
 docs/
+  design-flow.md              Detailed UX + system flow
   wellness-data-sources.md    Layered cross-validation rules + cadence
 scripts/
   enrich-tat.sh               Pull TAT data for gems (curl-based; see AGENTS.md "Don't break" #1)
@@ -217,6 +253,7 @@ scripts/
 ## Where the data shows up
 
 - **Hidden gems** — surface in the main itinerary day-by-day, the Leaflet map, and the "What you're visiting" footer. Each card shows TAT verified badge, Maps crowd-pressure chip, and a clickable Maps link.
+- **Destination suggestions** — surface only on `/destinations` as clean customer cards. Style tags and anchor gem ids are kept internal; the selected card contributes a composed prompt to the itinerary agents.
 - **Wellness venues** — surface in the "Thai Wellness Picks" sidebar (rendered only when at least one venue passes Google Places validation within 80 km of the trip). Each card shows SHA tier, award badges (Forbes / Condé Nast / Travel + Leisure / World Spa Awards), Thai authenticity stars, signature treatments, and Maps + booking links.
 - **Live finds** — Web Pulse's discovered_gems[] surface in a parallel sidebar, marked clearly as leads (not vetted picks).
 - **Tourist traps** — flagged in the agent stream when the user's prompt or selected gems point at one. Each warning includes the trap's `better_alternatives` from our curated set.
@@ -224,6 +261,7 @@ scripts/
 
 ## Why this design
 
+- **Scout first, then route** — foreign travelers often do not know Thai provinces. A separate destination picker turns a vague style prompt into a confident choice before spending 20-30 seconds on the live agent crew.
 - **Eight agents, not one** — judges in an AI hackathon care about agentic patterns. A single Gemini call would have been simpler but invisible.
 - **Curated dataset as trust anchor + live web + Google Places as the freshness layers** — 91 hand-vetted gems and 89 wellness venues give us defensible quality (TAT-verified images, hand-tuned scores). Web Pulse's `discovered_gems[]` keeps the system useful when a user asks about a place we haven't curated yet, while never letting unvetted picks into the planned route. Google Places double-checks "is this still a real, currently-operating, well-rated place?" at request time.
 - **SSE streaming, not "wait 25s and show result"** — the visible work *is* the demo.
