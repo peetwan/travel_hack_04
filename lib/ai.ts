@@ -12,14 +12,10 @@ const google = createGoogleGenerativeAI({
   apiKey: apiKey ?? "",
 });
 
-// Model picks tuned for the 5-min demo:
-// - Pro 3.1 timed out at 60s+ even with low thinking → too slow for live presentation.
-// - Flash 3 preview also too slow on structured output with optional fields (Planner schema).
-// - Gemini 2.5 Flash (stable) handles structured output reliably in <5s — keeping it for the agents
-//   that emit complex JSON (Curator, Planner). Flash Lite 3.1 stays for retrieval/filter tasks.
-export const PRO_MODEL = google("gemini-3.1-pro-preview");
-export const FLASH_3_MODEL = google("gemini-3-flash-preview");
-export const FLASH_25_MODEL = google("gemini-2.5-flash");
+// Model pick tuned for the 5-min demo. Pro 3.1 timed out at 60s+ even with
+// low thinking; Flash 3 preview was also slow on structured output with
+// optional fields (Planner schema). Flash Lite 3.1 + minimal thinking lands
+// every prompt in <5s per agent.
 export const FLASH_LITE_MODEL = google("gemini-3.1-flash-lite-preview");
 
 export const MODELS = {
