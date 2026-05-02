@@ -96,24 +96,41 @@ function normalizeStayNights<T extends { gem_id: string; nights: number }>(
   stays: T[],
   days?: Array<{ day: number; stay_at: string }>
 ): T[] {
-  if (!days || days.length <= 1) return stays;
+  if (!days || days.length <= 1 || stays.length === 0) return stays;
 
-  // A 3-day itinerary has 2 sleeps. Count the base for every day except the
-  // departure day so the UI never shows "3 days / 3 nights" unless the plan
-  // explicitly spans four calendar days.
+  // A 4-day itinerary has 3 sleeps. Treat days[].length - 1 as the source of
+  // truth so the UI never shows "4 days / 4 nights" — the planner's raw
+  // stays[].nights values can't be trusted (Gemini sometimes equates nights
+  // with days). Distribute the total across bases via days[].stay_at when it
+  // matches gem_ids; fall back to even distribution if the planner names
+  // bases inconsistently across days vs. stays.
+  const totalNights = days.length - 1;
   const nightCounts = new Map<string, number>();
   for (const day of days.slice(0, -1)) {
     nightCounts.set(day.stay_at, (nightCounts.get(day.stay_at) ?? 0) + 1);
   }
+  const matchedNights = stays.reduce(
+    (sum, stay) => sum + (nightCounts.get(stay.gem_id) ?? 0),
+    0
+  );
 
-  const normalized = stays
-    .map((stay) => ({
-      ...stay,
-      nights: nightCounts.get(stay.gem_id) ?? 0,
-    }))
-    .filter((stay) => stay.nights > 0);
+  if (matchedNights === totalNights) {
+    return stays
+      .map((stay) => ({
+        ...stay,
+        nights: nightCounts.get(stay.gem_id) ?? 0,
+      }))
+      .filter((stay) => stay.nights > 0);
+  }
 
-  return normalized.length > 0 ? normalized : stays;
+  // days[].stay_at didn't reconcile — distribute totalNights across stays
+  // round-robin so every base gets at least one night.
+  const base = Math.floor(totalNights / stays.length);
+  const remainder = totalNights - base * stays.length;
+  return stays.map((stay, i) => ({
+    ...stay,
+    nights: base + (i < remainder ? 1 : 0),
+  }));
 }
 
 export async function orchestrate(
