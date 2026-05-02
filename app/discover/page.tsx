@@ -406,14 +406,6 @@ function ItineraryHero({ final }: { final: FinalItinerary }) {
           </span>
         ))}
       </p>
-      {final.avoided_traps.length > 0 && (
-        <p className="text-sm text-[var(--muted-foreground)]">
-          Skipped:{" "}
-          <span className="text-[var(--burgundy)]">
-            {final.avoided_traps.join(" · ")}
-          </span>
-        </p>
-      )}
     </div>
   );
 }
