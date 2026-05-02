@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
@@ -100,6 +100,19 @@ function DiscoverInner() {
   const [final, setFinal] = useState<FinalItinerary | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  // Once the crew finishes and the result mounts, scroll the result section
+  // to the top of the viewport. Wait ~250ms so the AgentCrewPanel collapse
+  // animation (200ms) settles first, otherwise the smooth scroll fights with
+  // the shrinking panel above.
+  useEffect(() => {
+    if (!final) return;
+    const t = setTimeout(() => {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 250);
+    return () => clearTimeout(t);
+  }, [final]);
 
   useEffect(() => {
     if (!prompt) return;
@@ -347,10 +360,11 @@ function DiscoverInner() {
         <AnimatePresence>
           {final && (
             <motion.div
+              ref={resultRef}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex flex-col gap-10"
+              className="flex scroll-mt-24 flex-col gap-10"
             >
               <ItineraryHero final={final} />
               <ItineraryMapHero gems={final.selected_gems} />
