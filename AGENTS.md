@@ -95,9 +95,9 @@ Destination Scout pre-flow
 | `app/api/orchestrate/route.ts` | SSE endpoint, validates input, calls the orchestrator |
 | `app/page.tsx` | Landing — style prompt + date picker |
 | `app/destinations/page.tsx` | Customer-facing Destination Scout picker before `/discover` |
-| `app/discover/page.tsx` | Live agent stream + final itinerary view (includes "Thai Wellness Picks" sidebar) |
-| `components/AgentCrewPanel.tsx` | Single collapsible panel for the 8-agent stream, including realtime diagnostic chips |
-| `components/GemCard.tsx` | Gem card with TAT image, verified badge, Maps crowd proxy, reviews, and Maps link |
+| `app/discover/page.tsx` | Live agent stream + final itinerary view (includes "Thai Wellness Picks" sidebar). Smooth-scrolls the result section to the viewport top ~250ms after `final` arrives, after the AgentCrewPanel collapse animation settles. Sticky header is logo-only; gems/traps stat lives in `ItineraryHero` to avoid duplication. |
+| `components/AgentCrewPanel.tsx` | Single collapsible panel for the 8-agent stream. Auto-collapses once all rows finish (`useEffect` on `allDone`); user can re-expand. Diagnostic chips intentionally omit vendor names (Tavily / Exa / Firecrawl) and debug states ("editorial missing-key") — see CLAUDE.md "Customer copy is curated". |
+| `components/GemCard.tsx` | Gem card with TAT image, verified badge, popularity proxy chip ("{level} traffic"), review count, and Maps link. Source attributions ("Google Maps" hero badge, "Google reviews" label, "Maps {pressure}") deliberately omitted. |
 | `components/WellnessCard.tsx` | Wellness venue card — SHA tier badge, awards block, Thai authenticity stars, signature treatments, Maps + booking links |
 | `components/ItineraryMap.tsx` | react-leaflet map with light CARTO tiles + saffron pin |
 | `scripts/enrich-tat.sh` + `merge-tat.sh` | Offline TAT data enrichment (curl-based; see "Don't break" #1) |
@@ -159,8 +159,10 @@ Light theme inspired by Thai luxury hospitality.
 3. **Destination Scout cards are customer-facing.** Keep them clean: no `style_tags`, no `anchor_gem_ids`, no debug reasoning. The selected card's `composed_prompt` carries technical detail forward to `/discover`.
 4. **Open-Meteo forecast horizon = 16 days.** When `tripStart > today + 16 days`, the orchestrator skips the Weather Watcher step and emits a "beyond forecast horizon" message. Don't fall back to repeating the last available forecast — that fabricates data and was caught in testing.
 5. **Gemini 2.5 doesn't accept `thinkingLevel`.** It returns 400 "Thinking level is not supported for this model." Only Gemini 3.x. The `providerOptions` config in `runners.ts` only sets `thinkingLevel` for runners that route to a 3.x model.
-6. **Google Places is a proxy, not "busy now".** The Places fields we use do not expose official live crowd counts. Review volume/open status can move candidates from keep → caution/drop, but copy must say "Maps popularity proxy" or "review volume suggests".
+6. **Google Places is a proxy, not "busy now".** The Places fields we use do not expose official live crowd counts. Review volume/open status can move candidates from keep → caution/drop, but copy must convey it's a proxy. The customer-facing chip on `GemCard` reads "{pressure} traffic" with the tooltip "Popularity proxy based on review volume, not a live crowd count." — don't reintroduce "Maps {pressure}" or "Google Maps" branding into customer-visible labels (it's still fine in agent prompts and internal types).
 7. **No keys in tracked files.** `.env*` is gitignored. The deploy reads from Railway env vars; the enrichment scripts read from `.env.local`. Don't paste keys into source, comments, commit messages, or docs. Rotate after demo.
+8. **`stays[].nights` from the Planner is unreliable on its own.** Gemini sometimes equates nights with days, or names the wrong gem_id in `days[].stay_at` (the afternoon stop instead of the sleep base). The orchestrator's `normalizeStayNights` is the source of truth: total nights = `days.length - 1`, distributed across stays via `days[].stay_at` matching when totals reconcile, round-robin fallback otherwise (each base gets at least one night). Don't render raw `planner.stays[].nights` directly — always go through the normalized output.
+9. **Customer copy is curated — see CLAUDE.md.** No vendor names, no data-layer attribution footers, no debug states. The crew panel and `/discover` were polished for this; future UI passes should hold the line.
 
 ## Adding things
 
